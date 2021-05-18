@@ -3,7 +3,7 @@ package rest
 import (
 	"time"
 
-	"github.com/tal-tech/go-zero/core/service"
+	"manlu.org/tao/core/service"
 )
 
 type (

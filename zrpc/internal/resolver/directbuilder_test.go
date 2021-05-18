@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/lang"
-	"github.com/tal-tech/go-zero/core/mathx"
+	"manlu.org/tao/core/lang"
+	"manlu.org/tao/core/mathx"
 	"google.golang.org/grpc/resolver"
 )
 

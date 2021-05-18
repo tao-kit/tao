@@ -4,10 +4,10 @@ import (
 	"errors"
 	"log"
 
-	"github.com/tal-tech/go-zero/core/errorx"
-	"github.com/tal-tech/go-zero/core/hash"
-	"github.com/tal-tech/go-zero/core/stores/cache"
-	"github.com/tal-tech/go-zero/core/stores/redis"
+	"manlu.org/tao/core/errorx"
+	"manlu.org/tao/core/hash"
+	"manlu.org/tao/core/stores/cache"
+	"manlu.org/tao/core/stores/redis"
 )
 
 // ErrNoRedisNode is an error that indicates no redis node.

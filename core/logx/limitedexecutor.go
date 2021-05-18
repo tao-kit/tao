@@ -4,8 +4,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/syncx"
-	"github.com/tal-tech/go-zero/core/timex"
+	"manlu.org/tao/core/syncx"
+	"manlu.org/tao/core/timex"
 )
 
 type limitedExecutor struct {

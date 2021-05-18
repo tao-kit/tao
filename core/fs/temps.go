@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/tal-tech/go-zero/core/hash"
+	"manlu.org/tao/core/hash"
 )
 
 // TempFileWithText creates the temporary file with the given content,

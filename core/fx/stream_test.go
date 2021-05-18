@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/stringx"
+	"manlu.org/tao/core/stringx"
 )
 
 func TestBuffer(t *testing.T) {

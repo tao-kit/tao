@@ -9,8 +9,8 @@ import (
 	"net/http/httputil"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/rest/token"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/rest/token"
 )
 
 const (

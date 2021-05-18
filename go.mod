@@ -1,4 +1,4 @@
-module github.com/tal-tech/go-zero
+module manlu.org/tao
 
 go 1.14
 

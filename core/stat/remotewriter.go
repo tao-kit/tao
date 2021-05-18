@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/logx"
+	"manlu.org/tao/core/logx"
 )
 
 const httpTimeout = time.Second * 5

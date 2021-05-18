@@ -9,11 +9,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/contextx"
-	"github.com/tal-tech/go-zero/core/lang"
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/core/syncx"
-	"github.com/tal-tech/go-zero/core/threading"
+	"manlu.org/tao/core/contextx"
+	"manlu.org/tao/core/lang"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/syncx"
+	"manlu.org/tao/core/threading"
 	"go.etcd.io/etcd/clientv3"
 )
 

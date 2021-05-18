@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/timex"
+	"manlu.org/tao/core/timex"
 )
 
 func TestLessExecutor_DoOrDiscard(t *testing.T) {

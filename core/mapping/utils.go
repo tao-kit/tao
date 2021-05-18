@@ -10,7 +10,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/tal-tech/go-zero/core/stringx"
+	"manlu.org/tao/core/stringx"
 )
 
 const (

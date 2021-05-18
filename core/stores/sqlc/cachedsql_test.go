@@ -16,13 +16,13 @@ import (
 
 	"github.com/alicebob/miniredis/v2"
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/fx"
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/core/stat"
-	"github.com/tal-tech/go-zero/core/stores/cache"
-	"github.com/tal-tech/go-zero/core/stores/redis"
-	"github.com/tal-tech/go-zero/core/stores/redis/redistest"
-	"github.com/tal-tech/go-zero/core/stores/sqlx"
+	"manlu.org/tao/core/fx"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/stat"
+	"manlu.org/tao/core/stores/cache"
+	"manlu.org/tao/core/stores/redis"
+	"manlu.org/tao/core/stores/redis/redistest"
+	"manlu.org/tao/core/stores/sqlx"
 )
 
 func init() {

@@ -3,9 +3,9 @@ package service
 import (
 	"log"
 
-	"github.com/tal-tech/go-zero/core/proc"
-	"github.com/tal-tech/go-zero/core/syncx"
-	"github.com/tal-tech/go-zero/core/threading"
+	"manlu.org/tao/core/proc"
+	"manlu.org/tao/core/syncx"
+	"manlu.org/tao/core/threading"
 )
 
 type (

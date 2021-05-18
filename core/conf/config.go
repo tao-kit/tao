@@ -7,7 +7,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/tal-tech/go-zero/core/mapping"
+	"manlu.org/tao/core/mapping"
 )
 
 var loaders = map[string]func([]byte, interface{}) error{

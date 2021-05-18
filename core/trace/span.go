@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/stringx"
-	"github.com/tal-tech/go-zero/core/timex"
-	"github.com/tal-tech/go-zero/core/trace/tracespec"
+	"manlu.org/tao/core/stringx"
+	"manlu.org/tao/core/timex"
+	"manlu.org/tao/core/trace/tracespec"
 )
 
 const (

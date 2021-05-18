@@ -4,8 +4,8 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/tal-tech/go-zero/core/discov/internal"
-	"github.com/tal-tech/go-zero/core/syncx"
+	"manlu.org/tao/core/discov/internal"
+	"manlu.org/tao/core/syncx"
 )
 
 type (

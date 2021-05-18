@@ -5,7 +5,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/timex"
+	"manlu.org/tao/core/timex"
 )
 
 const durationCallerDepth = 3

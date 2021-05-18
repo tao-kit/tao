@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/stringx"
-	"github.com/tal-tech/go-zero/core/trace/tracespec"
+	"manlu.org/tao/core/stringx"
+	"manlu.org/tao/core/trace/tracespec"
 	"google.golang.org/grpc/metadata"
 )
 

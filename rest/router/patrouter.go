@@ -6,9 +6,9 @@ import (
 	"path"
 	"strings"
 
-	"github.com/tal-tech/go-zero/core/search"
-	"github.com/tal-tech/go-zero/rest/httpx"
-	"github.com/tal-tech/go-zero/rest/internal/context"
+	"manlu.org/tao/core/search"
+	"manlu.org/tao/rest/httpx"
+	"manlu.org/tao/rest/internal/context"
 )
 
 const (

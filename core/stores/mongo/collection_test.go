@@ -7,10 +7,10 @@ import (
 	"github.com/globalsign/mgo"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/breaker"
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/core/stores/mongo/internal"
-	"github.com/tal-tech/go-zero/core/stringx"
+	"manlu.org/tao/core/breaker"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/stores/mongo/internal"
+	"manlu.org/tao/core/stringx"
 )
 
 var errDummy = errors.New("dummy")

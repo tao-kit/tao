@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/core/timex"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/timex"
 )
 
 const slowThreshold = time.Millisecond * 500

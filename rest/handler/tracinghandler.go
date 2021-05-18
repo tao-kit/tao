@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/core/sysx"
-	"github.com/tal-tech/go-zero/core/trace"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/sysx"
+	"manlu.org/tao/core/trace"
 )
 
 // TracingHandler returns a middleware that traces the request.

@@ -15,11 +15,11 @@ import (
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/stat"
-	"github.com/tal-tech/go-zero/core/stores/cache"
-	"github.com/tal-tech/go-zero/core/stores/mongo"
-	"github.com/tal-tech/go-zero/core/stores/redis"
-	"github.com/tal-tech/go-zero/core/stores/redis/redistest"
+	"manlu.org/tao/core/stat"
+	"manlu.org/tao/core/stores/cache"
+	"manlu.org/tao/core/stores/mongo"
+	"manlu.org/tao/core/stores/redis"
+	"manlu.org/tao/core/stores/redis/redistest"
 )
 
 const dummyCount = 10

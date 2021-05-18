@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/timex"
+	"manlu.org/tao/core/timex"
 )
 
 type (

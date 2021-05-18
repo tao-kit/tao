@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/timex"
+	"manlu.org/tao/core/timex"
 )
 
 // A ElapsedTimer is a timer to track the elapsed time.

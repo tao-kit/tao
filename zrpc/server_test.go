@@ -5,13 +5,13 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/discov"
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/core/service"
-	"github.com/tal-tech/go-zero/core/stat"
-	"github.com/tal-tech/go-zero/core/stores/redis"
-	"github.com/tal-tech/go-zero/zrpc/internal"
-	"github.com/tal-tech/go-zero/zrpc/internal/serverinterceptors"
+	"manlu.org/tao/core/discov"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/service"
+	"manlu.org/tao/core/stat"
+	"manlu.org/tao/core/stores/redis"
+	"manlu.org/tao/zrpc/internal"
+	"manlu.org/tao/zrpc/internal/serverinterceptors"
 	"google.golang.org/grpc"
 )
 

@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/metric"
-	"github.com/tal-tech/go-zero/core/prometheus"
-	"github.com/tal-tech/go-zero/core/timex"
-	"github.com/tal-tech/go-zero/rest/internal/security"
+	"manlu.org/tao/core/metric"
+	"manlu.org/tao/core/prometheus"
+	"manlu.org/tao/core/timex"
+	"manlu.org/tao/rest/internal/security"
 )
 
 const serverNamespace = "http_server"

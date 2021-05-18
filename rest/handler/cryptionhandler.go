@@ -10,8 +10,8 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/tal-tech/go-zero/core/codec"
-	"github.com/tal-tech/go-zero/core/logx"
+	"manlu.org/tao/core/codec"
+	"manlu.org/tao/core/logx"
 )
 
 const maxBytes = 1 << 20 // 1 MiB

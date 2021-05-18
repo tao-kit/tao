@@ -4,8 +4,8 @@ import (
 	"math"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/collection"
-	"github.com/tal-tech/go-zero/core/mathx"
+	"manlu.org/tao/core/collection"
+	"manlu.org/tao/core/mathx"
 )
 
 const (

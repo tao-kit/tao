@@ -16,9 +16,9 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/codec"
-	"github.com/tal-tech/go-zero/core/fs"
-	"github.com/tal-tech/go-zero/rest/httpx"
+	"manlu.org/tao/core/codec"
+	"manlu.org/tao/core/fs"
+	"manlu.org/tao/rest/httpx"
 )
 
 const (

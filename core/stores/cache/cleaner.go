@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/collection"
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/core/proc"
-	"github.com/tal-tech/go-zero/core/stat"
-	"github.com/tal-tech/go-zero/core/stringx"
-	"github.com/tal-tech/go-zero/core/threading"
+	"manlu.org/tao/core/collection"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/proc"
+	"manlu.org/tao/core/stat"
+	"manlu.org/tao/core/stringx"
+	"manlu.org/tao/core/threading"
 )
 
 const (

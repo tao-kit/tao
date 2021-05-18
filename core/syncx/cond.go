@@ -3,8 +3,8 @@ package syncx
 import (
 	"time"
 
-	"github.com/tal-tech/go-zero/core/lang"
-	"github.com/tal-tech/go-zero/core/timex"
+	"manlu.org/tao/core/lang"
+	"manlu.org/tao/core/timex"
 )
 
 // A Cond is used to wait for conditions.

@@ -8,9 +8,9 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/conf"
-	"github.com/tal-tech/go-zero/rest/httpx"
-	"github.com/tal-tech/go-zero/rest/router"
+	"manlu.org/tao/core/conf"
+	"manlu.org/tao/rest/httpx"
+	"manlu.org/tao/rest/router"
 )
 
 func TestNewServer(t *testing.T) {

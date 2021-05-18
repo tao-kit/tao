@@ -7,13 +7,13 @@ import (
 	"time"
 
 	"github.com/justinas/alice"
-	"github.com/tal-tech/go-zero/core/codec"
-	"github.com/tal-tech/go-zero/core/load"
-	"github.com/tal-tech/go-zero/core/stat"
-	"github.com/tal-tech/go-zero/rest/handler"
-	"github.com/tal-tech/go-zero/rest/httpx"
-	"github.com/tal-tech/go-zero/rest/internal"
-	"github.com/tal-tech/go-zero/rest/router"
+	"manlu.org/tao/core/codec"
+	"manlu.org/tao/core/load"
+	"manlu.org/tao/core/stat"
+	"manlu.org/tao/rest/handler"
+	"manlu.org/tao/rest/httpx"
+	"manlu.org/tao/rest/internal"
+	"manlu.org/tao/rest/router"
 )
 
 // use 1000m to represent 100%

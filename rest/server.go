@@ -4,10 +4,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/rest/handler"
-	"github.com/tal-tech/go-zero/rest/httpx"
-	"github.com/tal-tech/go-zero/rest/router"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/rest/handler"
+	"manlu.org/tao/rest/httpx"
+	"manlu.org/tao/rest/router"
 )
 
 type (

@@ -7,8 +7,8 @@ import (
 	"time"
 
 	red "github.com/go-redis/redis"
-	"github.com/tal-tech/go-zero/core/breaker"
-	"github.com/tal-tech/go-zero/core/mapping"
+	"manlu.org/tao/core/breaker"
+	"manlu.org/tao/core/mapping"
 )
 
 const (

@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/threading"
+	"manlu.org/tao/core/threading"
 )
 
 // A DelayExecutor delays a tasks on given delay interval.

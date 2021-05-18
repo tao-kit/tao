@@ -1,12 +1,12 @@
 package discov
 
 import (
-	"github.com/tal-tech/go-zero/core/discov/internal"
-	"github.com/tal-tech/go-zero/core/lang"
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/core/proc"
-	"github.com/tal-tech/go-zero/core/syncx"
-	"github.com/tal-tech/go-zero/core/threading"
+	"manlu.org/tao/core/discov/internal"
+	"manlu.org/tao/core/lang"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/proc"
+	"manlu.org/tao/core/syncx"
+	"manlu.org/tao/core/threading"
 	"go.etcd.io/etcd/clientv3"
 )
 

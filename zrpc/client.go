@@ -4,9 +4,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/discov"
-	"github.com/tal-tech/go-zero/zrpc/internal"
-	"github.com/tal-tech/go-zero/zrpc/internal/auth"
+	"manlu.org/tao/core/discov"
+	"manlu.org/tao/zrpc/internal"
+	"manlu.org/tao/zrpc/internal/auth"
 	"google.golang.org/grpc"
 )
 

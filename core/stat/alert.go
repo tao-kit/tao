@@ -10,11 +10,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/tal-tech/go-zero/core/executors"
-	"github.com/tal-tech/go-zero/core/logx"
-	"github.com/tal-tech/go-zero/core/proc"
-	"github.com/tal-tech/go-zero/core/sysx"
-	"github.com/tal-tech/go-zero/core/timex"
+	"manlu.org/tao/core/executors"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/proc"
+	"manlu.org/tao/core/sysx"
+	"manlu.org/tao/core/timex"
 )
 
 const (

@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tal-tech/go-zero/core/fs"
-	"github.com/tal-tech/go-zero/core/hash"
+	"manlu.org/tao/core/fs"
+	"manlu.org/tao/core/hash"
 )
 
 func TestLoadConfig_notExists(t *testing.T) {
