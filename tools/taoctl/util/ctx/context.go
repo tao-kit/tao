@@ -14,12 +14,12 @@ var errModuleCheck = errors.New("the work directory must be found in the go mod 
 type ProjectContext struct {
 	WorkDir string
 	// Name is the root name of the project
-	// eg: go-zero、greet
+	// eg: tao、greet
 	Name string
 	// Path identifies which module a project belongs to, which is module value if it's a go mod project,
-	// or else it is the root name of the project, eg: manlu.org/tao/go-zero、greet
+	// or else it is the root name of the project, eg: manlu.org/tao、greet
 	Path string
-	// Dir is the path of the project, eg: /Users/keson/goland/go/go-zero、/Users/keson/go/src/greet
+	// Dir is the path of the project
 	Dir string
 }
 

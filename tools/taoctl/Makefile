@@ -1,14 +1,14 @@
 version := $(shell /bin/date "+%Y-%m-%d %H:%M")
 
 build:
-	go build -ldflags="-s -w" -ldflags="-X 'main.BuildTime=$(version)'" goctl.go
-	$(if $(shell command -v upx), upx goctl)
+	go build -ldflags="-s -w" -ldflags="-X 'main.BuildTime=$(version)'" taoctl.go
+	$(if $(shell command -v upx), upx taoctl)
 mac:
-	GOOS=darwin go build -ldflags="-s -w" -ldflags="-X 'main.BuildTime=$(version)'" -o goctl-darwin goctl.go
-	$(if $(shell command -v upx), upx goctl-darwin)
+	GOOS=darwin go build -ldflags="-s -w" -ldflags="-X 'main.BuildTime=$(version)'" -o taoctl-darwin taoctl.go
+	$(if $(shell command -v upx), upx taoctl-darwin)
 win:
-	GOOS=windows go build -ldflags="-s -w" -ldflags="-X 'main.BuildTime=$(version)'" -o goctl.exe goctl.go
-	$(if $(shell command -v upx), upx goctl.exe)
+	GOOS=windows go build -ldflags="-s -w" -ldflags="-X 'main.BuildTime=$(version)'" -o taoctl.exe taoctl.go
+	$(if $(shell command -v upx), upx taoctl.exe)
 linux:
-	GOOS=linux go build -ldflags="-s -w" -ldflags="-X 'main.BuildTime=$(version)'" -o goctl-linux goctl.go
-	$(if $(shell command -v upx), upx goctl-linux)
+	GOOS=linux go build -ldflags="-s -w" -ldflags="-X 'main.BuildTime=$(version)'" -o taoctl-linux taoctl.go
+	$(if $(shell command -v upx), upx taoctl-linux)

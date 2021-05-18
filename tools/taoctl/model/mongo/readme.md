@@ -2,12 +2,12 @@
 
 ## 背景
 
-在业务务开发中，model(dao)数据访问层是一个服务必不可缺的一层，因此数据库访问的CURD也是必须要对外提供的访问方法， 而CURD在go-zero中就仅存在两种情况
+在业务务开发中，model(dao)数据访问层是一个服务必不可缺的一层，因此数据库访问的CURD也是必须要对外提供的访问方法， 而CURD在tao中就仅存在两种情况
 
 * 带缓存model
 * 不带缓存model
 
-从代码结构上来看，C-U-R-D四个方法就是固定的结构，因此我们可以将其交给goctl工具去完成，帮助我们提升开发效率。
+从代码结构上来看，C-U-R-D四个方法就是固定的结构，因此我们可以将其交给taoctl工具去完成，帮助我们提升开发效率。
 
 ## 方案设计
 
@@ -32,7 +32,7 @@ $ vim types.go
 ```golang
 package model
 
-//go:generate goctl model mongo -t User
+//go:generate taoctl model mongo -t User
 import "github.com/globalsign/mgo/bson"
 
 type User struct {
@@ -47,11 +47,11 @@ type User struct {
 
 * 命令行生成 在types.go所在文件夹执行命令
     ```shell
-    $ goctl model mongo -t User -style gozero
+    $ taoctl model mongo -t User -style gozero
     ```
 * 在types.go中添加`//go:generate`，然后点击执行按钮即可生成，内容示例如下：
   ```golang
-  //go:generate goctl model mongo -t User
+  //go:generate taoctl model mongo -t User
   ```
 
 ### 生成示例代码
@@ -65,8 +65,8 @@ type User struct {
       "context"
   
       "github.com/globalsign/mgo/bson"
-      cachec "github.com/tal-tech/go-zero/core/stores/cache"
-      "github.com/tal-tech/go-zero/core/stores/mongoc"
+      cachec "manlu.org/tao/core/stores/cache"
+      "manlu.org/tao/core/stores/mongoc"
   )
   
   type UserModel interface {
@@ -172,10 +172,10 @@ type User struct {
 
 ```text
 NAME:
-   goctl model - generate model code
+   taoctl model - generate model code
 
 USAGE:
-   goctl model command [command options] [arguments...]
+   taoctl model command [command options] [arguments...]
 
 COMMANDS:
    mysql  generate mysql model
@@ -187,22 +187,22 @@ OPTIONS:
 
 ```text
 NAME:
-   goctl model mongo - generate mongo model
+   taoctl model mongo - generate mongo model
 
 USAGE:
-   goctl model mongo [command options] [arguments...]
+   taoctl model mongo [command options] [arguments...]
 
 OPTIONS:
    --type value, -t value  specified model type name
    --cache, -c             generate code with cache [optional]
    --dir value, -d value   the target dir
-   --style value           the file naming format, see [https://github.com/tal-tech/go-zero/tree/master/tools/goctl/config/readme.md]
+   --style value           the file naming format, see [https://manlu.org/tao/tree/master/tools/taoctl/config/readme.md]
 
 ```
 
 > 温馨提示
 > 
-> `--type` 支持slice传值，示例 `goctl model mongo -t=User -t=Class`
+> `--type` 支持slice传值，示例 `taoctl model mongo -t=User -t=Class`
 ## 注意事项
 
 types.go本质上与xxxmodel.go无关，只是将type定义部分交给开发人员自己编写了，在xxxmodel.go中，mongo文档的存储结构必须包含

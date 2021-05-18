@@ -1,16 +1,16 @@
-# goctl使用
+# taoctl使用
 
-## goctl用途
+## taoctl用途
 
 * 定义api请求
 * 根据定义的api自动生成golang(后端), java(iOS & Android), typescript(web & 晓程序)，dart(flutter)
-* 生成MySQL CURD 详情见[goctl model模块](model/sql)
+* 生成MySQL CURD 详情见[taoctl model模块](model/sql)
 
-## goctl使用说明
+## taoctl使用说明
 
-### goctl 参数说明
+### taoctl 参数说明
 
-  `goctl api [go/java/ts] [-api user/user.api] [-dir ./src]`
+  `taoctl api [go/java/ts] [-api user/user.api] [-dir ./src]`
   
   > api 后面接生成的语言，现支持go/java/typescript
   >
@@ -128,7 +128,7 @@ service user-api {
 
 #### api vscode插件
 
-开发者可以在vscode中搜索goctl的api插件，它提供了api语法高亮，语法检测和格式化相关功能。
+开发者可以在vscode中搜索taoctl的api插件，它提供了api语法高亮，语法检测和格式化相关功能。
 
  1. 支持语法高亮和类型导航。
  2. 语法检测，格式化api会自动检测api编写错误地方，用vscode默认的格式化快捷键(option+command+F)或者自定义的也可以。
@@ -137,7 +137,7 @@ service user-api {
 #### 根据定义好的api文件生成golang代码
 
   命令如下：  
-  `goctl api go -api user/user.api -dir user`
+  `taoctl api go -api user/user.api -dir user`
 
   ```Plain Text
 
@@ -178,13 +178,13 @@ service user-api {
 #### 根据定义好的api文件生成java代码
 
 ```Plain Text
-    goctl api java -api user/user.api -dir ./src
+    taoctl api java -api user/user.api -dir ./src
 ```
 
 #### 根据定义好的api文件生成typescript代码
 
 ```Plain Text
-	goctl api ts -api user/user.api -dir ./src -webapi ***
+	taoctl api ts -api user/user.api -dir ./src -webapi ***
 ```
 
 ts需要指定webapi所在目录
@@ -192,5 +192,5 @@ ts需要指定webapi所在目录
 #### 根据定义好的api文件生成Dart代码
 
 ```Plain Text
-	goctl api dart -api user/user.api -dir ./src
+	taoctl api dart -api user/user.api -dir ./src
 ```

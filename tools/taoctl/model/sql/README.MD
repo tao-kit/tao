@@ -1,13 +1,13 @@
-# Goctl Model
+# taoctl Model
 
-goctl model 为go-zero下的工具模块中的组件之一，目前支持识别mysql ddl进行model层代码生成，通过命令行或者idea插件（即将支持）可以有选择地生成带redis cache或者不带redis cache的代码逻辑。
+taoctl model 为go-zero下的工具模块中的组件之一，目前支持识别mysql ddl进行model层代码生成，通过命令行或者idea插件（即将支持）可以有选择地生成带redis cache或者不带redis cache的代码逻辑。
 
 ## 快速开始
 
 * 通过ddl生成
 
     ```shell script
-    goctl model mysql ddl -src="./*.sql" -dir="./sql/model" -c
+    taoctl model mysql ddl -src="./*.sql" -dir="./sql/model" -c
     ```
 
     执行上述命令后即可快速生成CURD代码。
@@ -21,7 +21,7 @@ goctl model 为go-zero下的工具模块中的组件之一，目前支持识别m
 * 通过datasource生成
 
     ```shell script
-    goctl model mysql datasource -url="user:password@tcp(127.0.0.1:3306)/database" -table="*"  -dir="./model"
+    taoctl model mysql datasource -url="user:password@tcp(127.0.0.1:3306)/database" -table="*"  -dir="./model"
     ```
 
 * 生成代码示例
@@ -36,11 +36,11 @@ goctl model 为go-zero下的工具模块中的组件之一，目前支持识别m
     	"strings"
     	"time"
     
-    	"github.com/tal-tech/go-zero/core/stores/cache"
-    	"github.com/tal-tech/go-zero/core/stores/sqlc"
-    	"github.com/tal-tech/go-zero/core/stores/sqlx"
-    	"github.com/tal-tech/go-zero/core/stringx"
-    	"github.com/tal-tech/go-zero/tools/goctl/model/sql/builderx"
+    	"manlu.org/tao/core/stores/cache"
+    	"manlu.org/tao/core/stores/sqlc"
+    	"manlu.org/tao/core/stores/sqlx"
+    	"manlu.org/tao/core/stringx"
+    	"manlu.org/tao/tools/taoctl/model/sql/builderx"
     )
     
     var (
@@ -219,15 +219,15 @@ goctl model 为go-zero下的工具模块中的组件之一，目前支持识别m
 ## 用法
 
 ```Plain Text
-goctl model mysql -h
+taoctl model mysql -h
 ```
 
 ```Plain Text
 NAME:
-   goctl model mysql - generate mysql model"
+   taoctl model mysql - generate mysql model"
 
 USAGE:
-   goctl model mysql command [command options] [arguments...]
+   taoctl model mysql command [command options] [arguments...]
 
 COMMANDS:
    ddl         generate mysql model from ddl"
@@ -246,22 +246,22 @@ OPTIONS:
   * ddl
 
 	```shell script
-	goctl model mysql -src={patterns} -dir={dir} -cache
+	taoctl model mysql -src={patterns} -dir={dir} -cache
 	```
 
 	help
 
 	```
 	NAME:
-       goctl model mysql ddl - generate mysql model from ddl
+       taoctl model mysql ddl - generate mysql model from ddl
     
     USAGE:
-       goctl model mysql ddl [command options] [arguments...]
+       taoctl model mysql ddl [command options] [arguments...]
     
     OPTIONS:
        --src value, -s value  the path or path globbing patterns of the ddl
        --dir value, -d value  the target dir
-       --style value          the file naming format, see [https://github.com/tal-tech/go-zero/tree/master/tools/goctl/config/readme.md]
+       --style value          the file naming format, see [https://manlu.org/tao/tree/master/tools/taoctl/config/readme.md]
        --cache, -c            generate code with cache [optional]
        --idea                 for idea plugin [optional]
 	```
@@ -269,24 +269,24 @@ OPTIONS:
   * datasource
 
 	```shell script
-	goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir} -cache=true
+	taoctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir} -cache=true
 	```
 
 	help
 
 	```
 	NAME:
-       goctl model mysql datasource - generate model from datasource
+       taoctl model mysql datasource - generate model from datasource
     
     USAGE:
-       goctl model mysql datasource [command options] [arguments...]
+       taoctl model mysql datasource [command options] [arguments...]
     
     OPTIONS:
        --url value              the data source of database,like "root:password@tcp(127.0.0.1:3306)/database
        --table value, -t value  the table or table globbing patterns in the database
        --cache, -c              generate code with cache [optional]
        --dir value, -d value    the target dir
-       --style value            the file naming format, see [https://github.com/tal-tech/go-zero/tree/master/tools/goctl/config/readme.md]
+       --style value            the file naming format, see [https://manlu.org/tao/tree/master/tools/taoctl/config/readme.md]
        --idea                   for idea plugin [optional]
 
 
@@ -294,7 +294,7 @@ OPTIONS:
 
 	示例用法请参考[用法](./example/generator.sh)
   
-	> NOTE: goctl model mysql ddl/datasource 均新增了一个`--style`参数，用于标记文件命名风格。
+	> NOTE: taoctl model mysql ddl/datasource 均新增了一个`--style`参数，用于标记文件命名风格。
 
   目前仅支持redis缓存，如果选择带缓存模式，即生成的`FindOne(ByXxx)`&`Delete`代码会生成带缓存逻辑的代码，目前仅支持单索引字段（除全文索引外），对于联合索引我们默认认为不需要带缓存，且不属于通用型代码，因此没有放在代码生成行列，如example中user表中的`id`、`name`、`mobile`字段均属于单字段索引。
 
@@ -303,26 +303,26 @@ OPTIONS:
   * ddl
   
       ```shell script
-        goctl model -src={patterns} -dir={dir}
+        taoctl model -src={patterns} -dir={dir}
       ```
 
   * datasource
   
       ```shell script
-        goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir}
+        taoctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir}
       ```
 
   or
   * ddl
 
       ```shell script
-        goctl model -src={patterns} -dir={dir}
+        taoctl model -src={patterns} -dir={dir}
       ```
 
   * datasource
   
       ```shell script
-        goctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir}
+        taoctl model mysql datasource -url={datasource} -table={patterns}  -dir={dir}
       ```
   
 生成代码仅基本的CURD结构。
