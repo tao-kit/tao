@@ -7,15 +7,15 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/api/gogen"
 	conf "manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/util"
-	"github.com/urfave/cli"
 )
 
 const apiTemplate = `
 type Request {
-  Name string ` + "`" + `path:"name,options=you|me"` + "`" + ` 
+  Name string ` + "`" + `path:"name,options=sllt|taozi"` + "`" + ` 
 }
 
 type Response {
@@ -24,7 +24,7 @@ type Response {
 
 service {{.name}}-api {
   @handler {{.handler}}Handler
-  get /from/:name(Request) returns (Response);
+  get /hello/:name(Request) returns (Response);
 }
 `
 
