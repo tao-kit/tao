@@ -10,7 +10,7 @@ import (
 
 const (
 	flagGo   = "GO"
-	flagZero = "ZERO"
+	flagZero = "TAO"
 
 	unknown style = iota
 	title
@@ -55,8 +55,8 @@ func FileNamingFormat(format, content string) (string, error) {
 	before = format[:indexGo]
 	flagGo = format[indexGo : indexGo+2]
 	through = format[indexGo+2 : indexZero]
-	flagZero = format[indexZero : indexZero+4]
-	after = format[indexZero+4:]
+	flagZero = format[indexZero : indexZero+3]
+	after = format[indexZero+3:]
 
 	goStyle, err = getStyle(flagGo)
 	if err != nil {

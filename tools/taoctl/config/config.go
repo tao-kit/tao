@@ -7,7 +7,7 @@ import (
 
 const (
 	// DefaultFormat defines a default naming style
-	DefaultFormat = "tao"
+	DefaultFormat = "gotao"
 )
 
 // Config defines the file naming style
