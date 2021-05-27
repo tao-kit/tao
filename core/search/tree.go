@@ -97,22 +97,22 @@ func (t *Tree) next(n *node, route string, result *Result) bool {
 	}
 
 	for i := range route {
-		if route[i] == slash {
-			token := route[:i]
-			return n.forEach(func(k string, v *node) bool {
-				if r := match(k, token); r.found {
-					if t.next(v, route[i+1:], result) {
-						if r.named {
-							addParam(result, r.key, r.value)
-						}
-
-						return true
-					}
-				}
-
-				return false
-			})
+		if route[i] != slash {
+			continue
 		}
+
+		token := route[:i]
+		return n.forEach(func(k string, v *node) bool {
+			r := match(k, token)
+			if !r.found || !t.next(v, route[i+1:], result) {
+				return false
+			}
+			if r.named {
+				addParam(result, r.key, r.value)
+			}
+
+			return true
+		})
 	}
 
 	return n.forEach(func(k string, v *node) bool {
@@ -164,21 +164,23 @@ func add(nd *node, route string, item interface{}) error {
 	}
 
 	for i := range route {
-		if route[i] == slash {
-			token := route[:i]
-			children := nd.getChildren(token)
-			if child, ok := children[token]; ok {
-				if child != nil {
-					return add(child, route[i+1:], item)
-				}
+		if route[i] != slash {
+			continue
+		}
 
-				return errInvalidState
+		token := route[:i]
+		children := nd.getChildren(token)
+		if child, ok := children[token]; ok {
+			if child != nil {
+				return add(child, route[i+1:], item)
 			}
 
-			child := newNode(nil)
-			children[token] = child
-			return add(child, route[i+1:], item)
+			return errInvalidState
 		}
+
+		child := newNode(nil)
+		children[token] = child
+		return add(child, route[i+1:], item)
 	}
 
 	children := nd.getChildren(route)
