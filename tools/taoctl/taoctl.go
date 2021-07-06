@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"runtime"
-
+	"github.com/urfave/cli"
+	"manlu.org/tao/core/load"
 	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/stat"
 	"manlu.org/tao/tools/taoctl/api/apigen"
 	"manlu.org/tao/tools/taoctl/api/dartgen"
 	"manlu.org/tao/tools/taoctl/api/docgen"
@@ -25,7 +25,8 @@ import (
 	rpc "manlu.org/tao/tools/taoctl/rpc/cli"
 	"manlu.org/tao/tools/taoctl/tpl"
 	"manlu.org/tao/tools/taoctl/upgrade"
-	"github.com/urfave/cli"
+	"os"
+	"runtime"
 )
 
 var (
@@ -531,6 +532,8 @@ var (
 
 func main() {
 	logx.Disable()
+	load.Disable()
+	stat.DisableLog()
 
 	app := cli.NewApp()
 	app.Usage = "a cli tool to generate code"

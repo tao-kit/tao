@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/zeromicro/antlr"
 	"manlu.org/tao/tools/taoctl/api/parser/g4/gen/api"
 	"manlu.org/tao/tools/taoctl/util/console"
-	"github.com/zeromicro/antlr"
 )
 
 type (

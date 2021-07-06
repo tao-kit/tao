@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/urfave/cli"
 	"manlu.org/tao/core/errorx"
 	"manlu.org/tao/tools/taoctl/api/gogen"
 	"manlu.org/tao/tools/taoctl/docker"
@@ -12,7 +13,6 @@ import (
 	modelgen "manlu.org/tao/tools/taoctl/model/sql/gen"
 	rpcgen "manlu.org/tao/tools/taoctl/rpc/generator"
 	"manlu.org/tao/tools/taoctl/util"
-	"github.com/urfave/cli"
 )
 
 const templateParentPath = "/"

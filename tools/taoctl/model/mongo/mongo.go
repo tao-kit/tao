@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/model/mongo/generate"
-	"github.com/urfave/cli"
 )
 
 // Action provides the entry for taoctl mongo code generation.

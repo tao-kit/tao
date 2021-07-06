@@ -1,13 +1,13 @@
 package discov
 
 import (
+	clientv3 "go.etcd.io/etcd/client/v3"
 	"manlu.org/tao/core/discov/internal"
 	"manlu.org/tao/core/lang"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/proc"
 	"manlu.org/tao/core/syncx"
 	"manlu.org/tao/core/threading"
-	"go.etcd.io/etcd/clientv3"
 )
 
 type (

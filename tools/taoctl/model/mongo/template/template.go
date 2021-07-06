@@ -11,7 +11,7 @@ import (
 	"manlu.org/tao/core/stores/mongoc"
 )
 
-{{if .Cache}}var prefix{{.Type}}CacheKey = "cache#{{.Type}}#"{{end}}
+{{if .Cache}}var prefix{{.Type}}CacheKey = "cache:{{.Type}}:"{{end}}
 
 type {{.Type}}Model interface{
 	Insert(ctx context.Context,data *{{.Type}}) error

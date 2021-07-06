@@ -3,9 +3,9 @@ package gen
 import (
 	"fmt"
 
+	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/model/sql/template"
 	"manlu.org/tao/tools/taoctl/util"
-	"github.com/urfave/cli"
 )
 
 const (

@@ -13,7 +13,7 @@ import (
 
 // NL defines a new line
 const (
-	NL       = "\n"
+	NL        = "\n"
 	taoctlDir = ".taoctl"
 )
 

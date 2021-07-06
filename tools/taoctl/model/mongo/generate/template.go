@@ -3,9 +3,9 @@ package generate
 import (
 	"fmt"
 
+	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/model/mongo/template"
 	"manlu.org/tao/tools/taoctl/util"
-	"github.com/urfave/cli"
 )
 
 const (

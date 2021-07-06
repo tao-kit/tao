@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/go-sql-driver/mysql"
+	"github.com/urfave/cli"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/stores/sqlx"
 	"manlu.org/tao/tools/taoctl/config"
@@ -14,7 +15,6 @@ import (
 	"manlu.org/tao/tools/taoctl/model/sql/model"
 	"manlu.org/tao/tools/taoctl/model/sql/util"
 	"manlu.org/tao/tools/taoctl/util/console"
-	"github.com/urfave/cli"
 )
 
 const (

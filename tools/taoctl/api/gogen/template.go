@@ -3,8 +3,8 @@ package gogen
 import (
 	"fmt"
 
-	"manlu.org/tao/tools/taoctl/util"
 	"github.com/urfave/cli"
+	"manlu.org/tao/tools/taoctl/util"
 )
 
 const (

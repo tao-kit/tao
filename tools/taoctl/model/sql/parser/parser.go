@@ -5,13 +5,13 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/xwb1989/sqlparser"
 	"manlu.org/tao/core/collection"
 	"manlu.org/tao/tools/taoctl/model/sql/converter"
 	"manlu.org/tao/tools/taoctl/model/sql/model"
 	"manlu.org/tao/tools/taoctl/model/sql/util"
 	"manlu.org/tao/tools/taoctl/util/console"
 	"manlu.org/tao/tools/taoctl/util/stringx"
-	"github.com/xwb1989/sqlparser"
 )
 
 const timeImport = "time.Time"
@@ -170,9 +170,7 @@ func convertColumns(columns []*sqlparser.ColumnDefinition, primaryColumn string)
 		if column.Type.NotNull {
 			isDefaultNull = false
 		} else {
-			if column.Type.Default == nil {
-				isDefaultNull = false
-			} else if string(column.Type.Default.Val) != "null" {
+			if column.Type.Default != nil {
 				isDefaultNull = false
 			}
 		}

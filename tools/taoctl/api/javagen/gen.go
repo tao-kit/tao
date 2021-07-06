@@ -6,10 +6,10 @@ import (
 	"strings"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/urfave/cli"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/tools/taoctl/api/parser"
 	"manlu.org/tao/tools/taoctl/util"
-	"github.com/urfave/cli"
 )
 
 // JavaCommand the generate java code command entrance

@@ -6,8 +6,8 @@ import (
 	"text/template"
 
 	"github.com/logrusorgru/aurora"
-	"manlu.org/tao/tools/taoctl/util"
 	"github.com/urfave/cli"
+	"manlu.org/tao/tools/taoctl/util"
 )
 
 const (

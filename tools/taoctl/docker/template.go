@@ -1,8 +1,8 @@
 package docker
 
 import (
-	"manlu.org/tao/tools/taoctl/util"
 	"github.com/urfave/cli"
+	"manlu.org/tao/tools/taoctl/util"
 )
 
 const (

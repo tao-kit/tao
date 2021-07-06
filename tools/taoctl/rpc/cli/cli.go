@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"manlu.org/tao/tools/taoctl/rpc/generator"
 	"github.com/urfave/cli"
+	"manlu.org/tao/tools/taoctl/rpc/generator"
 )
 
 // RPC is to generate rpc service code from a proto file by specifying a proto file using flag src,

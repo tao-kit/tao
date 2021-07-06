@@ -8,10 +8,10 @@ import (
 
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	clientv3 "go.etcd.io/etcd/client/v3"
 	"manlu.org/tao/core/discov/internal"
 	"manlu.org/tao/core/lang"
 	"manlu.org/tao/core/logx"
-	"go.etcd.io/etcd/clientv3"
 )
 
 func init() {
