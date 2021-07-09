@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
+	"google.golang.org/grpc"
 	"manlu.org/tao/core/discov"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/service"
@@ -12,7 +13,6 @@ import (
 	"manlu.org/tao/core/stores/redis"
 	"manlu.org/tao/zrpc/internal"
 	"manlu.org/tao/zrpc/internal/serverinterceptors"
-	"google.golang.org/grpc"
 )
 
 func TestServer_setupInterceptors(t *testing.T) {

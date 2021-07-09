@@ -3,9 +3,9 @@ package clientinterceptors
 import (
 	"context"
 
-	"manlu.org/tao/core/trace"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
+	"manlu.org/tao/core/trace"
 )
 
 // TracingInterceptor is an interceptor that handles tracing.

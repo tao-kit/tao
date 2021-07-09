@@ -14,7 +14,7 @@ import (
 type priorityQueue struct {
 	mu             sync.RWMutex
 	heap           *priorityQueueHeap // the underlying queue items manager using heap.
-	latestPriority int64             // latestPriority stores the most priority value of the heap, which is used to check if necessary to call the Pop of heap by Timer.
+	latestPriority int64              // latestPriority stores the most priority value of the heap, which is used to check if necessary to call the Pop of heap by Timer.
 }
 
 // priorityQueueHeap is a heap manager, of which the underlying `array` is a array implementing a heap structure.

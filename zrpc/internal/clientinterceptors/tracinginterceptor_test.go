@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/trace"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
+	"manlu.org/tao/core/trace"
 )
 
 func TestTracingInterceptor(t *testing.T) {

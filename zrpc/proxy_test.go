@@ -6,10 +6,10 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/zrpc/internal/mock"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"manlu.org/tao/zrpc/internal/mock"
 )
 
 func TestProxy(t *testing.T) {

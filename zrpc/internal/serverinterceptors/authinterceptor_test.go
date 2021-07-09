@@ -5,10 +5,10 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stores/redis/redistest"
-	"manlu.org/tao/zrpc/internal/auth"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
+	"manlu.org/tao/core/stores/redis/redistest"
+	"manlu.org/tao/zrpc/internal/auth"
 )
 
 func TestStreamAuthorizeInterceptor(t *testing.T) {

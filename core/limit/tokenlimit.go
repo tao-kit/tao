@@ -7,9 +7,9 @@ import (
 	"sync/atomic"
 	"time"
 
+	xrate "golang.org/x/time/rate"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/stores/redis"
-	xrate "golang.org/x/time/rate"
 )
 
 const (

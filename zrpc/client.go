@@ -4,10 +4,10 @@ import (
 	"log"
 	"time"
 
+	"google.golang.org/grpc"
 	"manlu.org/tao/core/discov"
 	"manlu.org/tao/zrpc/internal"
 	"manlu.org/tao/zrpc/internal/auth"
-	"google.golang.org/grpc"
 )
 
 var (

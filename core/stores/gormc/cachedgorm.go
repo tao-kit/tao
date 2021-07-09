@@ -71,5 +71,3 @@ func (cc CachedConn) QueryRow(v interface{}, key string, query QueryFn) error {
 		return query(cc.db, v)
 	})
 }
-
-

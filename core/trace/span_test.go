@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"google.golang.org/grpc/metadata"
 	"manlu.org/tao/core/stringx"
 	"manlu.org/tao/core/trace/tracespec"
-	"google.golang.org/grpc/metadata"
 )
 
 func TestClientSpan(t *testing.T) {

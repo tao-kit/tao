@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stat"
 	"google.golang.org/grpc"
+	"manlu.org/tao/core/stat"
 )
 
 func TestUnaryStatInterceptor(t *testing.T) {

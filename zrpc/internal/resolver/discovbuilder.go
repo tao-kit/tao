@@ -3,8 +3,8 @@ package resolver
 import (
 	"strings"
 
-	"manlu.org/tao/core/discov"
 	"google.golang.org/grpc/resolver"
+	"manlu.org/tao/core/discov"
 )
 
 type discovBuilder struct{}

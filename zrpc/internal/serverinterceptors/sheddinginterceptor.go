@@ -4,9 +4,9 @@ import (
 	"context"
 	"sync"
 
+	"google.golang.org/grpc"
 	"manlu.org/tao/core/load"
 	"manlu.org/tao/core/stat"
-	"google.golang.org/grpc"
 )
 
 const serviceType = "rpc"

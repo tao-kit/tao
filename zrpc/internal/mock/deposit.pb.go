@@ -15,8 +15,8 @@ It has these top-level messages:
 package mock
 
 import (
-	proto "github.com/golang/protobuf/proto"
 	fmt "fmt"
+	proto "github.com/golang/protobuf/proto"
 	math "math"
 )
 

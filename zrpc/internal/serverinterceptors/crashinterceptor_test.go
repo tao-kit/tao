@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/logx"
 	"google.golang.org/grpc"
+	"manlu.org/tao/core/logx"
 )
 
 func init() {

@@ -5,9 +5,9 @@ import (
 	"path"
 	"time"
 
+	"google.golang.org/grpc"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/timex"
-	"google.golang.org/grpc"
 )
 
 const slowThreshold = time.Millisecond * 500

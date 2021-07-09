@@ -9,13 +9,13 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/mathx"
 	"google.golang.org/grpc/balancer"
 	"google.golang.org/grpc/balancer/base"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/resolver"
 	"google.golang.org/grpc/status"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/mathx"
 )
 
 func init() {

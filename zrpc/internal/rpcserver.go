@@ -3,10 +3,10 @@ package internal
 import (
 	"net"
 
+	"google.golang.org/grpc"
 	"manlu.org/tao/core/proc"
 	"manlu.org/tao/core/stat"
 	"manlu.org/tao/zrpc/internal/serverinterceptors"
-	"google.golang.org/grpc"
 )
 
 type (

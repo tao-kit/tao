@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"google.golang.org/grpc/resolver"
 	"manlu.org/tao/core/lang"
 	"manlu.org/tao/core/mathx"
-	"google.golang.org/grpc/resolver"
 )
 
 func TestDirectBuilder_Build(t *testing.T) {

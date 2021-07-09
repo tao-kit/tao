@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
+	"google.golang.org/grpc"
 	"manlu.org/tao/zrpc/internal/balancer/p2c"
 	"manlu.org/tao/zrpc/internal/clientinterceptors"
 	"manlu.org/tao/zrpc/internal/resolver"
-	"google.golang.org/grpc"
 )
 
 const (

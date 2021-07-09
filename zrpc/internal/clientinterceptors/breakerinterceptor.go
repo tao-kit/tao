@@ -4,9 +4,9 @@ import (
 	"context"
 	"path"
 
+	"google.golang.org/grpc"
 	"manlu.org/tao/core/breaker"
 	"manlu.org/tao/zrpc/internal/codes"
-	"google.golang.org/grpc"
 )
 
 // BreakerInterceptor is an interceptor that acts as a circuit breaker.
