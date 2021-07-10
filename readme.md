@@ -1,5 +1,3 @@
-<img align="right" width="150px" src="https://gitee.com/kevwan/static/raw/master/doc/images/go-zero.png">
-
 # tao
 
 [English]() | 简体中文
