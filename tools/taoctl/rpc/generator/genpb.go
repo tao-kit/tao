@@ -6,28 +6,18 @@ import (
 	"path/filepath"
 	"strings"
 
-<<<<<<< HEAD:tools/taoctl/rpc/generator/genpb.go
+
+	"manlu.org/tao/core/collection"
 	conf "manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/rpc/execx"
 	"manlu.org/tao/tools/taoctl/rpc/parser"
-=======
-	"github.com/tal-tech/go-zero/core/collection"
-	conf "github.com/tal-tech/go-zero/tools/goctl/config"
-	"github.com/tal-tech/go-zero/tools/goctl/rpc/execx"
-	"github.com/tal-tech/go-zero/tools/goctl/rpc/parser"
->>>>>>> b0e335e7b0b12d0c9942125e8f9427db510ae4fe:tools/goctl/rpc/generator/genpb.go
 )
 
 const googleProtocGenGoErr = `--go_out: protoc-gen-go: plugins are not supported; use 'protoc --go-grpc_out=...' to generate gRPC`
 
 // GenPb generates the pb.go file, which is a layer of packaging for protoc to generate gprc,
-<<<<<<< HEAD:tools/taoctl/rpc/generator/genpb.go
-// but the commands and flags in protoc are not completely joined in taoctl. At present, proto_path(-I) is introduced
-func (g *DefaultGenerator) GenPb(ctx DirContext, protoImportPath []string, proto parser.Proto, _ *conf.Config) error {
-=======
 // but the commands and flags in protoc are not completely joined in goctl. At present, proto_path(-I) is introduced
 func (g *DefaultGenerator) GenPb(ctx DirContext, protoImportPath []string, proto parser.Proto, _ *conf.Config, goOptions ...string) error {
->>>>>>> b0e335e7b0b12d0c9942125e8f9427db510ae4fe:tools/goctl/rpc/generator/genpb.go
 	dir := ctx.GetPb()
 	cw := new(bytes.Buffer)
 	directory, base := filepath.Split(proto.Src)
