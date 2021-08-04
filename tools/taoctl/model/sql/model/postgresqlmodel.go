@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"strings"
 
-	"github.com/tal-tech/go-zero/core/stores/sqlx"
+	"manlu.org/tao/core/stores/sqlx"
 )
 
 var (
