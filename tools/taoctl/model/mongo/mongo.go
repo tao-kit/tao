@@ -8,6 +8,7 @@ import (
 	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/model/mongo/generate"
+	file "manlu.org/tao/tools/taoctl/util"
 )
 
 // Action provides the entry for taoctl mongo code generation.
@@ -16,6 +17,12 @@ func Action(ctx *cli.Context) error {
 	c := ctx.Bool("cache")
 	o := strings.TrimSpace(ctx.String("dir"))
 	s := ctx.String("style")
+	home := ctx.String("home")
+
+	if len(home) > 0 {
+		file.RegisterGoctlHome(home)
+	}
+
 	if len(tp) == 0 {
 		return errors.New("missing type")
 	}

@@ -264,6 +264,7 @@ OPTIONS:
        --style value          the file naming format, see [https://manlu.org/tao/tree/master/tools/taoctl/config/readme.md]
        --cache, -c            generate code with cache [optional]
        --idea                 for idea plugin [optional]
+       --database, -db        the name of database [optional]
 	```
 
   * datasource
