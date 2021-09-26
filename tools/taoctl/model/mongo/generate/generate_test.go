@@ -2,6 +2,7 @@ package generate
 
 import (
 	"io/ioutil"
+	"manlu.org/tao/tools/taoctl/util"
 	"path/filepath"
 	"testing"
 
@@ -18,7 +19,7 @@ func TestDo(t *testing.T) {
 	cfg, err := config.NewConfig(config.DefaultFormat)
 	assert.Nil(t, err)
 
-	tempDir := t.TempDir()
+	tempDir := util.MustTempDir()
 	typesfile := filepath.Join(tempDir, "types.go")
 	err = ioutil.WriteFile(typesfile, []byte(testTypes), 0o666)
 	assert.Nil(t, err)

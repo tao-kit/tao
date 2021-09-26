@@ -1,9 +1,11 @@
 package generator
 
 import (
+	"manlu.org/tao/tools/taoctl/util/format"
 	"path/filepath"
 	"strings"
 
+	conf "manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/rpc/parser"
 	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/ctx"
@@ -50,7 +52,7 @@ type (
 	}
 )
 
-func mkdir(ctx *ctx.ProjectContext, proto parser.Proto) (DirContext, error) {
+func mkdir(ctx *ctx.ProjectContext, proto parser.Proto, cfg *conf.Config) (DirContext, error) {
 	inner := make(map[string]Dir)
 	etcDir := filepath.Join(ctx.WorkDir, "etc")
 	internalDir := filepath.Join(ctx.WorkDir, "internal")
@@ -59,9 +61,19 @@ func mkdir(ctx *ctx.ProjectContext, proto parser.Proto) (DirContext, error) {
 	serverDir := filepath.Join(internalDir, "server")
 	svcDir := filepath.Join(internalDir, "svc")
 	pbDir := filepath.Join(ctx.WorkDir, proto.GoPackage)
-	callDir := filepath.Join(ctx.WorkDir, strings.ToLower(stringx.From(proto.Service.Name).ToCamel()))
-	if strings.ToLower(proto.Service.Name) == strings.ToLower(proto.GoPackage) {
-		callDir = filepath.Join(ctx.WorkDir, strings.ToLower(stringx.From(proto.Service.Name+"_client").ToCamel()))
+	sName, err := format.FileNamingFormat(cfg.NamingFormat, proto.Service.Name)
+	if err != nil {
+		return nil, err
+	}
+
+	callDir := filepath.Join(ctx.WorkDir, sName)
+	if strings.EqualFold(proto.Service.Name, proto.GoPackage) {
+		clientDir, err := format.FileNamingFormat(cfg.NamingFormat, proto.Service.Name+"_client")
+		if err != nil {
+			return nil, err
+		}
+
+		callDir = filepath.Join(ctx.WorkDir, clientDir)
 	}
 
 	inner[wd] = Dir{

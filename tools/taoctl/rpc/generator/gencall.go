@@ -3,8 +3,10 @@ package generator
 import (
 	"fmt"
 	"path/filepath"
+	"sort"
 	"strings"
 
+	"github.com/emicklei/proto"
 	"manlu.org/tao/core/collection"
 	conf "manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/rpc/parser"
@@ -90,12 +92,15 @@ func (g *DefaultGenerator) GenCall(ctx DirContext, proto parser.Proto, cfg *conf
 
 	alias := collection.NewSet()
 	for _, item := range proto.Message {
-		alias.AddStr(fmt.Sprintf("%s = %s", parser.CamelCase(item.Name), fmt.Sprintf("%s.%s", proto.PbPackage, parser.CamelCase(item.Name))))
+		msgName := getMessageName(*item.Message)
+		alias.AddStr(fmt.Sprintf("%s = %s", parser.CamelCase(msgName), fmt.Sprintf("%s.%s", proto.PbPackage, parser.CamelCase(msgName))))
 	}
 
+	aliasKeys := alias.KeysStr()
+	sort.Strings(aliasKeys)
 	err = util.With("shared").GoFmt(true).Parse(text).SaveTo(map[string]interface{}{
 		"name":        callFilename,
-		"alias":       strings.Join(alias.KeysStr(), util.NL),
+		"alias":       strings.Join(aliasKeys, util.NL),
 		"head":        head,
 		"filePackage": dir.Base,
 		"package":     fmt.Sprintf(`"%s"`, ctx.GetPb().Package),
@@ -106,8 +111,31 @@ func (g *DefaultGenerator) GenCall(ctx DirContext, proto parser.Proto, cfg *conf
 	return err
 }
 
+func getMessageName(msg proto.Message) string {
+	list := []string{msg.Name}
+
+	for {
+		parent := msg.Parent
+		if parent == nil {
+			break
+		}
+
+		parentMsg, ok := parent.(*proto.Message)
+		if !ok {
+			break
+		}
+
+		tmp := []string{parentMsg.Name}
+		list = append(tmp, list...)
+		msg = *parentMsg
+	}
+
+	return strings.Join(list, "_")
+}
+
 func (g *DefaultGenerator) genFunction(goPackage string, service parser.Service) ([]string, error) {
 	functions := make([]string, 0)
+
 	for _, rpc := range service.RPC {
 		text, err := util.LoadTemplate(category, callFunctionTemplateFile, callFunctionTemplate)
 		if err != nil {
@@ -135,6 +163,7 @@ func (g *DefaultGenerator) genFunction(goPackage string, service parser.Service)
 
 		functions = append(functions, buffer.String())
 	}
+
 	return functions, nil
 }
 

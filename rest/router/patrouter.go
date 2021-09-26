@@ -2,13 +2,13 @@ package router
 
 import (
 	"errors"
+	"manlu.org/tao/rest/pathvar"
 	"net/http"
 	"path"
 	"strings"
 
 	"manlu.org/tao/core/search"
 	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/internal/context"
 )
 
 const (
@@ -61,7 +61,7 @@ func (pr *patRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if tree, ok := pr.trees[r.Method]; ok {
 		if result, ok := tree.Search(reqPath); ok {
 			if len(result.Params) > 0 {
-				r = context.WithPathVars(r, result.Params)
+				r = pathvar.WithVars(r, result.Params)
 			}
 			result.Item.(http.Handler).ServeHTTP(w, r)
 			return

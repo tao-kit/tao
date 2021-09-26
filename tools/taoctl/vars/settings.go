@@ -1,14 +1,18 @@
 package vars
 
 const (
-	// ProjectName the const value of tao
+	// ProjectName the const value of zero
 	ProjectName = "tao"
-	// ProjectOpenSourceURL the github url of tao
+	// ProjectOpenSourceURL the github url of go-zero
 	ProjectOpenSourceURL = "manlu.org/tao"
-	// OsWindows windows os
+	// OsWindows represents os windows
 	OsWindows = "windows"
-	// OsMac mac os
+	// OsMac represents os mac
 	OsMac = "darwin"
-	// OsLinux linux os
+	// OsLinux represents os linux
 	OsLinux = "linux"
+	// OsJs represents os js
+	OsJs = "js"
+	// OsIOS represents os ios
+	OsIOS = "ios"
 )

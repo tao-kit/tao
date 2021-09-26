@@ -1,7 +1,7 @@
 package clickhouse
 
 import (
-	// imports the driver.
+	// imports the driver, don't remove this comment, golint requires.
 	_ "github.com/ClickHouse/clickhouse-go"
 	"manlu.org/tao/core/stores/sqlx"
 )

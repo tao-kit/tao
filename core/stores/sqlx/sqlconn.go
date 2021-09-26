@@ -2,8 +2,8 @@ package sqlx
 
 import (
 	"database/sql"
-
 	"manlu.org/tao/core/breaker"
+	"manlu.org/tao/core/logx"
 )
 
 // ErrNotFound is an alias of sql.ErrNoRows
@@ -23,6 +23,8 @@ type (
 	// SqlConn only stands for raw connections, so Transact method can be called.
 	SqlConn interface {
 		Session
+		// RawDB is for other ORM to operate with, use it with caution.
+		RawDB() (*sql.DB, error)
 		Transact(func(session Session) error) error
 	}
 
@@ -43,12 +45,14 @@ type (
 	// Because CORBA doesn't support PREPARE, so we need to combine the
 	// query arguments into one string and do underlying query without arguments
 	commonSqlConn struct {
-		driverName string
-		datasource string
-		beginTx    beginnable
-		brk        breaker.Breaker
-		accept     func(error) bool
+		connProv connProvider
+		onError  func(error)
+		beginTx  beginnable
+		brk      breaker.Breaker
+		accept   func(error) bool
 	}
+
+	connProvider func() (*sql.DB, error)
 
 	sessionConn interface {
 		Exec(query string, args ...interface{}) (sql.Result, error)
@@ -69,10 +73,34 @@ type (
 // NewSqlConn returns a SqlConn with given driver name and datasource.
 func NewSqlConn(driverName, datasource string, opts ...SqlOption) SqlConn {
 	conn := &commonSqlConn{
-		driverName: driverName,
-		datasource: datasource,
-		beginTx:    begin,
-		brk:        breaker.NewBreaker(),
+		connProv: func() (*sql.DB, error) {
+			return getSqlConn(driverName, datasource)
+		},
+		onError: func(err error) {
+			logInstanceError(datasource, err)
+		},
+		beginTx: begin,
+		brk:     breaker.NewBreaker(),
+	}
+	for _, opt := range opts {
+		opt(conn)
+	}
+
+	return conn
+}
+
+// NewSqlConnFromDB returns a SqlConn with the given sql.DB.
+// Use it with caution, it's provided for other ORM to interact with.
+func NewSqlConnFromDB(db *sql.DB, opts ...SqlOption) SqlConn {
+	conn := &commonSqlConn{
+		connProv: func() (*sql.DB, error) {
+			return db, nil
+		},
+		onError: func(err error) {
+			logx.Errorf("Error on getting sql instance: %v", err)
+		},
+		beginTx: begin,
+		brk:     breaker.NewBreaker(),
 	}
 	for _, opt := range opts {
 		opt(conn)
@@ -84,9 +112,9 @@ func NewSqlConn(driverName, datasource string, opts ...SqlOption) SqlConn {
 func (db *commonSqlConn) Exec(q string, args ...interface{}) (result sql.Result, err error) {
 	err = db.brk.DoWithAcceptable(func() error {
 		var conn *sql.DB
-		conn, err = getSqlConn(db.driverName, db.datasource)
+		conn, err = db.connProv()
 		if err != nil {
-			logInstanceError(db.datasource, err)
+			db.onError(err)
 			return err
 		}
 
@@ -100,9 +128,9 @@ func (db *commonSqlConn) Exec(q string, args ...interface{}) (result sql.Result,
 func (db *commonSqlConn) Prepare(query string) (stmt StmtSession, err error) {
 	err = db.brk.DoWithAcceptable(func() error {
 		var conn *sql.DB
-		conn, err = getSqlConn(db.driverName, db.datasource)
+		conn, err = db.connProv()
 		if err != nil {
-			logInstanceError(db.datasource, err)
+			db.onError(err)
 			return err
 		}
 
@@ -145,6 +173,10 @@ func (db *commonSqlConn) QueryRowsPartial(v interface{}, q string, args ...inter
 	}, q, args...)
 }
 
+func (db *commonSqlConn) RawDB() (*sql.DB, error) {
+	return db.connProv()
+}
+
 func (db *commonSqlConn) Transact(fn func(Session) error) error {
 	return db.brk.DoWithAcceptable(func() error {
 		return transact(db, db.beginTx, fn)
@@ -163,9 +195,9 @@ func (db *commonSqlConn) acceptable(err error) bool {
 func (db *commonSqlConn) queryRows(scanner func(*sql.Rows) error, q string, args ...interface{}) error {
 	var qerr error
 	return db.brk.DoWithAcceptable(func() error {
-		conn, err := getSqlConn(db.driverName, db.datasource)
+		conn, err := db.connProv()
 		if err != nil {
-			logInstanceError(db.datasource, err)
+			db.onError(err)
 			return err
 		}
 

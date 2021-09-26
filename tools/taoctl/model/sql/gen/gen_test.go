@@ -3,6 +3,7 @@ package gen
 import (
 	"database/sql"
 	"io/ioutil"
+	"manlu.org/tao/tools/taoctl/util"
 	"os"
 	"path/filepath"
 	"strings"
@@ -22,11 +23,11 @@ func TestCacheModel(t *testing.T) {
 	logx.Disable()
 	_ = Clean()
 
-	sqlFile := filepath.Join(t.TempDir(), "tmp.sql")
+	sqlFile := filepath.Join(util.MustTempDir(), "tmp.sql")
 	err := ioutil.WriteFile(sqlFile, []byte(source), 0o777)
 	assert.Nil(t, err)
 
-	dir := filepath.Join(t.TempDir(), "./testmodel")
+	dir := filepath.Join(util.MustTempDir(), "./testmodel")
 	cacheDir := filepath.Join(dir, "cache")
 	noCacheDir := filepath.Join(dir, "nocache")
 	g, err := NewDefaultGenerator(cacheDir, &config.Config{
@@ -41,7 +42,7 @@ func TestCacheModel(t *testing.T) {
 		return err == nil
 	}())
 	g, err = NewDefaultGenerator(noCacheDir, &config.Config{
-		NamingFormat: "gozero",
+		NamingFormat: "tao",
 	})
 	assert.Nil(t, err)
 
@@ -57,7 +58,7 @@ func TestNamingModel(t *testing.T) {
 	logx.Disable()
 	_ = Clean()
 
-	sqlFile := filepath.Join(t.TempDir(), "tmp.sql")
+	sqlFile := filepath.Join(util.MustTempDir(), "tmp.sql")
 	err := ioutil.WriteFile(sqlFile, []byte(source), 0o777)
 	assert.Nil(t, err)
 

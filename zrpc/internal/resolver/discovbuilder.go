@@ -1,15 +1,15 @@
 package resolver
 
 import (
-	"strings"
-
 	"google.golang.org/grpc/resolver"
 	"manlu.org/tao/core/discov"
+	"manlu.org/tao/core/logx"
+	"strings"
 )
 
 type discovBuilder struct{}
 
-func (d *discovBuilder) Build(target resolver.Target, cc resolver.ClientConn, opts resolver.BuildOptions) (
+func (b *discovBuilder) Build(target resolver.Target, cc resolver.ClientConn, opts resolver.BuildOptions) (
 	resolver.Resolver, error) {
 	hosts := strings.FieldsFunc(target.Authority, func(r rune) bool {
 		return r == EndpointSepChar
@@ -26,9 +26,11 @@ func (d *discovBuilder) Build(target resolver.Target, cc resolver.ClientConn, op
 				Addr: val,
 			})
 		}
-		cc.UpdateState(resolver.State{
+		if err := cc.UpdateState(resolver.State{
 			Addresses: addrs,
-		})
+		}); err != nil {
+			logx.Error(err)
+		}
 	}
 	sub.AddListener(update)
 	update()
@@ -36,6 +38,6 @@ func (d *discovBuilder) Build(target resolver.Target, cc resolver.ClientConn, op
 	return &nopResolver{cc: cc}, nil
 }
 
-func (d *discovBuilder) Scheme() string {
+func (b *discovBuilder) Scheme() string {
 	return DiscovScheme
 }

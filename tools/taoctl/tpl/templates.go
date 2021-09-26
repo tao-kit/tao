@@ -5,9 +5,11 @@ import (
 	"path/filepath"
 
 	"github.com/logrusorgru/aurora"
+	"manlu.org/tao/tools/taoctl/api/apigen"
 	"github.com/urfave/cli"
 	"manlu.org/tao/core/errorx"
 	"manlu.org/tao/tools/taoctl/api/gogen"
+	apinew "manlu.org/tao/tools/taoctl/api/new"
 	"manlu.org/tao/tools/taoctl/docker"
 	"manlu.org/tao/tools/taoctl/kube"
 	mongogen "manlu.org/tao/tools/taoctl/model/mongo/generate"
@@ -43,6 +45,12 @@ func GenTemplates(ctx *cli.Context) error {
 		},
 		func() error {
 			return mongogen.Templates(ctx)
+		},
+		func() error {
+			return apigen.GenTemplates(ctx)
+		},
+		func() error {
+			return apinew.GenTemplates(ctx)
 		},
 	); err != nil {
 		return err
@@ -90,6 +98,12 @@ func CleanTemplates(ctx *cli.Context) error {
 		func() error {
 			return mongogen.Clean()
 		},
+		func() error {
+			return apigen.Clean()
+		},
+		func() error {
+			return apinew.Clean()
+		},
 	)
 	if err != nil {
 		return err
@@ -126,6 +140,10 @@ func UpdateTemplates(ctx *cli.Context) (err error) {
 		return modelgen.Update()
 	case mongogen.Category():
 		return mongogen.Update()
+	case apigen.Category():
+		return apigen.Update()
+	case apinew.Category():
+		return apinew.Update()
 	default:
 		err = fmt.Errorf("unexpected category: %s", category)
 		return
@@ -159,6 +177,10 @@ func RevertTemplates(ctx *cli.Context) (err error) {
 		return modelgen.RevertTemplate(filename)
 	case mongogen.Category():
 		return mongogen.RevertTemplate(filename)
+	case apigen.Category():
+		return apigen.RevertTemplate(filename)
+	case apinew.Category():
+		return apinew.RevertTemplate(filename)
 	default:
 		err = fmt.Errorf("unexpected category: %s", category)
 		return

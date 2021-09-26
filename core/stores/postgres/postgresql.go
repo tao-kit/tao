@@ -1,7 +1,7 @@
 package postgres
 
 import (
-	// imports the driver.
+	// imports the driver, don't remove this comment, golint requires.
 	_ "github.com/lib/pq"
 	"manlu.org/tao/core/stores/sqlx"
 )

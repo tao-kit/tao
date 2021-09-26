@@ -533,7 +533,7 @@ func TestCamelStyle(t *testing.T) {
 }
 
 func validate(t *testing.T, api string) {
-	validateWithCamel(t, api, "gozero")
+	validateWithCamel(t, api, "tao")
 }
 
 func validateWithCamel(t *testing.T, api, camel string) {
