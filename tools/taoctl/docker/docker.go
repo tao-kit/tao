@@ -12,7 +12,6 @@ import (
 	"github.com/logrusorgru/aurora"
 	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/util"
-	ctlutil "manlu.org/tao/tools/taoctl/util"
 )
 
 const (
@@ -128,7 +127,7 @@ func generateDockerfile(goFile string, port int, args ...string) error {
 	}
 	defer out.Close()
 
-	text, err := ctlutil.LoadTemplate(category, dockerTemplateFile, dockerTemplate)
+	text, err := util.LoadTemplate(category, dockerTemplateFile, dockerTemplate)
 	if err != nil {
 		return err
 	}

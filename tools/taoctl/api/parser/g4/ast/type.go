@@ -5,7 +5,6 @@ import (
 	"sort"
 
 	"manlu.org/tao/tools/taoctl/api/parser/g4/gen/api"
-	"manlu.org/tao/tools/taoctl/api/util"
 )
 
 type (
@@ -155,8 +154,6 @@ func (v *ApiVisitor) VisitTypeStruct(ctx *api.TypeStructContext) interface{} {
 	var st TypeStruct
 	st.Name = v.newExprWithToken(ctx.GetStructName())
 
-	if util.UnExport(ctx.GetStructName().GetText()) {
-	}
 	if ctx.GetStructToken() != nil {
 		structExpr := v.newExprWithToken(ctx.GetStructToken())
 		structTokenText := ctx.GetStructToken().GetText()
