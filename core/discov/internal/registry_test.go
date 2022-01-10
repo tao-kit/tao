@@ -2,6 +2,9 @@ package internal
 
 import (
 	"context"
+	"sync"
+	"testing"
+
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"go.etcd.io/etcd/api/v3/mvccpb"
@@ -10,8 +13,6 @@ import (
 	"manlu.org/tao/core/lang"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/stringx"
-	"sync"
-	"testing"
 )
 
 var mockLock sync.Mutex
@@ -32,9 +33,10 @@ func setMockClient(cli EtcdClient) func() {
 }
 
 func TestGetCluster(t *testing.T) {
-	c1 := GetRegistry().getCluster([]string{"first"})
-	c2 := GetRegistry().getCluster([]string{"second"})
-	c3 := GetRegistry().getCluster([]string{"first"})
+	AddAccount([]string{"first"}, "foo", "bar")
+	c1, _ := GetRegistry().getCluster([]string{"first"})
+	c2, _ := GetRegistry().getCluster([]string{"second"})
+	c3, _ := GetRegistry().getCluster([]string{"first"})
 	assert.Equal(t, c1, c3)
 	assert.NotEqual(t, c1, c2)
 }

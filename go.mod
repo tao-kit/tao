@@ -14,7 +14,7 @@ require (
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/go-xorm/builder v0.3.4
 	github.com/golang-jwt/jwt v3.2.1+incompatible
-	github.com/golang/mock v1.4.3
+	github.com/golang/mock v1.5.0
 	github.com/google/uuid v1.1.2
 	github.com/iancoleman/strcase v0.1.2
 	github.com/justinas/alice v1.2.0
@@ -37,7 +37,6 @@ require (
 	go.opentelemetry.io/otel/sdk v1.3.0
 	go.opentelemetry.io/otel/trace v1.3.0
 	go.uber.org/automaxprocs v1.3.0
-	golang.org/x/net v0.0.0-20210928044308-7d9f5e0b762b // indirect
 	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac
 	google.golang.org/genproto v0.0.0-20210928142010-c7af6a1a74c9 // indirect
 	google.golang.org/grpc v1.41.0
@@ -46,8 +45,8 @@ require (
 	gopkg.in/h2non/gock.v1 v1.0.15
 	gopkg.in/yaml.v2 v2.4.0
 	gorm.io/gorm v1.21.11
-	k8s.io/api v0.20.10
-	k8s.io/apimachinery v0.20.10
-	k8s.io/client-go v0.20.10
-	k8s.io/utils v0.0.0-20201110183641-67b214c5f920
+	k8s.io/api v0.23.1
+	k8s.io/apimachinery v0.23.1
+	k8s.io/client-go v0.23.1
+	k8s.io/utils v0.0.0-20211208161948-7d6a63dca704
 )
