@@ -31,9 +31,9 @@ func TestSplit(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, []string{"G", "O", "Z", "E", "R", "O"}, list)
 
-	list, err = split("tao")
+	list, err = split("gozero")
 	assert.Nil(t, err)
-	assert.Equal(t, []string{"tao"}, list)
+	assert.Equal(t, []string{"gozero"}, list)
 
 	list, err = split("")
 	assert.Nil(t, err)
@@ -69,7 +69,7 @@ func TestSplit(t *testing.T) {
 }
 
 func TestFileNamingFormat(t *testing.T) {
-	testFileNamingFormat(t, "tao", "welcome_to_go_zero", "welcometotao")
+	testFileNamingFormat(t, "gozero", "welcome_to_go_zero", "welcometogozero")
 	testFileNamingFormat(t, "_go#zero_", "welcome_to_go_zero", "_welcome#to#go#zero_")
 	testFileNamingFormat(t, "Go#zero", "welcome_to_go_zero", "Welcome#to#go#zero")
 	testFileNamingFormat(t, "Go#Zero", "welcome_to_go_zero", "Welcome#To#Go#Zero")
@@ -86,9 +86,9 @@ func TestFileNamingFormat(t *testing.T) {
 	testFileNamingFormat(t, "{go###zerogo_zero}", "welcome_to_go_zero", "{welcome###to###go###zerogo_zero}")
 	testFileNamingFormat(t, "GogoZerozero", "welcome_to_go_zero", "WelcomegoTogoGogoZerozero")
 	testFileNamingFormat(t, "前缀GoZero后缀", "welcome_to_go_zero", "前缀WelcomeToGoZero后缀")
-	testFileNamingFormat(t, "GoZero", "welcometotao", "Welcometotao")
+	testFileNamingFormat(t, "GoZero", "welcometogozero", "Welcometogozero")
 	testFileNamingFormat(t, "GoZero", "WelcomeToGoZero", "WelcomeToGoZero")
-	testFileNamingFormat(t, "tao", "WelcomeToGoZero", "welcometotao")
+	testFileNamingFormat(t, "gozero", "WelcomeToGoZero", "welcometogozero")
 	testFileNamingFormat(t, "go_zero", "WelcomeToGoZero", "welcome_to_go_zero")
 	testFileNamingFormat(t, "Go_Zero", "WelcomeToGoZero", "Welcome_To_Go_Zero")
 	testFileNamingFormat(t, "Go_Zero", "", "")

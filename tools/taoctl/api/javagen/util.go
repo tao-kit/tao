@@ -8,12 +8,13 @@ import (
 
 	"manlu.org/tao/tools/taoctl/api/spec"
 	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 func writeProperty(writer io.Writer, member spec.Member, indent int) error {
 	if len(member.Comment) > 0 {
 		writeIndent(writer, indent)
-		fmt.Fprint(writer, member.Comment+util.NL)
+		fmt.Fprint(writer, member.Comment+pathx.NL)
 	}
 	writeIndent(writer, indent)
 	ty, err := specTypeToJava(member.Type)

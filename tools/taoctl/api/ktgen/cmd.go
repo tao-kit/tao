@@ -3,8 +3,8 @@ package ktgen
 import (
 	"errors"
 
-	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/api/parser"
+	"github.com/urfave/cli"
 )
 
 // KtCommand the generate kotlin code command entrance
@@ -27,6 +27,7 @@ func KtCommand(c *cli.Context) error {
 		return e
 	}
 
+	api.Service = api.Service.JoinPrefix()
 	e = genBase(dir, pkg, api)
 	if e != nil {
 		return e

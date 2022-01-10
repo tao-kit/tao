@@ -7,8 +7,8 @@ import (
 
 	conf "manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/rpc/parser"
-	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/format"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const configTemplate = `package config
@@ -32,11 +32,11 @@ func (g *DefaultGenerator) GenConfig(ctx DirContext, _ parser.Proto, cfg *conf.C
 	}
 
 	fileName := filepath.Join(dir.Filename, configFilename+".go")
-	if util.FileExists(fileName) {
+	if pathx.FileExists(fileName) {
 		return nil
 	}
 
-	text, err := util.LoadTemplate(category, configTemplateFileFile, configTemplate)
+	text, err := pathx.LoadTemplate(category, configTemplateFileFile, configTemplate)
 	if err != nil {
 		return err
 	}

@@ -384,6 +384,10 @@ var commands = []cli.Command{
 						Name:  "home",
 						Usage: "the taoctl home path of the template",
 					},
+					cli.BoolFlag{
+						Name:  "validate",
+						Usage: "generate rpc validate proto,see: https://github.com/envoyproxy/protoc-gen-validate",
+					},
 				},
 				Action: rpc.RPCTemplate,
 			},
@@ -665,7 +669,7 @@ func main() {
 }
 
 func init() {
-	err := linkProtocGenGoctl()
+	err := linkProtocGenTaoctl()
 	if err != nil {
 		console.Error("%+v", err)
 	}
@@ -673,7 +677,7 @@ func init() {
 
 const protocGenTaoctl = "protoc-gen-taoctl"
 
-func linkProtocGenGoctl() error {
+func linkProtocGenTaoctl() error {
 	path, err := env.LookPath("taoctl")
 	if err != nil {
 		return err

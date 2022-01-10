@@ -3,10 +3,10 @@ package internal
 import (
 	"net"
 
-	"google.golang.org/grpc"
 	"manlu.org/tao/core/proc"
 	"manlu.org/tao/core/stat"
 	"manlu.org/tao/zrpc/internal/serverinterceptors"
+	"google.golang.org/grpc"
 )
 
 type (
@@ -38,7 +38,7 @@ func NewRpcServer(address string, opts ...ServerOption) Server {
 	}
 
 	return &rpcServer{
-		baseRpcServer: newBaseRpcServer(address, options.metrics),
+		baseRpcServer: newBaseRpcServer(address, &options),
 	}
 }
 
@@ -54,17 +54,15 @@ func (s *rpcServer) Start(register RegisterFn) error {
 	}
 
 	unaryInterceptors := []grpc.UnaryServerInterceptor{
-		serverinterceptors.UnaryTracingInterceptor(s.name),
-		serverinterceptors.UnaryOpenTracingInterceptor(),
-		serverinterceptors.UnaryCrashInterceptor(),
+		serverinterceptors.UnaryTracingInterceptor,
+		serverinterceptors.UnaryCrashInterceptor,
 		serverinterceptors.UnaryStatInterceptor(s.metrics),
-		serverinterceptors.UnaryPrometheusInterceptor(),
-		serverinterceptors.UnaryBreakerInterceptor(),
+		serverinterceptors.UnaryPrometheusInterceptor,
+		serverinterceptors.UnaryBreakerInterceptor,
 	}
 	unaryInterceptors = append(unaryInterceptors, s.unaryInterceptors...)
 	streamInterceptors := []grpc.StreamServerInterceptor{
-		serverinterceptors.StreamTracingInterceptor(s.name),
-		serverinterceptors.StreamOpenTracingInterceptor(),
+		serverinterceptors.StreamTracingInterceptor,
 		serverinterceptors.StreamCrashInterceptor,
 		serverinterceptors.StreamBreakerInterceptor,
 	}

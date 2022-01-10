@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"google.golang.org/grpc/metadata"
 	"manlu.org/tao/core/stores/redis/redistest"
+	"google.golang.org/grpc/metadata"
 )
 
 func TestAuthenticator(t *testing.T) {

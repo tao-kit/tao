@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/urfave/cli"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const (
@@ -33,12 +33,12 @@ func Category() string {
 
 // Clean cleans the generated deployment files.
 func Clean() error {
-	return util.Clean(category)
+	return pathx.Clean(category)
 }
 
 // GenTemplates generates api template files.
 func GenTemplates(_ *cli.Context) error {
-	return util.InitTemplates(category, templates)
+	return pathx.InitTemplates(category, templates)
 }
 
 // RevertTemplate reverts the given template file to the default value.
@@ -47,7 +47,7 @@ func RevertTemplate(name string) error {
 	if !ok {
 		return fmt.Errorf("%s: no such file name", name)
 	}
-	return util.CreateTemplate(category, name, content)
+	return pathx.CreateTemplate(category, name, content)
 }
 
 // Update updates the template files to the templates built in current taoctl.
@@ -57,5 +57,5 @@ func Update() error {
 		return err
 	}
 
-	return util.InitTemplates(category, templates)
+	return pathx.InitTemplates(category, templates)
 }

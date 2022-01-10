@@ -20,7 +20,7 @@ func Action(ctx *cli.Context) error {
 	home := ctx.String("home")
 
 	if len(home) > 0 {
-		file.RegisterGoctlHome(home)
+		file.RegisterTaoctlHome(home)
 	}
 
 	if len(tp) == 0 {

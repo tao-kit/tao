@@ -5,12 +5,15 @@ import (
 	"path"
 	"time"
 
-	"google.golang.org/grpc"
 	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/syncx"
 	"manlu.org/tao/core/timex"
+	"google.golang.org/grpc"
 )
 
-const slowThreshold = time.Millisecond * 500
+const defaultSlowThreshold = time.Millisecond * 500
+
+var slowThreshold = syncx.ForAtomicDuration(defaultSlowThreshold)
 
 // DurationInterceptor is an interceptor that logs the processing time.
 func DurationInterceptor(ctx context.Context, method string, req, reply interface{},
@@ -23,11 +26,16 @@ func DurationInterceptor(ctx context.Context, method string, req, reply interfac
 			serverName, req, err.Error())
 	} else {
 		elapsed := timex.Since(start)
-		if elapsed > slowThreshold {
+		if elapsed > slowThreshold.Load() {
 			logx.WithContext(ctx).WithDuration(elapsed).Slowf("[RPC] ok - slowcall - %s - %v - %v",
 				serverName, req, reply)
 		}
 	}
 
 	return err
+}
+
+// SetSlowThreshold sets the slow threshold.
+func SetSlowThreshold(threshold time.Duration) {
+	slowThreshold.Set(threshold)
 }

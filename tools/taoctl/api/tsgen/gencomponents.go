@@ -7,7 +7,7 @@ import (
 
 	"manlu.org/tao/tools/taoctl/api/spec"
 	apiutil "manlu.org/tao/tools/taoctl/api/util"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const (
@@ -30,7 +30,7 @@ func genComponents(dir string, api *spec.ApiSpec) error {
 
 	outputFile := apiutil.ComponentName(api) + ".ts"
 	filename := path.Join(dir, outputFile)
-	if err := util.RemoveIfExist(filename); err != nil {
+	if err := pathx.RemoveIfExist(filename); err != nil {
 		return err
 	}
 

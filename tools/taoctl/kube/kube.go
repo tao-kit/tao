@@ -43,7 +43,7 @@ func DeploymentCommand(c *cli.Context) error {
 	home := c.String("home")
 
 	if len(home) > 0 {
-		util.RegisterGoctlHome(home)
+		util.RegisterTaoctlHome(home)
 	}
 
 	// 0 to disable the nodePort type

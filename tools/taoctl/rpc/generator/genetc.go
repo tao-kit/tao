@@ -9,6 +9,7 @@ import (
 	"manlu.org/tao/tools/taoctl/rpc/parser"
 	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/format"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/util/stringx"
 )
 
@@ -31,7 +32,7 @@ func (g *DefaultGenerator) GenEtc(ctx DirContext, _ parser.Proto, cfg *conf.Conf
 
 	fileName := filepath.Join(dir.Filename, fmt.Sprintf("%v.yaml", etcFilename))
 
-	text, err := util.LoadTemplate(category, etcTemplateFileFile, etcTemplate)
+	text, err := pathx.LoadTemplate(category, etcTemplateFileFile, etcTemplate)
 	if err != nil {
 		return err
 	}

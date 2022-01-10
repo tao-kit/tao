@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/vars"
 )
 
@@ -39,10 +39,10 @@ func Run(arg, dir string, in ...*bytes.Buffer) (string, error) {
 	err := cmd.Run()
 	if err != nil {
 		if stderr.Len() > 0 {
-			return "", errors.New(strings.TrimSuffix(stderr.String(), util.NL))
+			return "", errors.New(strings.TrimSuffix(stderr.String(), pathx.NL))
 		}
 		return "", err
 	}
 
-	return strings.TrimSuffix(stdout.String(), util.NL), nil
+	return strings.TrimSuffix(stdout.String(), pathx.NL), nil
 }

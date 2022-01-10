@@ -12,12 +12,12 @@ import (
 	"manlu.org/tao/tools/taoctl/rpc/parser"
 	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/format"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/util/stringx"
 )
 
 const (
 	callTemplateText = `{{.head}}
-
 
 package {{.filePackage}}
 
@@ -27,6 +27,7 @@ import (
 	{{.package}}
 
 	"manlu.org/tao/zrpc"
+	"google.golang.org/grpc"
 )
 
 type (
@@ -51,13 +52,13 @@ func New{{.serviceName}}(cli zrpc.Client) {{.serviceName}} {
 `
 
 	callInterfaceFunctionTemplate = `{{if .hasComment}}{{.comment}}
-{{end}}{{.method}}(ctx context.Context{{if .hasReq}},in *{{.pbRequest}}{{end}}) ({{if .notStream}}*{{.pbResponse}}, {{else}}{{.streamBody}},{{end}} error)`
+{{end}}{{.method}}(ctx context.Context{{if .hasReq}}, in *{{.pbRequest}}{{end}}, opts ...grpc.CallOption) ({{if .notStream}}*{{.pbResponse}}, {{else}}{{.streamBody}},{{end}} error)`
 
 	callFunctionTemplate = `
 {{if .hasComment}}{{.comment}}{{end}}
-func (m *default{{.serviceName}}) {{.method}}(ctx context.Context{{if .hasReq}},in *{{.pbRequest}}{{end}}) ({{if .notStream}}*{{.pbResponse}}, {{else}}{{.streamBody}},{{end}} error) {
+func (m *default{{.serviceName}}) {{.method}}(ctx context.Context{{if .hasReq}}, in *{{.pbRequest}}{{end}}, opts ...grpc.CallOption) ({{if .notStream}}*{{.pbResponse}}, {{else}}{{.streamBody}},{{end}} error) {
 	client := {{.package}}.New{{.rpcServiceName}}Client(m.cli.Conn())
-	return client.{{.method}}(ctx,{{if .hasReq}} in{{end}})
+	return client.{{.method}}(ctx{{if .hasReq}}, in{{end}}, opts...)
 }
 `
 )
@@ -85,7 +86,7 @@ func (g *DefaultGenerator) GenCall(ctx DirContext, proto parser.Proto, cfg *conf
 		return err
 	}
 
-	text, err := util.LoadTemplate(category, callTemplateFile, callTemplateText)
+	text, err := pathx.LoadTemplate(category, callTemplateFile, callTemplateText)
 	if err != nil {
 		return err
 	}
@@ -100,13 +101,13 @@ func (g *DefaultGenerator) GenCall(ctx DirContext, proto parser.Proto, cfg *conf
 	sort.Strings(aliasKeys)
 	err = util.With("shared").GoFmt(true).Parse(text).SaveTo(map[string]interface{}{
 		"name":        callFilename,
-		"alias":       strings.Join(aliasKeys, util.NL),
+		"alias":       strings.Join(aliasKeys, pathx.NL),
 		"head":        head,
 		"filePackage": dir.Base,
 		"package":     fmt.Sprintf(`"%s"`, ctx.GetPb().Package),
 		"serviceName": stringx.From(service.Name).ToCamel(),
-		"functions":   strings.Join(functions, util.NL),
-		"interface":   strings.Join(iFunctions, util.NL),
+		"functions":   strings.Join(functions, pathx.NL),
+		"interface":   strings.Join(iFunctions, pathx.NL),
 	}, filename, true)
 	return err
 }
@@ -137,7 +138,7 @@ func (g *DefaultGenerator) genFunction(goPackage string, service parser.Service)
 	functions := make([]string, 0)
 
 	for _, rpc := range service.RPC {
-		text, err := util.LoadTemplate(category, callFunctionTemplateFile, callFunctionTemplate)
+		text, err := pathx.LoadTemplate(category, callFunctionTemplateFile, callFunctionTemplate)
 		if err != nil {
 			return nil, err
 		}
@@ -171,7 +172,7 @@ func (g *DefaultGenerator) getInterfaceFuncs(goPackage string, service parser.Se
 	functions := make([]string, 0)
 
 	for _, rpc := range service.RPC {
-		text, err := util.LoadTemplate(category, callInterfaceFunctionTemplateFile, callInterfaceFunctionTemplate)
+		text, err := pathx.LoadTemplate(category, callInterfaceFunctionTemplateFile, callInterfaceFunctionTemplate)
 		if err != nil {
 			return nil, err
 		}

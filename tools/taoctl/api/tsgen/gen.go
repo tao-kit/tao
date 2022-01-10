@@ -5,10 +5,10 @@ import (
 	"fmt"
 
 	"github.com/logrusorgru/aurora"
-	"github.com/urfave/cli"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/tools/taoctl/api/parser"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/urfave/cli"
 )
 
 // TsCommand provides the entry to generate typescript codes
@@ -32,7 +32,8 @@ func TsCommand(c *cli.Context) error {
 		return err
 	}
 
-	logx.Must(util.MkdirIfNotExist(dir))
+	api.Service = api.Service.JoinPrefix()
+	logx.Must(pathx.MkdirIfNotExist(dir))
 	logx.Must(genHandler(dir, webAPI, caller, api, unwrapAPI))
 	logx.Must(genComponents(dir, api))
 

@@ -7,7 +7,7 @@ import (
 
 	"manlu.org/tao/core/jsonx"
 	"manlu.org/tao/tools/taoctl/rpc/execx"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 // Module contains the relative data of go module,
@@ -31,7 +31,7 @@ func projectFromGoMod(workDir string) (*ProjectContext, error) {
 		return nil, err
 	}
 
-	workDir, err := util.ReadLink(workDir)
+	workDir, err := pathx.ReadLink(workDir)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +49,7 @@ func projectFromGoMod(workDir string) (*ProjectContext, error) {
 	var ret ProjectContext
 	ret.WorkDir = workDir
 	ret.Name = filepath.Base(m.Dir)
-	dir, err := util.ReadLink(m.Dir)
+	dir, err := pathx.ReadLink(m.Dir)
 	if err != nil {
 		return nil, err
 	}

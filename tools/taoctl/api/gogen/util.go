@@ -12,8 +12,8 @@ import (
 	"manlu.org/tao/core/collection"
 	"manlu.org/tao/tools/taoctl/api/spec"
 	"manlu.org/tao/tools/taoctl/api/util"
-	ctlutil "manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/ctx"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 type fileGenConfig struct {
@@ -41,7 +41,7 @@ func genFile(c fileGenConfig) error {
 	if len(c.category) == 0 || len(c.templateFile) == 0 {
 		text = c.builtinTemplate
 	} else {
-		text, err = ctlutil.LoadTemplate(c.category, c.templateFile, c.builtinTemplate)
+		text, err = pathx.LoadTemplate(c.category, c.templateFile, c.builtinTemplate)
 		if err != nil {
 			return err
 		}
@@ -70,10 +70,10 @@ func getParentPackage(dir string) (string, error) {
 		return "", err
 	}
 
-	// fix https://github.com/zeromicro/go-zero/issues/1058
+	// fix https://manlu.org/tao/issues/1058
 	wd := projectCtx.WorkDir
 	d := projectCtx.Dir
-	same, err := ctlutil.SameFile(wd, d)
+	same, err := pathx.SameFile(wd, d)
 	if err != nil {
 		return "", err
 	}

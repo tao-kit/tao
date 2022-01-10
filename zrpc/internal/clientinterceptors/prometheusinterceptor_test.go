@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"google.golang.org/grpc"
 	"manlu.org/tao/core/prometheus"
+	"google.golang.org/grpc"
 )
 
 func TestPromMetricInterceptor(t *testing.T) {

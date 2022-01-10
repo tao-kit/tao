@@ -4,10 +4,10 @@ import (
 	"context"
 	"sync"
 
-	"google.golang.org/grpc"
 	"manlu.org/tao/core/syncx"
 	"manlu.org/tao/zrpc/internal"
 	"manlu.org/tao/zrpc/internal/auth"
+	"google.golang.org/grpc"
 )
 
 // A RpcProxy is a rpc proxy.

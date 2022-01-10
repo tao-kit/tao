@@ -6,10 +6,10 @@ import (
 )
 
 // BuildVersion is the version of taoctl.
-const BuildVersion = "1.2.2-beta"
+const BuildVersion = "1.15.1-beta"
 
-// GetGoctlVersion returns BuildVersion
-func GetGoctlVersion() string {
+// GetTaoctlVersion returns BuildVersion
+func GetTaoctlVersion() string {
 	return BuildVersion
 }
 

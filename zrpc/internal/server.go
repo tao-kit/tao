@@ -1,8 +1,8 @@
 package internal
 
 import (
-	"google.golang.org/grpc"
 	"manlu.org/tao/core/stat"
+	"google.golang.org/grpc"
 )
 
 type (
@@ -27,10 +27,10 @@ type (
 	}
 )
 
-func newBaseRpcServer(address string, metrics *stat.Metrics) *baseRpcServer {
+func newBaseRpcServer(address string, rpcServerOpts *rpcServerOptions) *baseRpcServer {
 	return &baseRpcServer{
 		address: address,
-		metrics: metrics,
+		metrics: rpcServerOpts.metrics,
 	}
 }
 

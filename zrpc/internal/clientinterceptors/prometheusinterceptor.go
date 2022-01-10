@@ -5,11 +5,11 @@ import (
 	"strconv"
 	"time"
 
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/status"
 	"manlu.org/tao/core/metric"
 	"manlu.org/tao/core/prometheus"
 	"manlu.org/tao/core/timex"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/status"
 )
 
 const clientNamespace = "rpc_client"

@@ -5,17 +5,17 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 func TestProtoTmpl(t *testing.T) {
 	_ = Clean()
 	// exists dir
-	err := ProtoTmpl(util.MustTempDir())
+	err := ProtoTmpl(pathx.MustTempDir())
 	assert.Nil(t, err)
 
 	// not exist dir
-	dir := filepath.Join(util.MustTempDir(), "test")
+	dir := filepath.Join(pathx.MustTempDir(), "test")
 	err = ProtoTmpl(dir)
 	assert.Nil(t, err)
 }

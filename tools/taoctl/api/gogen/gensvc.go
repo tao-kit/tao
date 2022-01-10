@@ -6,8 +6,8 @@ import (
 
 	"manlu.org/tao/tools/taoctl/api/spec"
 	"manlu.org/tao/tools/taoctl/config"
-	ctlutil "manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/format"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/vars"
 )
 
@@ -50,9 +50,9 @@ func genServiceContext(dir, rootPkg string, cfg *config.Config, api *spec.ApiSpe
 			fmt.Sprintf("middleware.New%s().%s", strings.Title(name), "Handle"))
 	}
 
-	configImport := "\"" + ctlutil.JoinPackages(rootPkg, configDir) + "\""
+	configImport := "\"" + pathx.JoinPackages(rootPkg, configDir) + "\""
 	if len(middlewareStr) > 0 {
-		configImport += "\n\t\"" + ctlutil.JoinPackages(rootPkg, middlewareDir) + "\""
+		configImport += "\n\t\"" + pathx.JoinPackages(rootPkg, middlewareDir) + "\""
 		configImport += fmt.Sprintf("\n\t\"%s/rest\"", vars.ProjectOpenSourceURL)
 	}
 

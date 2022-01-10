@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"google.golang.org/grpc"
 	"manlu.org/tao/core/load"
 	"manlu.org/tao/core/stat"
+	"google.golang.org/grpc"
 )
 
 func TestUnarySheddingInterceptor(t *testing.T) {

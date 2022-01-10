@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"manlu.org/tao/core/stringx"
 	"manlu.org/tao/tools/taoctl/rpc/execx"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 func TestProjectFromGoMod(t *testing.T) {
@@ -20,7 +20,7 @@ func TestProjectFromGoMod(t *testing.T) {
 	}
 	projectName := stringx.Rand()
 	dir := filepath.Join(gp, "src", projectName)
-	err := util.MkdirIfNotExist(dir)
+	err := pathx.MkdirIfNotExist(dir)
 	if err != nil {
 		return
 	}

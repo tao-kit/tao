@@ -6,8 +6,8 @@ import (
 
 	"manlu.org/tao/tools/taoctl/api/spec"
 	"manlu.org/tao/tools/taoctl/config"
-	ctlutil "manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/format"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/vars"
 )
 
@@ -68,9 +68,9 @@ func genMain(dir, rootPkg string, cfg *config.Config, api *spec.ApiSpec) error {
 
 func genMainImports(parentPkg string) string {
 	var imports []string
-	imports = append(imports, fmt.Sprintf("\"%s\"", ctlutil.JoinPackages(parentPkg, configDir)))
-	imports = append(imports, fmt.Sprintf("\"%s\"", ctlutil.JoinPackages(parentPkg, handlerDir)))
-	imports = append(imports, fmt.Sprintf("\"%s\"\n", ctlutil.JoinPackages(parentPkg, contextDir)))
+	imports = append(imports, fmt.Sprintf("\"%s\"", pathx.JoinPackages(parentPkg, configDir)))
+	imports = append(imports, fmt.Sprintf("\"%s\"", pathx.JoinPackages(parentPkg, handlerDir)))
+	imports = append(imports, fmt.Sprintf("\"%s\"\n", pathx.JoinPackages(parentPkg, contextDir)))
 	imports = append(imports, fmt.Sprintf("\"%s/core/conf\"", vars.ProjectOpenSourceURL))
 	imports = append(imports, fmt.Sprintf("\"%s/rest\"", vars.ProjectOpenSourceURL))
 	return strings.Join(imports, "\n\t")

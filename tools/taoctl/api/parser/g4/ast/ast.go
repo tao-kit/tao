@@ -5,9 +5,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/zeromicro/antlr"
 	"manlu.org/tao/tools/taoctl/api/parser/g4/gen/api"
 	"manlu.org/tao/tools/taoctl/util/console"
+	"github.com/zeromicro/antlr"
 )
 
 type (
@@ -21,7 +21,7 @@ type (
 	// ApiVisitor wraps api.BaseApiParserVisitor to call methods which has prefix Visit to
 	// visit node from the api syntax
 	ApiVisitor struct {
-		api.BaseApiParserVisitor
+		*api.BaseApiParserVisitor
 		debug    bool
 		log      console.Console
 		prefix   string

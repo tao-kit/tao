@@ -9,7 +9,7 @@ import (
 	"github.com/urfave/cli"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/tools/taoctl/api/parser"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 // JavaCommand the generate java code command entrance
@@ -28,8 +28,9 @@ func JavaCommand(c *cli.Context) error {
 		return err
 	}
 
+	api.Service = api.Service.JoinPrefix()
 	packetName := strings.TrimSuffix(api.Service.Name, "-api")
-	logx.Must(util.MkdirIfNotExist(dir))
+	logx.Must(pathx.MkdirIfNotExist(dir))
 	logx.Must(genPacket(dir, packetName, api))
 	logx.Must(genComponents(dir, packetName, api))
 

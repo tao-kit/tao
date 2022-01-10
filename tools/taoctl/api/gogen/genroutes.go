@@ -11,8 +11,8 @@ import (
 	"manlu.org/tao/core/collection"
 	"manlu.org/tao/tools/taoctl/api/spec"
 	"manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/format"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/vars"
 )
 
@@ -27,24 +27,27 @@ import (
 	{{.importPackages}}
 )
 
-func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
+func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	{{.routesAdditions}}
 }
 `
 	routesAdditionTemplate = `
-	engine.AddRoutes(
-		{{.routes}} {{.jwt}}{{.signature}}
+	server.AddRoutes(
+		{{.routes}} {{.jwt}}{{.signature}} {{.prefix}}
 	)
 `
 )
 
 var mapping = map[string]string{
-	"delete": "http.MethodDelete",
-	"get":    "http.MethodGet",
-	"head":   "http.MethodHead",
-	"post":   "http.MethodPost",
-	"put":    "http.MethodPut",
-	"patch":  "http.MethodPatch",
+	"delete":  "http.MethodDelete",
+	"get":     "http.MethodGet",
+	"head":    "http.MethodHead",
+	"post":    "http.MethodPost",
+	"put":     "http.MethodPut",
+	"patch":   "http.MethodPatch",
+	"connect": "http.MethodConnect",
+	"options": "http.MethodOptions",
+	"trace":   "http.MethodTrace",
 }
 
 type (
@@ -54,6 +57,7 @@ type (
 		signatureEnabled bool
 		authName         string
 		middlewares      []string
+		prefix           string
 	}
 	route struct {
 		method  string
@@ -87,9 +91,13 @@ func genRoutes(dir, rootPkg string, cfg *config.Config, api *spec.ApiSpec) error
 		if g.jwtEnabled {
 			jwt = fmt.Sprintf("\n rest.WithJwt(serverCtx.Config.%s.AccessSecret),", g.authName)
 		}
-		var signature string
+		var signature, prefix string
 		if g.signatureEnabled {
 			signature = "\n rest.WithSignature(serverCtx.Config.Signature),"
+		}
+		if len(g.prefix) > 0 {
+			prefix = fmt.Sprintf(`
+rest.WithPrefix("%s"),`, g.prefix)
 		}
 
 		var routes string
@@ -111,6 +119,7 @@ func genRoutes(dir, rootPkg string, cfg *config.Config, api *spec.ApiSpec) error
 			"routes":    routes,
 			"jwt":       jwt,
 			"signature": signature,
+			"prefix":    prefix,
 		}); err != nil {
 			return err
 		}
@@ -142,7 +151,7 @@ func genRoutes(dir, rootPkg string, cfg *config.Config, api *spec.ApiSpec) error
 
 func genRouteImports(parentPkg string, api *spec.ApiSpec) string {
 	importSet := collection.NewSet()
-	importSet.AddStr(fmt.Sprintf("\"%s\"", util.JoinPackages(parentPkg, contextDir)))
+	importSet.AddStr(fmt.Sprintf("\"%s\"", pathx.JoinPackages(parentPkg, contextDir)))
 	for _, group := range api.Service.Groups {
 		for _, route := range group.Routes {
 			folder := route.GetAnnotation(groupProperty)
@@ -152,7 +161,7 @@ func genRouteImports(parentPkg string, api *spec.ApiSpec) string {
 					continue
 				}
 			}
-			importSet.AddStr(fmt.Sprintf("%s \"%s\"", toPrefix(folder), util.JoinPackages(parentPkg, handlerDir, folder)))
+			importSet.AddStr(fmt.Sprintf("%s \"%s\"", toPrefix(folder), pathx.JoinPackages(parentPkg, handlerDir, folder)))
 		}
 	}
 	imports := importSet.KeysStr()
@@ -199,6 +208,13 @@ func getRoutes(api *spec.ApiSpec) ([]group, error) {
 		if len(middleware) > 0 {
 			groupedRoutes.middlewares = append(groupedRoutes.middlewares,
 				strings.Split(middleware, ",")...)
+		}
+		prefix := g.GetAnnotation(spec.RoutePrefixKey)
+		prefix = strings.ReplaceAll(prefix, `"`, "")
+		prefix = strings.TrimSpace(prefix)
+		if len(prefix) > 0 {
+			prefix = path.Join("/", prefix)
+			groupedRoutes.prefix = prefix
 		}
 		routes = append(routes, groupedRoutes)
 	}

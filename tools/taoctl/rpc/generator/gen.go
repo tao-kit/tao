@@ -5,9 +5,9 @@ import (
 
 	conf "manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/rpc/parser"
-	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/console"
 	"manlu.org/tao/tools/taoctl/util/ctx"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 // RPCGenerator defines a generator and configure
@@ -42,7 +42,7 @@ func (g *RPCGenerator) Generate(src, target string, protoImportPath []string, go
 		return err
 	}
 
-	err = util.MkdirIfNotExist(abs)
+	err = pathx.MkdirIfNotExist(abs)
 	if err != nil {
 		return err
 	}

@@ -2,19 +2,18 @@ package httpx
 
 import (
 	"io"
-	"manlu.org/tao/rest/pathvar"
 	"net/http"
 	"net/textproto"
 	"strings"
 
 	"manlu.org/tao/core/mapping"
+	"manlu.org/tao/rest/pathvar"
 )
 
 const (
 	formKey           = "form"
 	pathKey           = "path"
 	headerKey         = "header"
-	emptyJson         = "{}"
 	maxMemory         = 32 << 20 // 32MB
 	maxBodyLen        = 8 << 20  // 8MB
 	separator         = ";"
@@ -106,14 +105,12 @@ func ParseHeader(headerValue string) map[string]string {
 
 // ParseJsonBody parses the post request which contains json in body.
 func ParseJsonBody(r *http.Request, v interface{}) error {
-	var reader io.Reader
 	if withJsonBody(r) {
-		reader = io.LimitReader(r.Body, maxBodyLen)
-	} else {
-		reader = strings.NewReader(emptyJson)
+		reader := io.LimitReader(r.Body, maxBodyLen)
+		return mapping.UnmarshalJsonReader(reader, v)
 	}
 
-	return mapping.UnmarshalJsonReader(reader, v)
+	return mapping.UnmarshalJsonMap(nil, v)
 }
 
 // ParsePath parses the symbols reside in url path.

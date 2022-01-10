@@ -3,8 +3,8 @@ package serverinterceptors
 import (
 	"context"
 
-	"google.golang.org/grpc"
 	"manlu.org/tao/zrpc/internal/auth"
+	"google.golang.org/grpc"
 )
 
 // StreamAuthorizeInterceptor returns a func that uses given authenticator in processing stream requests.

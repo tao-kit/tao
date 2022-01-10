@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 
 	"github.com/logrusorgru/aurora"
-	"manlu.org/tao/tools/taoctl/api/apigen"
 	"github.com/urfave/cli"
 	"manlu.org/tao/core/errorx"
+	"manlu.org/tao/tools/taoctl/api/apigen"
 	"manlu.org/tao/tools/taoctl/api/gogen"
 	apinew "manlu.org/tao/tools/taoctl/api/new"
 	"manlu.org/tao/tools/taoctl/docker"
@@ -24,7 +24,7 @@ const templateParentPath = "/"
 func GenTemplates(ctx *cli.Context) error {
 	path := ctx.String("home")
 	if len(path) != 0 {
-		util.RegisterGoctlHome(path)
+		util.RegisterTaoctlHome(path)
 	}
 
 	if err := errorx.Chain(
@@ -76,7 +76,7 @@ func GenTemplates(ctx *cli.Context) error {
 func CleanTemplates(ctx *cli.Context) error {
 	path := ctx.String("home")
 	if len(path) != 0 {
-		util.RegisterGoctlHome(path)
+		util.RegisterTaoctlHome(path)
 	}
 
 	err := errorx.Chain(
@@ -119,7 +119,7 @@ func UpdateTemplates(ctx *cli.Context) (err error) {
 	path := ctx.String("home")
 	category := ctx.String("category")
 	if len(path) != 0 {
-		util.RegisterGoctlHome(path)
+		util.RegisterTaoctlHome(path)
 	}
 
 	defer func() {
@@ -156,7 +156,7 @@ func RevertTemplates(ctx *cli.Context) (err error) {
 	category := ctx.String("category")
 	filename := ctx.String("name")
 	if len(path) != 0 {
-		util.RegisterGoctlHome(path)
+		util.RegisterTaoctlHome(path)
 	}
 
 	defer func() {

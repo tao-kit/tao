@@ -44,7 +44,7 @@ func MysqlDDL(ctx *cli.Context) error {
 	home := ctx.String(flagHome)
 
 	if len(home) > 0 {
-		file.RegisterGoctlHome(home)
+		file.RegisterTaoctlHome(home)
 	}
 	cfg, err := config.NewConfig(style)
 	if err != nil {
@@ -64,7 +64,7 @@ func MySqlDataSource(ctx *cli.Context) error {
 	home := ctx.String("home")
 
 	if len(home) > 0 {
-		file.RegisterGoctlHome(home)
+		file.RegisterTaoctlHome(home)
 	}
 
 	pattern := strings.TrimSpace(ctx.String(flagTable))
@@ -87,7 +87,7 @@ func PostgreSqlDataSource(ctx *cli.Context) error {
 	home := ctx.String("home")
 
 	if len(home) > 0 {
-		file.RegisterGoctlHome(home)
+		file.RegisterTaoctlHome(home)
 	}
 
 	if len(schema) == 0 {

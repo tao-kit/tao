@@ -7,6 +7,7 @@ import (
 	"text/template"
 
 	"manlu.org/tao/tools/taoctl/internal/errorx"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const regularPerm = 0o666
@@ -39,7 +40,7 @@ func (t *DefaultTemplate) GoFmt(format bool) *DefaultTemplate {
 
 // SaveTo writes the codes to the target path
 func (t *DefaultTemplate) SaveTo(data interface{}, path string, forceUpdate bool) error {
-	if FileExists(path) && !forceUpdate {
+	if pathx.FileExists(path) && !forceUpdate {
 		return nil
 	}
 

@@ -2,7 +2,6 @@ package generator
 
 import (
 	"go/build"
-	"manlu.org/tao/tools/taoctl/util"
 	"os"
 	"path/filepath"
 	"strings"
@@ -13,10 +12,11 @@ import (
 	"manlu.org/tao/core/stringx"
 	conf "manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/rpc/execx"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 var cfg = &conf.Config{
-	NamingFormat: "tao",
+	NamingFormat: "gozero",
 }
 
 func TestRpcGenerate(t *testing.T) {
@@ -58,7 +58,7 @@ func TestRpcGenerate(t *testing.T) {
 
 	// case go mod
 	t.Run("GOMOD", func(t *testing.T) {
-		workDir := util.MustTempDir()
+		workDir := pathx.MustTempDir()
 		name := filepath.Base(workDir)
 		_, err = execx.Run("go mod init "+name, workDir)
 		if err != nil {

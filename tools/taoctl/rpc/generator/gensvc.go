@@ -8,6 +8,7 @@ import (
 	"manlu.org/tao/tools/taoctl/rpc/parser"
 	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/format"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const svcTemplate = `package svc
@@ -35,7 +36,7 @@ func (g *DefaultGenerator) GenSvc(ctx DirContext, _ parser.Proto, cfg *conf.Conf
 	}
 
 	fileName := filepath.Join(dir.Filename, svcFilename+".go")
-	text, err := util.LoadTemplate(category, svcTemplateFile, svcTemplate)
+	text, err := pathx.LoadTemplate(category, svcTemplateFile, svcTemplate)
 	if err != nil {
 		return err
 	}

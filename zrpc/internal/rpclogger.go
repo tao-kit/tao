@@ -3,8 +3,8 @@ package internal
 import (
 	"sync"
 
-	"google.golang.org/grpc/grpclog"
 	"manlu.org/tao/core/logx"
+	"google.golang.org/grpc/grpclog"
 )
 
 // because grpclog.errorLog is not exported, we need to define our own.

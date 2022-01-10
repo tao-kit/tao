@@ -44,7 +44,7 @@ func DockerCommand(c *cli.Context) (err error) {
 	home := c.String("home")
 
 	if len(home) > 0 {
-		util.RegisterGoctlHome(home)
+		util.RegisterTaoctlHome(home)
 	}
 
 	if len(goFile) == 0 {

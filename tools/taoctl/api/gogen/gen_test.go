@@ -78,7 +78,7 @@ service A-api {
   @server(
     handler: NoResponseHandler
   )
-  get /greet/get(Request) returns
+  get /greet/get(Request)
 }
 `
 
@@ -533,7 +533,7 @@ func TestCamelStyle(t *testing.T) {
 }
 
 func validate(t *testing.T, api string) {
-	validateWithCamel(t, api, "tao")
+	validateWithCamel(t, api, "gozero")
 }
 
 func validateWithCamel(t *testing.T, api, camel string) {

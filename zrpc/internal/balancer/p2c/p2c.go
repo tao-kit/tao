@@ -9,13 +9,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	"google.golang.org/grpc/balancer"
-	"google.golang.org/grpc/balancer/base"
-	"google.golang.org/grpc/resolver"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/syncx"
 	"manlu.org/tao/core/timex"
 	"manlu.org/tao/zrpc/internal/codes"
+	"google.golang.org/grpc/balancer"
+	"google.golang.org/grpc/balancer/base"
+	"google.golang.org/grpc/resolver"
 )
 
 const (
@@ -182,14 +182,14 @@ func (p *p2cPicker) logStats() {
 }
 
 type subConn struct {
-	addr     resolver.Address
-	conn     balancer.SubConn
 	lag      uint64
 	inflight int64
 	success  uint64
 	requests int64
 	last     int64
 	pick     int64
+	addr     resolver.Address
+	conn     balancer.SubConn
 }
 
 func (c *subConn) healthy() bool {

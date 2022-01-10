@@ -12,13 +12,13 @@ var errorFormat = `taoctl: generation error: %+v
 taoctl version: %s
 %s`
 
-// GoctlError represents a taoctl error.
-type GoctlError struct {
+// TaoctlError represents a taoctl error.
+type TaoctlError struct {
 	message []string
 	err     error
 }
 
-func (e *GoctlError) Error() string {
+func (e *TaoctlError) Error() string {
 	detail := wrapMessage(e.message...)
 	v := fmt.Sprintf("%s %s/%s", version.BuildVersion, runtime.GOOS, runtime.GOARCH)
 	return fmt.Sprintf(errorFormat, e.err, v, detail)
@@ -26,12 +26,12 @@ func (e *GoctlError) Error() string {
 
 // Wrap wraps an error with taoctl version and message.
 func Wrap(err error, message ...string) error {
-	e, ok := err.(*GoctlError)
+	e, ok := err.(*TaoctlError)
 	if ok {
 		return e
 	}
 
-	return &GoctlError{
+	return &TaoctlError{
 		message: message,
 		err:     err,
 	}

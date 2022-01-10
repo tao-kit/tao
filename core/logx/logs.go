@@ -22,9 +22,13 @@ import (
 	"manlu.org/tao/core/timex"
 )
 
+type Level int8
+
 const (
+	DebugLevel = iota
 	// InfoLevel logs everything
-	InfoLevel = iota
+	InfoLevel
+	WarnLevel
 	// ErrorLevel includes errors, slows, stacks
 	ErrorLevel
 	// SevereLevel only log severe messages
@@ -217,7 +221,7 @@ func ErrorCaller(callDepth int, v ...interface{}) {
 
 // ErrorCallerf writes v with context in format into error log.
 func ErrorCallerf(callDepth int, format string, v ...interface{}) {
-	errorTextSync(fmt.Sprintf(format, v...), callDepth+callerInnerDepth)
+	errorTextSync(fmt.Errorf(format, v...).Error(), callDepth+callerInnerDepth)
 }
 
 // Errorf writes v with format into error log.

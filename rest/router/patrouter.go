@@ -2,13 +2,13 @@ package router
 
 import (
 	"errors"
-	"manlu.org/tao/rest/pathvar"
 	"net/http"
 	"path"
 	"strings"
 
 	"manlu.org/tao/core/search"
 	"manlu.org/tao/rest/httpx"
+	"manlu.org/tao/rest/pathvar"
 )
 
 const (

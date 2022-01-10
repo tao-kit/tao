@@ -2,14 +2,15 @@ package gogen
 
 import (
 	"fmt"
-	"manlu.org/tao/tools/taoctl/internal/version"
 	"path"
 	"strings"
 
 	"manlu.org/tao/tools/taoctl/api/spec"
 	"manlu.org/tao/tools/taoctl/config"
+	"manlu.org/tao/tools/taoctl/internal/version"
 	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/format"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/vars"
 )
 
@@ -24,7 +25,7 @@ import (
 	{{.ImportPackages}}
 )
 
-func {{.HandlerName}}(ctx *svc.ServiceContext) http.HandlerFunc {
+func {{.HandlerName}}(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		{{if .HasRequest}}var req types.{{.RequestType}}
 		if err := httpx.Parse(r, &req); err != nil {
@@ -32,7 +33,7 @@ func {{.HandlerName}}(ctx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		{{end}}l := {{.LogicName}}.New{{.LogicType}}(r.Context(), ctx)
+		{{end}}l := {{.LogicName}}.New{{.LogicType}}(r.Context(), svcCtx)
 		{{if .HasResp}}resp, {{end}}err := l.{{.Call}}({{if .HasRequest}}req{{end}})
 		if err != nil {
 			httpx.Error(w, err)
@@ -71,7 +72,7 @@ func genHandler(dir, rootPkg string, cfg *config.Config, group spec.Group, route
 		return err
 	}
 
-	taoctlVersion := version.GetGoctlVersion()
+	taoctlVersion := version.GetTaoctlVersion()
 	// todo(anqiansong): This will be removed after a certain number of production versions of taoctl (probably 5)
 	after1_1_10 := version.IsVersionGreaterThan(taoctlVersion, "1.1.10")
 	return doGenToFile(dir, handler, cfg, group, route, handlerInfo{
@@ -122,13 +123,13 @@ func genHandlers(dir, rootPkg string, cfg *config.Config, api *spec.ApiSpec) err
 func genHandlerImports(group spec.Group, route spec.Route, parentPkg string) string {
 	var imports []string
 	imports = append(imports, fmt.Sprintf("\"%s\"",
-		util.JoinPackages(parentPkg, getLogicFolderPath(group, route))))
-	imports = append(imports, fmt.Sprintf("\"%s\"", util.JoinPackages(parentPkg, contextDir)))
+		pathx.JoinPackages(parentPkg, getLogicFolderPath(group, route))))
+	imports = append(imports, fmt.Sprintf("\"%s\"", pathx.JoinPackages(parentPkg, contextDir)))
 	if len(route.RequestTypeName()) > 0 {
-		imports = append(imports, fmt.Sprintf("\"%s\"\n", util.JoinPackages(parentPkg, typesDir)))
+		imports = append(imports, fmt.Sprintf("\"%s\"\n", pathx.JoinPackages(parentPkg, typesDir)))
 	}
 
-	currentVersion := version.GetGoctlVersion()
+	currentVersion := version.GetTaoctlVersion()
 	// todo(anqiansong): This will be removed after a certain number of production versions of taoctl (probably 5)
 	if !version.IsVersionGreaterThan(currentVersion, "1.1.10") {
 		imports = append(imports, fmt.Sprintf("\"%s/rest/httpx\"", vars.ProjectOpenSourceURL))

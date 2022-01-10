@@ -10,7 +10,7 @@ import (
 
 const (
 	flagGo   = "GO"
-	flagTao = "TAO"
+	flagZero = "TAO"
 
 	unknown style = iota
 	title
@@ -42,7 +42,7 @@ type (
 func FileNamingFormat(format, content string) (string, error) {
 	upperFormat := strings.ToUpper(format)
 	indexGo := strings.Index(upperFormat, flagGo)
-	indexZero := strings.Index(upperFormat, flagTao)
+	indexZero := strings.Index(upperFormat, flagZero)
 	if indexGo < 0 || indexZero < 0 || indexGo > indexZero {
 		return "", ErrNamingFormat
 	}

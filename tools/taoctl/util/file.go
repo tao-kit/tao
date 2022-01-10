@@ -20,8 +20,8 @@ const (
 
 var taoctlHome string
 
-// RegisterGoctlHome register taoctl home path
-func RegisterGoctlHome(home string) {
+// RegisterTaoctlHome register taoctl home path
+func RegisterTaoctlHome(home string) {
 	taoctlHome = home
 }
 
@@ -68,8 +68,7 @@ func FileNameWithoutExt(file string) string {
 	return strings.TrimSuffix(file, filepath.Ext(file))
 }
 
-
-// GetGoctlHome returns the path value of the taoctl home where Join $HOME with .taoctl
+// GetTaoctlHome returns the path value of the taoctl home where Join $HOME with .taoctl
 func GettaoctlHome() (string, error) {
 	if len(taoctlHome) != 0 {
 		return taoctlHome, nil

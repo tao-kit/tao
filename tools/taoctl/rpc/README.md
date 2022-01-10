@@ -136,7 +136,7 @@ OPTIONS:
    --proto_path value, -I value  native command of protoc, specify the directory in which to search for imports. [optional]
    --go_opt value                native command of protoc-gen-go, specify the mapping from proto to go, eg --go_opt=proto_import=go_package_import. [optional]
    --dir value, -d value         the target path of the code
-   --style value                 the file naming format, see [https://github.com/tal-tech/go-zero/tree/master/tools/goctl/config/readme.md]
+   --style value                 the file naming format, see [https://manlu.org/tao/tree/master/tools/taoctl/config/readme.md]
    --idea                        whether the command execution environment is from idea plugin. [optional]
 
 ```
@@ -144,7 +144,7 @@ OPTIONS:
 ### 参数说明
 
 * --src 必填，proto数据源，目前暂时支持单个proto文件生成
-* --proto_path 可选，protoc原生子命令，用于指定proto import从何处查找，可指定多个路径,如`goctl rpc -I={path1} -I={path2} ...`
+* --proto_path 可选，protoc原生子命令，用于指定proto import从何处查找，可指定多个路径,如`taoctl rpc -I={path1} -I={path2} ...`
   ,在没有import时可不填。当前proto路径不用指定，已经内置，`-I`的详细用法请参考`protoc -h`
 * --go_opt 可选，protoc-gen-go插件原生flag，用于指定go_package
 * --dir 可选，默认为proto文件所在目录，生成代码的目标目录
@@ -222,4 +222,13 @@ service Greet {
   rpc Ping(Request) returns(Response);
 }
 ```
+
+## 常见问题解决(go mod工程)
+
+* 错误一:
+```text
+A required privilege is not held by the client.
+```
+这个问题只有taoctl 版本在`taoctl.exe version 1.2.1` 以后的 Windows操作系统出现，主要原因是taoctl需要以管理员身份运行，这样才能将`taoctl.exe` 创建一个 `ptocot-gen-gcotl`
+的符号链接。
 

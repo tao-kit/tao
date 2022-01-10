@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/api/parser"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/urfave/cli"
 )
 
 // DocCommand generate markdown doc file
@@ -28,7 +28,7 @@ func DocCommand(c *cli.Context) error {
 		}
 	}
 
-	if !util.FileExists(dir) {
+	if !pathx.FileExists(dir) {
 		return fmt.Errorf("dir %s not exsit", dir)
 	}
 
@@ -42,14 +42,15 @@ func DocCommand(c *cli.Context) error {
 		return err
 	}
 
-	for _, path := range files {
-		api, err := parser.Parse(path)
+	for _, p := range files {
+		api, err := parser.Parse(p)
 		if err != nil {
-			return fmt.Errorf("parse file: %s, err: %s", path, err.Error())
+			return fmt.Errorf("parse file: %s, err: %s", p, err.Error())
 		}
 
-		err = genDoc(api, filepath.Dir(filepath.Join(outputDir, path[len(dir):])),
-			strings.Replace(path[len(filepath.Dir(path)):], ".api", ".md", 1))
+		api.Service = api.Service.JoinPrefix()
+		err = genDoc(api, filepath.Dir(filepath.Join(outputDir, p[len(dir):])),
+			strings.Replace(p[len(filepath.Dir(p)):], ".api", ".md", 1))
 		if err != nil {
 			return err
 		}

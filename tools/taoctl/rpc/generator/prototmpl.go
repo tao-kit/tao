@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/util/stringx"
 )
 
@@ -29,13 +30,13 @@ service {{.serviceName}} {
 func ProtoTmpl(out string) error {
 	protoFilename := filepath.Base(out)
 	serviceName := stringx.From(strings.TrimSuffix(protoFilename, filepath.Ext(protoFilename)))
-	text, err := util.LoadTemplate(category, rpcTemplateFile, rpcTemplateText)
+	text, err := pathx.LoadTemplate(category, rpcTemplateFile, rpcTemplateText)
 	if err != nil {
 		return err
 	}
 
 	dir := filepath.Dir(out)
-	err = util.MkdirIfNotExist(dir)
+	err = pathx.MkdirIfNotExist(dir)
 	if err != nil {
 		return err
 	}

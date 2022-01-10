@@ -10,6 +10,6 @@ import (
 func TestWrap(t *testing.T) {
 	err := errors.New("foo")
 	err = Wrap(err)
-	_, ok := err.(*GoctlError)
+	_, ok := err.(*TaoctlError)
 	assert.True(t, ok)
 }
