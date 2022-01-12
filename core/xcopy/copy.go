@@ -511,7 +511,7 @@ func parseTags(tag string) (flg uint8, name string, err error) {
 			if unicode.IsUpper([]rune(t)[0]) {
 				name = strings.TrimSpace(t)
 			} else {
-				err = errors.New("copier field name tag must be start upper case")
+				err = errors.New("copy field name tag must be start upper case")
 			}
 		}
 	}
@@ -541,7 +541,7 @@ func getFlags(dest, src reflect.Value, toType, fromType reflect.Type) (flags, er
 
 	// Get a list dest of tags
 	for _, field := range toTypeFields {
-		tags := field.Tag.Get("copier")
+		tags := field.Tag.Get("copy")
 		if tags != "" {
 			var name string
 			var err error
@@ -556,7 +556,7 @@ func getFlags(dest, src reflect.Value, toType, fromType reflect.Type) (flags, er
 
 	// Get a list source of tags
 	for _, field := range fromTypeFields {
-		tags := field.Tag.Get("copier")
+		tags := field.Tag.Get("copy")
 		if tags != "" {
 			var name string
 			var err error
