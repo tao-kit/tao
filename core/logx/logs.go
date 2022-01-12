@@ -389,7 +389,7 @@ func getCaller(callDepth int) string {
 }
 
 func getTimestamp() string {
-	return timex.Time().Format(timeFormat)
+	return timex.NowTime().Format(timeFormat)
 }
 
 func handleOptions(opts []LogOption) {
