@@ -1,4 +1,4 @@
-package copyx
+package xcopy
 
 import (
 	"errors"
