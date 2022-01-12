@@ -16,7 +16,7 @@ const googleProtocGenGoErr = `--go_out: protoc-gen-go: plugins are not supported
 
 // GenPb generates the pb.go file, which is a layer of packaging for protoc to generate gprc,
 // but the commands and flags in protoc are not completely joined in taoctl. At present, proto_path(-I) is introduced
-func (g *DefaultGenerator) GenPb(ctx DirContext, protoImportPath []string, proto parser.Proto, _ *conf.Config, goOptions ...string) error {
+func (g *DefaultGenerator) GenPb(ctx DirContext, protoImportPath []string, proto parser.Proto, _ *conf.Config, validate bool, goOptions ...string) error {
 	dir := ctx.GetPb()
 	cw := new(bytes.Buffer)
 	directory, base := filepath.Split(proto.Src)
@@ -54,6 +54,10 @@ func (g *DefaultGenerator) GenPb(ctx DirContext, protoImportPath []string, proto
 		cw.WriteString(" --go_out=plugins=grpc:" + ctx.GetMain().Filename)
 	} else {
 		cw.WriteString(" --go_out=plugins=grpc:" + dir.Filename)
+	}
+
+	if validate == true {
+		cw.WriteString(" --validate_out=\"lang=go:" + dir.Filename + "\"")
 	}
 
 	// Compatible with version 1.4.0，github.com/golang/protobuf/protoc-gen-go@v1.4.0

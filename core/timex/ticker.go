@@ -64,7 +64,7 @@ func (ft *fakeTicker) Stop() {
 }
 
 func (ft *fakeTicker) Tick() {
-	ft.c <- Time()
+	ft.c <- NowTime()
 }
 
 func (ft *fakeTicker) Wait(d time.Duration) error {

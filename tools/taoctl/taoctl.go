@@ -423,6 +423,10 @@ var commands = []cli.Command{
 						Name:  "home",
 						Usage: "the taoctl home path of the template",
 					},
+					cli.BoolFlag{
+						Name:  "validate",
+						Usage: "generate rpc validate proto,see: https://github.com/envoyproxy/protoc-gen-validate",
+					},
 				},
 				Action: rpc.RPC,
 			},
