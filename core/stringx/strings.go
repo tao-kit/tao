@@ -2,6 +2,9 @@ package stringx
 
 import (
 	"errors"
+	"regexp"
+	"strings"
+	"unicode"
 
 	"manlu.org/tao/core/lang"
 )
@@ -11,6 +14,14 @@ var (
 	ErrInvalidStartPosition = errors.New("start position is invalid")
 	// ErrInvalidStopPosition is an error that indicates the stop position is invalid.
 	ErrInvalidStopPosition = errors.New("stop position is invalid")
+
+	// regex for convert string.
+	toSnakeReg  = regexp.MustCompile("[A-Z][a-z]")
+	toCamelRegs = map[string]*regexp.Regexp{
+		" ": regexp.MustCompile(" +[a-zA-Z]"),
+		"-": regexp.MustCompile("-+[a-zA-Z]"),
+		"_": regexp.MustCompile("_+[a-zA-Z]"),
+	}
 )
 
 // Contains checks if str is in list.
@@ -157,4 +168,99 @@ func Union(first, second []string) []string {
 	}
 
 	return merged
+}
+
+// IsNumeric checks whether the given string s is numeric.
+func IsNumeric(s string) bool {
+	length := len(s)
+	if length == 0 {
+		return false
+	}
+	for i := 0; i < len(s); i++ {
+		if s[i] == '-' && i == 0 {
+			continue
+		}
+		if s[i] == '.' {
+			if i > 0 && i < len(s)-1 {
+				continue
+			} else {
+				return false
+			}
+		}
+		if s[i] < '0' || s[i] > '9' {
+			return false
+		}
+	}
+	return true
+}
+
+// LowerFirst lower first char
+func LowerFirst(s string) string {
+	if len(s) == 0 {
+		return s
+	}
+
+	rs := []rune(s)
+	f := rs[0]
+	if 'A' <= f && f <= 'Z' {
+		return string(unicode.ToLower(f)) + string(rs[1:])
+	}
+
+	return s
+}
+
+// UpperFirst upper first char
+func UpperFirst(s string) string {
+	if len(s) == 0 {
+		return s
+	}
+	rs := []rune(s)
+	f := rs[0]
+	if 'a' <= f && f <= 'z' {
+		return string(unicode.ToUpper(f)) + string(rs[1:])
+	}
+
+	return s
+}
+
+// SnakeCase convert. eg "RangePrice" -> "range_price"
+func SnakeCase(s string, sep ...string) string {
+	sepChar := "_"
+	if len(sep) > 0 {
+		sepChar = sep[0]
+	}
+
+	newStr := toSnakeReg.ReplaceAllStringFunc(s, func(s string) string {
+		return sepChar + LowerFirst(s)
+	})
+
+	return strings.TrimLeft(newStr, sepChar)
+}
+
+// CamelCase convert string to camel case.
+// Support:
+// 	"range_price" -> "rangePrice"
+// 	"range price" -> "rangePrice"
+// 	"range-price" -> "rangePrice"
+func CamelCase(s string, sep ...string) string {
+	sepChar := "_"
+	if len(sep) > 0 {
+		sepChar = sep[0]
+	}
+
+	// Not contains sep char
+	if !strings.Contains(s, sepChar) {
+		return s
+	}
+
+	// Get regexp instance
+	rgx, ok := toCamelRegs[sepChar]
+	if !ok {
+		rgx = regexp.MustCompile(regexp.QuoteMeta(sepChar) + "+[a-zA-Z]")
+	}
+
+	return rgx.ReplaceAllStringFunc(s, func(s string) string {
+		s = strings.TrimLeft(s, sepChar)
+		return UpperFirst(s)
+	})
 }

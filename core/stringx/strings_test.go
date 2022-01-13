@@ -389,3 +389,21 @@ func TestUnion(t *testing.T) {
 	assert.True(t, contains("three"))
 	assert.True(t, contains("four"))
 }
+
+func TestIsNumeric(t *testing.T) {
+	assert.Equal(t, true, IsNumeric("3"))
+	assert.Equal(t, true, IsNumeric("3.14"))
+	assert.Equal(t, false, IsNumeric("hello"))
+}
+
+func TestSnakeCase(t *testing.T) {
+	assert.Equal(t, "hello_world", SnakeCase("HelloWorld", "_"))
+	assert.Equal(t, "hello-world", SnakeCase("HelloWorld", "-"))
+	assert.Equal(t, "hello_world_test", SnakeCase("HelloWorldTest"))
+}
+
+func TestCamelCase(t *testing.T) {
+	assert.Equal(t, "helloWorld", CamelCase("hello_world", "_"))
+	assert.Equal(t, "isArrayOrSlice", CamelCase("is_array_or_slice", "_"))
+	assert.Equal(t, "isArrayOrSlice", CamelCase("is_array_or_slice"))
+}
