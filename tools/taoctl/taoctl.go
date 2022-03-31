@@ -24,7 +24,6 @@ import (
 	"manlu.org/tao/tools/taoctl/env"
 	"manlu.org/tao/tools/taoctl/internal/version"
 	"manlu.org/tao/tools/taoctl/kube"
-	"manlu.org/tao/tools/taoctl/migrate"
 	"manlu.org/tao/tools/taoctl/model/mongo"
 	model "manlu.org/tao/tools/taoctl/model/sql/command"
 	"manlu.org/tao/tools/taoctl/plugin"
@@ -72,22 +71,6 @@ var commands = []cli.Command{
 			},
 		},
 		Action: env.Action,
-	},
-	{
-		Name:        "migrate",
-		Usage:       "migrate from tal-tech to zeromicro",
-		Description: "migrate is a transition command to help users migrate their projects from tal-tech to zeromicro version",
-		Action:      migrate.Migrate,
-		Flags: []cli.Flag{
-			cli.BoolFlag{
-				Name:  "verbose, v",
-				Usage: "verbose enables extra logging",
-			},
-			cli.StringFlag{
-				Name:  "version",
-				Usage: "the target release version of manlu.org/tao to migrate",
-			},
-		},
 	},
 	{
 		Name:  "api",
@@ -553,7 +536,7 @@ var commands = []cli.Command{
 				Name:        "protoc",
 				Usage:       "generate grpc code",
 				UsageText:   `example: taoctl rpc protoc xx.proto --go_out=./pb --go-grpc_out=./pb --zrpc_out=.`,
-				Description: "for details, see https://go-zero.dev/cn/taoctl-rpc.html",
+				Description: "generate grpc code",
 				Action:      rpc.ZRPC,
 				Flags: []cli.Flag{
 					cli.StringSliceFlag{
