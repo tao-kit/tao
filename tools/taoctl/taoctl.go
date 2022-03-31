@@ -484,24 +484,13 @@ var commands = []cli.Command{
 						Name:  "idea",
 						Usage: "whether the command execution environment is from idea plugin. [optional]",
 					},
-					cli.StringFlag{
-						Name: "home",
-						Usage: "the taoctl home path of the template, --home and --remote cannot be set at the same time, " +
-							"if they are, --remote has higher priority",
-					},
-					cli.StringFlag{
-						Name: "remote",
-						Usage: "the remote git repo of the template, --home and --remote cannot be set at the same time, " +
-							"if they are, --remote has higher priority\n\tThe git repo directory must be consistent with the " +
-							"https://manlu.org/tao-template directory structure",
-					},
-					cli.StringFlag{
-						Name:  "branch",
-						Usage: "the branch of the remote repo, it does work with --remote",
-					},
 					cli.BoolFlag{
 						Name:  "verbose, v",
 						Usage: "enable log output",
+					},
+					cli.BoolFlag{
+						Name:  "validate",
+						Usage: "generate polyglot message validators",
 					},
 				},
 				Action: rpc.RPCNew,
@@ -514,20 +503,9 @@ var commands = []cli.Command{
 						Name:  "out, o",
 						Usage: "the target path of proto",
 					},
-					cli.StringFlag{
-						Name: "home",
-						Usage: "the taoctl home path of the template, --home and --remote cannot be set at the same time," +
-							" if they are, --remote has higher priority",
-					},
-					cli.StringFlag{
-						Name: "remote",
-						Usage: "the remote git repo of the template, --home and --remote cannot be set at the same time, " +
-							"if they are, --remote has higher priority\n\tThe git repo directory must be consistent with the " +
-							"https://manlu.org/tao-template directory structure",
-					},
-					cli.StringFlag{
-						Name:  "branch",
-						Usage: "the branch of the remote repo, it does work with --remote",
+					cli.BoolFlag{
+						Name:  "validate",
+						Usage: "generate polyglot message validators",
 					},
 				},
 				Action: rpc.RPCTemplate,

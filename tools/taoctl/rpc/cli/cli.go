@@ -7,8 +7,6 @@ import (
 
 	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/rpc/generator"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 // RPCNew is to generate rpc greet service, this greet service can speed
@@ -20,19 +18,8 @@ func RPCNew(c *cli.Context) error {
 		return fmt.Errorf("unexpected ext: %s", ext)
 	}
 	style := c.String("style")
-	home := c.String("home")
-	remote := c.String("remote")
-	branch := c.String("branch")
 	verbose := c.Bool("verbose")
-	if len(remote) > 0 {
-		repo, _ := util.CloneIntoGitHome(remote, branch)
-		if len(repo) > 0 {
-			home = repo
-		}
-	}
-	if len(home) > 0 {
-		pathx.RegisterTaoctlHome(home)
-	}
+	validate := c.Bool("validate")
 
 	protoName := rpcname + ".proto"
 	filename := filepath.Join(".", rpcname, protoName)
@@ -41,7 +28,7 @@ func RPCNew(c *cli.Context) error {
 		return err
 	}
 
-	err = generator.ProtoTmpl(src)
+	err = generator.ProtoTmpl(src, validate)
 	if err != nil {
 		return err
 	}
@@ -60,22 +47,11 @@ func RPCNew(c *cli.Context) error {
 // RPCTemplate is the entry for generate rpc template
 func RPCTemplate(c *cli.Context) error {
 	protoFile := c.String("o")
-	home := c.String("home")
-	remote := c.String("remote")
-	branch := c.String("branch")
-	if len(remote) > 0 {
-		repo, _ := util.CloneIntoGitHome(remote, branch)
-		if len(repo) > 0 {
-			home = repo
-		}
-	}
-	if len(home) > 0 {
-		pathx.RegisterTaoctlHome(home)
-	}
+	validate := c.Bool("validate")
 
 	if len(protoFile) == 0 {
 		return errors.New("missing -o")
 	}
 
-	return generator.ProtoTmpl(protoFile)
+	return generator.ProtoTmpl(protoFile, validate)
 }

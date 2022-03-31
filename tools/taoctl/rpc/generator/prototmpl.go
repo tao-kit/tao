@@ -28,7 +28,7 @@ service {{.serviceName}} {
 `
 
 // ProtoTmpl returns a sample of a proto file
-func ProtoTmpl(out string) error {
+func ProtoTmpl(out string, validate bool) error {
 	protoFilename := filepath.Base(out)
 	serviceName := stringx.From(strings.TrimSuffix(protoFilename, filepath.Ext(protoFilename)))
 	text, err := pathx.LoadTemplate(category, rpcTemplateFile, rpcTemplateText)
@@ -46,5 +46,10 @@ func ProtoTmpl(out string) error {
 		"package":     serviceName.Untitle(),
 		"serviceName": serviceName.Title(),
 	}, out, false)
+
+	if validate {
+		_ = ProtoValidateImpl()
+	}
+
 	return err
 }
