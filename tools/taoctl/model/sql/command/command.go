@@ -16,6 +16,7 @@ import (
 	"manlu.org/tao/tools/taoctl/model/sql/util"
 	file "manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/console"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const (
@@ -29,6 +30,8 @@ const (
 	flagDatabase = "database"
 	flagSchema   = "schema"
 	flagHome     = "home"
+	flagRemote   = "remote"
+	flagBranch   = "branch"
 )
 
 var errNotMatched = errors.New("sql not matched")
@@ -42,9 +45,16 @@ func MysqlDDL(ctx *cli.Context) error {
 	style := ctx.String(flagStyle)
 	database := ctx.String(flagDatabase)
 	home := ctx.String(flagHome)
-
+	remote := ctx.String(flagRemote)
+	branch := ctx.String(flagBranch)
+	if len(remote) > 0 {
+		repo, _ := file.CloneIntoGitHome(remote, branch)
+		if len(repo) > 0 {
+			home = repo
+		}
+	}
 	if len(home) > 0 {
-		file.RegisterTaoctlHome(home)
+		pathx.RegisterTaoctlHome(home)
 	}
 	cfg, err := config.NewConfig(style)
 	if err != nil {
@@ -61,10 +71,17 @@ func MySqlDataSource(ctx *cli.Context) error {
 	cache := ctx.Bool(flagCache)
 	idea := ctx.Bool(flagIdea)
 	style := ctx.String(flagStyle)
-	home := ctx.String("home")
-
+	home := ctx.String(flagHome)
+	remote := ctx.String(flagRemote)
+	branch := ctx.String(flagBranch)
+	if len(remote) > 0 {
+		repo, _ := file.CloneIntoGitHome(remote, branch)
+		if len(repo) > 0 {
+			home = repo
+		}
+	}
 	if len(home) > 0 {
-		file.RegisterTaoctlHome(home)
+		pathx.RegisterTaoctlHome(home)
 	}
 
 	pattern := strings.TrimSpace(ctx.String(flagTable))
@@ -84,10 +101,17 @@ func PostgreSqlDataSource(ctx *cli.Context) error {
 	idea := ctx.Bool(flagIdea)
 	style := ctx.String(flagStyle)
 	schema := ctx.String(flagSchema)
-	home := ctx.String("home")
-
+	home := ctx.String(flagHome)
+	remote := ctx.String(flagRemote)
+	branch := ctx.String(flagBranch)
+	if len(remote) > 0 {
+		repo, _ := file.CloneIntoGitHome(remote, branch)
+		if len(repo) > 0 {
+			home = repo
+		}
+	}
 	if len(home) > 0 {
-		file.RegisterTaoctlHome(home)
+		pathx.RegisterTaoctlHome(home)
 	}
 
 	if len(schema) == 0 {

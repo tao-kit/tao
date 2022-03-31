@@ -5,7 +5,7 @@ import (
 
 	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/model/mongo/template"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const (
@@ -26,12 +26,12 @@ func Category() string {
 
 // Clean cleans the mongo templates.
 func Clean() error {
-	return util.Clean(category)
+	return pathx.Clean(category)
 }
 
 // Templates initializes the mongo templates.
 func Templates(_ *cli.Context) error {
-	return util.InitTemplates(category, templates)
+	return pathx.InitTemplates(category, templates)
 }
 
 // RevertTemplate reverts the given template.
@@ -41,7 +41,7 @@ func RevertTemplate(name string) error {
 		return fmt.Errorf("%s: no such file name", name)
 	}
 
-	return util.CreateTemplate(category, name, content)
+	return pathx.CreateTemplate(category, name, content)
 }
 
 // Update cleans and updates the templates.
@@ -51,5 +51,5 @@ func Update() error {
 		return err
 	}
 
-	return util.InitTemplates(category, templates)
+	return pathx.InitTemplates(category, templates)
 }

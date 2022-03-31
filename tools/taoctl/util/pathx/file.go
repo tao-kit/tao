@@ -3,6 +3,7 @@ package pathx
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"os"
@@ -13,21 +14,23 @@ import (
 	"manlu.org/tao/tools/taoctl/internal/version"
 )
 
-// NL defines a new line
+// NL defines a new line.
 const (
-	NL        = "\n"
-	taoctlDir = ".taoctl"
-	gitDir    = ".git"
+	NL              = "\n"
+	taoctlDir       = ".taoctl"
+	gitDir          = ".git"
+	autoCompleteDir = ".auto_complete"
+	cacheDir        = "cache"
 )
 
 var taoctlHome string
 
-// RegisterTaoctlHome register taoctl home path
+// RegisterTaoctlHome register taoctl home path.
 func RegisterTaoctlHome(home string) {
 	taoctlHome = home
 }
 
-// CreateIfNotExist creates a file if it is not exists
+// CreateIfNotExist creates a file if it is not exists.
 func CreateIfNotExist(file string) (*os.File, error) {
 	_, err := os.Stat(file)
 	if !os.IsNotExist(err) {
@@ -37,7 +40,7 @@ func CreateIfNotExist(file string) (*os.File, error) {
 	return os.Create(file)
 }
 
-// RemoveIfExist deletes the specified file if it is exists
+// RemoveIfExist deletes the specified file if it is exists.
 func RemoveIfExist(filename string) error {
 	if !FileExists(filename) {
 		return nil
@@ -46,7 +49,7 @@ func RemoveIfExist(filename string) error {
 	return os.Remove(filename)
 }
 
-// RemoveOrQuit deletes the specified file if read a permit command from stdin
+// RemoveOrQuit deletes the specified file if read a permit command from stdin.
 func RemoveOrQuit(filename string) error {
 	if !FileExists(filename) {
 		return nil
@@ -59,23 +62,40 @@ func RemoveOrQuit(filename string) error {
 	return os.Remove(filename)
 }
 
-// FileExists returns true if the specified file is exists
+// FileExists returns true if the specified file is exists.
 func FileExists(file string) bool {
 	_, err := os.Stat(file)
 	return err == nil
 }
 
-// FileNameWithoutExt returns a file name without suffix
+// FileNameWithoutExt returns a file name without suffix.
 func FileNameWithoutExt(file string) string {
 	return strings.TrimSuffix(file, filepath.Ext(file))
 }
 
-// GetTaoctlHome returns the path value of the taoctl home where Join $HOME with .taoctl
-func GetTaoctlHome() (string, error) {
+// GetTaoctlHome returns the path value of the taoctl, the default path is ~/.taoctl, if the path has
+// been set by calling the RegisterTaoctlHome method, the user-defined path refers to.
+func GetTaoctlHome() (home string, err error) {
+	defer func() {
+		if err != nil {
+			return
+		}
+		info, err := os.Stat(home)
+		if err == nil && !info.IsDir() {
+			os.Rename(home, home+".old")
+			MkdirIfNotExist(home)
+		}
+	}()
 	if len(taoctlHome) != 0 {
-		return taoctlHome, nil
+		home = taoctlHome
+		return
 	}
+	home, err = GetDefaultTaoctlHome()
+	return
+}
 
+// GetDefaultTaoctlHome returns the path value of the taoctl home where Join $HOME with .taoctl.
+func GetDefaultTaoctlHome() (string, error) {
 	home, err := os.UserHomeDir()
 	if err != nil {
 		return "", err
@@ -93,7 +113,27 @@ func GetGitHome() (string, error) {
 	return filepath.Join(taoctlH, gitDir), nil
 }
 
-// GetTemplateDir returns the category path value in TaoctlHome where could get it by GetTaoctlHome
+// GetAutoCompleteHome returns the auto_complete home of taoctl.
+func GetAutoCompleteHome() (string, error) {
+	taoctlH, err := GetTaoctlHome()
+	if err != nil {
+		return "", err
+	}
+
+	return filepath.Join(taoctlH, autoCompleteDir), nil
+}
+
+// GetCacheDir returns the cache dit of taoctl.
+func GetCacheDir() (string, error) {
+	taoctlH, err := GetTaoctlHome()
+	if err != nil {
+		return "", err
+	}
+
+	return filepath.Join(taoctlH, cacheDir), nil
+}
+
+// GetTemplateDir returns the category path value in TaoctlHome where could get it by GetTaoctlHome.
 func GetTemplateDir(category string) (string, error) {
 	home, err := GetTaoctlHome()
 	if err != nil {
@@ -101,7 +141,7 @@ func GetTemplateDir(category string) (string, error) {
 	}
 	if home == taoctlHome {
 		// backward compatible, it will be removed in the feature
-		// backward compatible start
+		// backward compatible start.
 		beforeTemplateDir := filepath.Join(home, version.GetTaoctlVersion(), category)
 		fs, _ := ioutil.ReadDir(beforeTemplateDir)
 		var hasContent bool
@@ -113,7 +153,7 @@ func GetTemplateDir(category string) (string, error) {
 		if hasContent {
 			return beforeTemplateDir, nil
 		}
-		// backward compatible end
+		// backward compatible end.
 
 		return filepath.Join(home, category), nil
 	}
@@ -121,7 +161,7 @@ func GetTemplateDir(category string) (string, error) {
 	return filepath.Join(home, version.GetTaoctlVersion(), category), nil
 }
 
-// InitTemplates creates template files TaoctlHome where could get it by GetTaoctlHome
+// InitTemplates creates template files TaoctlHome where could get it by GetTaoctlHome.
 func InitTemplates(category string, templates map[string]string) error {
 	dir, err := GetTemplateDir(category)
 	if err != nil {
@@ -141,7 +181,7 @@ func InitTemplates(category string, templates map[string]string) error {
 	return nil
 }
 
-// CreateTemplate writes template into file even it is exists
+// CreateTemplate writes template into file even it is exists.
 func CreateTemplate(category, name, content string) error {
 	dir, err := GetTemplateDir(category)
 	if err != nil {
@@ -150,7 +190,7 @@ func CreateTemplate(category, name, content string) error {
 	return createTemplate(filepath.Join(dir, name), content, true)
 }
 
-// Clean deletes all templates and removes the parent directory
+// Clean deletes all templates and removes the parent directory.
 func Clean(category string) error {
 	dir, err := GetTemplateDir(category)
 	if err != nil {
@@ -159,7 +199,7 @@ func Clean(category string) error {
 	return os.RemoveAll(dir)
 }
 
-// LoadTemplate gets template content by the specified file
+// LoadTemplate gets template content by the specified file.
 func LoadTemplate(category, file, builtin string) (string, error) {
 	dir, err := GetTemplateDir(category)
 	if err != nil {
@@ -212,7 +252,7 @@ func createTemplate(file, content string, force bool) error {
 	return err
 }
 
-// MustTempDir creates a temporary directory
+// MustTempDir creates a temporary directory.
 func MustTempDir() string {
 	dir, err := ioutil.TempDir("", "")
 	if err != nil {
@@ -220,4 +260,26 @@ func MustTempDir() string {
 	}
 
 	return dir
+}
+
+func Copy(src, dest string) error {
+	f, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	dir := filepath.Dir(dest)
+	err = MkdirIfNotExist(dir)
+	if err != nil {
+		return err
+	}
+	w, err := os.Create(dest)
+	if err != nil {
+		return err
+	}
+	w.Chmod(os.ModePerm)
+	defer w.Close()
+	_, err = io.Copy(w, f)
+	return err
 }

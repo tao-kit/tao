@@ -3,12 +3,13 @@ package gen
 import (
 	"manlu.org/tao/tools/taoctl/model/sql/template"
 	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/util/stringx"
 )
 
 func genFindOne(table Table, withCache, postgreSql bool) (string, string, error) {
 	camel := table.Name.ToCamel()
-	text, err := util.LoadTemplate(category, findOneTemplateFile, template.FindOne)
+	text, err := pathx.LoadTemplate(category, findOneTemplateFile, template.FindOne)
 	if err != nil {
 		return "", "", err
 	}
@@ -25,12 +26,13 @@ func genFindOne(table Table, withCache, postgreSql bool) (string, string, error)
 			"cacheKey":                  table.PrimaryCacheKey.KeyExpression,
 			"cacheKeyVariable":          table.PrimaryCacheKey.KeyLeft,
 			"postgreSql":                postgreSql,
+			"data":                      table,
 		})
 	if err != nil {
 		return "", "", err
 	}
 
-	text, err = util.LoadTemplate(category, findOneMethodTemplateFile, template.FindOneMethod)
+	text, err = pathx.LoadTemplate(category, findOneMethodTemplateFile, template.FindOneMethod)
 	if err != nil {
 		return "", "", err
 	}
@@ -41,6 +43,7 @@ func genFindOne(table Table, withCache, postgreSql bool) (string, string, error)
 			"upperStartCamelObject":     camel,
 			"lowerStartCamelPrimaryKey": stringx.From(table.PrimaryKey.Name.ToCamel()).Untitle(),
 			"dataType":                  table.PrimaryKey.DataType,
+			"data":                      table,
 		})
 	if err != nil {
 		return "", "", err

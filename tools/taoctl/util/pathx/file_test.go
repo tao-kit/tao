@@ -74,3 +74,34 @@ func TestGetGitHome(t *testing.T) {
 	expected := filepath.Join(homeDir, taoctlDir, gitDir)
 	assert.Equal(t, expected, actual)
 }
+
+func TestGetTaoctlHome(t *testing.T) {
+	t.Run("taoctl_is_file", func(t *testing.T) {
+		tmpFile := filepath.Join(t.TempDir(), "a.tmp")
+		backupTempFile := tmpFile + ".old"
+		err := ioutil.WriteFile(tmpFile, nil, 0o666)
+		if err != nil {
+			return
+		}
+		RegisterTaoctlHome(tmpFile)
+		home, err := GetTaoctlHome()
+		if err != nil {
+			return
+		}
+		info, err := os.Stat(home)
+		assert.Nil(t, err)
+		assert.True(t, info.IsDir())
+
+		_, err = os.Stat(backupTempFile)
+		assert.Nil(t, err)
+	})
+
+	t.Run("taoctl_is_dir", func(t *testing.T) {
+		RegisterTaoctlHome("")
+		dir := t.TempDir()
+		RegisterTaoctlHome(dir)
+		home, err := GetTaoctlHome()
+		assert.Nil(t, err)
+		assert.Equal(t, dir, home)
+	})
+}

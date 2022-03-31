@@ -5,6 +5,7 @@ import (
 
 	"manlu.org/tao/tools/taoctl/model/sql/template"
 	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/util/stringx"
 )
 
@@ -16,7 +17,7 @@ func genVars(table Table, withCache, postgreSql bool) (string, error) {
 	}
 
 	camel := table.Name.ToCamel()
-	text, err := util.LoadTemplate(category, varTemplateFile, template.Vars)
+	text, err := pathx.LoadTemplate(category, varTemplateFile, template.Vars)
 	if err != nil {
 		return "", err
 	}
@@ -30,6 +31,7 @@ func genVars(table Table, withCache, postgreSql bool) (string, error) {
 		"originalPrimaryKey":    wrapWithRawString(table.PrimaryKey.Name.Source(), postgreSql),
 		"withCache":             withCache,
 		"postgreSql":            postgreSql,
+		"data":                  table,
 	})
 	if err != nil {
 		return "", err

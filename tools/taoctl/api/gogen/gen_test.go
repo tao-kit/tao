@@ -10,7 +10,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"manlu.org/tao/tools/taoctl/api/parser"
-	"manlu.org/tao/tools/taoctl/rpc/execx"
 )
 
 const testApiTemplate = `
@@ -179,6 +178,7 @@ type Response struct {
 
 @server(
 	jwt: Auth
+	jwtTransition: Trans
 	middleware: TokenValidate
 )
 service A-api {
@@ -537,10 +537,8 @@ func validate(t *testing.T, api string) {
 }
 
 func validateWithCamel(t *testing.T, api, camel string) {
-	dir := "_go"
-	os.RemoveAll(dir)
+	dir := t.TempDir()
 	err := DoGenProject(api, dir, camel)
-	defer os.RemoveAll(dir)
 	assert.Nil(t, err)
 	filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if strings.HasSuffix(path, ".go") {
@@ -550,9 +548,6 @@ func validateWithCamel(t *testing.T, api, camel string) {
 		}
 		return nil
 	})
-
-	_, err = execx.Run("go test ./...", dir)
-	assert.Nil(t, err)
 }
 
 func validateCode(code string) error {

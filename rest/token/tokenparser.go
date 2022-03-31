@@ -6,8 +6,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/golang-jwt/jwt"
-	"github.com/golang-jwt/jwt/request"
+	"github.com/golang-jwt/jwt/v4"
+	"github.com/golang-jwt/jwt/v4/request"
 	"manlu.org/tao/core/timex"
 )
 
@@ -120,7 +120,5 @@ func WithResetDuration(duration time.Duration) ParseOption {
 }
 
 func newParser() *jwt.Parser {
-	return &jwt.Parser{
-		UseJSONNumber: true,
-	}
+	return jwt.NewParser(jwt.WithJSONNumber())
 }

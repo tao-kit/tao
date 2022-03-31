@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/logrusorgru/aurora"
-	"manlu.org/tao/tools/taoctl/api/parser"
 	"github.com/urfave/cli"
+	"manlu.org/tao/tools/taoctl/api/parser"
 )
 
 // GoValidateApi verifies whether the api has a syntax error

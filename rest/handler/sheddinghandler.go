@@ -8,7 +8,7 @@ import (
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/stat"
 	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/internal/security"
+	"manlu.org/tao/rest/internal/response"
 )
 
 const serviceType = "api"
@@ -41,7 +41,7 @@ func SheddingHandler(shedder load.Shedder, metrics *stat.Metrics) func(http.Hand
 				return
 			}
 
-			cw := &security.WithCodeResponseWriter{Writer: w}
+			cw := &response.WithCodeResponseWriter{Writer: w}
 			defer func() {
 				if cw.Code == http.StatusServiceUnavailable {
 					promise.Fail()

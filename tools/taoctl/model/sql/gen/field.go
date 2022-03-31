@@ -6,13 +6,14 @@ import (
 	"manlu.org/tao/tools/taoctl/model/sql/parser"
 	"manlu.org/tao/tools/taoctl/model/sql/template"
 	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
-func genFields(fields []*parser.Field) (string, error) {
+func genFields(table Table, fields []*parser.Field) (string, error) {
 	var list []string
 
 	for _, field := range fields {
-		result, err := genField(field)
+		result, err := genField(table, field)
 		if err != nil {
 			return "", err
 		}
@@ -23,13 +24,13 @@ func genFields(fields []*parser.Field) (string, error) {
 	return strings.Join(list, "\n"), nil
 }
 
-func genField(field *parser.Field) (string, error) {
-	tag, err := genTag(field.Name.Source())
+func genField(table Table, field *parser.Field) (string, error) {
+	tag, err := genTag(table, field.NameOriginal)
 	if err != nil {
 		return "", err
 	}
 
-	text, err := util.LoadTemplate(category, fieldTemplateFile, template.Field)
+	text, err := pathx.LoadTemplate(category, fieldTemplateFile, template.Field)
 	if err != nil {
 		return "", err
 	}
@@ -42,6 +43,7 @@ func genField(field *parser.Field) (string, error) {
 			"tag":        tag,
 			"hasComment": field.Comment != "",
 			"comment":    field.Comment,
+			"data":       table,
 		})
 	if err != nil {
 		return "", err

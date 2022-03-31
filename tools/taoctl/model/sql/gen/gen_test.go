@@ -3,7 +3,6 @@ package gen
 import (
 	"database/sql"
 	"io/ioutil"
-	"manlu.org/tao/tools/taoctl/util"
 	"os"
 	"path/filepath"
 	"strings"
@@ -15,6 +14,7 @@ import (
 	"manlu.org/tao/core/stringx"
 	"manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/model/sql/builderx"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 var source = "CREATE TABLE `test_user` (\n  `id` bigint NOT NULL AUTO_INCREMENT,\n  `mobile` varchar(255) COLLATE utf8mb4_bin NOT NULL,\n  `class` bigint NOT NULL,\n  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,\n  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,\n  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `mobile_unique` (`mobile`),\n  UNIQUE KEY `class_name_unique` (`class`,`name`),\n  KEY `create_index` (`create_time`),\n  KEY `name_index` (`name`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;"
@@ -23,11 +23,11 @@ func TestCacheModel(t *testing.T) {
 	logx.Disable()
 	_ = Clean()
 
-	sqlFile := filepath.Join(util.MustTempDir(), "tmp.sql")
+	sqlFile := filepath.Join(pathx.MustTempDir(), "tmp.sql")
 	err := ioutil.WriteFile(sqlFile, []byte(source), 0o777)
 	assert.Nil(t, err)
 
-	dir := filepath.Join(util.MustTempDir(), "./testmodel")
+	dir := filepath.Join(pathx.MustTempDir(), "./testmodel")
 	cacheDir := filepath.Join(dir, "cache")
 	noCacheDir := filepath.Join(dir, "nocache")
 	g, err := NewDefaultGenerator(cacheDir, &config.Config{
@@ -42,7 +42,7 @@ func TestCacheModel(t *testing.T) {
 		return err == nil
 	}())
 	g, err = NewDefaultGenerator(noCacheDir, &config.Config{
-		NamingFormat: "tao",
+		NamingFormat: "gozero",
 	})
 	assert.Nil(t, err)
 
@@ -58,7 +58,7 @@ func TestNamingModel(t *testing.T) {
 	logx.Disable()
 	_ = Clean()
 
-	sqlFile := filepath.Join(util.MustTempDir(), "tmp.sql")
+	sqlFile := filepath.Join(pathx.MustTempDir(), "tmp.sql")
 	err := ioutil.WriteFile(sqlFile, []byte(source), 0o777)
 	assert.Nil(t, err)
 

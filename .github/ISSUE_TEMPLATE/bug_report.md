@@ -34,7 +34,7 @@ If applicable, add screenshots to help explain your problem.
 **Environments (please complete the following information):**
  - OS: [e.g. Linux]
  - go-zero version [e.g. 1.2.1]
- - goctl version [e.g. 1.2.1, optional]
+ - taoctl version [e.g. 1.2.1, optional]
 
 **More description**
 Add any other context about the problem here.

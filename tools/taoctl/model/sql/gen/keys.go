@@ -2,11 +2,11 @@ package gen
 
 import (
 	"fmt"
-	"manlu.org/tao/tools/taoctl/util"
 	"sort"
 	"strings"
 
 	"manlu.org/tao/tools/taoctl/model/sql/parser"
+	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/stringx"
 )
 

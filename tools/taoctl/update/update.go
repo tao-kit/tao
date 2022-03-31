@@ -10,7 +10,7 @@ import (
 	"manlu.org/tao/core/hash"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/tools/taoctl/update/config"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const (
@@ -22,7 +22,7 @@ var configFile = flag.String("f", "etc/update-api.json", "the config file")
 
 func forChksumHandler(file string, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if !util.FileExists(file) {
+		if !pathx.FileExists(file) {
 			logx.Errorf("file %q not exist", file)
 			http.Error(w, http.StatusText(http.StatusServiceUnavailable), http.StatusServiceUnavailable)
 			return

@@ -2,21 +2,22 @@ package docker
 
 import (
 	"github.com/urfave/cli"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const (
 	category           = "docker"
 	dockerTemplateFile = "docker.tpl"
-	dockerTemplate     = `FROM golang:alpine AS builder
+	dockerTemplate     = `FROM golang:{{.Version}}alpine AS builder
 
 LABEL stage=gobuilder
 
 ENV CGO_ENABLED 0
-ENV GOOS linux
 {{if .Chinese}}ENV GOPROXY https://goproxy.cn,direct
+{{end}}{{if .HasTimezone}}
+RUN apk update --no-cache && apk add --no-cache tzdata
 {{end}}
-WORKDIR /build/zero
+WORKDIR /build
 
 ADD go.mod .
 ADD go.sum .
@@ -26,11 +27,12 @@ COPY . .
 {{end}}RUN go build -ldflags="-s -w" -o /app/{{.ExeFile}} {{.GoRelPath}}/{{.GoFile}}
 
 
-FROM alpine
+FROM {{.BaseImage}}
 
-RUN apk update --no-cache && apk add --no-cache ca-certificates tzdata
-ENV TZ Asia/Shanghai
-
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+{{if .HasTimezone}}COPY --from=builder /usr/share/zoneinfo/{{.Timezone}} /usr/share/zoneinfo/{{.Timezone}}
+ENV TZ {{.Timezone}}
+{{end}}
 WORKDIR /app
 COPY --from=builder /app/{{.ExeFile}} /app/{{.ExeFile}}{{if .Argument}}
 COPY --from=builder /app/etc /app/etc{{end}}
@@ -43,7 +45,7 @@ CMD ["./{{.ExeFile}}"{{.Argument}}]
 
 // Clean deletes all templates files
 func Clean() error {
-	return util.Clean(category)
+	return pathx.Clean(category)
 }
 
 // GenTemplates creates docker template files
@@ -58,7 +60,7 @@ func Category() string {
 
 // RevertTemplate recovers the deleted template files
 func RevertTemplate(name string) error {
-	return util.CreateTemplate(category, name, dockerTemplate)
+	return pathx.CreateTemplate(category, name, dockerTemplate)
 }
 
 // Update deletes and creates new template files
@@ -72,7 +74,7 @@ func Update() error {
 }
 
 func initTemplate() error {
-	return util.InitTemplates(category, map[string]string{
+	return pathx.InitTemplates(category, map[string]string{
 		dockerTemplateFile: dockerTemplate,
 	})
 }

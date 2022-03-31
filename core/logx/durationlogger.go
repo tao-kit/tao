@@ -3,6 +3,7 @@ package logx
 import (
 	"fmt"
 	"io"
+	"sync/atomic"
 	"time"
 
 	"manlu.org/tao/core/timex"
@@ -79,10 +80,15 @@ func (l *durationLogger) WithDuration(duration time.Duration) Logger {
 }
 
 func (l *durationLogger) write(writer io.Writer, level string, val interface{}) {
-	outputJson(writer, &durationLogger{
-		Timestamp: getTimestamp(),
-		Level:     level,
-		Content:   val,
-		Duration:  l.Duration,
-	})
+	switch atomic.LoadUint32(&encoding) {
+	case plainEncodingType:
+		writePlainAny(writer, level, val, l.Duration)
+	default:
+		outputJson(writer, &durationLogger{
+			Timestamp: getTimestamp(),
+			Level:     level,
+			Content:   val,
+			Duration:  l.Duration,
+		})
+	}
 }

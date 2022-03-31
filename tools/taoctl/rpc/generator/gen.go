@@ -3,41 +3,28 @@ package generator
 import (
 	"path/filepath"
 
-	conf "manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/rpc/parser"
 	"manlu.org/tao/tools/taoctl/util/console"
 	"manlu.org/tao/tools/taoctl/util/ctx"
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
-// RPCGenerator defines a generator and configure
-type RPCGenerator struct {
-	g   Generator
-	cfg *conf.Config
-}
-
-// NewDefaultRPCGenerator wraps Generator with configure
-func NewDefaultRPCGenerator(style string) (*RPCGenerator, error) {
-	cfg, err := conf.NewConfig(style)
-	if err != nil {
-		return nil, err
-	}
-	return NewRPCGenerator(NewDefaultGenerator(), cfg), nil
-}
-
-// NewRPCGenerator creates an instance for RPCGenerator
-func NewRPCGenerator(g Generator, cfg *conf.Config) *RPCGenerator {
-	return &RPCGenerator{
-		g:   g,
-		cfg: cfg,
-	}
+type ZRpcContext struct {
+	Src             string
+	ProtocCmd       string
+	ProtoGenGrpcDir string
+	ProtoGenGoDir   string
+	IsGooglePlugin  bool
+	GoOutput        string
+	GrpcOutput      string
+	Output          string
 }
 
 // Generate generates an rpc service, through the proto file,
 // code storage directory, and proto import parameters to control
 // the source file and target location of the rpc service that needs to be generated
-func (g *RPCGenerator) Generate(src, target string, protoImportPath []string, validate bool, goOptions ...string) error {
-	abs, err := filepath.Abs(target)
+func (g *Generator) Generate(zctx *ZRpcContext) error {
+	abs, err := filepath.Abs(zctx.Output)
 	if err != nil {
 		return err
 	}
@@ -47,7 +34,7 @@ func (g *RPCGenerator) Generate(src, target string, protoImportPath []string, va
 		return err
 	}
 
-	err = g.g.Prepare()
+	err = g.Prepare()
 	if err != nil {
 		return err
 	}
@@ -58,52 +45,52 @@ func (g *RPCGenerator) Generate(src, target string, protoImportPath []string, va
 	}
 
 	p := parser.NewDefaultProtoParser()
-	proto, err := p.Parse(src)
+	proto, err := p.Parse(zctx.Src)
 	if err != nil {
 		return err
 	}
 
-	dirCtx, err := mkdir(projectCtx, proto, g.cfg)
+	dirCtx, err := mkdir(projectCtx, proto, g.cfg, zctx)
 	if err != nil {
 		return err
 	}
 
-	err = g.g.GenEtc(dirCtx, proto, g.cfg)
+	err = g.GenEtc(dirCtx, proto, g.cfg)
 	if err != nil {
 		return err
 	}
 
-	err = g.g.GenPb(dirCtx, protoImportPath, proto, g.cfg, validate, goOptions...)
+	err = g.GenPb(dirCtx, zctx)
 	if err != nil {
 		return err
 	}
 
-	err = g.g.GenConfig(dirCtx, proto, g.cfg)
+	err = g.GenConfig(dirCtx, proto, g.cfg)
 	if err != nil {
 		return err
 	}
 
-	err = g.g.GenSvc(dirCtx, proto, g.cfg)
+	err = g.GenSvc(dirCtx, proto, g.cfg)
 	if err != nil {
 		return err
 	}
 
-	err = g.g.GenLogic(dirCtx, proto, g.cfg)
+	err = g.GenLogic(dirCtx, proto, g.cfg)
 	if err != nil {
 		return err
 	}
 
-	err = g.g.GenServer(dirCtx, proto, g.cfg)
+	err = g.GenServer(dirCtx, proto, g.cfg)
 	if err != nil {
 		return err
 	}
 
-	err = g.g.GenMain(dirCtx, proto, g.cfg)
+	err = g.GenMain(dirCtx, proto, g.cfg)
 	if err != nil {
 		return err
 	}
 
-	err = g.g.GenCall(dirCtx, proto, g.cfg)
+	err = g.GenCall(dirCtx, proto, g.cfg)
 
 	console.NewColorConsole().MarkDone()
 

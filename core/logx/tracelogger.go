@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"sync/atomic"
 	"time"
 
 	"go.opentelemetry.io/otel/trace"
@@ -79,16 +80,24 @@ func (l *traceLogger) WithDuration(duration time.Duration) Logger {
 }
 
 func (l *traceLogger) write(writer io.Writer, level string, val interface{}) {
-	outputJson(writer, &traceLogger{
-		logEntry: logEntry{
-			Timestamp: getTimestamp(),
-			Level:     level,
-			Duration:  l.Duration,
-			Content:   val,
-		},
-		Trace: traceIdFromContext(l.ctx),
-		Span:  spanIdFromContext(l.ctx),
-	})
+	traceID := traceIdFromContext(l.ctx)
+	spanID := spanIdFromContext(l.ctx)
+
+	switch atomic.LoadUint32(&encoding) {
+	case plainEncodingType:
+		writePlainAny(writer, level, val, l.Duration, traceID, spanID)
+	default:
+		outputJson(writer, &traceLogger{
+			logEntry: logEntry{
+				Timestamp: getTimestamp(),
+				Level:     level,
+				Duration:  l.Duration,
+				Content:   val,
+			},
+			Trace: traceID,
+			Span:  spanID,
+		})
+	}
 }
 
 // WithContext sets ctx to log, for keeping tracing information.

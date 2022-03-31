@@ -1,5 +1,7 @@
 # mapreduce
 
+[English](readme.md) | 简体中文
+
 ## 为什么需要 MapReduce
 
 在实际的业务场景中我们常常需要从不同的 rpc 服务中获取相应属性来组装成复杂对象。
@@ -24,6 +26,7 @@
 
 以上实际都是在进行对输入数据进行处理最后输出清洗后的数据，针对数据处理有个非常经典的异步模式：生产者消费者模式。于是我们可以抽象一下数据批处理的生命周期，大致可以分为三个阶段：
 
+<img src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/mapreduce-serial-cn.png" width="500">
 
 1. 数据生产 generate
 2. 数据加工 mapper
@@ -32,6 +35,8 @@
 其中数据生产是不可或缺的阶段，数据加工、数据聚合是可选阶段，数据生产与加工支持并发调用，数据聚合基本属于纯内存操作单协程即可。
 
 再来思考一下不同阶段之间数据应该如何流转，既然不同阶段的数据处理都是由不同 goroutine 执行的，那么很自然的可以考虑采用 channel 来实现 goroutine 之间的通信。
+
+<img src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/mapreduce-cn.png" width="500">
 
 
 如何实现随时终止流程呢？
@@ -49,7 +54,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/tal-tech/go-zero/core/mr"
+    "manlu.org/tao/core/mr"
 )
 
 func main() {

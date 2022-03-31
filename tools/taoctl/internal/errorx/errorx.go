@@ -2,14 +2,14 @@ package errorx
 
 import (
 	"fmt"
-	"runtime"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/internal/version"
+	"manlu.org/tao/tools/taoctl/pkg/env"
 )
 
-var errorFormat = `taoctl: generation error: %+v
-taoctl version: %s
+var errorFormat = `taoctl error: %+v
+taoctl env:
+%s
 %s`
 
 // TaoctlError represents a taoctl error.
@@ -20,8 +20,7 @@ type TaoctlError struct {
 
 func (e *TaoctlError) Error() string {
 	detail := wrapMessage(e.message...)
-	v := fmt.Sprintf("%s %s/%s", version.BuildVersion, runtime.GOOS, runtime.GOARCH)
-	return fmt.Sprintf(errorFormat, e.err, v, detail)
+	return fmt.Sprintf(errorFormat, e.err, env.Print(), detail)
 }
 
 // Wrap wraps an error with taoctl version and message.

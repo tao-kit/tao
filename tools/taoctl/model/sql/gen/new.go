@@ -5,10 +5,11 @@ import (
 
 	"manlu.org/tao/tools/taoctl/model/sql/template"
 	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 func genNew(table Table, withCache, postgreSql bool) (string, error) {
-	text, err := util.LoadTemplate(category, modelNewTemplateFile, template.New)
+	text, err := pathx.LoadTemplate(category, modelNewTemplateFile, template.New)
 	if err != nil {
 		return "", err
 	}
@@ -24,6 +25,7 @@ func genNew(table Table, withCache, postgreSql bool) (string, error) {
 			"table":                 t,
 			"withCache":             withCache,
 			"upperStartCamelObject": table.Name.ToCamel(),
+			"data":                  table,
 		})
 	if err != nil {
 		return "", err

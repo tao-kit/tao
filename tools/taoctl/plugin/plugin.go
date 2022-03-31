@@ -17,7 +17,7 @@ import (
 	"manlu.org/tao/tools/taoctl/api/parser"
 	"manlu.org/tao/tools/taoctl/api/spec"
 	"manlu.org/tao/tools/taoctl/rpc/execx"
-	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const pluginArg = "_plugin"
@@ -73,7 +73,7 @@ func prepareArgs(c *cli.Context) ([]byte, error) {
 	apiPath := c.String("api")
 
 	var transferData Plugin
-	if len(apiPath) > 0 && util.FileExists(apiPath) {
+	if len(apiPath) > 0 && pathx.FileExists(apiPath) {
 		api, err := parser.Parse(apiPath)
 		if err != nil {
 			return nil, err

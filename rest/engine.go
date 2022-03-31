@@ -14,6 +14,7 @@ import (
 	"manlu.org/tao/rest/handler"
 	"manlu.org/tao/rest/httpx"
 	"manlu.org/tao/rest/internal"
+	"manlu.org/tao/rest/internal/response"
 )
 
 // use 1000m to represent 100%
@@ -34,16 +35,16 @@ type engine struct {
 }
 
 func newEngine(c RestConf) *engine {
-	srv := &engine{
+	svr := &engine{
 		conf: c,
 	}
 	if c.CpuThreshold > 0 {
-		srv.shedder = load.NewAdaptiveShedder(load.WithCpuThreshold(c.CpuThreshold))
-		srv.priorityShedder = load.NewAdaptiveShedder(load.WithCpuThreshold(
+		svr.shedder = load.NewAdaptiveShedder(load.WithCpuThreshold(c.CpuThreshold))
+		svr.priorityShedder = load.NewAdaptiveShedder(load.WithCpuThreshold(
 			(c.CpuThreshold + topCpuUsage) >> 1))
 	}
 
-	return srv
+	return svr
 }
 
 func (ng *engine) addRoutes(r featuredRoutes) {
@@ -154,6 +155,27 @@ func (ng *engine) getShedder(priority bool) load.Shedder {
 	return ng.shedder
 }
 
+// notFoundHandler returns a middleware that handles 404 not found requests.
+func (ng *engine) notFoundHandler(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		chain := alice.New(
+			handler.TracingHandler(ng.conf.Name, ""),
+			ng.getLogHandler(),
+		)
+
+		var h http.Handler
+		if next != nil {
+			h = chain.Then(next)
+		} else {
+			h = chain.Then(http.NotFoundHandler())
+		}
+
+		cw := response.NewHeaderOnceResponseWriter(w)
+		h.ServeHTTP(cw, r)
+		cw.WriteHeader(http.StatusNotFound)
+	})
+}
+
 func (ng *engine) setTlsConfig(cfg *tls.Config) {
 	ng.tlsConfig = cfg
 }
@@ -216,9 +238,9 @@ func (ng *engine) start(router httpx.Router) error {
 	}
 
 	return internal.StartHttps(ng.conf.Host, ng.conf.Port, ng.conf.CertFile,
-		ng.conf.KeyFile, router, func(srv *http.Server) {
+		ng.conf.KeyFile, router, func(svr *http.Server) {
 			if ng.tlsConfig != nil {
-				srv.TLSConfig = ng.tlsConfig
+				svr.TLSConfig = ng.tlsConfig
 			}
 		})
 }

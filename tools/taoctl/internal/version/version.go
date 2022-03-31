@@ -6,14 +6,14 @@ import (
 )
 
 // BuildVersion is the version of taoctl.
-const BuildVersion = "1.15.1-beta"
+const BuildVersion = "1.3.3"
+
+var tag = map[string]int{"pre-alpha": 0, "alpha": 1, "pre-bata": 2, "beta": 3, "released": 4, "": 5}
 
 // GetTaoctlVersion returns BuildVersion
 func GetTaoctlVersion() string {
 	return BuildVersion
 }
-
-var tag = map[string]int{"pre-alpha": 0, "alpha": 1, "pre-bata": 2, "beta": 3, "released": 4, "": 5}
 
 // IsVersionGreaterThan compares whether the current taoctl version
 // is greater than the target version
@@ -24,7 +24,8 @@ func IsVersionGreaterThan(version, target string) bool {
 		return true
 	} else if versionNumber < targetVersionNumber {
 		return false
-	} else { // unchecked case, in normal, the taoctl version does not contains suffix in release.
+	} else {
+		// unchecked case, in normal, the taoctl version does not contain suffix in release.
 		return tag[versionTag] > tag[targetTag]
 	}
 }

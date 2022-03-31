@@ -16,7 +16,7 @@ import (
 const apiTemplate = `
 syntax = "v1"
 
-info(
+info (
 	title: // TODO: add title
 	desc: // TODO: add description
 	author: "{{.gitUser}}"
@@ -55,8 +55,9 @@ func ApiCommand(c *cli.Context) error {
 
 	home := c.String("home")
 	remote := c.String("remote")
+	branch := c.String("branch")
 	if len(remote) > 0 {
-		repo, _ := util.CloneIntoGitHome(remote)
+		repo, _ := util.CloneIntoGitHome(remote, branch)
 		if len(repo) > 0 {
 			home = repo
 		}

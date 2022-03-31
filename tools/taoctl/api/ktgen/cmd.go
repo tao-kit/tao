@@ -3,8 +3,8 @@ package ktgen
 import (
 	"errors"
 
-	"manlu.org/tao/tools/taoctl/api/parser"
 	"github.com/urfave/cli"
+	"manlu.org/tao/tools/taoctl/api/parser"
 )
 
 // KtCommand the generate kotlin code command entrance

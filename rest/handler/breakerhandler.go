@@ -9,7 +9,7 @@ import (
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/stat"
 	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/internal/security"
+	"manlu.org/tao/rest/internal/response"
 )
 
 const breakerSeparator = "://"
@@ -28,7 +28,7 @@ func BreakerHandler(method, path string, metrics *stat.Metrics) func(http.Handle
 				return
 			}
 
-			cw := &security.WithCodeResponseWriter{Writer: w}
+			cw := &response.WithCodeResponseWriter{Writer: w}
 			defer func() {
 				if cw.Code < http.StatusInternalServerError {
 					promise.Accept()

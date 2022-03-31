@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/zeromicro/antlr"
 	"manlu.org/tao/tools/taoctl/api/parser/g4/gen/api"
 	"manlu.org/tao/tools/taoctl/util/console"
-	"github.com/zeromicro/antlr"
 )
 
 type (
@@ -19,7 +19,8 @@ type (
 		debug      bool
 		log        console.Console
 		antlr.DefaultErrorListener
-		src string
+		src                      string
+		skipCheckTypeDeclaration bool
 	}
 
 	// ParserOption defines an function with argument Parser
@@ -114,13 +115,16 @@ func (p *Parser) parse(filename, content string) (*Api, error) {
 	apiAstList = append(apiAstList, root)
 	for _, imp := range root.Import {
 		dir := filepath.Dir(p.src)
-		imp := filepath.Join(dir, imp.Value.Text())
-		data, err := p.readContent(imp)
+		impPath := strings.ReplaceAll(imp.Value.Text(), "\"", "")
+		if !filepath.IsAbs(impPath) {
+			impPath = filepath.Join(dir, impPath)
+		}
+		data, err := p.readContent(impPath)
 		if err != nil {
 			return nil, err
 		}
 
-		nestedApi, err := p.invoke(imp, data)
+		nestedApi, err := p.invoke(impPath, data)
 		if err != nil {
 			return nil, err
 		}
@@ -133,9 +137,11 @@ func (p *Parser) parse(filename, content string) (*Api, error) {
 		apiAstList = append(apiAstList, nestedApi)
 	}
 
-	err = p.checkTypeDeclaration(apiAstList)
-	if err != nil {
-		return nil, err
+	if !p.skipCheckTypeDeclaration {
+		err = p.checkTypeDeclaration(apiAstList)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	allApi := p.memberFill(apiAstList)
@@ -240,11 +246,15 @@ func (p *Parser) valid(mainApi, nestedApi *Api) error {
 
 func (p *Parser) duplicateRouteCheck(nestedApi *Api, mainHandlerMap, mainRouteMap map[string]PlaceHolder) error {
 	for _, each := range nestedApi.Service {
-		var prefix string
+		var prefix, group string
 		if each.AtServer != nil {
 			p := each.AtServer.Kv.Get(prefixKey)
 			if p != nil {
 				prefix = p.Text()
+			}
+			g := each.AtServer.Kv.Get(groupKey)
+			if p != nil {
+				group = g.Text()
 			}
 		}
 		for _, r := range each.ServiceApi.ServiceRoute {
@@ -253,9 +263,13 @@ func (p *Parser) duplicateRouteCheck(nestedApi *Api, mainHandlerMap, mainRouteMa
 				return fmt.Errorf("%s handler not exist near line %d", nestedApi.LinePrefix, r.Route.Method.Line())
 			}
 
-			if _, ok := mainHandlerMap[handler.Text()]; ok {
+			handlerKey := handler.Text()
+			if len(group) > 0 {
+				handlerKey = fmt.Sprintf("%s/%s", group, handler.Text())
+			}
+			if _, ok := mainHandlerMap[handlerKey]; ok {
 				return fmt.Errorf("%s line %d:%d duplicate handler '%s'",
-					nestedApi.LinePrefix, handler.Line(), handler.Column(), handler.Text())
+					nestedApi.LinePrefix, handler.Line(), handler.Column(), handlerKey)
 			}
 
 			p := fmt.Sprintf("%s://%s", r.Route.Method.Text(), path.Join(prefix, r.Route.Path.Text()))
@@ -470,5 +484,11 @@ func WithParserDebug() ParserOption {
 func WithParserPrefix(prefix string) ParserOption {
 	return func(p *Parser) {
 		p.linePrefix = prefix
+	}
+}
+
+func WithParserSkipCheckTypeDeclaration() ParserOption {
+	return func(p *Parser) {
+		p.skipCheckTypeDeclaration = true
 	}
 }

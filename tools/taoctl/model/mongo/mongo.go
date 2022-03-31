@@ -9,6 +9,7 @@ import (
 	"manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/model/mongo/generate"
 	file "manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 // Action provides the entry for taoctl mongo code generation.
@@ -18,9 +19,16 @@ func Action(ctx *cli.Context) error {
 	o := strings.TrimSpace(ctx.String("dir"))
 	s := ctx.String("style")
 	home := ctx.String("home")
-
+	remote := ctx.String("remote")
+	branch := ctx.String("branch")
+	if len(remote) > 0 {
+		repo, _ := file.CloneIntoGitHome(remote, branch)
+		if len(repo) > 0 {
+			home = repo
+		}
+	}
 	if len(home) > 0 {
-		file.RegisterTaoctlHome(home)
+		pathx.RegisterTaoctlHome(home)
 	}
 
 	if len(tp) == 0 {

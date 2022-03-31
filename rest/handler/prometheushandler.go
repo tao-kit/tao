@@ -8,7 +8,7 @@ import (
 	"manlu.org/tao/core/metric"
 	"manlu.org/tao/core/prometheus"
 	"manlu.org/tao/core/timex"
-	"manlu.org/tao/rest/internal/security"
+	"manlu.org/tao/rest/internal/response"
 )
 
 const serverNamespace = "http_server"
@@ -41,7 +41,7 @@ func PrometheusHandler(path string) func(http.Handler) http.Handler {
 
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			startTime := timex.Now()
-			cw := &security.WithCodeResponseWriter{Writer: w}
+			cw := &response.WithCodeResponseWriter{Writer: w}
 			defer func() {
 				metricServerReqDur.Observe(int64(timex.Since(startTime)/time.Millisecond), path)
 				metricServerReqCodeTotal.Inc(path, strconv.Itoa(cw.Code))

@@ -6,6 +6,7 @@ import (
 	"manlu.org/tao/core/collection"
 	"manlu.org/tao/tools/taoctl/model/sql/template"
 	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 	"manlu.org/tao/tools/taoctl/util/stringx"
 )
 
@@ -39,7 +40,7 @@ func genUpdate(table Table, withCache, postgreSql bool) (string, string, error) 
 		expressionValues = append(expressionValues, "data."+table.PrimaryKey.Name.ToCamel())
 	}
 	camelTableName := table.Name.ToCamel()
-	text, err := util.LoadTemplate(category, updateTemplateFile, template.Update)
+	text, err := pathx.LoadTemplate(category, updateTemplateFile, template.Update)
 	if err != nil {
 		return "", "", err
 	}
@@ -57,13 +58,14 @@ func genUpdate(table Table, withCache, postgreSql bool) (string, string, error) 
 			"originalPrimaryKey":    wrapWithRawString(table.PrimaryKey.Name.Source(), postgreSql),
 			"expressionValues":      strings.Join(expressionValues, ", "),
 			"postgreSql":            postgreSql,
+			"data":                  table,
 		})
 	if err != nil {
 		return "", "", nil
 	}
 
 	// update interface method
-	text, err = util.LoadTemplate(category, updateMethodTemplateFile, template.UpdateMethod)
+	text, err = pathx.LoadTemplate(category, updateMethodTemplateFile, template.UpdateMethod)
 	if err != nil {
 		return "", "", err
 	}
@@ -72,6 +74,7 @@ func genUpdate(table Table, withCache, postgreSql bool) (string, string, error) 
 		Parse(text).
 		Execute(map[string]interface{}{
 			"upperStartCamelObject": camelTableName,
+			"data":                  table,
 		})
 	if err != nil {
 		return "", "", nil

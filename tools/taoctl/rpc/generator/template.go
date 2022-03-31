@@ -21,7 +21,6 @@ const (
 	serverFuncTemplateFile            = "server-func.tpl"
 	svcTemplateFile                   = "svc.tpl"
 	rpcTemplateFile                   = "template.tpl"
-	rpc
 )
 
 var templates = map[string]string{

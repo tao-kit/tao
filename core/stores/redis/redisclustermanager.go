@@ -4,7 +4,7 @@ import (
 	"crypto/tls"
 	"io"
 
-	red "github.com/go-redis/redis"
+	red "github.com/go-redis/redis/v8"
 	"manlu.org/tao/core/syncx"
 )
 
@@ -25,7 +25,7 @@ func getCluster(r *Redis) (*red.ClusterClient, error) {
 			MinIdleConns: idleConns,
 			TLSConfig:    tlsConfig,
 		})
-		store.WrapProcess(process)
+		store.AddHook(durationHook)
 
 		return store, nil
 	})

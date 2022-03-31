@@ -3,6 +3,7 @@ package logx
 import (
 	"log"
 	"strings"
+	"sync/atomic"
 	"testing"
 	"time"
 
@@ -35,6 +36,19 @@ func TestWithDurationInfo(t *testing.T) {
 	log.SetOutput(&builder)
 	WithDuration(time.Second).Info("foo")
 	assert.True(t, strings.Contains(builder.String(), "duration"), builder.String())
+}
+
+func TestWithDurationInfoConsole(t *testing.T) {
+	old := atomic.LoadUint32(&encoding)
+	atomic.StoreUint32(&encoding, plainEncodingType)
+	defer func() {
+		atomic.StoreUint32(&encoding, old)
+	}()
+
+	var builder strings.Builder
+	log.SetOutput(&builder)
+	WithDuration(time.Second).Info("foo")
+	assert.True(t, strings.Contains(builder.String(), "ms"), builder.String())
 }
 
 func TestWithDurationInfof(t *testing.T) {

@@ -4,9 +4,12 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"manlu.org/tao/core/logx"
 )
 
 func TestScriptCache(t *testing.T) {
+	logx.Disable()
+
 	cache := GetScriptCache()
 	cache.SetSha("foo", "bar")
 	cache.SetSha("bla", "blabla")

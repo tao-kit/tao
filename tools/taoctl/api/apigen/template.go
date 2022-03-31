@@ -3,8 +3,8 @@ package apigen
 import (
 	"fmt"
 
-	"manlu.org/tao/tools/taoctl/util/pathx"
 	"github.com/urfave/cli"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const (

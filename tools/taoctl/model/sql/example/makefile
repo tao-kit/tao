@@ -5,6 +5,10 @@ fromDDLWithCache:
 	taoctl template clean
 	taoctl model mysql ddl -src="./sql/*.sql" -dir="./sql/model/cache" -cache
 
+fromDDLWithCacheAndDb:
+	taoctl template clean
+	taoctl model mysql ddl -src="./sql/*.sql" -dir="./sql/model/cache_db" -database="1gozero" -cache
+
 fromDDLWithoutCache:
 	taoctl template clean;
 	taoctl model mysql ddl -src="./sql/*.sql" -dir="./sql/model/nocache"
