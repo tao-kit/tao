@@ -56,7 +56,7 @@ func Test_GetSourceProto(t *testing.T) {
 func Test_RemoveTaoctlFlag(t *testing.T) {
 	testData := []test{
 		{
-			source:   strings.Fields("protoc foo.proto --go_out=. --go_opt=bar --zrpc_out=. --style go-zero --home=foo"),
+			source:   strings.Fields("protoc foo.proto --go_out=. --go_opt=bar --zrpc_out=. --style gotao --home=foo"),
 			expected: "protoc foo.proto --go_out=. --go_opt=bar",
 		},
 		{

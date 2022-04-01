@@ -10,9 +10,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/zeromicro/go-zero/core/iox"
-	"github.com/zeromicro/go-zero/core/lang"
 	"golang.org/x/sys/unix"
+	"manlu.org/tao/core/iox"
+	"manlu.org/tao/core/lang"
 )
 
 const (
