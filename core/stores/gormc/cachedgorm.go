@@ -17,7 +17,7 @@ var (
 	ErrNotFound = gorm.ErrRecordNotFound
 
 	// can't use one SharedCalls per conn, because multiple conns may share the same cache key.
-	exclusiveCalls = syncx.NewSharedCalls()
+	exclusiveCalls = syncx.NewSingleFlight()
 	stats          = cache.NewStat("gormc")
 )
 

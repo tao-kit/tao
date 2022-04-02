@@ -44,9 +44,7 @@ require (
 	github.com/fatih/color v1.10.0 // indirect
 	github.com/fatih/structtag v1.2.0
 	github.com/go-logr/stdr v1.2.2 // indirect
-	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-redis/redis/v8 v8.11.4
-	github.com/go-xorm/builder v0.3.4
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/iancoleman/strcase v0.2.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
@@ -62,7 +60,7 @@ require (
 	go.uber.org/multierr v1.8.0 // indirect
 	go.uber.org/zap v1.21.0 // indirect
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
-	golang.org/x/sys v0.0.0-20220227234510-4e6760a101f9 // indirect
+	golang.org/x/sys v0.0.0-20220227234510-4e6760a101f9
 	google.golang.org/genproto v0.0.0-20220228195345-15d65a4533f7 // indirect
 	k8s.io/klog/v2 v2.40.1 // indirect
 )

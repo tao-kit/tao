@@ -3,6 +3,7 @@ package collection
 import (
 	"container/list"
 	"fmt"
+	"manlu.org/tao/core/af"
 	"time"
 
 	"manlu.org/tao/core/lang"
@@ -83,7 +84,10 @@ func newTimingWheelWithClock(interval time.Duration, numSlots int, execute Execu
 	}
 
 	tw.initSlots()
-	go tw.run()
+
+	af.Submit(func() {
+		tw.run()
+	})
 
 	return tw, nil
 }
@@ -240,13 +244,13 @@ func (tw *TimingWheel) runTasks(tasks []timingTask) {
 		return
 	}
 
-	go func() {
+	_ = af.Submit(func() {
 		for i := range tasks {
 			threading.RunSafe(func() {
 				tw.execute(tasks[i].key, tasks[i].value)
 			})
 		}
-	}()
+	})
 }
 
 func (tw *TimingWheel) scanAndRunTasks(l *list.List) {

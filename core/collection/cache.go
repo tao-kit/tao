@@ -2,6 +2,7 @@ package collection
 
 import (
 	"container/list"
+	"manlu.org/tao/core/af"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -271,7 +272,11 @@ func newCacheStat(name string, sizeCallback func() int) *cacheStat {
 		name:         name,
 		sizeCallback: sizeCallback,
 	}
-	go st.statLoop()
+
+	_ = af.Submit(func() {
+		st.statLoop()
+	})
+	
 	return st
 }
 
