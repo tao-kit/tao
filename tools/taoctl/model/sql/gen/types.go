@@ -4,6 +4,7 @@ import (
 	"manlu.org/tao/tools/taoctl/model/sql/template"
 	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/pathx"
+	"manlu.org/tao/tools/taoctl/util/stringx"
 )
 
 func genTypes(table Table, methods string, withCache bool) (string, error) {
@@ -24,6 +25,7 @@ func genTypes(table Table, methods string, withCache bool) (string, error) {
 			"withCache":             withCache,
 			"method":                methods,
 			"upperStartCamelObject": table.Name.ToCamel(),
+			"lowerStartCamelObject": stringx.From(table.Name.ToCamel()).Untitle(),
 			"fields":                fieldsString,
 			"data":                  table,
 		})

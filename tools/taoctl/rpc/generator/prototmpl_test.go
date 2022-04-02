@@ -11,11 +11,11 @@ import (
 func TestProtoTmpl(t *testing.T) {
 	_ = Clean()
 	// exists dir
-	err := ProtoTmpl(pathx.MustTempDir())
+	err := ProtoTmpl(pathx.MustTempDir(), false)
 	assert.Nil(t, err)
 
 	// not exist dir
 	dir := filepath.Join(pathx.MustTempDir(), "test")
-	err = ProtoTmpl(dir)
+	err = ProtoTmpl(dir, false)
 	assert.Nil(t, err)
 }

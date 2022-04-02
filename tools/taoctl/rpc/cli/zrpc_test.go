@@ -53,10 +53,10 @@ func Test_GetSourceProto(t *testing.T) {
 	}
 }
 
-func Test_RemoveTaoctlFlag(t *testing.T) {
+func Test_RemoveGoctlFlag(t *testing.T) {
 	testData := []test{
 		{
-			source:   strings.Fields("protoc foo.proto --go_out=. --go_opt=bar --zrpc_out=. --style gotao --home=foo"),
+			source:   strings.Fields("protoc foo.proto --go_out=. --go_opt=bar --zrpc_out=. --style go-zero --home=foo"),
 			expected: "protoc foo.proto --go_out=. --go_opt=bar",
 		},
 		{
@@ -81,6 +81,14 @@ func Test_RemoveTaoctlFlag(t *testing.T) {
 		},
 		{
 			source:   strings.Fields(`protoc --go_opt=. --go-grpc_out=. --zrpc_out=. foo.proto`),
+			expected: "protoc --go_opt=. --go-grpc_out=. foo.proto",
+		},
+		{
+			source:   strings.Fields(`protoc --go_opt=. --go-grpc_out=. --zrpc_out=. --remote=foo --branch=bar foo.proto`),
+			expected: "protoc --go_opt=. --go-grpc_out=. foo.proto",
+		},
+		{
+			source:   strings.Fields(`protoc --go_opt=. --go-grpc_out=. --zrpc_out=. --remote foo --branch bar foo.proto`),
 			expected: "protoc --go_opt=. --go-grpc_out=. foo.proto",
 		},
 	}

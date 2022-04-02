@@ -6,7 +6,7 @@ import (
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
-func genImports(withCache, timeImport bool, table Table) (string, error) {
+func genImports(table Table, withCache, timeImport bool) (string, error) {
 	if withCache {
 		text, err := pathx.LoadTemplate(category, importsTemplateFile, template.Imports)
 		if err != nil {
