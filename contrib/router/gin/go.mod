@@ -5,7 +5,11 @@ go 1.17
 require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/stretchr/testify v1.7.0
-	manlu.org/tao v1.16.3
+	manlu.org/tao v1.16.5
+)
+
+replace (
+	manlu.org/tao v1.16.5 => ../../../
 )
 
 require (
