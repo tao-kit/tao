@@ -51,6 +51,21 @@ var commands = []cli.Command{
 		},
 		Subcommands: []cli.Command{
 			{
+				Name:   "install",
+				Usage:  "taoctl env installation",
+				Action: env.Install,
+				Flags: []cli.Flag{
+					cli.BoolFlag{
+						Name:  "force,f",
+						Usage: "silent installation of non-existent dependencies",
+					},
+					cli.BoolFlag{
+						Name:  "verbose, v",
+						Usage: "enable log output",
+					},
+				},
+			},
+			{
 				Name:  "check",
 				Usage: "detect taoctl env and dependency tools",
 				Flags: []cli.Flag{
