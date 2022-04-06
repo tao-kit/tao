@@ -1,6 +1,7 @@
 package new
 
 import (
+	_ "embed"
 	"errors"
 	"os"
 	"path/filepath"
@@ -14,20 +15,8 @@ import (
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
-const apiTemplate = `
-type Request {
-  Name string ` + "`" + `path:"name,options=you|me"` + "`" + ` 
-}
-
-type Response {
-  Message string ` + "`" + `json:"message"` + "`" + `
-}
-
-service {{.name}}-api {
-  @handler {{.handler}}Handler
-  get /from/:name(Request) returns (Response)
-}
-`
+//go:embed api.tpl
+var apiTemplate string
 
 // CreateServiceCommand fast create service
 func CreateServiceCommand(c *cli.Context) error {

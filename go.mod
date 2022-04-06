@@ -1,6 +1,6 @@
 module manlu.org/tao
 
-go 1.15
+go 1.17
 
 require (
 	github.com/ClickHouse/clickhouse-go v1.5.1

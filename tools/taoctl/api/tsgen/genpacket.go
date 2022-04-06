@@ -1,6 +1,7 @@
 package tsgen
 
 import (
+	_ "embed"
 	"fmt"
 	"path"
 	"strings"
@@ -12,12 +13,8 @@ import (
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
-const (
-	handlerTemplate = `{{.imports}}
-
-{{.apis}}
-`
-)
+//go:embed handler.tpl
+var handlerTemplate string
 
 func genHandler(dir, webAPI, caller string, api *spec.ApiSpec, unwrapAPI bool) error {
 	filename := strings.Replace(api.Service.Name, "-api", "", 1) + ".ts"

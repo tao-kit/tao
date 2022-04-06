@@ -1,34 +1,15 @@
 package gogen
 
 import (
-	"strings"
-
+	_ "embed"
 	"manlu.org/tao/tools/taoctl/api/spec"
 	"manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/util/format"
+	"strings"
 )
 
-var middlewareImplementCode = `
-package middleware
-
-import "net/http"
-
-type {{.name}} struct {
-}
-
-func New{{.name}}() *{{.name}} {	
-	return &{{.name}}{}
-}
-
-func (m *{{.name}})Handle(next http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		// TODO generate middleware implement function, delete after code implementation
-
-		// Passthrough to next handler if need 
-		next(w, r)
-	}	
-}
-`
+//go:embed middleware.tpl
+var middlewareImplementCode string
 
 func genMiddleware(dir string, cfg *config.Config, api *spec.ApiSpec) error {
 	middlewares := getMiddleware(api)

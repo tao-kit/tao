@@ -1,6 +1,7 @@
 package generator
 
 import (
+	_ "embed"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -11,14 +12,8 @@ import (
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
-const configTemplate = `package config
-
-import "manlu.org/tao/zrpc"
-
-type Config struct {
-	zrpc.RpcServerConf
-}
-`
+//go:embed config.tpl
+var configTemplate string
 
 // GenConfig generates the configuration structure definition file of the rpc service,
 // which contains the zrpc.RpcServerConf configuration item by default.
