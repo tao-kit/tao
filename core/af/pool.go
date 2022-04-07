@@ -157,10 +157,18 @@ func (p *Pool) Cap() int {
 
 // Tune changes the capacity of this pool, note that it is noneffective to the infinite or pre-allocation pool.
 func (p *Pool) Tune(size int) {
-	if capacity := p.Cap(); capacity == -1 || size <= 0 || size == capacity || p.options.PreAlloc {
+	capacity := p.Cap()
+	if capacity == -1 || size <= 0 || size == capacity || p.options.PreAlloc {
 		return
 	}
 	atomic.StoreInt32(&p.capacity, int32(size))
+	if size > capacity {
+		if size-capacity == 1 {
+			p.cond.Signal()
+			return
+		}
+		p.cond.Broadcast()
+	}
 }
 
 // IsClosed indicates whether the pool is closed.
@@ -253,13 +261,12 @@ func (p *Pool) retrieveWorker() (w *goWorker) {
 // revertWorker puts a worker back into free pool, recycling the goroutines.
 func (p *Pool) revertWorker(worker *goWorker) bool {
 	if capacity := p.Cap(); (capacity > 0 && p.Running() > capacity) || p.IsClosed() {
+		p.cond.Broadcast()
 		return false
 	}
 	worker.recycleTime = time.Now()
 	p.lock.Lock()
 
-	// To avoid memory leaks, add a double check in the lock scope.
-	// Issue: https://github.com/panjf2000/ants/issues/113
 	if p.IsClosed() {
 		p.lock.Unlock()
 		return false

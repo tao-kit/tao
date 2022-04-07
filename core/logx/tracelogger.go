@@ -11,8 +11,6 @@ import (
 	"manlu.org/tao/core/timex"
 )
 
-var DefaultLogger Logger = nil
-
 type traceLogger struct {
 	logEntry
 	Trace string `json:"trace,omitempty"`
@@ -102,14 +100,9 @@ func (l *traceLogger) write(writer io.Writer, level string, val interface{}) {
 
 // WithContext sets ctx to log, for keeping tracing information.
 func WithContext(ctx context.Context) Logger {
-	if DefaultLogger == nil {
-		return &traceLogger{
-			ctx: ctx,
-		}
-	} else {
-		return DefaultLogger
+	return &traceLogger{
+		ctx: ctx,
 	}
-
 }
 
 func spanIdFromContext(ctx context.Context) string {
