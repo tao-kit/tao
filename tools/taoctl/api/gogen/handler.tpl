@@ -3,7 +3,7 @@ package {{.PkgName}}
 import (
 	"net/http"
 
-	{{if .After1_1_10}}"manlu.org/tao/rest/httpx"{{end}}
+	"manlu.org/tao/rest/httpx"
 	{{.ImportPackages}}
 )
 
