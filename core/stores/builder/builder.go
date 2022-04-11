@@ -301,6 +301,7 @@ const (
 	opNotLike    = "not like"
 	opBetween    = "between"
 	opNotBetween = "not between"
+	opIs         = "is"
 	// special
 	opNull = "null"
 )
@@ -310,6 +311,9 @@ type compareProducer func(m map[string]interface{}) (Comparable, error)
 var op2Comparable = map[string]compareProducer{
 	opEq: func(m map[string]interface{}) (Comparable, error) {
 		return Eq(m), nil
+	},
+	opIs: func(m map[string]interface{}) (Comparable, error) {
+		return Is(m), nil
 	},
 	opNe1: func(m map[string]interface{}) (Comparable, error) {
 		return Ne(m), nil
@@ -368,7 +372,7 @@ var op2Comparable = map[string]compareProducer{
 	},
 }
 
-var opOrder = []string{opEq, opIn, opNe1, opNe2, opNotIn, opGt, opGte, opLt, opLte, opLike, opNotLike, opBetween, opNotBetween, opNull}
+var opOrder = []string{opEq, opIn, opNe1, opNe2, opNotIn, opGt, opGte, opLt, opLte, opLike, opNotLike, opBetween, opNotBetween, opNull, opIs}
 
 func buildWhereCondition(mapSet *whereMapSet) ([]Comparable, error) {
 	var cpArr []Comparable

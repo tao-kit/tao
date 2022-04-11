@@ -36,7 +36,7 @@ type Rows interface {
 
 const (
 	// DefaultTagName is the default struct tag name
-	DefaultTagName = "ddb"
+	DefaultTagName = "db"
 	cTimeFormat    = "2006-01-02 15:04:05"
 )
 

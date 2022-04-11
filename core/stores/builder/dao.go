@@ -123,6 +123,28 @@ func (l NotLike) Build() ([]string, []interface{}) {
 	return cond, vals
 }
 
+type Is map[string]interface{}
+
+func (i Is) Build() ([]string, []interface{}) {
+	if nil == i || 0 == len(i) {
+		return nil, nil
+	}
+
+	var cond []string
+	var vals []interface{}
+	for k := range i {
+		cond = append(cond, k)
+	}
+	defaultSortAlgorithm(cond)
+	for j := 0; j < len(cond); j++ {
+		val := i[cond[j]]
+		cond[j] = cond[j] + " IS ?"
+		vals = append(vals, val)
+	}
+
+	return cond, vals
+}
+
 //Eq means equal(=)
 type Eq map[string]interface{}
 
