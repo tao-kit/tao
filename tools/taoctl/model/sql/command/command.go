@@ -8,7 +8,6 @@ import (
 	"github.com/go-sql-driver/mysql"
 	"github.com/urfave/cli"
 	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stores/postgres"
 	"manlu.org/tao/core/stores/sqlx"
 	"manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/model/sql/gen"
@@ -232,7 +231,7 @@ func fromPostgreSqlDataSource(url, pattern, dir, schema string, cfg *config.Conf
 		log.Error("%v", "expected table or table globbing patterns, but nothing found")
 		return nil
 	}
-	db := postgres.New(url)
+	db := pg.New(url)
 	im := model.NewPostgreSqlModel(db)
 
 	tables, err := im.GetAllTables(schema)
