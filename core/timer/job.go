@@ -1,6 +1,7 @@
 package timer
 
 import (
+	"manlu.org/tao/core/af"
 	"math"
 	"sync/atomic"
 )
@@ -36,7 +37,8 @@ func (j *Job) Run() {
 	if leftRunningTimes < 2000000000 && leftRunningTimes > 1000000000 {
 		atomic.SwapInt64(&j.times, math.MaxInt32)
 	}
-	go func() {
+
+	_ = af.Submit(func() {
 		defer func() {
 			if err := recover(); err != nil {
 				if err != panicExit {
@@ -51,7 +53,7 @@ func (j *Job) Run() {
 			}
 		}()
 		j.job()
-	}()
+	})
 }
 
 // doCheckAndRunByTicks checks the if job can run in given timer ticks,

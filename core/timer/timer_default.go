@@ -1,6 +1,7 @@
 package timer
 
 import (
+	"manlu.org/tao/core/af"
 	"sync/atomic"
 	"time"
 )
@@ -16,7 +17,9 @@ func New(options ...TimerOptions) *Timer {
 	} else {
 		t.options = DefaultOptions()
 	}
-	go t.loop()
+	_ = af.Submit(func() {
+		t.loop()
+	})
 	return t
 }
 
@@ -139,7 +142,7 @@ func (t *Timer) createJob(interval time.Duration, job JobFunc, singleton bool, t
 
 // loop starts the ticker using a standalone goroutine.
 func (t *Timer) loop() {
-	go func() {
+	_ = af.Submit(func() {
 		var (
 			currentTimerTicks   int64
 			timerIntervalTicker = time.NewTicker(t.options.Interval)
@@ -166,7 +169,7 @@ func (t *Timer) loop() {
 				}
 			}
 		}
-	}()
+	})
 }
 
 // proceed proceeds the timer job checking and running logic.
