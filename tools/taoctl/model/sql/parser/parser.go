@@ -76,14 +76,12 @@ func Parse(filename, database string) ([]*Table, error) {
 	prefix := filepath.Base(filename)
 	var list []*Table
 	for indexTable, e := range tables {
-		columns := e.Columns
-
 		var (
+			primaryColumn    string
 			primaryColumnSet = collection.NewSet()
-
-			primaryColumn string
-			uniqueKeyMap  = make(map[string][]string)
-			normalKeyMap  = make(map[string][]string)
+			uniqueKeyMap     = make(map[string][]string)
+			normalKeyMap     = make(map[string][]string)
+			columns          = e.Columns
 		)
 
 		for _, column := range columns {
