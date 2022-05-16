@@ -2,6 +2,12 @@ package redis
 
 import (
 	"context"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
+	oteltrace "go.opentelemetry.io/otel/trace"
+	"manlu.org/tao/core/errorx"
+	"manlu.org/tao/core/trace"
 	"strings"
 	"time"
 
@@ -11,21 +17,30 @@ import (
 	"manlu.org/tao/core/timex"
 )
 
+// spanName is the span name of the redis calls.
+const spanName = "redis"
+
 var (
-	startTimeKey = contextKey("startTime")
-	durationHook = hook{}
+	startTimeKey          = contextKey("startTime")
+	durationHook          = hook{tracer: otel.GetTracerProvider().Tracer(trace.TraceName)}
+	redisCmdsAttributeKey = attribute.Key("redis.cmds")
 )
 
 type (
 	contextKey string
-	hook       struct{}
+	hook       struct {
+		tracer oteltrace.Tracer
+	}
 )
 
-func (h hook) BeforeProcess(ctx context.Context, _ red.Cmder) (context.Context, error) {
-	return context.WithValue(ctx, startTimeKey, timex.Now()), nil
+func (h hook) BeforeProcess(ctx context.Context, cmd red.Cmder) (context.Context, error) {
+	return h.startSpan(context.WithValue(ctx, startTimeKey, timex.Now()), cmd), nil
 }
 
 func (h hook) AfterProcess(ctx context.Context, cmd red.Cmder) error {
+	err := cmd.Err()
+	h.endSpan(ctx, err)
+
 	val := ctx.Value(startTimeKey)
 	if val == nil {
 		return nil
@@ -44,14 +59,29 @@ func (h hook) AfterProcess(ctx context.Context, cmd red.Cmder) error {
 	return nil
 }
 
-func (h hook) BeforeProcessPipeline(ctx context.Context, _ []red.Cmder) (context.Context, error) {
-	return context.WithValue(ctx, startTimeKey, timex.Now()), nil
+func (h hook) BeforeProcessPipeline(ctx context.Context, cmds []red.Cmder) (context.Context, error) {
+	if len(cmds) == 0 {
+		return ctx, nil
+	}
+
+	return h.startSpan(context.WithValue(ctx, startTimeKey, timex.Now()), cmds...), nil
 }
 
 func (h hook) AfterProcessPipeline(ctx context.Context, cmds []red.Cmder) error {
 	if len(cmds) == 0 {
 		return nil
 	}
+
+	batchError := errorx.BatchError{}
+	for _, cmd := range cmds {
+		err := cmd.Err()
+		if err == nil {
+			continue
+		}
+
+		batchError.Add(err)
+	}
+	h.endSpan(ctx, batchError.Err())
 
 	val := ctx.Value(startTimeKey)
 	if val == nil {
@@ -80,4 +110,32 @@ func logDuration(ctx context.Context, cmd red.Cmder, duration time.Duration) {
 		buf.WriteString(mapping.Repr(arg))
 	}
 	logx.WithContext(ctx).WithDuration(duration).Slowf("[REDIS] slowcall on executing: %s", buf.String())
+}
+
+func (h hook) startSpan(ctx context.Context, cmds ...red.Cmder) context.Context {
+	ctx, span := h.tracer.Start(ctx,
+		spanName,
+		oteltrace.WithSpanKind(oteltrace.SpanKindClient),
+	)
+
+	cmdStrs := make([]string, 0, len(cmds))
+	for _, cmd := range cmds {
+		cmdStrs = append(cmdStrs, cmd.Name())
+	}
+	span.SetAttributes(redisCmdsAttributeKey.StringSlice(cmdStrs))
+
+	return ctx
+}
+
+func (h hook) endSpan(ctx context.Context, err error) {
+	span := oteltrace.SpanFromContext(ctx)
+	defer span.End()
+
+	if err == nil || err == red.Nil {
+		span.SetStatus(codes.Ok, "")
+		return
+	}
+
+	span.SetStatus(codes.Error, err.Error())
+	span.RecordError(err)
 }
