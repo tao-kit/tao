@@ -7,11 +7,11 @@ import (
 	"strings"
 	"time"
 
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"manlu.org/tao/zrpc/internal/balancer/p2c"
 	"manlu.org/tao/zrpc/internal/clientinterceptors"
 	"manlu.org/tao/zrpc/resolver"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 const (
@@ -48,7 +48,10 @@ type (
 // NewClient returns a Client.
 func NewClient(target string, opts ...ClientOption) (Client, error) {
 	var cli client
-	opts = append([]ClientOption{WithDialOption(grpc.WithBalancerName(p2c.Name))}, opts...)
+
+	svcCfg := fmt.Sprintf(`{"loadBalancingPolicy":"%s"}`, p2c.Name)
+	balancerOpt := WithDialOption(grpc.WithDefaultServiceConfig(svcCfg))
+	opts = append([]ClientOption{balancerOpt}, opts...)
 	if err := cli.dial(target, opts...); err != nil {
 		return nil, err
 	}
