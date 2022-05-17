@@ -1,21 +1,22 @@
 package internal
 
 import (
+	"manlu.org/tao/zrpc/resolver/internal/targets"
 	"strings"
 
+	"google.golang.org/grpc/resolver"
 	"manlu.org/tao/core/discov"
 	"manlu.org/tao/core/logx"
-	"google.golang.org/grpc/resolver"
 )
 
 type discovBuilder struct{}
 
 func (b *discovBuilder) Build(target resolver.Target, cc resolver.ClientConn, _ resolver.BuildOptions) (
 	resolver.Resolver, error) {
-	hosts := strings.FieldsFunc(target.Authority, func(r rune) bool {
+	hosts := strings.FieldsFunc(targets.GetAuthority(target), func(r rune) bool {
 		return r == EndpointSepChar
 	})
-	sub, err := discov.NewSubscriber(hosts, target.Endpoint)
+	sub, err := discov.NewSubscriber(hosts, targets.GetEndpoints(target))
 	if err != nil {
 		return nil, err
 	}

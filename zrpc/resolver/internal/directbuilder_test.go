@@ -2,14 +2,15 @@ package internal
 
 import (
 	"fmt"
+	"net/url"
 	"strconv"
 	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"google.golang.org/grpc/resolver"
 	"manlu.org/tao/core/lang"
 	"manlu.org/tao/core/mathx"
-	"google.golang.org/grpc/resolver"
 )
 
 func TestDirectBuilder_Build(t *testing.T) {
@@ -31,9 +32,11 @@ func TestDirectBuilder_Build(t *testing.T) {
 			}
 			var b directBuilder
 			cc := new(mockedClientConn)
-			_, err := b.Build(resolver.Target{
-				Scheme:   DirectScheme,
-				Endpoint: strings.Join(servers, ","),
+			target := fmt.Sprintf("%s:///%s", DirectScheme, strings.Join(servers, ","))
+			uri, err := url.Parse(target)
+			assert.Nil(t, err)
+			_, err = b.Build(resolver.Target{
+				URL: *uri,
 			}, cc, resolver.BuildOptions{})
 			assert.Nil(t, err)
 			size := mathx.MinInt(test, subsetSize)

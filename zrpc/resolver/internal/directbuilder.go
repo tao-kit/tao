@@ -4,14 +4,15 @@ import (
 	"strings"
 
 	"google.golang.org/grpc/resolver"
+	"manlu.org/tao/zrpc/resolver/internal/targets"
 )
 
 type directBuilder struct{}
 
-func (d *directBuilder) Build(target resolver.Target, cc resolver.ClientConn, opts resolver.BuildOptions) (
+func (d *directBuilder) Build(target resolver.Target, cc resolver.ClientConn, _ resolver.BuildOptions) (
 	resolver.Resolver, error) {
 	var addrs []resolver.Address
-	endpoints := strings.FieldsFunc(target.Endpoint, func(r rune) bool {
+	endpoints := strings.FieldsFunc(targets.GetEndpoints(target), func(r rune) bool {
 		return r == EndpointSepChar
 	})
 
