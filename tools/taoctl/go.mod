@@ -13,7 +13,7 @@ require (
 	github.com/stretchr/testify v1.7.1
 	github.com/zeromicro/antlr v0.0.1
 	github.com/zeromicro/ddl-parser v1.0.3
-	manlu.org/tao v1.20.5
+	manlu.org/tao v1.20.3
 )
 
 require (
