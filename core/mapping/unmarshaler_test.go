@@ -2,12 +2,13 @@ package mapping
 
 import (
 	"encoding/json"
-	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stringx"
 	"strconv"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
+	"manlu.org/tao/core/stringx"
 )
 
 // because json.Number doesn't support strconv.ParseUint(...),
