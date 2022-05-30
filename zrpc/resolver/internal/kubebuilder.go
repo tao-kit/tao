@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"time"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/proc"
-	"manlu.org/tao/core/threading"
-	"manlu.org/tao/zrpc/resolver/internal/kube"
 	"google.golang.org/grpc/resolver"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
+	"manlu.org/tao/core/logx"
+	"manlu.org/tao/core/proc"
+	"manlu.org/tao/core/threading"
+	"manlu.org/tao/zrpc/resolver/internal/kube"
 )
 
 const (
@@ -24,7 +24,7 @@ const (
 type kubeBuilder struct{}
 
 func (b *kubeBuilder) Build(target resolver.Target, cc resolver.ClientConn,
-	opts resolver.BuildOptions) (resolver.Resolver, error) {
+	_ resolver.BuildOptions) (resolver.Resolver, error) {
 	svc, err := kube.ParseTarget(target)
 	if err != nil {
 		return nil, err
