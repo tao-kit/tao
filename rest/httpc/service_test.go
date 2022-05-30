@@ -2,6 +2,7 @@ package httpc
 
 import (
 	"context"
+	"manlu.org/tao/rest/internal/header"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -43,7 +44,7 @@ func TestNamedService_DoRequestPost(t *testing.T) {
 	service := NewService("foo")
 	req, err := http.NewRequest(http.MethodPost, svr.URL, nil)
 	assert.Nil(t, err)
-	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set(header.ContentType, header.JsonContentType)
 	resp, err := service.DoRequest(req)
 	assert.Nil(t, err)
 	assert.Equal(t, http.StatusNotFound, resp.StatusCode)

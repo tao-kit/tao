@@ -1,6 +1,7 @@
 package httpc
 
 import (
+	"manlu.org/tao/rest/internal/header"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -16,7 +17,7 @@ func TestParse(t *testing.T) {
 	}
 	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("foo", "bar")
-		w.Header().Set(contentType, applicationJson)
+		w.Header().Set(header.ContentType, header.JsonContentType)
 		w.Write([]byte(`{"name":"kevin","value":100}`))
 	}))
 	defer svr.Close()
@@ -36,7 +37,7 @@ func TestParseHeaderError(t *testing.T) {
 	}
 	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("foo", "bar")
-		w.Header().Set(contentType, applicationJson)
+		w.Header().Set(header.ContentType, header.JsonContentType)
 	}))
 	defer svr.Close()
 	req, err := http.NewRequest(http.MethodGet, svr.URL, nil)
@@ -52,7 +53,7 @@ func TestParseNoBody(t *testing.T) {
 	}
 	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("foo", "bar")
-		w.Header().Set(contentType, applicationJson)
+		w.Header().Set(header.ContentType, header.JsonContentType)
 	}))
 	defer svr.Close()
 	req, err := http.NewRequest(http.MethodGet, svr.URL, nil)

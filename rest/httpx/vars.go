@@ -1,5 +1,7 @@
 package httpx
 
+import "manlu.org/tao/rest/internal/header"
+
 const (
 	// ApplicationJson means application/json.
 	ApplicationJson = "application/json; charset=utf-8"
@@ -8,7 +10,9 @@ const (
 	// ContentSecurity means X-Content-Security.
 	ContentSecurity = "X-Content-Security"
 	// ContentType means Content-Type.
-	ContentType = "Content-Type"
+	ContentType = header.ContentType
+	// JsonContentType means application/json.
+	JsonContentType = header.JsonContentType
 	// KeyField means key.
 	KeyField = "key"
 	// SecretField means secret.

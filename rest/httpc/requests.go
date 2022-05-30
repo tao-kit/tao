@@ -9,6 +9,7 @@ import (
 	"manlu.org/tao/core/lang"
 	"manlu.org/tao/core/mapping"
 	"manlu.org/tao/rest/httpc/internal"
+	"manlu.org/tao/rest/internal/header"
 	"net/http"
 	nurl "net/url"
 	"strings"
@@ -97,7 +98,7 @@ func buildRequest(ctx context.Context, method, url string, data interface{}) (*h
 	req.URL.RawQuery = buildFormQuery(u, val[formKey])
 	fillHeader(req, val[headerKey])
 	if hasJsonBody {
-		req.Header.Set(contentType, applicationJson)
+		req.Header.Set(header.ContentType, header.JsonContentType)
 	}
 
 	return req, nil

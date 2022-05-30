@@ -2,6 +2,7 @@ package httpx
 
 import (
 	"encoding/json"
+	"manlu.org/tao/rest/internal/header"
 	"net/http"
 	"sync"
 
@@ -61,7 +62,7 @@ func SetErrorHandler(handler func(error) (int, interface{})) {
 
 // WriteJson writes v as json string into w with code.
 func WriteJson(w http.ResponseWriter, code int, v interface{}) {
-	w.Header().Set(ContentType, ApplicationJson)
+	w.Header().Set(ContentType, header.JsonContentType)
 	w.WriteHeader(code)
 
 	if bs, err := json.Marshal(v); err != nil {
