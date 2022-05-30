@@ -7,10 +7,10 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/stat"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
+	"manlu.org/tao/core/lang"
+	"manlu.org/tao/core/stat"
 )
 
 func TestSetSlowThreshold(t *testing.T) {
@@ -74,6 +74,12 @@ func TestLogDuration(t *testing.T) {
 				Addr: addrs[0],
 			}),
 			req: "foo",
+		},
+		{
+			name:     "timeout",
+			ctx:      context.Background(),
+			req:      "foo",
+			duration: slowThreshold.Load() + time.Second,
 		},
 	}
 

@@ -2,8 +2,6 @@ package mongo
 
 import (
 	"errors"
-	"testing"
-
 	"github.com/globalsign/mgo"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
@@ -11,6 +9,9 @@ import (
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/stores/mongo/internal"
 	"manlu.org/tao/core/stringx"
+	"strings"
+	"testing"
+	"time"
 )
 
 var errDummy = errors.New("dummy")
@@ -264,6 +265,46 @@ func TestCollectionUpsert(t *testing.T) {
 	c.brk = new(dropBreaker)
 	_, err = c.Upsert(nil, nil)
 	assert.Equal(t, errDummy, err)
+}
+
+func Test_logDuration(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	col := internal.NewMockMgoCollection(ctrl)
+	c := decoratedCollection{
+		collection: col,
+		brk:        breaker.NewBreaker(),
+	}
+
+	var buf strings.Builder
+	w := logx.NewWriter(&buf)
+	o := logx.Reset()
+	logx.SetWriter(w)
+
+	defer func() {
+		logx.Reset()
+		logx.SetWriter(o)
+	}()
+
+	buf.Reset()
+	c.logDuration("foo", time.Millisecond, nil, "bar")
+	assert.Contains(t, buf.String(), "foo")
+	assert.Contains(t, buf.String(), "bar")
+
+	buf.Reset()
+	c.logDuration("foo", time.Millisecond, errors.New("bar"), make(chan int))
+	assert.Contains(t, buf.String(), "bar")
+
+	buf.Reset()
+	c.logDuration("foo", slowThreshold.Load()+time.Millisecond, errors.New("bar"))
+	assert.Contains(t, buf.String(), "bar")
+	assert.Contains(t, buf.String(), "slowcall")
+
+	buf.Reset()
+	c.logDuration("foo", slowThreshold.Load()+time.Millisecond, nil)
+	assert.Contains(t, buf.String(), "foo")
+	assert.Contains(t, buf.String(), "slowcall")
 }
 
 type mockPromise struct {
