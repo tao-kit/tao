@@ -47,7 +47,7 @@ func Report(msg string) {
 	if fn != nil {
 		reported := lessExecutor.DoOrDiscard(func() {
 			var builder strings.Builder
-			fmt.Fprintf(&builder, "%s\n", timex.Time().Format(timeFormat))
+			fmt.Fprintf(&builder, "%s\n", timex.NowTime().Format(timeFormat))
 			if len(clusterName) > 0 {
 				fmt.Fprintf(&builder, "cluster: %s\n", clusterName)
 			}
