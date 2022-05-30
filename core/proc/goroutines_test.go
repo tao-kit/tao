@@ -1,7 +1,7 @@
 package proc
 
 import (
-	"log"
+	"manlu.org/tao/core/logx"
 	"strings"
 	"testing"
 
@@ -10,7 +10,14 @@ import (
 
 func TestDumpGoroutines(t *testing.T) {
 	var buf strings.Builder
-	log.SetOutput(&buf)
+	w := logx.NewWriter(&buf)
+	o := logx.Reset()
+	logx.SetWriter(w)
+	defer func() {
+		logx.Reset()
+		logx.SetWriter(o)
+	}()
+
 	dumpGoroutines()
 	assert.True(t, strings.Contains(buf.String(), ".dump"))
 }

@@ -2,7 +2,7 @@ package internal
 
 import (
 	"context"
-	"log"
+	"manlu.org/tao/core/logx"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -25,16 +25,23 @@ func TestInfo(t *testing.T) {
 }
 
 func TestError(t *testing.T) {
-	var writer strings.Builder
-	log.SetOutput(&writer)
+	var buf strings.Builder
+	w := logx.NewWriter(&buf)
+	o := logx.Reset()
+	logx.SetWriter(w)
+
+	defer func() {
+		logx.Reset()
+		logx.SetWriter(o)
+	}()
+
 	req := httptest.NewRequest(http.MethodGet, "http://localhost", nil)
 	Error(req, "first")
 	Errorf(req, "second %s", "third")
-	val := writer.String()
+	val := buf.String()
 	assert.True(t, strings.Contains(val, "first"))
 	assert.True(t, strings.Contains(val, "second"))
 	assert.True(t, strings.Contains(val, "third"))
-	assert.True(t, strings.Contains(val, "\n"))
 }
 
 func TestContextKey_String(t *testing.T) {
