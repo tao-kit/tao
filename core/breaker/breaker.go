@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"strings"
 	"sync"
+	"time"
 
 	"manlu.org/tao/core/mathx"
 	"manlu.org/tao/core/proc"
 	"manlu.org/tao/core/stat"
 	"manlu.org/tao/core/stringx"
-	"manlu.org/tao/core/timex"
 )
 
 const (
@@ -198,7 +198,7 @@ type errorWindow struct {
 
 func (ew *errorWindow) add(reason string) {
 	ew.lock.Lock()
-	ew.reasons[ew.index] = fmt.Sprintf("%s %s", timex.NowTime().Format(timeFormat), reason)
+	ew.reasons[ew.index] = fmt.Sprintf("%s %s", time.Now().Format(timeFormat), reason)
 	ew.index = (ew.index + 1) % numHistoryReasons
 	ew.count = mathx.MinInt(ew.count+1, numHistoryReasons)
 	ew.lock.Unlock()

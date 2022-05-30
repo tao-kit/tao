@@ -15,7 +15,6 @@ import (
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/proc"
 	"manlu.org/tao/core/sysx"
-	"manlu.org/tao/core/timex"
 )
 
 const (
@@ -47,7 +46,7 @@ func Report(msg string) {
 	if fn != nil {
 		reported := lessExecutor.DoOrDiscard(func() {
 			var builder strings.Builder
-			fmt.Fprintf(&builder, "%s\n", timex.NowTime().Format(timeFormat))
+			fmt.Fprintf(&builder, "%s\n", time.Now().Format(timeFormat))
 			if len(clusterName) > 0 {
 				fmt.Fprintf(&builder, "cluster: %s\n", clusterName)
 			}
