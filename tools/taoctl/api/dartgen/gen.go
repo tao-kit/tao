@@ -5,17 +5,28 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/tools/taoctl/api/parser"
 )
 
+var (
+	// VarStringDir describes the directory.
+	VarStringDir string
+	// VarStringAPI defines the API.
+	VarStringAPI string
+	// VarStringLegacy describes whether legacy.
+	VarStringLegacy bool
+	// VarStringHostname defines the hostname.
+	VarStringHostname string
+)
+
 // DartCommand create dart network request code
-func DartCommand(c *cli.Context) error {
-	apiFile := c.String("api")
-	dir := c.String("dir")
-	isLegacy := c.Bool("legacy")
-	hostname := c.String("hostname")
+func DartCommand(_ *cobra.Command, _ []string) error {
+	apiFile := VarStringAPI
+	dir := VarStringDir
+	isLegacy := VarStringLegacy
+	hostname := VarStringHostname
 	if len(apiFile) == 0 {
 		return errors.New("missing -api")
 	}
@@ -24,11 +35,15 @@ func DartCommand(c *cli.Context) error {
 	}
 	if len(hostname) == 0 {
 		fmt.Println("you could use '-hostname' flag to specify your server hostname")
-		hostname = "manlu.org"
+		hostname = "go-zero.dev"
 	}
 
 	api, err := parser.Parse(apiFile)
 	if err != nil {
+		return err
+	}
+
+	if err := api.Validate(); err != nil {
 		return err
 	}
 

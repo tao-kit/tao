@@ -4,12 +4,12 @@ import (
 	_ "embed"
 	"errors"
 	"fmt"
+	"html/template"
 	"path/filepath"
 	"strings"
-	"text/template"
 
 	"github.com/logrusorgru/aurora"
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 	"manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
@@ -17,9 +17,20 @@ import (
 //go:embed api.tpl
 var apiTemplate string
 
-// ApiCommand create api template file
-func ApiCommand(c *cli.Context) error {
-	apiFile := c.String("o")
+var (
+	// VarStringOutput describes the output.
+	VarStringOutput string
+	// VarStringHome describes the taoctl home.
+	VarStringHome string
+	// VarStringRemote describes the remote git repository.
+	VarStringRemote string
+	// VarStringBranch describes the git branch.
+	VarStringBranch string
+)
+
+// CreateApiTemplate create api template file
+func CreateApiTemplate(_ *cobra.Command, _ []string) error {
+	apiFile := VarStringOutput
 	if len(apiFile) == 0 {
 		return errors.New("missing -o")
 	}
@@ -30,18 +41,15 @@ func ApiCommand(c *cli.Context) error {
 	}
 	defer fp.Close()
 
-	home := c.String("home")
-	remote := c.String("remote")
-	branch := c.String("branch")
-	if len(remote) > 0 {
-		repo, _ := util.CloneIntoGitHome(remote, branch)
+	if len(VarStringRemote) > 0 {
+		repo, _ := util.CloneIntoGitHome(VarStringRemote, VarStringBranch)
 		if len(repo) > 0 {
-			home = repo
+			VarStringHome = repo
 		}
 	}
 
-	if len(home) > 0 {
-		pathx.RegisterTaoctlHome(home)
+	if len(VarStringHome) > 0 {
+		pathx.RegisterTaoctlHome(VarStringHome)
 	}
 
 	text, err := pathx.LoadTemplate(category, apiTemplateFile, apiTemplate)

@@ -2,6 +2,10 @@ package parser
 
 import (
 	"fmt"
+	"path/filepath"
+	"sort"
+	"strings"
+
 	"github.com/zeromicro/ddl-parser/parser"
 	"manlu.org/tao/core/collection"
 	"manlu.org/tao/tools/taoctl/model/sql/converter"
@@ -9,9 +13,6 @@ import (
 	"manlu.org/tao/tools/taoctl/model/sql/util"
 	"manlu.org/tao/tools/taoctl/util/console"
 	"manlu.org/tao/tools/taoctl/util/stringx"
-	"path/filepath"
-	"sort"
-	"strings"
 )
 
 const timeImport = "time.Time"
@@ -68,7 +69,6 @@ func Parse(filename, database string) ([]*Table, error) {
 	}
 
 	nameOriginals := parseNameOriginal(tables)
-
 	indexNameGen := func(column ...string) string {
 		return strings.Join(column, "_")
 	}

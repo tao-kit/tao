@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 	"manlu.org/tao/tools/taoctl/pkg/env"
 	"manlu.org/tao/tools/taoctl/pkg/protoc"
 	"manlu.org/tao/tools/taoctl/pkg/protocgengo"
@@ -37,11 +37,8 @@ var bins = []bin{
 	},
 }
 
-func Check(ctx *cli.Context) error {
-	install := ctx.Bool("install")
-	force := ctx.Bool("force")
-	verbose := ctx.Bool("verbose")
-	return Prepare(install, force, verbose)
+func check(_ *cobra.Command, _ []string) error {
+	return Prepare(boolVarInstall, boolVarForce, boolVarVerbose)
 }
 
 func Prepare(install, force, verbose bool) error {
@@ -86,7 +83,7 @@ command 'taoctl env check --install' to install it, for details, please execute 
 				install()
 				continue
 			}
-			log.Info("[taoctl-env]: do you want to install %q [y: YES, n: No]", e.name)
+			console.Info("[taoctl-env]: do you want to install %q [y: YES, n: No]", e.name)
 			for {
 				var in string
 				fmt.Scanln(&in)
@@ -97,10 +94,10 @@ command 'taoctl env check --install' to install it, for details, please execute 
 					brk = true
 				case strings.EqualFold(in, "n"):
 					pending = false
-					log.Info("[taoctl-env]: %q installation is ignored", e.name)
+					console.Info("[taoctl-env]: %q installation is ignored", e.name)
 					brk = true
 				default:
-					log.Error("[taoctl-env]: invalid input, input 'y' for yes, 'n' for no")
+					console.Error("[taoctl-env]: invalid input, input 'y' for yes, 'n' for no")
 				}
 				if brk {
 					break

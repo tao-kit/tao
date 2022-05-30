@@ -3,7 +3,6 @@ package generator
 import (
 	"fmt"
 
-	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
@@ -40,7 +39,7 @@ var templates = map[string]string{
 
 // GenTemplates is the entry for command taoctl template,
 // it will create the specified category
-func GenTemplates(_ *cli.Context) error {
+func GenTemplates() error {
 	return pathx.InitTemplates(category, templates)
 }
 

@@ -36,7 +36,7 @@ func TestGenCacheKeys(t *testing.T) {
 	}
 	primariCacheKey, uniqueCacheKey := genCacheKeys(parser.Table{
 		Name: stringx.From("user"),
-		Db:   stringx.From("go_zero"),
+		Db:   stringx.From("go_tao"),
 		PrimaryKey: parser.Primary{
 			Field:         *primaryField,
 			AutoIncrement: true,

@@ -1,13 +1,14 @@
 package ast
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"io/ioutil"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 func Test_ImportCycle(t *testing.T) {

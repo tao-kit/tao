@@ -2,7 +2,7 @@
 
 ## 背景
 
-在业务务开发中，model(dao)数据访问层是一个服务必不可缺的一层，因此数据库访问的CURD也是必须要对外提供的访问方法， 而CURD在tao中就仅存在两种情况
+在业务务开发中，model(dao)数据访问层是一个服务必不可缺的一层，因此数据库访问的CURD也是必须要对外提供的访问方法， 而CURD在go-zero中就仅存在两种情况
 
 * 带缓存model
 * 不带缓存model
@@ -47,7 +47,7 @@ type User struct {
 
 * 命令行生成 在types.go所在文件夹执行命令
     ```shell
-    $ taoctl model mongo -t User -style gozero
+    $ taoctl model mongo -t User -style gotao
     ```
 * 在types.go中添加`//go:generate`，然后点击执行按钮即可生成，内容示例如下：
   ```golang

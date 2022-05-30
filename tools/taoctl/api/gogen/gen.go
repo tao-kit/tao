@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/logrusorgru/aurora"
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 	"manlu.org/tao/core/logx"
 	apiformat "manlu.org/tao/tools/taoctl/api/format"
 	"manlu.org/tao/tools/taoctl/api/parser"
@@ -24,16 +24,30 @@ import (
 
 const tmpFile = "%s-%d"
 
-var tmpDir = path.Join(os.TempDir(), "taoctl")
+var (
+	tmpDir = path.Join(os.TempDir(), "taoctl")
+	// VarStringDir describes the directory.
+	VarStringDir string
+	// VarStringAPI describes the API.
+	VarStringAPI string
+	// VarStringHome describes the go home.
+	VarStringHome string
+	// VarStringRemote describes the remote git repository.
+	VarStringRemote string
+	// VarStringBranch describes the branch.
+	VarStringBranch string
+	// VarStringStyle describes the style of output files.
+	VarStringStyle string
+)
 
 // GoCommand gen go project files from command line
-func GoCommand(c *cli.Context) error {
-	apiFile := c.String("api")
-	dir := c.String("dir")
-	namingStyle := c.String("style")
-	home := c.String("home")
-	remote := c.String("remote")
-	branch := c.String("branch")
+func GoCommand(_ *cobra.Command, _ []string) error {
+	apiFile := VarStringAPI
+	dir := VarStringDir
+	namingStyle := VarStringStyle
+	home := VarStringHome
+	remote := VarStringRemote
+	branch := VarStringBranch
 	if len(remote) > 0 {
 		repo, _ := util.CloneIntoGitHome(remote, branch)
 		if len(repo) > 0 {
@@ -58,6 +72,10 @@ func GoCommand(c *cli.Context) error {
 func DoGenProject(apiFile, dir, style string) error {
 	api, err := parser.Parse(apiFile)
 	if err != nil {
+		return err
+	}
+
+	if err := api.Validate(); err != nil {
 		return err
 	}
 

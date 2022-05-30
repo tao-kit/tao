@@ -35,7 +35,7 @@ type (
 
 // FileNamingFormat is used to format the file name. You can define the format style
 // through the go and zero formatting characters. For example, you can define the snake
-// format as go_zero, and the camel case format as goZero. You can even specify the split
+// format as go_tao, and the camel case format as goZero. You can even specify the split
 // character, such as go#Zero, theoretically any combination can be used, but the prerequisite
 // must meet the naming conventions of each operating system file name.
 // Note: Formatting is based on snake or camel string

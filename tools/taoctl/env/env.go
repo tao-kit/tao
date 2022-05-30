@@ -3,14 +3,13 @@ package env
 import (
 	"fmt"
 
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 	"manlu.org/tao/tools/taoctl/pkg/env"
 )
 
-func Action(c *cli.Context) error {
-	write := c.StringSlice("write")
-	if len(write) > 0 {
-		return env.WriteEnv(write)
+func write(_ *cobra.Command, _ []string) error {
+	if len(sliceVarWriteValue) > 0 {
+		return env.WriteEnv(sliceVarWriteValue)
 	}
 	fmt.Println(env.Print())
 	return nil

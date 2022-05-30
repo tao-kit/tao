@@ -3,12 +3,11 @@ package new
 import (
 	_ "embed"
 	"errors"
+	"html/template"
 	"os"
 	"path/filepath"
 	"strings"
-	"text/template"
 
-	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/api/gogen"
 	conf "manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/util"
@@ -18,17 +17,22 @@ import (
 //go:embed api.tpl
 var apiTemplate string
 
-// CreateServiceCommand fast create service
-func CreateServiceCommand(c *cli.Context) error {
-	args := c.Args()
-	dirName := args.First()
-	if len(dirName) == 0 {
-		dirName = "greet"
-	}
+var (
+	// VarStringHome describes the taoctl home.
+	VarStringHome string
+	// VarStringRemote describes the remote git repository.
+	VarStringRemote string
+	// VarStringBranch describes the git branch.
+	VarStringBranch string
+	// VarStringStyle describes the style of output files.
+	VarStringStyle string
+)
 
-	dirStyle := c.String("style")
-	if len(dirStyle) == 0 {
-		dirStyle = conf.DefaultFormat
+// CreateServiceCommand fast create service
+func CreateServiceCommand(args []string) error {
+	dirName := args[0]
+	if len(VarStringStyle) == 0 {
+		VarStringStyle = conf.DefaultFormat
 	}
 	if strings.Contains(dirName, "-") {
 		return errors.New("api new command service name not support strikethrough, because this will used by function name")
@@ -54,18 +58,15 @@ func CreateServiceCommand(c *cli.Context) error {
 
 	defer fp.Close()
 
-	home := c.String("home")
-	remote := c.String("remote")
-	branch := c.String("branch")
-	if len(remote) > 0 {
-		repo, _ := util.CloneIntoGitHome(remote, branch)
+	if len(VarStringRemote) > 0 {
+		repo, _ := util.CloneIntoGitHome(VarStringRemote, VarStringBranch)
 		if len(repo) > 0 {
-			home = repo
+			VarStringHome = repo
 		}
 	}
 
-	if len(home) > 0 {
-		pathx.RegisterTaoctlHome(home)
+	if len(VarStringHome) > 0 {
+		pathx.RegisterTaoctlHome(VarStringHome)
 	}
 
 	text, err := pathx.LoadTemplate(category, apiTemplateFile, apiTemplate)
@@ -81,6 +82,6 @@ func CreateServiceCommand(c *cli.Context) error {
 		return err
 	}
 
-	err = gogen.DoGenProject(apiFilePath, abs, dirStyle)
+	err = gogen.DoGenProject(apiFilePath, abs, VarStringStyle)
 	return err
 }

@@ -4,7 +4,6 @@ import (
 	"errors"
 	"os"
 
-	"manlu.org/tao/core/jsonx"
 	"manlu.org/tao/tools/taoctl/rpc/execx"
 )
 
@@ -17,16 +16,10 @@ func IsGoMod(workDir string) (bool, error) {
 		return false, err
 	}
 
-	data, err := execx.Run("go list -json -m", workDir)
-	if err != nil {
+	data, err := execx.Run("go list -m -f '{{.GoMod}}'", workDir)
+	if err != nil || len(data) == 0 {
 		return false, nil
 	}
 
-	var m Module
-	err = jsonx.Unmarshal([]byte(data), &m)
-	if err != nil {
-		return false, err
-	}
-
-	return len(m.GoMod) > 0, nil
+	return true, nil
 }

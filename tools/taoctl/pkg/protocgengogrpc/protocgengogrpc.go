@@ -3,8 +3,8 @@ package protocgengogrpc
 import (
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/pkg/taoctl"
 	"manlu.org/tao/tools/taoctl/pkg/golang"
+	"manlu.org/tao/tools/taoctl/pkg/taoctl"
 	"manlu.org/tao/tools/taoctl/rpc/execx"
 	"manlu.org/tao/tools/taoctl/util/env"
 )

@@ -2,13 +2,14 @@ package ast
 
 import (
 	"fmt"
-	"github.com/zeromicro/antlr"
 	"io/ioutil"
-	"manlu.org/tao/tools/taoctl/api/parser/g4/gen/api"
-	"manlu.org/tao/tools/taoctl/util/console"
 	"path"
 	"path/filepath"
 	"strings"
+
+	"github.com/zeromicro/antlr"
+	"manlu.org/tao/tools/taoctl/api/parser/g4/gen/api"
+	"manlu.org/tao/tools/taoctl/util/console"
 )
 
 type (

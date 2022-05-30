@@ -7,19 +7,26 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 	"manlu.org/tao/tools/taoctl/api/parser"
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
+var (
+	// VarStringDir describes a directory.
+	VarStringDir string
+	// VarStringOutput describes an output directory.
+	VarStringOutput string
+)
+
 // DocCommand generate Markdown doc file
-func DocCommand(c *cli.Context) error {
-	dir := c.String("dir")
+func DocCommand(_ *cobra.Command, _ []string) error {
+	dir := VarStringDir
 	if len(dir) == 0 {
 		return errors.New("missing -dir")
 	}
 
-	outputDir := c.String("o")
+	outputDir := VarStringOutput
 	if len(outputDir) == 0 {
 		var err error
 		outputDir, err = os.Getwd()

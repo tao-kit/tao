@@ -5,22 +5,39 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 	"manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/model/mongo/generate"
 	file "manlu.org/tao/tools/taoctl/util"
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
+var (
+	// VarStringSliceType describes a golang data structure name for mongo.
+	VarStringSliceType []string
+	// VarStringDir describes an output directory.
+	VarStringDir string
+	// VarBoolCache describes whether cache is enabled.
+	VarBoolCache bool
+	// VarStringStyle describes the style.
+	VarStringStyle string
+	// VarStringHome describes the taoctl home.
+	VarStringHome string
+	// VarStringRemote describes the remote git repository.
+	VarStringRemote string
+	// VarStringBranch describes the git branch.
+	VarStringBranch string
+)
+
 // Action provides the entry for taoctl mongo code generation.
-func Action(ctx *cli.Context) error {
-	tp := ctx.StringSlice("type")
-	c := ctx.Bool("cache")
-	o := strings.TrimSpace(ctx.String("dir"))
-	s := ctx.String("style")
-	home := ctx.String("home")
-	remote := ctx.String("remote")
-	branch := ctx.String("branch")
+func Action(_ *cobra.Command, _ []string) error {
+	tp := VarStringSliceType
+	c := VarBoolCache
+	o := strings.TrimSpace(VarStringDir)
+	s := VarStringStyle
+	home := VarStringHome
+	remote := VarStringRemote
+	branch := VarStringBranch
 	if len(remote) > 0 {
 		repo, _ := file.CloneIntoGitHome(remote, branch)
 		if len(repo) > 0 {

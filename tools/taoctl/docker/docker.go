@@ -7,11 +7,11 @@ import (
 	"path/filepath"
 	"strings"
 	"text/template"
-	"time"
 
 	"github.com/logrusorgru/aurora"
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 	"manlu.org/tao/tools/taoctl/util"
+	"manlu.org/tao/tools/taoctl/util/env"
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
@@ -19,7 +19,6 @@ const (
 	dockerfileName = "Dockerfile"
 	etcDir         = "etc"
 	yamlEtx        = ".yaml"
-	cstOffset      = 60 * 60 * 8 // 8 hours offset for Chinese Standard Time
 )
 
 // Docker describes a dockerfile
@@ -37,20 +36,20 @@ type Docker struct {
 	Timezone    string
 }
 
-// DockerCommand provides the entry for taoctl docker
-func DockerCommand(c *cli.Context) (err error) {
+// dockerCommand provides the entry for taoctl docker
+func dockerCommand(_ *cobra.Command, _ []string) (err error) {
 	defer func() {
 		if err == nil {
 			fmt.Println(aurora.Green("Done."))
 		}
 	}()
 
-	goFile := c.String("go")
-	home := c.String("home")
-	version := c.String("version")
-	remote := c.String("remote")
-	branch := c.String("branch")
-	timezone := c.String("tz")
+	goFile := varStringGo
+	home := varStringHome
+	version := varStringVersion
+	remote := varStringRemote
+	branch := varStringBranch
+	timezone := varStringTZ
 	if len(remote) > 0 {
 		repo, _ := util.CloneIntoGitHome(remote, branch)
 		if len(repo) > 0 {
@@ -74,8 +73,8 @@ func DockerCommand(c *cli.Context) (err error) {
 		return fmt.Errorf("file %q not found", goFile)
 	}
 
-	base := c.String("base")
-	port := c.Int("port")
+	base := varStringBase
+	port := varIntPort
 	if _, err := os.Stat(etcDir); os.IsNotExist(err) {
 		return generateDockerfile(goFile, base, port, version, timezone)
 	}
@@ -152,13 +151,17 @@ func generateDockerfile(goFile, base string, port int, version, timezone string,
 		builder.WriteString(`, "` + arg + `"`)
 	}
 
-	_, offset := time.Now().Zone()
+	absGoPath, err := filepath.Abs(goFile)
+	if err != nil {
+		return err
+	}
+
 	t := template.Must(template.New("dockerfile").Parse(text))
 	return t.Execute(out, Docker{
-		Chinese:     offset == cstOffset,
+		Chinese:     env.InChina(),
 		GoRelPath:   projPath,
 		GoFile:      goFile,
-		ExeFile:     pathx.FileNameWithoutExt(filepath.Base(goFile)),
+		ExeFile:     filepath.Base(absGoPath),
 		BaseImage:   base,
 		HasPort:     port > 0,
 		Port:        port,

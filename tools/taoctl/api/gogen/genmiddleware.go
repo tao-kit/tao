@@ -2,10 +2,11 @@ package gogen
 
 import (
 	_ "embed"
+	"strings"
+
 	"manlu.org/tao/tools/taoctl/api/spec"
 	"manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/util/format"
-	"strings"
 )
 
 //go:embed middleware.tpl

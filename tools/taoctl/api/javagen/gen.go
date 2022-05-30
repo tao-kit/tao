@@ -6,16 +6,23 @@ import (
 	"strings"
 
 	"github.com/logrusorgru/aurora"
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/tools/taoctl/api/parser"
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
-// JavaCommand the generate java code command entrance
-func JavaCommand(c *cli.Context) error {
-	apiFile := c.String("api")
-	dir := c.String("dir")
+var (
+	// VarStringDir describes a directory.
+	VarStringDir string
+	// VarStringAPI describes an API.
+	VarStringAPI string
+)
+
+// JavaCommand generates java code command entrance.
+func JavaCommand(_ *cobra.Command, _ []string) error {
+	apiFile := VarStringAPI
+	dir := VarStringDir
 	if len(apiFile) == 0 {
 		return errors.New("missing -api")
 	}
@@ -25,6 +32,10 @@ func JavaCommand(c *cli.Context) error {
 
 	api, err := parser.Parse(apiFile)
 	if err != nil {
+		return err
+	}
+
+	if err := api.Validate(); err != nil {
 		return err
 	}
 

@@ -3,7 +3,6 @@ package apigen
 import (
 	"fmt"
 
-	"github.com/urfave/cli"
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
@@ -27,7 +26,7 @@ func Clean() error {
 }
 
 // GenTemplates generates api template files.
-func GenTemplates(_ *cli.Context) error {
+func GenTemplates() error {
 	return pathx.InitTemplates(category, templates)
 }
 

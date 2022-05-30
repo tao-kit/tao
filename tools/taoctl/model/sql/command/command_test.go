@@ -1,6 +1,7 @@
 package command
 
 import (
+	_ "embed"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -15,9 +16,10 @@ import (
 )
 
 var (
-	sql = "-- 用户表 --\nCREATE TABLE `user` (\n  `id` bigint(10) NOT NULL AUTO_INCREMENT,\n  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '用户名称',\n  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '用户密码',\n  `mobile` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '手机号',\n  `gender` char(5) COLLATE utf8mb4_general_ci NOT NULL COMMENT '男｜女｜未公开',\n  `nickname` varchar(255) COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '用户昵称',\n  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,\n  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `name_index` (`name`),\n  UNIQUE KEY `mobile_index` (`mobile`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;\n\n"
+	//go:embed testdata/user.sql
+	sql string
 	cfg = &config.Config{
-		NamingFormat: "gozero",
+		NamingFormat: "gotao",
 	}
 )
 
@@ -25,12 +27,12 @@ func TestFromDDl(t *testing.T) {
 	err := gen.Clean()
 	assert.Nil(t, err)
 
-	err = fromDDL("./user.sql", pathx.MustTempDir(), cfg, true, false, "go_zero")
+	err = fromDDL("./user.sql", pathx.MustTempDir(), cfg, true, false, "go_tao")
 	assert.Equal(t, errNotMatched, err)
 
 	// case dir is not exists
 	unknownDir := filepath.Join(pathx.MustTempDir(), "test", "user.sql")
-	err = fromDDL(unknownDir, pathx.MustTempDir(), cfg, true, false, "go_zero")
+	err = fromDDL(unknownDir, pathx.MustTempDir(), cfg, true, false, "go_tao")
 	assert.True(t, func() bool {
 		switch err.(type) {
 		case *os.PathError:
@@ -41,7 +43,7 @@ func TestFromDDl(t *testing.T) {
 	}())
 
 	// case empty src
-	err = fromDDL("", pathx.MustTempDir(), cfg, true, false, "go_zero")
+	err = fromDDL("", pathx.MustTempDir(), cfg, true, false, "go_tao")
 	if err != nil {
 		assert.Equal(t, "expected path or path globbing patterns, but nothing found", err.Error())
 	}
@@ -80,11 +82,11 @@ func TestFromDDl(t *testing.T) {
 		assert.Nil(t, err)
 	}
 
-	fromDDL("go_zero")
+	fromDDL("go_tao")
 	_ = os.Remove(filename)
 	fromDDL("go-zero")
 	_ = os.Remove(filename)
-	fromDDL("1gozero")
+	fromDDL("1gotao")
 }
 
 func Test_parseTableList(t *testing.T) {

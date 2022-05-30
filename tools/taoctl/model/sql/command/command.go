@@ -6,9 +6,9 @@ import (
 	"strings"
 
 	"github.com/go-sql-driver/mysql"
-	"github.com/urfave/cli"
+	"github.com/spf13/cobra"
 	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stores/pg"
+	pg "manlu.org/tao/core/stores/postgres"
 	"manlu.org/tao/core/stores/sqlx"
 	"manlu.org/tao/tools/taoctl/config"
 	"manlu.org/tao/tools/taoctl/model/sql/gen"
@@ -19,34 +19,48 @@ import (
 	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
-const (
-	flagSrc      = "src"
-	flagDir      = "dir"
-	flagCache    = "cache"
-	flagIdea     = "idea"
-	flagURL      = "url"
-	flagTable    = "table"
-	flagStyle    = "style"
-	flagDatabase = "database"
-	flagSchema   = "schema"
-	flagHome     = "home"
-	flagRemote   = "remote"
-	flagBranch   = "branch"
+var (
+	// VarStringSrc describes the source file of sql.
+	VarStringSrc string
+	// VarStringDir describes the output directory of sql.
+	VarStringDir string
+	// VarBoolCache describes whether the cache is enabled.
+	VarBoolCache bool
+	// VarBoolIdea describes whether is idea or not.
+	VarBoolIdea bool
+	// VarStringURL describes the dsn of the sql.
+	VarStringURL string
+	// VarStringSliceTable describes tables.
+	VarStringSliceTable []string
+	// VarStringTable describes a table of sql.
+	VarStringTable string
+	// VarStringStyle describes the style.
+	VarStringStyle string
+	// VarStringDatabase describes the database.
+	VarStringDatabase string
+	// VarStringSchema describes the schema of postgresql.
+	VarStringSchema string
+	// VarStringHome describes the taoctl home.
+	VarStringHome string
+	// VarStringRemote describes the remote git repository.
+	VarStringRemote string
+	// VarStringBranch describes the git branch of the repository.
+	VarStringBranch string
 )
 
 var errNotMatched = errors.New("sql not matched")
 
 // MysqlDDL generates model code from ddl
-func MysqlDDL(ctx *cli.Context) error {
-	src := ctx.String(flagSrc)
-	dir := ctx.String(flagDir)
-	cache := ctx.Bool(flagCache)
-	idea := ctx.Bool(flagIdea)
-	style := ctx.String(flagStyle)
-	database := ctx.String(flagDatabase)
-	home := ctx.String(flagHome)
-	remote := ctx.String(flagRemote)
-	branch := ctx.String(flagBranch)
+func MysqlDDL(_ *cobra.Command, _ []string) error {
+	src := VarStringSrc
+	dir := VarStringDir
+	cache := VarBoolCache
+	idea := VarBoolIdea
+	style := VarStringStyle
+	database := VarStringDatabase
+	home := VarStringHome
+	remote := VarStringRemote
+	branch := VarStringBranch
 	if len(remote) > 0 {
 		repo, _ := file.CloneIntoGitHome(remote, branch)
 		if len(repo) > 0 {
@@ -65,15 +79,15 @@ func MysqlDDL(ctx *cli.Context) error {
 }
 
 // MySqlDataSource generates model code from datasource
-func MySqlDataSource(ctx *cli.Context) error {
-	url := strings.TrimSpace(ctx.String(flagURL))
-	dir := strings.TrimSpace(ctx.String(flagDir))
-	cache := ctx.Bool(flagCache)
-	idea := ctx.Bool(flagIdea)
-	style := ctx.String(flagStyle)
-	home := ctx.String(flagHome)
-	remote := ctx.String(flagRemote)
-	branch := ctx.String(flagBranch)
+func MySqlDataSource(_ *cobra.Command, _ []string) error {
+	url := strings.TrimSpace(VarStringURL)
+	dir := strings.TrimSpace(VarStringDir)
+	cache := VarBoolCache
+	idea := VarBoolIdea
+	style := VarStringStyle
+	home := VarStringHome
+	remote := VarStringRemote
+	branch := VarStringBranch
 	if len(remote) > 0 {
 		repo, _ := file.CloneIntoGitHome(remote, branch)
 		if len(repo) > 0 {
@@ -84,7 +98,7 @@ func MySqlDataSource(ctx *cli.Context) error {
 		pathx.RegisterTaoctlHome(home)
 	}
 
-	tableValue := ctx.StringSlice(flagTable)
+	tableValue := VarStringSliceTable
 	patterns := parseTableList(tableValue)
 	cfg, err := config.NewConfig(style)
 	if err != nil {
@@ -132,16 +146,16 @@ func parseTableList(tableValue []string) pattern {
 }
 
 // PostgreSqlDataSource generates model code from datasource
-func PostgreSqlDataSource(ctx *cli.Context) error {
-	url := strings.TrimSpace(ctx.String(flagURL))
-	dir := strings.TrimSpace(ctx.String(flagDir))
-	cache := ctx.Bool(flagCache)
-	idea := ctx.Bool(flagIdea)
-	style := ctx.String(flagStyle)
-	schema := ctx.String(flagSchema)
-	home := ctx.String(flagHome)
-	remote := ctx.String(flagRemote)
-	branch := ctx.String(flagBranch)
+func PostgreSqlDataSource(_ *cobra.Command, _ []string) error {
+	url := strings.TrimSpace(VarStringURL)
+	dir := strings.TrimSpace(VarStringDir)
+	cache := VarBoolCache
+	idea := VarBoolIdea
+	style := VarStringStyle
+	schema := VarStringSchema
+	home := VarStringHome
+	remote := VarStringRemote
+	branch := VarStringBranch
 	if len(remote) > 0 {
 		repo, _ := file.CloneIntoGitHome(remote, branch)
 		if len(repo) > 0 {
@@ -156,7 +170,7 @@ func PostgreSqlDataSource(ctx *cli.Context) error {
 		schema = "public"
 	}
 
-	pattern := strings.TrimSpace(ctx.String(flagTable))
+	pattern := strings.TrimSpace(VarStringTable)
 	cfg, err := config.NewConfig(style)
 	if err != nil {
 		return err

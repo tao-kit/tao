@@ -19,7 +19,7 @@ func TestStudentModel(t *testing.T) {
 	var (
 		testTimeValue          = time.Now()
 		testTable              = "`student`"
-		testUpdateName         = "gozero1"
+		testUpdateName         = "gotao1"
 		testRowsAffected int64 = 1
 		testInsertId     int64 = 1
 		class                  = "一年级1班"
@@ -28,7 +28,7 @@ func TestStudentModel(t *testing.T) {
 	var data Student
 	data.Id = testInsertId
 	data.Class = class
-	data.Name = "gozero"
+	data.Name = "gotao"
 	data.Age = sql.NullInt64{
 		Int64: 1,
 		Valid: true,
@@ -148,8 +148,8 @@ func TestUserModel(t *testing.T) {
 	var (
 		testTimeValue          = time.Now()
 		testTable              = "`user`"
-		testUpdateName         = "gozero1"
-		testUser               = "gozero"
+		testUpdateName         = "gotao1"
+		testUser               = "gotao"
 		testPassword           = "test"
 		testMobile             = "test_mobile"
 		testGender             = "男"
@@ -161,7 +161,7 @@ func TestUserModel(t *testing.T) {
 	var data User
 	data.ID = testInsertId
 	data.User = testUser
-	data.Name = "gozero"
+	data.Name = "gotao"
 	data.Password = testPassword
 	data.Mobile = testMobile
 	data.Gender = testGender

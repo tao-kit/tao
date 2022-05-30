@@ -2,6 +2,8 @@ package pathx
 
 import (
 	"bufio"
+	"crypto/md5"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -221,7 +223,7 @@ func LoadTemplate(category, file, builtin string) (string, error) {
 
 // SameFile compares the between path if the same path,
 // it maybe the same path in case case-ignore, such as:
-// /Users/go_zero and /Users/Go_zero, as far as we know,
+// /Users/go_tao and /Users/Go_zero, as far as we know,
 // this case maybe appear on macOS and Windows.
 func SameFile(path1, path2 string) (bool, error) {
 	stat1, err := os.Stat(path1)
@@ -282,4 +284,20 @@ func Copy(src, dest string) error {
 	defer w.Close()
 	_, err = io.Copy(w, f)
 	return err
+}
+
+func Hash(file string) (string, error) {
+	f, err := os.Open(file)
+	if err != nil {
+		return "", err
+	}
+	defer func() {
+		_ = f.Close()
+	}()
+	hash := md5.New()
+	_, err = io.Copy(hash, f)
+	if err != nil {
+		return "", err
+	}
+	return hex.EncodeToString(hash.Sum(nil)), nil
 }

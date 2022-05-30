@@ -7,28 +7,28 @@
 # naming-format
 `namingFormat`可以用于对生成代码的文件名称进行格式化，和日期格式化符（yyyy-MM-dd）类似，在代码生成时可以根据这些配置项的格式化符进行格式化。
 
-## 格式化符(gozero)
-格式化符有`go`,`zero`组成，如常见的三种格式化风格你可以这样编写：
-* lower: `gozero`
-* camel: `goZero`
-* snake: `go_zero`
+## 格式化符(gotao)
+格式化符有`go`,`tao`组成，如常见的三种格式化风格你可以这样编写：
+* lower: `gotao`
+* camel: `goTao`
+* snake: `go_tao`
 
 常见格式化符生成示例
-源字符：welcome_to_go_zero
+源字符：welcome_to_go_tao
 
 | 格式化符   | 格式化结果            | 说明                      |
 |------------|-----------------------|---------------------------|
-| gozero     | welcometogozero       | 小写                      |
-| goZero     | welcomeToGoZero       | 驼峰                      |
-| go_zero    | welcome_to_go_zero    | snake                     |
-| Go#zero    | Welcome#to#go#zero    | #号分割Title类型          |
-| GOZERO     | WELCOMETOGOZERO       | 大写                      |
-| \_go#zero_ | \_welcome#to#go#zero_ | 下划线做前后缀，并且#分割 |
+| gotao     | welcometogotao       | 小写                      |
+| goTao     | welcomeToGoZero       | 驼峰                      |
+| go_tao    | welcome_to_go_tao    | snake                     |
+| Go#tao    | Welcome#to#go#tao    | #号分割Title类型          |
+| GOTAO     | WELCOMETOGOTAO       | 大写                      |
+| \_go#tao_ | \_welcome#to#go#tao_ | 下划线做前后缀，并且#分割 |
 
 错误格式化符示例
 * go
 * gOZero
-* zero
+* tao
 * goZEro
 * goZERo
 * goZeRo
@@ -37,14 +37,14 @@
 # 使用方法
 目前可通过在生成api、rpc、model时通过`--style`参数指定format格式，如：
 ```shell script
-taoctl api go test.api -dir . -style gozero
+taoctl api go test.api -dir . -style gotao
 ```
 ```shell script
- taoctl rpc proto -src test.proto -dir . -style go_zero
+ taoctl rpc proto -src test.proto -dir . -style go_tao
 ```
 ```shell script
 taoctl model mysql datasource -url="" -table="*" -dir ./snake -style GoZero
 ```
 
 # 默认值
-当不指定-style时默认值为`gozero`
+当不指定-style时默认值为`gotao`

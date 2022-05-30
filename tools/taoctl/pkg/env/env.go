@@ -19,12 +19,12 @@ import (
 var taoctlEnv *sortedmap.SortedMap
 
 const (
-	TaoctlOS               = "TAOCTL_OS"
-	TaoctlArch             = "TAOCTL_ARCH"
-	TaoctlHome             = "TAOCTL_HOME"
-	TaoctlDebug            = "TAOCTL_DEBUG"
-	TaoctlCache            = "TAOCTL_CACHE"
-	TaoctlVersion          = "TAOCTL_VERSION"
+	TaoctlOS               = "GOCTL_OS"
+	TaoctlArch             = "GOCTL_ARCH"
+	TaoctlHome             = "GOCTL_HOME"
+	TaoctlDebug            = "GOCTL_DEBUG"
+	TaoctlCache            = "GOCTL_CACHE"
+	TaoctlVersion          = "GOCTL_VERSION"
 	ProtocVersion          = "PROTOC_VERSION"
 	ProtocGenGoVersion     = "PROTOC_GEN_GO_VERSION"
 	ProtocGenGoGRPCVersion = "PROTO_GEN_GO_GRPC_VERSION"
