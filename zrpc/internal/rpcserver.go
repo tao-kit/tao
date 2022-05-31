@@ -3,10 +3,10 @@ package internal
 import (
 	"net"
 
+	"google.golang.org/grpc"
 	"manlu.org/tao/core/proc"
 	"manlu.org/tao/core/stat"
 	"manlu.org/tao/zrpc/internal/serverinterceptors"
-	"google.golang.org/grpc"
 )
 
 type (
@@ -71,7 +71,7 @@ func (s *rpcServer) Start(register RegisterFn) error {
 		WithStreamServerInterceptors(streamInterceptors...))
 	server := grpc.NewServer(options...)
 	register(server)
-	// we need to make sure all others are wrapped up
+	// we need to make sure all others are wrapped up,
 	// so we do graceful stop at shutdown phase instead of wrap up phase
 	waitForCalled := proc.AddWrapUpListener(func() {
 		server.GracefulStop()

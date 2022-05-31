@@ -9,6 +9,7 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/credentials/insecure"
 	"manlu.org/tao/zrpc/internal/balancer/p2c"
 	"manlu.org/tao/zrpc/internal/clientinterceptors"
 	"manlu.org/tao/zrpc/resolver"
@@ -71,7 +72,7 @@ func (c *client) buildDialOptions(opts ...ClientOption) []grpc.DialOption {
 
 	var options []grpc.DialOption
 	if !cliOpts.Secure {
-		options = append([]grpc.DialOption(nil), grpc.WithInsecure())
+		options = append([]grpc.DialOption(nil), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	}
 
 	if !cliOpts.NonBlock {
@@ -127,6 +128,13 @@ func WithDialOption(opt grpc.DialOption) ClientOption {
 func WithNonBlock() ClientOption {
 	return func(options *ClientOptions) {
 		options.NonBlock = true
+	}
+}
+
+// WithStreamClientInterceptor returns a func to customize a ClientOptions with given interceptor.
+func WithStreamClientInterceptor(interceptor grpc.StreamClientInterceptor) ClientOption {
+	return func(options *ClientOptions) {
+		options.DialOptions = append(options.DialOptions, WithStreamClientInterceptors(interceptor))
 	}
 }
 
