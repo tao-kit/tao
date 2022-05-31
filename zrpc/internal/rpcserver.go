@@ -4,6 +4,7 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/health/grpc_health_v1"
 	"manlu.org/tao/core/proc"
 	"manlu.org/tao/core/stat"
 	"manlu.org/tao/zrpc/internal/serverinterceptors"
@@ -71,9 +72,15 @@ func (s *rpcServer) Start(register RegisterFn) error {
 		WithStreamServerInterceptors(streamInterceptors...))
 	server := grpc.NewServer(options...)
 	register(server)
+
+	// register the health check service
+	grpc_health_v1.RegisterHealthServer(server, s.health)
+	s.health.Resume()
+
 	// we need to make sure all others are wrapped up,
 	// so we do graceful stop at shutdown phase instead of wrap up phase
 	waitForCalled := proc.AddWrapUpListener(func() {
+		s.health.Shutdown()
 		server.GracefulStop()
 	})
 	defer waitForCalled()
