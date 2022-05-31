@@ -78,6 +78,7 @@ func format(query string, args ...interface{}) (string, error) {
 					break
 				}
 			}
+
 			if j > i+1 {
 				index, err := strconv.Atoi(query[i+1 : j])
 				if err != nil {

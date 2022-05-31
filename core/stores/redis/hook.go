@@ -2,19 +2,18 @@ package redis
 
 import (
 	"context"
+	red "github.com/go-redis/redis/v8"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	oteltrace "go.opentelemetry.io/otel/trace"
 	"manlu.org/tao/core/errorx"
-	"manlu.org/tao/core/trace"
-	"strings"
-	"time"
-
-	red "github.com/go-redis/redis/v8"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/mapping"
 	"manlu.org/tao/core/timex"
+	"manlu.org/tao/core/trace"
+	"strings"
+	"time"
 )
 
 // spanName is the span name of the redis calls.
