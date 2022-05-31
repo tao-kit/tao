@@ -3,7 +3,6 @@ package mr
 import (
 	"context"
 	"errors"
-	"manlu.org/tao/core/af"
 	"sync"
 	"sync/atomic"
 
@@ -103,21 +102,19 @@ func ForEach(generate GenerateFunc, mapper ForEachFunc, opts ...Option) {
 	options := buildOptions(opts...)
 	panicChan := &onceChan{channel: make(chan interface{})}
 	source := buildSource(generate, panicChan)
-	collector := make(chan interface{}, options.workers)
+	collector := make(chan interface{})
 	done := make(chan lang.PlaceholderType)
 
-	_ = af.Submit(func() {
-		executeMappers(mapperContext{
-			ctx: options.ctx,
-			mapper: func(item interface{}, writer Writer) {
-				mapper(item)
-			},
-			source:    source,
-			panicChan: panicChan,
-			collector: collector,
-			doneChan:  done,
-			workers:   options.workers,
-		})
+	go executeMappers(mapperContext{
+		ctx: options.ctx,
+		mapper: func(item interface{}, _ Writer) {
+			mapper(item)
+		},
+		source:    source,
+		panicChan: panicChan,
+		collector: collector,
+		doneChan:  done,
+		workers:   options.workers,
 	})
 
 	for {
@@ -186,32 +183,28 @@ func mapReduceWithPanicChan(source <-chan interface{}, panicChan *onceChan, mapp
 		finish()
 	})
 
-	_ = af.Submit(func() {
-		func() {
-			defer func() {
-				drain(collector)
-				if r := recover(); r != nil {
-					panicChan.write(r)
-				}
-				finish()
-			}()
-
-			reducer(collector, writer, cancel)
+	go func() {
+		defer func() {
+			drain(collector)
+			if r := recover(); r != nil {
+				panicChan.write(r)
+			}
+			finish()
 		}()
-	})
 
-	_ = af.Submit(func() {
-		executeMappers(mapperContext{
-			ctx: options.ctx,
-			mapper: func(item interface{}, w Writer) {
-				mapper(item, w, cancel)
-			},
-			source:    source,
-			panicChan: panicChan,
-			collector: collector,
-			doneChan:  done,
-			workers:   options.workers,
-		})
+		reducer(collector, writer, cancel)
+	}()
+
+	go executeMappers(mapperContext{
+		ctx: options.ctx,
+		mapper: func(item interface{}, w Writer) {
+			mapper(item, w, cancel)
+		},
+		source:    source,
+		panicChan: panicChan,
+		collector: collector,
+		doneChan:  done,
+		workers:   options.workers,
 	})
 
 	select {
@@ -273,19 +266,16 @@ func buildOptions(opts ...Option) *mapReduceOptions {
 
 func buildSource(generate GenerateFunc, panicChan *onceChan) chan interface{} {
 	source := make(chan interface{})
-
-	_ = af.Submit(func() {
-		func() {
-			defer func() {
-				if r := recover(); r != nil {
-					panicChan.write(r)
-				}
-				close(source)
-			}()
-
-			generate(source)
+	go func() {
+		defer func() {
+			if r := recover(); r != nil {
+				panicChan.write(r)
+			}
+			close(source)
 		}()
-	})
+
+		generate(source)
+	}()
 
 	return source
 }
@@ -322,20 +312,18 @@ func executeMappers(mCtx mapperContext) {
 			}
 
 			wg.Add(1)
-			_ = af.Submit(func() {
-				func() {
-					defer func() {
-						if r := recover(); r != nil {
-							atomic.AddInt32(&failed, 1)
-							mCtx.panicChan.write(r)
-						}
-						wg.Done()
-						<-pool
-					}()
-
-					mCtx.mapper(item, writer)
+			go func() {
+				defer func() {
+					if r := recover(); r != nil {
+						atomic.AddInt32(&failed, 1)
+						mCtx.panicChan.write(r)
+					}
+					wg.Done()
+					<-pool
 				}()
-			})
+
+				mCtx.mapper(item, writer)
+			}()
 		}
 	}
 }
