@@ -5,12 +5,12 @@ import (
 	"encoding/json"
 	"time"
 
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/peer"
 	"manlu.org/tao/core/logx"
 	"manlu.org/tao/core/stat"
 	"manlu.org/tao/core/syncx"
 	"manlu.org/tao/core/timex"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/peer"
 )
 
 const defaultSlowThreshold = time.Millisecond * 500
@@ -26,9 +26,6 @@ func SetSlowThreshold(threshold time.Duration) {
 func UnaryStatInterceptor(metrics *stat.Metrics) grpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo,
 		handler grpc.UnaryHandler) (resp interface{}, err error) {
-		defer handleCrash(func(r interface{}) {
-			err = toPanicError(r)
-		})
 
 		startTime := timex.Now()
 		defer func() {
