@@ -2777,6 +2777,36 @@ func TestUnmarshalJsonReaderComplex(t *testing.T) {
 	assert.Equal(t, "txt", req.Txt)
 }
 
+func TestUnmarshalJsonReaderArrayBool(t *testing.T) {
+	payload := `{"id": false}`
+	var res struct {
+		ID []string `json:"id"`
+	}
+	reader := strings.NewReader(payload)
+	err := UnmarshalJsonReader(reader, &res)
+	assert.NotNil(t, err)
+}
+
+func TestUnmarshalJsonReaderArrayInt(t *testing.T) {
+	payload := `{"id": 123}`
+	var res struct {
+		ID []string `json:"id"`
+	}
+	reader := strings.NewReader(payload)
+	err := UnmarshalJsonReader(reader, &res)
+	assert.NotNil(t, err)
+}
+
+func TestUnmarshalJsonReaderArrayString(t *testing.T) {
+	payload := `{"id": "123"}`
+	var res struct {
+		ID []string `json:"id"`
+	}
+	reader := strings.NewReader(payload)
+	err := UnmarshalJsonReader(reader, &res)
+	assert.NotNil(t, err)
+}
+
 func BenchmarkDefaultValue(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		var a struct {
