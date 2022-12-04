@@ -2,18 +2,18 @@ package env
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
+	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/internal/version"
-	sortedmap "manlu.org/tao/tools/taoctl/pkg/collection"
-	"manlu.org/tao/tools/taoctl/pkg/protoc"
-	"manlu.org/tao/tools/taoctl/pkg/protocgengo"
-	"manlu.org/tao/tools/taoctl/pkg/protocgengogrpc"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/internal/version"
+	sortedmap "github.com/sllt/tao/tools/taoctl/pkg/collection"
+	"github.com/sllt/tao/tools/taoctl/pkg/protoc"
+	"github.com/sllt/tao/tools/taoctl/pkg/protocgengo"
+	"github.com/sllt/tao/tools/taoctl/pkg/protocgengogrpc"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 var taoctlEnv *sortedmap.SortedMap
@@ -94,7 +94,7 @@ func GetOr(key, def string) string {
 
 func readEnv(taoctlHome string) *sortedmap.SortedMap {
 	envFile := filepath.Join(taoctlHome, envFileDir)
-	data, err := ioutil.ReadFile(envFile)
+	data, err := os.ReadFile(envFile)
 	if err != nil {
 		return nil
 	}
@@ -143,5 +143,5 @@ func WriteEnv(kv []string) error {
 		return err
 	}
 	envFile := filepath.Join(defaultTaoctlHome, envFileDir)
-	return ioutil.WriteFile(envFile, []byte(strings.Join(taoctlEnv.Format(), "\n")), 0o777)
+	return os.WriteFile(envFile, []byte(strings.Join(taoctlEnv.Format(), "\n")), 0o777)
 }

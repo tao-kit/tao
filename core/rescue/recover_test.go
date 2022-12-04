@@ -4,8 +4,8 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"github.com/sllt/tao/core/logx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/logx"
 )
 
 func init() {

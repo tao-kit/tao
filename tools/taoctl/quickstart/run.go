@@ -5,8 +5,8 @@ import (
 	"os/exec"
 	"runtime"
 
-	"manlu.org/tao/tools/taoctl/util/env"
-	"manlu.org/tao/tools/taoctl/vars"
+	"github.com/sllt/tao/tools/taoctl/util/env"
+	"github.com/sllt/tao/tools/taoctl/vars"
 )
 
 const goproxy = "GOPROXY=https://goproxy.cn,direct"
@@ -20,7 +20,7 @@ func goModTidy(dir string) int {
 	return execCommand(dir, "go mod tidy", prepareGoProxyEnv()...)
 }
 
-func execCommand(dir string, arg string, envArgs ...string) int {
+func execCommand(dir, arg string, envArgs ...string) int {
 	cmd := exec.Command("sh", "-c", arg)
 	if runtime.GOOS == vars.OsWindows {
 		cmd = exec.Command("cmd.exe", "/c", arg)

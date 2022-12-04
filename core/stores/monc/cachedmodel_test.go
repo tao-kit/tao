@@ -7,12 +7,12 @@ import (
 	"testing"
 
 	"github.com/alicebob/miniredis/v2"
+	"github.com/sllt/tao/core/stores/cache"
+	"github.com/sllt/tao/core/stores/mon"
+	"github.com/sllt/tao/core/stores/redis"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/integration/mtest"
-	"manlu.org/tao/core/stores/cache"
-	"manlu.org/tao/core/stores/mon"
-	"manlu.org/tao/core/stores/redis"
 )
 
 func TestNewModel(t *testing.T) {

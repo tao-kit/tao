@@ -5,10 +5,10 @@ import (
 	"log"
 	"strings"
 
+	"github.com/sllt/tao/core/breaker"
+	"github.com/sllt/tao/core/timex"
 	"go.mongodb.org/mongo-driver/mongo"
 	mopt "go.mongodb.org/mongo-driver/mongo/options"
-	"manlu.org/tao/core/breaker"
-	"manlu.org/tao/core/timex"
 )
 
 const (
@@ -159,7 +159,7 @@ func (m *Model) FindOneAndDelete(ctx context.Context, v, filter interface{},
 }
 
 // FindOneAndReplace finds a single document and replaces it.
-func (m *Model) FindOneAndReplace(ctx context.Context, v, filter interface{}, replacement interface{},
+func (m *Model) FindOneAndReplace(ctx context.Context, v, filter, replacement interface{},
 	opts ...*mopt.FindOneAndReplaceOptions) error {
 	res, err := m.Collection.FindOneAndReplace(ctx, filter, replacement, opts...)
 	if err != nil {
@@ -170,7 +170,7 @@ func (m *Model) FindOneAndReplace(ctx context.Context, v, filter interface{}, re
 }
 
 // FindOneAndUpdate finds a single document and updates it.
-func (m *Model) FindOneAndUpdate(ctx context.Context, v, filter interface{}, update interface{},
+func (m *Model) FindOneAndUpdate(ctx context.Context, v, filter, update interface{},
 	opts ...*mopt.FindOneAndUpdateOptions) error {
 	res, err := m.Collection.FindOneAndUpdate(ctx, filter, update, opts...)
 	if err != nil {

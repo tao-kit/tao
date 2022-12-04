@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/stringx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stringx"
 )
 
 const duration = time.Millisecond * 50

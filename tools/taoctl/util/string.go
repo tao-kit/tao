@@ -3,7 +3,7 @@ package util
 import (
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/util/console"
+	"github.com/sllt/tao/tools/taoctl/util/console"
 )
 
 var goKeyword = map[string]string{

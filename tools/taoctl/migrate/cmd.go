@@ -19,5 +19,5 @@ func init() {
 	Cmd.Flags().BoolVarP(&boolVarVerbose, "verbose", "v",
 		false, "Verbose enables extra logging")
 	Cmd.Flags().StringVar(&stringVarVersion, "version", defaultMigrateVersion,
-		"The target release version of manlu.org/tao to migrate")
+		"The target release version of github.com/sllt/tao to migrate")
 }

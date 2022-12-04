@@ -2,7 +2,8 @@ package metric
 
 import (
 	prom "github.com/prometheus/client_golang/prometheus"
-	"manlu.org/tao/core/proc"
+	"github.com/sllt/tao/core/proc"
+	"github.com/sllt/tao/core/prometheus"
 )
 
 type (
@@ -50,14 +51,26 @@ func NewGaugeVec(cfg *GaugeVecOpts) GaugeVec {
 }
 
 func (gv *promGaugeVec) Inc(labels ...string) {
+	if !prometheus.Enabled() {
+		return
+	}
+
 	gv.gauge.WithLabelValues(labels...).Inc()
 }
 
 func (gv *promGaugeVec) Add(v float64, labels ...string) {
+	if !prometheus.Enabled() {
+		return
+	}
+
 	gv.gauge.WithLabelValues(labels...).Add(v)
 }
 
 func (gv *promGaugeVec) Set(v float64, labels ...string) {
+	if !prometheus.Enabled() {
+		return
+	}
+
 	gv.gauge.WithLabelValues(labels...).Set(v)
 }
 

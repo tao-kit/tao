@@ -9,12 +9,12 @@ import (
 	"text/template"
 	"time"
 
-	"manlu.org/tao/core/collection"
-	"manlu.org/tao/tools/taoctl/api/spec"
-	"manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/util/format"
-	"manlu.org/tao/tools/taoctl/util/pathx"
-	"manlu.org/tao/tools/taoctl/vars"
+	"github.com/sllt/tao/core/collection"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/util/format"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/vars"
 )
 
 const (

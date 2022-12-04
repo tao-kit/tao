@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"path/filepath"
 
-	conf "manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/rpc/parser"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/format"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	conf "github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/rpc/parser"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/format"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 //go:embed svc.tpl

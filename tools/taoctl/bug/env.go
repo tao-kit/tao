@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/internal/version"
+	"github.com/sllt/tao/tools/taoctl/internal/version"
 )
 
 type env map[string]string

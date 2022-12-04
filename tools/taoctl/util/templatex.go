@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"text/template"
 
-	"manlu.org/tao/tools/taoctl/internal/errorx"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/internal/errorx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 const regularPerm = 0o666
@@ -19,7 +19,7 @@ type DefaultTemplate struct {
 	goFmt bool
 }
 
-// With returns a instance of DefaultTemplate
+// With returns an instance of DefaultTemplate
 func With(name string) *DefaultTemplate {
 	return &DefaultTemplate{
 		name: name,

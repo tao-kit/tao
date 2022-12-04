@@ -3,10 +3,12 @@ package service
 import (
 	"log"
 
-	"manlu.org/tao/core/load"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/prometheus"
-	"manlu.org/tao/core/stat"
+	"github.com/sllt/tao/core/load"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/proc"
+	"github.com/sllt/tao/core/prometheus"
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/core/trace"
 )
 
 const (
@@ -29,8 +31,7 @@ type ServiceConf struct {
 	Mode       string            `json:",default=pro,options=dev|test|rt|pre|pro"`
 	MetricsUrl string            `json:",optional"`
 	Prometheus prometheus.Config `json:",optional"`
-	// TODO: enable it in v1.2.2
-	// Telemetry opentelemetry.Config `json:",optional"`
+	Telemetry  trace.Config      `json:",optional"`
 }
 
 // MustSetUp sets up the service, exits on error.
@@ -52,11 +53,13 @@ func (sc ServiceConf) SetUp() error {
 	sc.initMode()
 	prometheus.StartAgent(sc.Prometheus)
 
-	// TODO: enable it in v1.2.2
-	// if len(sc.Telemetry.Name) == 0 {
-	// 	sc.Telemetry.Name = sc.Name
-	// }
-	// opentelemetry.StartAgent(sc.Telemetry)
+	if len(sc.Telemetry.Name) == 0 {
+		sc.Telemetry.Name = sc.Name
+	}
+	trace.StartAgent(sc.Telemetry)
+	proc.AddShutdownListener(func() {
+		trace.StopAgent()
+	})
 
 	if len(sc.MetricsUrl) > 0 {
 		stat.SetReportWriter(stat.NewRemoteWriter(sc.MetricsUrl))

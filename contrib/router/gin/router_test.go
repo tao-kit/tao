@@ -3,10 +3,10 @@ package gin
 import (
 	"bytes"
 	"fmt"
+	"github.com/sllt/tao/rest/httpx"
+	"github.com/sllt/tao/rest/pathvar"
 	"github.com/stretchr/testify/assert"
 	"io"
-	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/pathvar"
 	"net/http"
 	"net/http/httptest"
 	"testing"

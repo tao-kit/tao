@@ -4,9 +4,9 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"github.com/sllt/tao/core/discov/internal"
+	"github.com/sllt/tao/core/stringx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/discov/internal"
-	"manlu.org/tao/core/stringx"
 )
 
 const (

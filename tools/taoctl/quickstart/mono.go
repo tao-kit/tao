@@ -5,10 +5,11 @@ import (
 	"io/ioutil"
 	"path/filepath"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/tools/taoctl/api/gogen"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/tools/taoctl/api/gogen"
+	"github.com/sllt/tao/tools/taoctl/pkg/golang"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 var (
@@ -22,9 +23,11 @@ var (
 	apiEtcContent string
 
 	apiWorkDir string
+	rpcWorkDir string
 )
 
 func initAPIFlags() error {
+	rpcWorkDir = filepath.Join(projectDir, "rpc")
 	apiWorkDir = filepath.Join(projectDir, "api")
 	if err := pathx.MkdirIfNotExist(apiWorkDir); err != nil {
 		return err
@@ -32,7 +35,7 @@ func initAPIFlags() error {
 
 	apiFilename := filepath.Join(apiWorkDir, "greet.api")
 	apiBytes := []byte(apiContent)
-	if err := ioutil.WriteFile(apiFilename, apiBytes, 0666); err != nil {
+	if err := ioutil.WriteFile(apiFilename, apiBytes, 0o666); err != nil {
 		return err
 	}
 
@@ -56,17 +59,38 @@ func (m mono) createAPIProject() {
 	log.Debug(">> Generating quickstart api project...")
 	logx.Must(gogen.GoCommand(nil, nil))
 	etcFile := filepath.Join(apiWorkDir, "etc", "greet.yaml")
-	logx.Must(ioutil.WriteFile(etcFile, []byte(apiEtcContent), 0666))
+	logx.Must(ioutil.WriteFile(etcFile, []byte(apiEtcContent), 0o666))
 	logicFile := filepath.Join(apiWorkDir, "internal", "logic", "pinglogic.go")
+	svcFile := filepath.Join(apiWorkDir, "internal", "svc", "servicecontext.go")
+	configPath := filepath.Join(apiWorkDir, "internal", "config")
+	svcPath := filepath.Join(apiWorkDir, "internal", "svc")
+	typesPath := filepath.Join(apiWorkDir, "internal", "types")
+	svcPkg, err := golang.GetParentPackage(svcPath)
+	logx.Must(err)
+	typesPkg, err := golang.GetParentPackage(typesPath)
+	logx.Must(err)
+	configPkg, err := golang.GetParentPackage(configPath)
+	logx.Must(err)
 
-	logx.Must(util.With("logic").Parse(apiLogicContent).SaveTo(map[string]bool{
-		"callRPC": m.callRPC,
+	var rpcClientPkg string
+	if m.callRPC {
+		rpcClientPath := filepath.Join(rpcWorkDir, "greet")
+		rpcClientPkg, err = golang.GetParentPackage(rpcClientPath)
+		logx.Must(err)
+	}
+
+	logx.Must(util.With("logic").Parse(apiLogicContent).SaveTo(map[string]interface{}{
+		"svcPkg":       svcPkg,
+		"typesPkg":     typesPkg,
+		"rpcClientPkg": rpcClientPkg,
+		"callRPC":      m.callRPC,
 	}, logicFile, true))
 
-	if m.callRPC {
-		svcFile := filepath.Join(apiWorkDir, "internal", "svc", "servicecontext.go")
-		logx.Must(ioutil.WriteFile(svcFile, []byte(svcContent), 0666))
-	}
+	logx.Must(util.With("svc").Parse(svcContent).SaveTo(map[string]interface{}{
+		"rpcClientPkg": rpcClientPkg,
+		"configPkg":    configPkg,
+		"callRPC":      m.callRPC,
+	}, svcFile, true))
 }
 
 func (m mono) start() {

@@ -6,13 +6,14 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
+	"github.com/sllt/tao/core/contextx"
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stringx"
 	"github.com/stretchr/testify/assert"
+	"go.etcd.io/etcd/api/v3/etcdserverpb"
 	"go.etcd.io/etcd/api/v3/mvccpb"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"manlu.org/tao/core/contextx"
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stringx"
 )
 
 var mockLock sync.Mutex
@@ -112,6 +113,7 @@ func TestCluster_Load(t *testing.T) {
 	restore := setMockClient(cli)
 	defer restore()
 	cli.EXPECT().Get(gomock.Any(), "any/", gomock.Any()).Return(&clientv3.GetResponse{
+		Header: &etcdserverpb.ResponseHeader{},
 		Kvs: []*mvccpb.KeyValue{
 			{
 				Key:   []byte("hello"),
@@ -168,7 +170,7 @@ func TestCluster_Watch(t *testing.T) {
 			listener.EXPECT().OnDelete(gomock.Any()).Do(func(_ interface{}) {
 				wg.Done()
 			}).MaxTimes(1)
-			go c.watch(cli, "any")
+			go c.watch(cli, "any", 0)
 			ch <- clientv3.WatchResponse{
 				Events: []*clientv3.Event{
 					{
@@ -212,7 +214,7 @@ func TestClusterWatch_RespFailures(t *testing.T) {
 				ch <- resp
 				close(c.done)
 			}()
-			c.watch(cli, "any")
+			c.watch(cli, "any", 0)
 		})
 	}
 }
@@ -232,7 +234,7 @@ func TestClusterWatch_CloseChan(t *testing.T) {
 		close(ch)
 		close(c.done)
 	}()
-	c.watch(cli, "any")
+	c.watch(cli, "any", 0)
 }
 
 func TestValueOnlyContext(t *testing.T) {

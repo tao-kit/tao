@@ -5,9 +5,9 @@ import (
 	"sort"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/model/sql/parser"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/stringx"
+	"github.com/sllt/tao/tools/taoctl/model/sql/parser"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/stringx"
 )
 
 // Key describes cache key

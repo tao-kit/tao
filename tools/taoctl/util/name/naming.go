@@ -5,7 +5,7 @@ package name
 import (
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/util/stringx"
+	"github.com/sllt/tao/tools/taoctl/util/stringx"
 )
 
 // NamingStyle the type of string

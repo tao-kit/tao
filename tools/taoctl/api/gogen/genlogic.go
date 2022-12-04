@@ -7,12 +7,12 @@ import (
 	"strconv"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/api/parser/g4/gen/api"
-	"manlu.org/tao/tools/taoctl/api/spec"
-	"manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/util/format"
-	"manlu.org/tao/tools/taoctl/util/pathx"
-	"manlu.org/tao/tools/taoctl/vars"
+	"github.com/sllt/tao/tools/taoctl/api/parser/g4/gen/api"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/util/format"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/vars"
 )
 
 //go:embed logic.tpl

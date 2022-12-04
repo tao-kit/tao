@@ -4,9 +4,9 @@ import (
 	"testing"
 
 	"github.com/alicebob/miniredis/v2"
+	"github.com/sllt/tao/core/stores/redis"
+	"github.com/sllt/tao/core/stores/redis/redistest"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stores/redis"
-	"manlu.org/tao/core/stores/redis/redistest"
 )
 
 func TestPeriodLimit_Take(t *testing.T) {

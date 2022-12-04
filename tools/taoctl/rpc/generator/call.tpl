@@ -8,7 +8,7 @@ import (
 	{{.pbPackage}}
 	{{if ne .pbPackage .protoGoPackage}}{{.protoGoPackage}}{{end}}
 
-	"manlu.org/tao/zrpc"
+	"github.com/sllt/tao/zrpc"
 	"google.golang.org/grpc"
 )
 

@@ -7,7 +7,7 @@ import (
 	"text/template"
 
 	"github.com/iancoleman/strcase"
-	"manlu.org/tao/tools/taoctl/api/util"
+	"github.com/sllt/tao/tools/taoctl/api/util"
 )
 
 var funcsMap = template.FuncMap{

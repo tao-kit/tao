@@ -8,12 +8,12 @@ import (
 	"runtime"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/pkg/downloader"
-	"manlu.org/tao/tools/taoctl/pkg/taoctl"
-	"manlu.org/tao/tools/taoctl/rpc/execx"
-	"manlu.org/tao/tools/taoctl/util/env"
-	"manlu.org/tao/tools/taoctl/util/zipx"
-	"manlu.org/tao/tools/taoctl/vars"
+	"github.com/sllt/tao/tools/taoctl/pkg/downloader"
+	"github.com/sllt/tao/tools/taoctl/pkg/taoctl"
+	"github.com/sllt/tao/tools/taoctl/rpc/execx"
+	"github.com/sllt/tao/tools/taoctl/util/env"
+	"github.com/sllt/tao/tools/taoctl/util/zipx"
+	"github.com/sllt/tao/tools/taoctl/vars"
 )
 
 var url = map[string]string{

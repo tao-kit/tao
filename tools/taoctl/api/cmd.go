@@ -1,22 +1,22 @@
 package api
 
 import (
+	"github.com/sllt/tao/tools/taoctl/api/apigen"
+	"github.com/sllt/tao/tools/taoctl/api/dartgen"
+	"github.com/sllt/tao/tools/taoctl/api/docgen"
+	"github.com/sllt/tao/tools/taoctl/api/format"
+	"github.com/sllt/tao/tools/taoctl/api/gogen"
+	"github.com/sllt/tao/tools/taoctl/api/javagen"
+	"github.com/sllt/tao/tools/taoctl/api/ktgen"
+	"github.com/sllt/tao/tools/taoctl/api/new"
+	"github.com/sllt/tao/tools/taoctl/api/tsgen"
+	"github.com/sllt/tao/tools/taoctl/api/validate"
+	"github.com/sllt/tao/tools/taoctl/plugin"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/api/apigen"
-	"manlu.org/tao/tools/taoctl/api/dartgen"
-	"manlu.org/tao/tools/taoctl/api/docgen"
-	"manlu.org/tao/tools/taoctl/api/format"
-	"manlu.org/tao/tools/taoctl/api/gogen"
-	"manlu.org/tao/tools/taoctl/api/javagen"
-	"manlu.org/tao/tools/taoctl/api/ktgen"
-	"manlu.org/tao/tools/taoctl/api/new"
-	"manlu.org/tao/tools/taoctl/api/tsgen"
-	"manlu.org/tao/tools/taoctl/api/validate"
-	"manlu.org/tao/tools/taoctl/plugin"
 )
 
 var (
-	// Cmd describes a api command.
+	// Cmd describes an api command.
 	Cmd = &cobra.Command{
 		Use:   "api",
 		Short: "Generate api related files",
@@ -43,7 +43,7 @@ var (
 
 	goCmd = &cobra.Command{
 		Use:   "go",
-		Short: "Generate go files for provided api in yaml file",
+		Short: "Generate go files for provided api in api file",
 		RunE:  gogen.GoCommand,
 	}
 
@@ -64,9 +64,10 @@ var (
 	}
 
 	javaCmd = &cobra.Command{
-		Use:   "java",
-		Short: "Generate java files for provided api in api file",
-		RunE:  javagen.JavaCommand,
+		Use:    "java",
+		Short:  "Generate java files for provided api in api file",
+		Hidden: true,
+		RunE:   javagen.JavaCommand,
 	}
 
 	ktCmd = &cobra.Command{
@@ -95,9 +96,9 @@ func init() {
 		"higher priority")
 	Cmd.Flags().StringVar(&apigen.VarStringRemote, "remote", "", "The remote git repo of the"+
 		" template, --home and --remote cannot be set at the same time, if they are, --remote has higher"+
-		" priority\n\tThe git repo directory must be consistent with the"+
-		" https://manlu.org/tao-template directory structure")
-	Cmd.Flags().StringVar(&apigen.VarStringBranch, "branch", "master", "The branch of the "+
+		" priority\nThe git repo directory must be consistent with the"+
+		" https://github.com/sllt/tao-template directory structure")
+	Cmd.Flags().StringVar(&apigen.VarStringBranch, "branch", "", "The branch of the "+
 		"remote repo, it does work with --remote")
 
 	dartCmd.Flags().StringVar(&dartgen.VarStringDir, "dir", "", "The target dir")
@@ -122,12 +123,12 @@ func init() {
 		"has higher priority")
 	goCmd.Flags().StringVar(&gogen.VarStringRemote, "remote", "", "The remote git repo "+
 		"of the template, --home and --remote cannot be set at the same time, if they are, --remote"+
-		" has higher priority\n\tThe git repo directory must be consistent with the "+
-		"https://manlu.org/tao-template directory structure")
-	goCmd.Flags().StringVar(&gogen.VarStringBranch, "branch", "master", "The branch of "+
+		" has higher priority\nThe git repo directory must be consistent with the "+
+		"https://github.com/sllt/tao-template directory structure")
+	goCmd.Flags().StringVar(&gogen.VarStringBranch, "branch", "", "The branch of "+
 		"the remote repo, it does work with --remote")
-	goCmd.Flags().StringVar(&gogen.VarStringStyle, "style", "gotao", "The file naming format,"+
-		" see [https://manlu.org/tao/blob/master/tools/taoctl/config/readme.md]")
+	goCmd.Flags().StringVar(&gogen.VarStringStyle, "style", "gozero", "The file naming format,"+
+		" see [https://github.com/sllt/tao/blob/master/tools/taoctl/config/readme.md]")
 
 	javaCmd.Flags().StringVar(&javagen.VarStringDir, "dir", "", "The target dir")
 	javaCmd.Flags().StringVar(&javagen.VarStringAPI, "api", "", "The api file")
@@ -142,17 +143,17 @@ func init() {
 	newCmd.Flags().StringVar(&new.VarStringRemote, "remote", "", "The remote git repo "+
 		"of the template, --home and --remote cannot be set at the same time, if they are, --remote"+
 		" has higher priority\n\tThe git repo directory must be consistent with the "+
-		"https://manlu.org/tao-template directory structure")
-	newCmd.Flags().StringVar(&new.VarStringBranch, "branch", "master", "The branch of "+
+		"https://github.com/sllt/tao-template directory structure")
+	newCmd.Flags().StringVar(&new.VarStringBranch, "branch", "", "The branch of "+
 		"the remote repo, it does work with --remote")
-	newCmd.Flags().StringVar(&new.VarStringStyle, "style", "gotao", "The file naming format,"+
-		" see [https://manlu.org/tao/blob/master/tools/taoctl/config/readme.md]")
+	newCmd.Flags().StringVar(&new.VarStringStyle, "style", "gozero", "The file naming format,"+
+		" see [https://github.com/sllt/tao/blob/master/tools/taoctl/config/readme.md]")
 
 	pluginCmd.Flags().StringVarP(&plugin.VarStringPlugin, "plugin", "p", "", "The plugin file")
 	pluginCmd.Flags().StringVar(&plugin.VarStringDir, "dir", "", "The target dir")
 	pluginCmd.Flags().StringVar(&plugin.VarStringAPI, "api", "", "The api file")
 	pluginCmd.Flags().StringVar(&plugin.VarStringStyle, "style", "",
-		"The file naming format, see [https://manlu.org/tao/tree/master/tools/taoctl/config/readme.md]")
+		"The file naming format, see [https://github.com/sllt/tao/tree/master/tools/taoctl/config/readme.md]")
 
 	tsCmd.Flags().StringVar(&tsgen.VarStringDir, "dir", "", "The target dir")
 	tsCmd.Flags().StringVar(&tsgen.VarStringAPI, "api", "", "The api file")

@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 	"runtime"
@@ -16,14 +16,14 @@ import (
 	"time"
 
 	"github.com/alicebob/miniredis/v2"
+	"github.com/sllt/tao/core/fx"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/core/stores/cache"
+	"github.com/sllt/tao/core/stores/redis"
+	"github.com/sllt/tao/core/stores/redis/redistest"
+	"github.com/sllt/tao/core/stores/sqlx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/fx"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stat"
-	"manlu.org/tao/core/stores/cache"
-	"manlu.org/tao/core/stores/redis"
-	"manlu.org/tao/core/stores/redis/redistest"
-	"manlu.org/tao/core/stores/sqlx"
 )
 
 func init() {
@@ -284,7 +284,7 @@ func TestCachedConn_QueryRowIndex_HasWrongCache(t *testing.T) {
 
 func TestStatCacheFails(t *testing.T) {
 	resetStats()
-	log.SetOutput(ioutil.Discard)
+	log.SetOutput(io.Discard)
 	defer log.SetOutput(os.Stdout)
 
 	r := redis.New("localhost:59999")

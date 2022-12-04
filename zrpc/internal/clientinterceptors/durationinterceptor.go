@@ -5,9 +5,9 @@ import (
 	"path"
 	"time"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/syncx"
-	"manlu.org/tao/core/timex"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/syncx"
+	"github.com/sllt/tao/core/timex"
 	"google.golang.org/grpc"
 )
 

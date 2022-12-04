@@ -1,12 +1,9 @@
-package pg
+package postgres
 
 import (
 	// imports the driver, don't remove this comment, golint requires.
 	_ "github.com/lib/pq"
-)
-
-import (
-	"manlu.org/tao/core/stores/sqlx"
+	"github.com/sllt/tao/core/stores/sqlx"
 )
 
 const postgresDriverName = "postgres"

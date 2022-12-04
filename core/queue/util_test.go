@@ -5,9 +5,9 @@ import (
 	"math"
 	"testing"
 
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/mathx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/mathx"
 )
 
 var (

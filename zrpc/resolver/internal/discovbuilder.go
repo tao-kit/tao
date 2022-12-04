@@ -1,12 +1,12 @@
 package internal
 
 import (
-	"manlu.org/tao/zrpc/resolver/internal/targets"
+	"github.com/sllt/tao/zrpc/resolver/internal/targets"
 	"strings"
 
+	"github.com/sllt/tao/core/discov"
+	"github.com/sllt/tao/core/logx"
 	"google.golang.org/grpc/resolver"
-	"manlu.org/tao/core/discov"
-	"manlu.org/tao/core/logx"
 )
 
 type discovBuilder struct{}

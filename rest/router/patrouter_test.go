@@ -4,15 +4,15 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"manlu.org/tao/rest/internal/header"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
 
+	"github.com/sllt/tao/rest/httpx"
+	"github.com/sllt/tao/rest/internal/header"
+	"github.com/sllt/tao/rest/pathvar"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/pathvar"
 )
 
 const contentLength = "Content-Length"
@@ -47,7 +47,7 @@ func TestPatRouterHandleErrors(t *testing.T) {
 		t.Run(test.method, func(t *testing.T) {
 			router := NewRouter()
 			err := router.Handle(test.method, test.path, nil)
-			assert.Error(t, ErrInvalidMethod, err)
+			assert.Equal(t, test.err, err)
 		})
 	}
 }
@@ -599,7 +599,7 @@ func TestParseWrappedRequest(t *testing.T) {
 }
 
 func TestParseWrappedGetRequestWithJsonHeader(t *testing.T) {
-	r, err := http.NewRequest(http.MethodGet, "http://hello.com/kevin/2017", nil)
+	r, err := http.NewRequest(http.MethodGet, "http://hello.com/kevin/2017", bytes.NewReader(nil))
 	assert.Nil(t, err)
 	r.Header.Set(httpx.ContentType, header.JsonContentType)
 
@@ -632,7 +632,7 @@ func TestParseWrappedGetRequestWithJsonHeader(t *testing.T) {
 }
 
 func TestParseWrappedHeadRequestWithJsonHeader(t *testing.T) {
-	r, err := http.NewRequest(http.MethodHead, "http://hello.com/kevin/2017", nil)
+	r, err := http.NewRequest(http.MethodHead, "http://hello.com/kevin/2017", bytes.NewReader(nil))
 	assert.Nil(t, err)
 	r.Header.Set(httpx.ContentType, header.JsonContentType)
 

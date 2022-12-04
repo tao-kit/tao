@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
+	"github.com/sllt/tao/core/load"
+	"github.com/sllt/tao/core/stat"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/load"
-	"manlu.org/tao/core/stat"
 	"google.golang.org/grpc"
 )
 

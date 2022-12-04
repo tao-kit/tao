@@ -1,25 +1,28 @@
 package cmd
 
 import (
+	_ "embed"
 	"fmt"
 	"os"
 	"runtime"
 	"strings"
+	"text/template"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/sllt/tao/tools/taoctl/api"
+	"github.com/sllt/tao/tools/taoctl/bug"
+	"github.com/sllt/tao/tools/taoctl/docker"
+	"github.com/sllt/tao/tools/taoctl/env"
+	"github.com/sllt/tao/tools/taoctl/internal/version"
+	"github.com/sllt/tao/tools/taoctl/kube"
+	"github.com/sllt/tao/tools/taoctl/migrate"
+	"github.com/sllt/tao/tools/taoctl/model"
+	"github.com/sllt/tao/tools/taoctl/quickstart"
+	"github.com/sllt/tao/tools/taoctl/rpc"
+	"github.com/sllt/tao/tools/taoctl/tpl"
+	"github.com/sllt/tao/tools/taoctl/upgrade"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/api"
-	"manlu.org/tao/tools/taoctl/bug"
-	"manlu.org/tao/tools/taoctl/docker"
-	"manlu.org/tao/tools/taoctl/env"
-	"manlu.org/tao/tools/taoctl/internal/version"
-	"manlu.org/tao/tools/taoctl/kube"
-	"manlu.org/tao/tools/taoctl/migrate"
-	"manlu.org/tao/tools/taoctl/model"
-	"manlu.org/tao/tools/taoctl/quickstart"
-	"manlu.org/tao/tools/taoctl/rpc"
-	"manlu.org/tao/tools/taoctl/tpl"
-	"manlu.org/tao/tools/taoctl/upgrade"
+	"github.com/withfig/autocomplete-tools/integrations/cobra"
 )
 
 const (
@@ -29,11 +32,18 @@ const (
 	assign      = "="
 )
 
-var rootCmd = &cobra.Command{
-	Use:   "taoctl",
-	Short: "A cli tool to generate go-zero code",
-	Long:  "A cli tool to generate api, zrpc, model code",
-}
+var (
+	//go:embed usage.tpl
+	usageTpl string
+
+	rootCmd = &cobra.Command{
+		Use:   "taoctl",
+		Short: "A cli tool to generate go-tao code",
+		Long: "A cli tool to generate api, zrpc, model code\n\n" +
+			"GitHub: https://github.com/sllt/tao\n" +
+			"Site:   https://go-tao.dev",
+	}
+)
 
 // Execute executes the given command
 func Execute() {
@@ -95,9 +105,18 @@ func isBuiltin(name string) bool {
 }
 
 func init() {
+	cobra.AddTemplateFuncs(template.FuncMap{
+		"blue":    blue,
+		"green":   green,
+		"rpadx":   rpadx,
+		"rainbow": rainbow,
+	})
+
 	rootCmd.Version = fmt.Sprintf(
 		"%s %s/%s", version.BuildVersion,
 		runtime.GOOS, runtime.GOARCH)
+
+	rootCmd.SetUsageTemplate(usageTpl)
 	rootCmd.AddCommand(api.Cmd)
 	rootCmd.AddCommand(bug.Cmd)
 	rootCmd.AddCommand(docker.Cmd)
@@ -109,4 +128,5 @@ func init() {
 	rootCmd.AddCommand(rpc.Cmd)
 	rootCmd.AddCommand(tpl.Cmd)
 	rootCmd.AddCommand(upgrade.Cmd)
+	rootCmd.AddCommand(cobracompletefig.CreateCompletionSpecCommand())
 }

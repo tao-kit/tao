@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"manlu.org/tao/core/discov/internal"
+	"github.com/sllt/tao/core/discov/internal"
 )
 
 const (

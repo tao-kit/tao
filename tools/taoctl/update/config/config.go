@@ -1,6 +1,6 @@
 package config
 
-import "manlu.org/tao/core/logx"
+import "github.com/sllt/tao/core/logx"
 
 // Config defines a service configure for taoctl update
 type Config struct {

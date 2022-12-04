@@ -3,8 +3,8 @@ package env
 import (
 	"fmt"
 
+	"github.com/sllt/tao/tools/taoctl/pkg/env"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/pkg/env"
 )
 
 func write(_ *cobra.Command, _ []string) error {

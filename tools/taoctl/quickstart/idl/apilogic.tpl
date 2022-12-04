@@ -3,10 +3,11 @@ package logic
 import (
 	"context"
 
-	"manlu.org/tao/core/logx"
-	"greet/api/internal/svc"
-	"greet/api/internal/types"{{if .callRPC}}
-	"greet/rpc/greet"{{end}}
+	"github.com/sllt/tao/core/logx"
+
+	"{{.svcPkg}}"
+	"{{.typesPkg}}"{{if .callRPC}}
+	"{{.rpcClientPkg}}"{{end}}
 )
 
 type PingLogic struct {

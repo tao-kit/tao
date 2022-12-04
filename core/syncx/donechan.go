@@ -3,7 +3,7 @@ package syncx
 import (
 	"sync"
 
-	"manlu.org/tao/core/lang"
+	"github.com/sllt/tao/core/lang"
 )
 
 // A DoneChan is used as a channel that can be closed multiple times and wait for done.

@@ -1,10 +1,8 @@
 package httpx
 
-import "manlu.org/tao/rest/internal/header"
+import "github.com/sllt/tao/rest/internal/header"
 
 const (
-	// ApplicationJson means application/json.
-	ApplicationJson = "application/json; charset=utf-8"
 	// ContentEncoding means Content-Encoding.
 	ContentEncoding = "Content-Encoding"
 	// ContentSecurity means X-Content-Security.

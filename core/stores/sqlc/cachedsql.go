@@ -5,10 +5,10 @@ import (
 	"database/sql"
 	"time"
 
-	"manlu.org/tao/core/stores/cache"
-	"manlu.org/tao/core/stores/redis"
-	"manlu.org/tao/core/stores/sqlx"
-	"manlu.org/tao/core/syncx"
+	"github.com/sllt/tao/core/stores/cache"
+	"github.com/sllt/tao/core/stores/redis"
+	"github.com/sllt/tao/core/stores/sqlx"
+	"github.com/sllt/tao/core/syncx"
 )
 
 // see doc/sql-cache.md
@@ -97,7 +97,8 @@ func (cc CachedConn) Exec(exec ExecFn, keys ...string) (sql.Result, error) {
 }
 
 // ExecCtx runs given exec on given keys, and returns execution result.
-func (cc CachedConn) ExecCtx(ctx context.Context, exec ExecCtxFn, keys ...string) (sql.Result, error) {
+func (cc CachedConn) ExecCtx(ctx context.Context, exec ExecCtxFn, keys ...string) (
+	sql.Result, error) {
 	res, err := exec(ctx, cc.db)
 	if err != nil {
 		return nil, err

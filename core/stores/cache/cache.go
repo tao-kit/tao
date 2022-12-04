@@ -7,9 +7,9 @@ import (
 	"log"
 	"time"
 
-	"manlu.org/tao/core/errorx"
-	"manlu.org/tao/core/hash"
-	"manlu.org/tao/core/syncx"
+	"github.com/sllt/tao/core/errorx"
+	"github.com/sllt/tao/core/hash"
+	"github.com/sllt/tao/core/syncx"
 )
 
 type (

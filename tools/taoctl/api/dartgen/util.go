@@ -7,8 +7,8 @@ import (
 	"path"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/api/spec"
-	"manlu.org/tao/tools/taoctl/api/util"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/api/util"
 )
 
 func lowCamelCase(s string) string {

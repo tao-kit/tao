@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/globalsign/mgo"
-	"manlu.org/tao/core/breaker"
+	"github.com/sllt/tao/core/breaker"
 )
 
 type (

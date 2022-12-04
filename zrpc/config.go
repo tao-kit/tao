@@ -1,10 +1,10 @@
 package zrpc
 
 import (
-	"manlu.org/tao/core/discov"
-	"manlu.org/tao/core/service"
-	"manlu.org/tao/core/stores/redis"
-	"manlu.org/tao/zrpc/resolver"
+	"github.com/sllt/tao/core/discov"
+	"github.com/sllt/tao/core/service"
+	"github.com/sllt/tao/core/stores/redis"
+	"github.com/sllt/tao/zrpc/resolver"
 )
 
 type (

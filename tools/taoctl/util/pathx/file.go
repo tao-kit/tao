@@ -13,7 +13,7 @@ import (
 	"strings"
 
 	"github.com/logrusorgru/aurora"
-	"manlu.org/tao/tools/taoctl/internal/version"
+	"github.com/sllt/tao/tools/taoctl/internal/version"
 )
 
 // NL defines a new line.
@@ -213,7 +213,7 @@ func LoadTemplate(category, file, builtin string) (string, error) {
 		return builtin, nil
 	}
 
-	content, err := ioutil.ReadFile(file)
+	content, err := os.ReadFile(file)
 	if err != nil {
 		return "", err
 	}
@@ -223,7 +223,7 @@ func LoadTemplate(category, file, builtin string) (string, error) {
 
 // SameFile compares the between path if the same path,
 // it maybe the same path in case case-ignore, such as:
-// /Users/go_tao and /Users/Go_zero, as far as we know,
+// /Users/go_zero and /Users/Go_zero, as far as we know,
 // this case maybe appear on macOS and Windows.
 func SameFile(path1, path2 string) (bool, error) {
 	stat1, err := os.Stat(path1)

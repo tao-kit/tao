@@ -4,11 +4,11 @@ import (
 	"time"
 
 	"github.com/alicebob/miniredis/v2"
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/stores/redis"
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/stores/redis"
 )
 
-// CreateRedis returns a in process redis.Redis.
+// CreateRedis returns an in process redis.Redis.
 func CreateRedis() (r *redis.Redis, clean func(), err error) {
 	mr, err := miniredis.Run()
 	if err != nil {

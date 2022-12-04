@@ -1,13 +1,12 @@
 package generator
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
 
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 func TestGenTemplates(t *testing.T) {
@@ -25,7 +24,7 @@ func TestRevertTemplate(t *testing.T) {
 		return
 	}
 	mainTpl := filepath.Join(fp, mainTemplateFile)
-	data, err := ioutil.ReadFile(mainTpl)
+	data, err := os.ReadFile(mainTpl)
 	if err != nil {
 		return
 	}
@@ -36,12 +35,12 @@ func TestRevertTemplate(t *testing.T) {
 		assert.Equal(t, "test: no such file name", err.Error())
 	}
 
-	err = ioutil.WriteFile(mainTpl, []byte("modify"), os.ModePerm)
+	err = os.WriteFile(mainTpl, []byte("modify"), os.ModePerm)
 	if err != nil {
 		return
 	}
 
-	data, err = ioutil.ReadFile(mainTpl)
+	data, err = os.ReadFile(mainTpl)
 	if err != nil {
 		return
 	}
@@ -50,7 +49,7 @@ func TestRevertTemplate(t *testing.T) {
 	err = RevertTemplate(mainTemplateFile)
 	assert.Nil(t, err)
 
-	data, err = ioutil.ReadFile(mainTpl)
+	data, err = os.ReadFile(mainTpl)
 	if err != nil {
 		return
 	}
@@ -86,12 +85,12 @@ func TestUpdate(t *testing.T) {
 	}
 	mainTpl := filepath.Join(fp, mainTemplateFile)
 
-	err = ioutil.WriteFile(mainTpl, []byte("modify"), os.ModePerm)
+	err = os.WriteFile(mainTpl, []byte("modify"), os.ModePerm)
 	if err != nil {
 		return
 	}
 
-	data, err := ioutil.ReadFile(mainTpl)
+	data, err := os.ReadFile(mainTpl)
 	if err != nil {
 		return
 	}
@@ -99,7 +98,7 @@ func TestUpdate(t *testing.T) {
 
 	assert.Nil(t, Update())
 
-	data, err = ioutil.ReadFile(mainTpl)
+	data, err = os.ReadFile(mainTpl)
 	if err != nil {
 		return
 	}

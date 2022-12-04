@@ -8,8 +8,8 @@ import (
 	"runtime"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/util/env"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/env"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 func CloneIntoGitHome(url, branch string) (dir string, err error) {

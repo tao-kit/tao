@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	"manlu.org/tao/core/stringx"
-	"manlu.org/tao/tools/taoctl/rpc/execx"
+	"github.com/sllt/tao/core/stringx"
+	"github.com/sllt/tao/tools/taoctl/rpc/execx"
 )
 
 var (

@@ -1,7 +1,7 @@
 package ast
 
 import (
-	"manlu.org/tao/tools/taoctl/api/parser/g4/gen/api"
+	"github.com/sllt/tao/tools/taoctl/api/parser/g4/gen/api"
 )
 
 // SyntaxExpr describes syntax for api

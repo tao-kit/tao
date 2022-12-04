@@ -2,17 +2,28 @@ package httpc
 
 import (
 	"context"
-	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/internal/header"
-	"manlu.org/tao/rest/router"
 	"net/http"
 	"net/http/httptest"
+	"net/http/httptrace"
 	"testing"
 
+	ztrace "github.com/sllt/tao/core/trace"
+	"github.com/sllt/tao/rest/httpx"
+	"github.com/sllt/tao/rest/internal/header"
+	"github.com/sllt/tao/rest/router"
 	"github.com/stretchr/testify/assert"
+	"go.opentelemetry.io/otel/trace"
 )
 
 func TestDoRequest(t *testing.T) {
+	ztrace.StartAgent(ztrace.Config{
+		Name:     "go-tao-test",
+		Endpoint: "http://localhost:14268/api/traces",
+		Batcher:  "jaeger",
+		Sampler:  1.0,
+	})
+	defer ztrace.StopAgent()
+
 	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	}))
 	defer svr.Close()
@@ -21,6 +32,8 @@ func TestDoRequest(t *testing.T) {
 	resp, err := DoRequest(req)
 	assert.Nil(t, err)
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	spanContext := trace.SpanContextFromContext(resp.Request.Context())
+	assert.True(t, spanContext.IsValid())
 }
 
 func TestDoRequest_NotFound(t *testing.T) {
@@ -186,4 +199,18 @@ func TestDo_Json(t *testing.T) {
 	}
 	_, err = Do(context.Background(), http.MethodPost, svr.URL+"/nodes/:key", data)
 	assert.NotNil(t, err)
+}
+
+func TestDo_WithClientHttpTrace(t *testing.T) {
+	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
+	defer svr.Close()
+
+	_, err := Do(httptrace.WithClientTrace(context.Background(),
+		&httptrace.ClientTrace{
+			DNSStart: func(info httptrace.DNSStartInfo) {
+				assert.Equal(t, "localhost", info.Host)
+			},
+		}), http.MethodGet, svr.URL, nil)
+	assert.Nil(t, err)
+
 }

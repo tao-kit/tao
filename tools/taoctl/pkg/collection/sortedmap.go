@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/util/stringx"
+	"github.com/sllt/tao/tools/taoctl/util/stringx"
 )
 
 var (
 	ErrInvalidKVExpression = errors.New(`invalid key-value expression`)
-	ErrInvalidKVS          = errors.New("the length of kv must be a even number")
+	ErrInvalidKVS          = errors.New("the length of kv must be an even number")
 )
 
 type KV []interface{}

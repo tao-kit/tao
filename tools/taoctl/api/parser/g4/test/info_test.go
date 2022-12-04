@@ -3,9 +3,9 @@ package test
 import (
 	"testing"
 
+	"github.com/sllt/tao/tools/taoctl/api/parser/g4/ast"
+	"github.com/sllt/tao/tools/taoctl/api/parser/g4/gen/api"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/tools/taoctl/api/parser/g4/ast"
-	"manlu.org/tao/tools/taoctl/api/parser/g4/gen/api"
 )
 
 var infoAccept = func(p *api.ApiParserParser, visitor *ast.ApiVisitor) interface{} {

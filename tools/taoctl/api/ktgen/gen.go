@@ -8,7 +8,7 @@ import (
 	"text/template"
 
 	"github.com/iancoleman/strcase"
-	"manlu.org/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
 )
 
 var (

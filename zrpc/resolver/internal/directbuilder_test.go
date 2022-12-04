@@ -7,10 +7,10 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/mathx"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc/resolver"
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/mathx"
 )
 
 func TestDirectBuilder_Build(t *testing.T) {

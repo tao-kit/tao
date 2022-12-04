@@ -8,7 +8,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"manlu.org/tao/core/logx"
+	"github.com/sllt/tao/core/logx"
 )
 
 const timeFormat = "0102150405"

@@ -1,7 +1,7 @@
 package af
 
 import (
-	"manlu.org/tao/core/syncx"
+	"github.com/sllt/tao/core/syncx"
 	"sync"
 	"sync/atomic"
 	"time"

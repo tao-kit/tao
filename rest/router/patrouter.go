@@ -6,9 +6,9 @@ import (
 	"path"
 	"strings"
 
-	"manlu.org/tao/core/search"
-	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/pathvar"
+	"github.com/sllt/tao/core/search"
+	"github.com/sllt/tao/rest/httpx"
+	"github.com/sllt/tao/rest/pathvar"
 )
 
 const (

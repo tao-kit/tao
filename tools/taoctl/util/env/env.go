@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"manlu.org/tao/tools/taoctl/vars"
+	"github.com/sllt/tao/tools/taoctl/vars"
 )
 
 const (

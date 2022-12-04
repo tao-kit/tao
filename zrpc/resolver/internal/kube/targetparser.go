@@ -2,7 +2,7 @@ package kube
 
 import (
 	"fmt"
-	"manlu.org/tao/zrpc/resolver/internal/targets"
+	"github.com/sllt/tao/zrpc/resolver/internal/targets"
 	"strconv"
 	"strings"
 

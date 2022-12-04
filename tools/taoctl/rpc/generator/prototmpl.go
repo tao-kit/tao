@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
-	"manlu.org/tao/tools/taoctl/util/stringx"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/stringx"
 )
 
 //go:embed rpc.tpl

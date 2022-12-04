@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/sllt/tao/tools/taoctl/internal/version"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/tools/taoctl/internal/version"
 )
 
 func TestGetTemplateDir(t *testing.T) {

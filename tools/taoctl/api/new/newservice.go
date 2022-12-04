@@ -8,10 +8,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/api/gogen"
-	conf "manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/api/gogen"
+	conf "github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 //go:embed api.tpl

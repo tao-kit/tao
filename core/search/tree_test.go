@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/sllt/tao/core/stringx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stringx"
 )
 
 type mockedRoute struct {

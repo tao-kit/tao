@@ -7,10 +7,10 @@ import (
 	"sync"
 	"time"
 
-	"manlu.org/tao/core/mathx"
-	"manlu.org/tao/core/proc"
-	"manlu.org/tao/core/stat"
-	"manlu.org/tao/core/stringx"
+	"github.com/sllt/tao/core/mathx"
+	"github.com/sllt/tao/core/proc"
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/core/stringx"
 )
 
 const (

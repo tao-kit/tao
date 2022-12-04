@@ -3,7 +3,7 @@ package dartgen
 import (
 	"testing"
 
-	"manlu.org/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
 )
 
 func Test_getPropertyFromMember(t *testing.T) {

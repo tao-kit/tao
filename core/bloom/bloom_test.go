@@ -3,8 +3,8 @@ package bloom
 import (
 	"testing"
 
+	"github.com/sllt/tao/core/stores/redis/redistest"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stores/redis/redistest"
 )
 
 func TestRedisBitSet_New_Set_Test(t *testing.T) {

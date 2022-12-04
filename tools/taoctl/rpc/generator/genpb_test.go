@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 func Test_findPbFile(t *testing.T) {

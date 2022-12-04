@@ -4,11 +4,11 @@ import (
 	"context"
 	"database/sql"
 
+	"github.com/sllt/tao/core/trace"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	oteltrace "go.opentelemetry.io/otel/trace"
-	"manlu.org/tao/core/trace"
 )
 
 var sqlAttributeKey = attribute.Key("sql.method")

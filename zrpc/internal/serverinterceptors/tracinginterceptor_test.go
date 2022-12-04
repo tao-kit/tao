@@ -8,8 +8,8 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"github.com/sllt/tao/core/trace"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/trace"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
@@ -27,7 +27,7 @@ func TestUnaryOpenTracingInterceptor_Disable(t *testing.T) {
 
 func TestUnaryOpenTracingInterceptor_Enabled(t *testing.T) {
 	trace.StartAgent(trace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,

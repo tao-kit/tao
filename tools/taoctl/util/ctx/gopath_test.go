@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/sllt/tao/core/stringx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stringx"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 func TestProjectFromGoPath(t *testing.T) {

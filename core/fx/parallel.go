@@ -1,6 +1,6 @@
 package fx
 
-import "manlu.org/tao/core/threading"
+import "github.com/sllt/tao/core/threading"
 
 // Parallel runs fns parallelly and waits for done.
 func Parallel(fns ...func()) {

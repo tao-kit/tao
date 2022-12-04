@@ -5,9 +5,9 @@ import (
 	"strconv"
 	"time"
 
-	"manlu.org/tao/core/metric"
-	"manlu.org/tao/core/prometheus"
-	"manlu.org/tao/core/timex"
+	"github.com/sllt/tao/core/metric"
+	"github.com/sllt/tao/core/prometheus"
+	"github.com/sllt/tao/core/timex"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/status"
 )

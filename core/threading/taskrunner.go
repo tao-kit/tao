@@ -1,8 +1,8 @@
 package threading
 
 import (
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/rescue"
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/rescue"
 )
 
 // A TaskRunner is used to control the concurrency of goroutines.

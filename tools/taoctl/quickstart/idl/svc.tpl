@@ -1,22 +1,22 @@
 package svc
 
 import (
-	"manlu.org/tao/zrpc"
-	"greet/api/internal/config"
-	"greet/rpc/greet"
+	"{{.configPkg}}"{{if .callRPC}}
+	"github.com/sllt/tao/zrpc"
+	"{{.rpcClientPkg}}"{{end}}
 )
 
 type ServiceContext struct {
-	Config   config.Config
-	GreetRpc greet.Greet
+	Config   config.Config{{if .callRPC}}
+	GreetRpc greet.Greet{{end}}
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
-	client := zrpc.MustNewClient(zrpc.RpcClientConf{
+	{{if .callRPC}}client := zrpc.MustNewClient(zrpc.RpcClientConf{
 		Target: "127.0.0.1:8080",
-	})
+	}){{end}}
 	return &ServiceContext{
 		Config:   c,
-		GreetRpc: greet.NewGreet(client),
+		{{if .callRPC}}GreetRpc: greet.NewGreet(client),{{end}}
 	}
 }

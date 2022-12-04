@@ -6,10 +6,10 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/sllt/tao/tools/taoctl/rpc/generator"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/rpc/generator"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 var (
@@ -95,6 +95,7 @@ func ZRPC(_ *cobra.Command, args []string) error {
 	}
 
 	var ctx generator.ZRpcContext
+	ctx.Multiple = VarBoolMultiple
 	ctx.Src = source
 	ctx.GoOutput = goOut
 	ctx.GrpcOutput = grpcOut

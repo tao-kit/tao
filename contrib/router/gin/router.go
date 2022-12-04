@@ -2,8 +2,8 @@ package gin
 
 import (
 	"github.com/gin-gonic/gin"
-	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/pathvar"
+	"github.com/sllt/tao/rest/httpx"
+	"github.com/sllt/tao/rest/pathvar"
 	"net/http"
 	"strings"
 )

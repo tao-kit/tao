@@ -3,7 +3,7 @@ package apigen
 import (
 	"fmt"
 
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 const (

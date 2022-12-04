@@ -2,11 +2,11 @@ package httpc
 
 import (
 	"context"
-	"manlu.org/tao/rest/internal/header"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 
+	"github.com/sllt/tao/rest/internal/header"
 	"github.com/stretchr/testify/assert"
 )
 

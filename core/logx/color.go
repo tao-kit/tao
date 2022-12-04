@@ -3,7 +3,7 @@ package logx
 import (
 	"sync/atomic"
 
-	"manlu.org/tao/core/color"
+	"github.com/sllt/tao/core/color"
 )
 
 // WithColor is a helper function to add color to a string, only in plain encoding.

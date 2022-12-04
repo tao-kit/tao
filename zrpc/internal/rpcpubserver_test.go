@@ -3,8 +3,8 @@ package internal
 import (
 	"testing"
 
+	"github.com/sllt/tao/core/netx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/netx"
 )
 
 func TestFigureOutListenOn(t *testing.T) {

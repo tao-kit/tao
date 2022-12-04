@@ -2,7 +2,7 @@ package logrusx
 
 import (
 	"github.com/sirupsen/logrus"
-	"manlu.org/tao/core/logx"
+	"github.com/sllt/tao/core/logx"
 )
 
 type LogrusWriter struct {

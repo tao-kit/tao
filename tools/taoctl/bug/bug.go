@@ -6,8 +6,8 @@ import (
 	"os/exec"
 	"runtime"
 
+	"github.com/sllt/tao/tools/taoctl/internal/version"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/internal/version"
 )
 
 const (
@@ -33,7 +33,7 @@ func runE(_ *cobra.Command, _ []string) error {
 	env := getEnv()
 	content := fmt.Sprintf(issueTemplate, version.BuildVersion, env.string())
 	content = url.QueryEscape(content)
-	url := fmt.Sprintf("https://manlu.org/tao/issues/new?body=%s", content)
+	url := fmt.Sprintf("https://github.com/sllt/tao/issues/new?body=%s", content)
 
 	goos := runtime.GOOS
 	var cmd string

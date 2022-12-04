@@ -4,7 +4,7 @@ import (
 	"io"
 	"sync"
 
-	"manlu.org/tao/core/errorx"
+	"github.com/sllt/tao/core/errorx"
 )
 
 // A ResourceManager is a manager that used to manage resources.
@@ -23,6 +23,7 @@ func NewResourceManager() *ResourceManager {
 }
 
 // Close closes the manager.
+// Don't use the ResourceManager after Close() called.
 func (manager *ResourceManager) Close() error {
 	manager.lock.Lock()
 	defer manager.lock.Unlock()
@@ -33,6 +34,9 @@ func (manager *ResourceManager) Close() error {
 			be.Add(err)
 		}
 	}
+
+	// release resources to avoid using it later
+	manager.resources = nil
 
 	return be.Err()
 }
@@ -53,8 +57,8 @@ func (manager *ResourceManager) GetResource(key string, create func() (io.Closer
 		}
 
 		manager.lock.Lock()
+		defer manager.lock.Unlock()
 		manager.resources[key] = resource
-		manager.lock.Unlock()
 
 		return resource, nil
 	})

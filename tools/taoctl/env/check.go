@@ -5,12 +5,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/sllt/tao/tools/taoctl/pkg/env"
+	"github.com/sllt/tao/tools/taoctl/pkg/protoc"
+	"github.com/sllt/tao/tools/taoctl/pkg/protocgengo"
+	"github.com/sllt/tao/tools/taoctl/pkg/protocgengogrpc"
+	"github.com/sllt/tao/tools/taoctl/util/console"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/pkg/env"
-	"manlu.org/tao/tools/taoctl/pkg/protoc"
-	"manlu.org/tao/tools/taoctl/pkg/protocgengo"
-	"manlu.org/tao/tools/taoctl/pkg/protocgengogrpc"
-	"manlu.org/tao/tools/taoctl/util/console"
 )
 
 type bin struct {

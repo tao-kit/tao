@@ -3,7 +3,7 @@ package mapping
 import (
 	"io"
 
-	"manlu.org/tao/core/jsonx"
+	"github.com/sllt/tao/core/jsonx"
 )
 
 const jsonTagKey = "json"

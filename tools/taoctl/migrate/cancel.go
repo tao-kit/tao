@@ -8,8 +8,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"manlu.org/tao/core/syncx"
-	"manlu.org/tao/tools/taoctl/util/console"
+	"github.com/sllt/tao/core/syncx"
+	"github.com/sllt/tao/tools/taoctl/util/console"
 )
 
 func cancelOnSignals() {

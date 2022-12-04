@@ -7,19 +7,18 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/sllt/tao/core/stores/cache"
+	"github.com/sllt/tao/core/stores/redis"
+	"github.com/sllt/tao/core/stores/redis/redistest"
+	mocksql "github.com/sllt/tao/tools/taoctl/model/sql/test"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stores/cache"
-	"manlu.org/tao/core/stores/redis"
-	"manlu.org/tao/core/stores/redis/redistest"
-	mocksql "manlu.org/tao/tools/taoctl/model/sql/test"
 )
 
 func TestStudentModel(t *testing.T) {
 	var (
 		testTimeValue          = time.Now()
 		testTable              = "`student`"
-		testUpdateName         = "gotao1"
+		testUpdateName         = "gozero1"
 		testRowsAffected int64 = 1
 		testInsertId     int64 = 1
 		class                  = "一年级1班"
@@ -28,7 +27,7 @@ func TestStudentModel(t *testing.T) {
 	var data Student
 	data.Id = testInsertId
 	data.Class = class
-	data.Name = "gotao"
+	data.Name = "gozero"
 	data.Age = sql.NullInt64{
 		Int64: 1,
 		Valid: true,
@@ -148,8 +147,8 @@ func TestUserModel(t *testing.T) {
 	var (
 		testTimeValue          = time.Now()
 		testTable              = "`user`"
-		testUpdateName         = "gotao1"
-		testUser               = "gotao"
+		testUpdateName         = "gozero1"
+		testUser               = "gozero"
 		testPassword           = "test"
 		testMobile             = "test_mobile"
 		testGender             = "男"
@@ -161,7 +160,7 @@ func TestUserModel(t *testing.T) {
 	var data User
 	data.ID = testInsertId
 	data.User = testUser
-	data.Name = "gotao"
+	data.Name = "gozero"
 	data.Password = testPassword
 	data.Mobile = testMobile
 	data.Gender = testGender

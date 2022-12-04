@@ -1,9 +1,9 @@
 package main
 
 import (
-	"manlu.org/tao/core/load"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/tools/taoctl/cmd"
+	"github.com/sllt/tao/core/load"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/tools/taoctl/cmd"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"manlu.org/tao/tools/taoctl/plugin"
+	"github.com/sllt/tao/tools/taoctl/plugin"
 )
 
 func main() {

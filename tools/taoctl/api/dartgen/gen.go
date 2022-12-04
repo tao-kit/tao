@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/tools/taoctl/api/parser"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/tools/taoctl/api/parser"
 )
 
 var (
@@ -35,7 +35,7 @@ func DartCommand(_ *cobra.Command, _ []string) error {
 	}
 	if len(hostname) == 0 {
 		fmt.Println("you could use '-hostname' flag to specify your server hostname")
-		hostname = "go-zero.dev"
+		hostname = "go-tao.dev"
 	}
 
 	api, err := parser.Parse(apiFile)

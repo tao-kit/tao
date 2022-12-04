@@ -4,12 +4,11 @@ import (
 	"container/list"
 	"errors"
 	"fmt"
-	"manlu.org/tao/core/af"
 	"time"
 
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/threading"
-	"manlu.org/tao/core/timex"
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/threading"
+	"github.com/sllt/tao/core/timex"
 )
 
 const drainWorkers = 8
@@ -66,14 +65,15 @@ type (
 // NewTimingWheel returns a TimingWheel.
 func NewTimingWheel(interval time.Duration, numSlots int, execute Execute) (*TimingWheel, error) {
 	if interval <= 0 || numSlots <= 0 || execute == nil {
-		return nil, fmt.Errorf("interval: %v, slots: %d, execute: %p", interval, numSlots, execute)
+		return nil, fmt.Errorf("interval: %v, slots: %d, execute: %p",
+			interval, numSlots, execute)
 	}
 
 	return newTimingWheelWithClock(interval, numSlots, execute, timex.NewTicker(interval))
 }
 
-func newTimingWheelWithClock(interval time.Duration, numSlots int, execute Execute, ticker timex.Ticker) (
-	*TimingWheel, error) {
+func newTimingWheelWithClock(interval time.Duration, numSlots int, execute Execute,
+	ticker timex.Ticker) (*TimingWheel, error) {
 	tw := &TimingWheel{
 		interval:      interval,
 		ticker:        ticker,
@@ -90,10 +90,7 @@ func newTimingWheelWithClock(interval time.Duration, numSlots int, execute Execu
 	}
 
 	tw.initSlots()
-
-	af.Submit(func() {
-		tw.run()
-	})
+	go tw.run()
 
 	return tw, nil
 }
@@ -159,7 +156,7 @@ func (tw *TimingWheel) SetTimer(key, value interface{}, delay time.Duration) err
 	}
 }
 
-// Stop stops tw.
+// Stop stops tw. No more actions after stopping a TimingWheel.
 func (tw *TimingWheel) Stop() {
 	close(tw.stopChannel)
 }
@@ -270,13 +267,13 @@ func (tw *TimingWheel) runTasks(tasks []timingTask) {
 		return
 	}
 
-	_ = af.Submit(func() {
+	go func() {
 		for i := range tasks {
 			threading.RunSafe(func() {
 				tw.execute(tasks[i].key, tasks[i].value)
 			})
 		}
-	})
+	}()
 }
 
 func (tw *TimingWheel) scanAndRunTasks(l *list.List) {

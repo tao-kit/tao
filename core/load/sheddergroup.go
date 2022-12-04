@@ -3,7 +3,7 @@ package load
 import (
 	"io"
 
-	"manlu.org/tao/core/syncx"
+	"github.com/sllt/tao/core/syncx"
 )
 
 // A ShedderGroup is a manager to manage key based shedders.

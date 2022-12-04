@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"manlu.org/tao/core/collection"
-	"manlu.org/tao/core/stores/redis"
+	"github.com/sllt/tao/core/collection"
+	"github.com/sllt/tao/core/stores/redis"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"

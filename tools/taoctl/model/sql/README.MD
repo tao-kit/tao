@@ -1,6 +1,6 @@
 # Taoctl Model
 
-taoctl model 为go-zero下的工具模块中的组件之一，目前支持识别mysql ddl进行model层代码生成，通过命令行或者idea插件（即将支持）可以有选择地生成带redis cache或者不带redis cache的代码逻辑。
+taoctl model 为go-tao下的工具模块中的组件之一，目前支持识别mysql ddl进行model层代码生成，通过命令行或者idea插件（即将支持）可以有选择地生成带redis cache或者不带redis cache的代码逻辑。
 
 ## 快速开始
 
@@ -35,16 +35,16 @@ taoctl model 为go-zero下的工具模块中的组件之一，目前支持识别
     	"fmt"
     	"strings"
     	"time"
-    
-    	"manlu.org/tao/core/stores/cache"
-    	"manlu.org/tao/core/stores/sqlc"
-    	"manlu.org/tao/core/stores/sqlx"
-    	"manlu.org/tao/core/stringx"
-    	"manlu.org/tao/tools/taoctl/model/sql/builderx"
+        
+        "github.com/sllt/tao/core/stores/builder"
+    	"github.com/sllt/tao/core/stores/cache"
+    	"github.com/sllt/tao/core/stores/sqlc"
+    	"github.com/sllt/tao/core/stores/sqlx"
+    	"github.com/sllt/tao/core/stringx"
     )
     
     var (
-    	userFieldNames          = builderx.FieldNames(&User{})
+    	userFieldNames          = builder.FieldNames(&User{})
     	userRows                = strings.Join(userFieldNames, ",")
     	userRowsExpectAutoSet   = strings.Join(stringx.Remove(userFieldNames, "id", "create_time", "update_time"), ",")
     	userRowsWithPlaceHolder = strings.Join(stringx.Remove(userFieldNames, "id", "create_time", "update_time"), "=?,") + "=?"
@@ -261,7 +261,7 @@ OPTIONS:
     OPTIONS:
        --src value, -s value  the path or path globbing patterns of the ddl
        --dir value, -d value  the target dir
-       --style value          the file naming format, see [https://manlu.org/tao/tree/master/tools/taoctl/config/readme.md]
+       --style value          the file naming format, see [https://github.com/sllt/tao/tree/master/tools/taoctl/config/readme.md]
        --cache, -c            generate code with cache [optional]
        --idea                 for idea plugin [optional]
        --database, -db        the name of database [optional]
@@ -287,7 +287,7 @@ OPTIONS:
        --table value, -t value  the table or table globbing patterns in the database
        --cache, -c              generate code with cache [optional]
        --dir value, -d value    the target dir
-       --style value            the file naming format, see [https://manlu.org/tao/tree/master/tools/taoctl/config/readme.md]
+       --style value            the file naming format, see [https://github.com/sllt/tao/tree/master/tools/taoctl/config/readme.md]
        --idea                   for idea plugin [optional]
 
 

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/proc"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/proc"
 )
 
 // StartOption defines the method to customize http.Server.
@@ -39,7 +39,7 @@ func start(host string, port int, handler http.Handler, run func(svr *http.Serve
 	}
 
 	waitForCalled := proc.AddWrapUpListener(func() {
-		if e := server.Shutdown(context.Background()); err != nil {
+		if e := server.Shutdown(context.Background()); e != nil {
 			logx.Error(e)
 		}
 	})

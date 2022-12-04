@@ -2,15 +2,15 @@ package main
 
 import (
 	"flag"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"path"
 
-	"manlu.org/tao/core/conf"
-	"manlu.org/tao/core/hash"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/tools/taoctl/update/config"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/core/conf"
+	"github.com/sllt/tao/core/hash"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/tools/taoctl/update/config"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 const (
@@ -28,7 +28,7 @@ func forChksumHandler(file string, next http.Handler) http.Handler {
 			return
 		}
 
-		content, err := ioutil.ReadFile(file)
+		content, err := os.ReadFile(file)
 		if err != nil {
 			logx.Error(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)

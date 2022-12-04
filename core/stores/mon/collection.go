@@ -5,12 +5,12 @@ import (
 	"encoding/json"
 	"time"
 
+	"github.com/sllt/tao/core/breaker"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/timex"
 	"go.mongodb.org/mongo-driver/mongo"
 	mopt "go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/x/mongo/driver/session"
-	"manlu.org/tao/core/breaker"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/timex"
 )
 
 const (
@@ -83,12 +83,12 @@ type (
 		// FindOneAndReplace returns at most one document that matches the filter. If the filter
 		// matches multiple documents, FindOneAndReplace returns the first document in the
 		// collection that matches the filter.
-		FindOneAndReplace(ctx context.Context, filter interface{}, replacement interface{},
+		FindOneAndReplace(ctx context.Context, filter, replacement interface{},
 			opts ...*mopt.FindOneAndReplaceOptions) (*mongo.SingleResult, error)
 		// FindOneAndUpdate returns at most one document that matches the filter. If the filter
 		// matches multiple documents, FindOneAndUpdate returns the first document in the
 		// collection that matches the filter.
-		FindOneAndUpdate(ctx context.Context, filter interface{}, update interface{},
+		FindOneAndUpdate(ctx context.Context, filter, update interface{},
 			opts ...*mopt.FindOneAndUpdateOptions) (*mongo.SingleResult, error)
 		// Indexes returns the index view for this collection.
 		Indexes() mongo.IndexView
@@ -99,16 +99,16 @@ type (
 		InsertOne(ctx context.Context, document interface{}, opts ...*mopt.InsertOneOptions) (
 			*mongo.InsertOneResult, error)
 		// ReplaceOne replaces at most one document that matches the filter.
-		ReplaceOne(ctx context.Context, filter interface{}, replacement interface{},
+		ReplaceOne(ctx context.Context, filter, replacement interface{},
 			opts ...*mopt.ReplaceOptions) (*mongo.UpdateResult, error)
 		// UpdateByID updates a single document matching the provided filter.
-		UpdateByID(ctx context.Context, id interface{}, update interface{},
+		UpdateByID(ctx context.Context, id, update interface{},
 			opts ...*mopt.UpdateOptions) (*mongo.UpdateResult, error)
 		// UpdateMany updates the provided documents.
-		UpdateMany(ctx context.Context, filter interface{}, update interface{},
+		UpdateMany(ctx context.Context, filter, update interface{},
 			opts ...*mopt.UpdateOptions) (*mongo.UpdateResult, error)
 		// UpdateOne updates a single document matching the provided filter.
-		UpdateOne(ctx context.Context, filter interface{}, update interface{},
+		UpdateOne(ctx context.Context, filter, update interface{},
 			opts ...*mopt.UpdateOptions) (*mongo.UpdateResult, error)
 		// Watch returns a change stream cursor used to receive notifications of changes to the collection.
 		Watch(ctx context.Context, pipeline interface{}, opts ...*mopt.ChangeStreamOptions) (
@@ -359,7 +359,7 @@ func (c *decoratedCollection) FindOneAndReplace(ctx context.Context, filter inte
 	return
 }
 
-func (c *decoratedCollection) FindOneAndUpdate(ctx context.Context, filter interface{}, update interface{},
+func (c *decoratedCollection) FindOneAndUpdate(ctx context.Context, filter, update interface{},
 	opts ...*mopt.FindOneAndUpdateOptions) (res *mongo.SingleResult, err error) {
 	ctx, span := startSpan(ctx, findOneAndUpdate)
 	defer func() {
@@ -420,7 +420,7 @@ func (c *decoratedCollection) InsertOne(ctx context.Context, document interface{
 	return
 }
 
-func (c *decoratedCollection) ReplaceOne(ctx context.Context, filter interface{}, replacement interface{},
+func (c *decoratedCollection) ReplaceOne(ctx context.Context, filter, replacement interface{},
 	opts ...*mopt.ReplaceOptions) (res *mongo.UpdateResult, err error) {
 	ctx, span := startSpan(ctx, replaceOne)
 	defer func() {
@@ -440,7 +440,7 @@ func (c *decoratedCollection) ReplaceOne(ctx context.Context, filter interface{}
 	return
 }
 
-func (c *decoratedCollection) UpdateByID(ctx context.Context, id interface{}, update interface{},
+func (c *decoratedCollection) UpdateByID(ctx context.Context, id, update interface{},
 	opts ...*mopt.UpdateOptions) (res *mongo.UpdateResult, err error) {
 	ctx, span := startSpan(ctx, updateByID)
 	defer func() {
@@ -460,7 +460,7 @@ func (c *decoratedCollection) UpdateByID(ctx context.Context, id interface{}, up
 	return
 }
 
-func (c *decoratedCollection) UpdateMany(ctx context.Context, filter interface{}, update interface{},
+func (c *decoratedCollection) UpdateMany(ctx context.Context, filter, update interface{},
 	opts ...*mopt.UpdateOptions) (res *mongo.UpdateResult, err error) {
 	ctx, span := startSpan(ctx, updateMany)
 	defer func() {
@@ -480,7 +480,7 @@ func (c *decoratedCollection) UpdateMany(ctx context.Context, filter interface{}
 	return
 }
 
-func (c *decoratedCollection) UpdateOne(ctx context.Context, filter interface{}, update interface{},
+func (c *decoratedCollection) UpdateOne(ctx context.Context, filter, update interface{},
 	opts ...*mopt.UpdateOptions) (res *mongo.UpdateResult, err error) {
 	ctx, span := startSpan(ctx, updateOne)
 	defer func() {
@@ -500,14 +500,28 @@ func (c *decoratedCollection) UpdateOne(ctx context.Context, filter interface{},
 	return
 }
 
-func (c *decoratedCollection) logDuration(ctx context.Context, method string, startTime time.Duration, err error,
-	docs ...interface{}) {
+func (c *decoratedCollection) logDuration(ctx context.Context, method string,
+	startTime time.Duration, err error, docs ...interface{}) {
 	duration := timex.Since(startTime)
 	logger := logx.WithContext(ctx).WithDuration(duration)
 
-	content, e := json.Marshal(docs)
-	if e != nil {
-		logger.Error(err)
+	content, jerr := json.Marshal(docs)
+	// jerr should not be non-nil, but we don't care much on this,
+	// if non-nil, we just log without docs.
+	if jerr != nil {
+		if err != nil {
+			if duration > slowThreshold.Load() {
+				logger.Slowf("[MONGO] mongo(%s) - slowcall - %s - fail(%s)", c.name, method, err.Error())
+			} else {
+				logger.Infof("mongo(%s) - %s - fail(%s)", c.name, method, err.Error())
+			}
+		} else {
+			if duration > slowThreshold.Load() {
+				logger.Slowf("[MONGO] mongo(%s) - slowcall - %s - ok", c.name, method)
+			} else {
+				logger.Infof("mongo(%s) - %s - ok", c.name, method)
+			}
+		}
 	} else if err != nil {
 		if duration > slowThreshold.Load() {
 			logger.Slowf("[MONGO] mongo(%s) - slowcall - %s - fail(%s) - %s",

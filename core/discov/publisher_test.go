@@ -7,12 +7,12 @@ import (
 	"time"
 
 	"github.com/golang/mock/gomock"
+	"github.com/sllt/tao/core/discov/internal"
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stringx"
 	"github.com/stretchr/testify/assert"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"manlu.org/tao/core/discov/internal"
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stringx"
 )
 
 func init() {

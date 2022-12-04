@@ -3,8 +3,8 @@ package serverinterceptors
 import (
 	"context"
 
-	"manlu.org/tao/core/breaker"
-	"manlu.org/tao/zrpc/internal/codes"
+	"github.com/sllt/tao/core/breaker"
+	"github.com/sllt/tao/zrpc/internal/codes"
 	"google.golang.org/grpc"
 )
 

@@ -9,14 +9,14 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/discov"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/zrpc/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/grpc/test/bufconn"
-	"manlu.org/tao/core/discov"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/zrpc/internal/mock"
 )
 
 func init() {

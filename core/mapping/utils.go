@@ -10,11 +10,14 @@ import (
 	"strings"
 	"sync"
 
-	"manlu.org/tao/core/stringx"
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/stringx"
 )
 
 const (
 	defaultOption      = "default"
+	envOption          = "env"
+	inheritOption      = "inherit"
 	stringOption       = "string"
 	optionalOption     = "optional"
 	optionsOption      = "options"
@@ -62,22 +65,7 @@ func Deref(t reflect.Type) reflect.Type {
 
 // Repr returns the string representation of v.
 func Repr(v interface{}) string {
-	if v == nil {
-		return ""
-	}
-
-	// if func (v *Type) String() string, we can't use Elem()
-	switch vt := v.(type) {
-	case fmt.Stringer:
-		return vt.String()
-	}
-
-	val := reflect.ValueOf(v)
-	if val.Kind() == reflect.Ptr && !val.IsNil() {
-		val = val.Elem()
-	}
-
-	return reprOfValue(val)
+	return lang.Repr(v)
 }
 
 // ValidatePtr validates v if it's a valid pointer.
@@ -141,6 +129,23 @@ func doParseKeyAndOptions(field reflect.StructField, value string) (string, *fie
 	}
 
 	return key, &fieldOpts, nil
+}
+
+// ensureValue ensures nested members not to be nil.
+// If pointer value is nil, set to a new value.
+func ensureValue(v reflect.Value) reflect.Value {
+	for {
+		if v.Kind() != reflect.Ptr {
+			break
+		}
+
+		if v.IsNil() {
+			v.Set(reflect.New(v.Type().Elem()))
+		}
+		v = v.Elem()
+	}
+
+	return v
 }
 
 func implicitValueRequiredStruct(tag string, tp reflect.Type) (bool, error) {
@@ -294,6 +299,20 @@ func parseNumberRange(str string) (*numberRange, error) {
 		right = math.MaxFloat64
 	}
 
+	if left > right {
+		return nil, errNumberRange
+	}
+
+	// [2:2] valid
+	// [2:2) invalid
+	// (2:2] invalid
+	// (2:2) invalid
+	if left == right {
+		if !leftInclude || !rightInclude {
+			return nil, errNumberRange
+		}
+	}
+
 	return &numberRange{
 		left:         left,
 		leftInclude:  leftInclude,
@@ -304,6 +323,8 @@ func parseNumberRange(str string) (*numberRange, error) {
 
 func parseOption(fieldOpts *fieldOptions, fieldName, option string) error {
 	switch {
+	case option == inheritOption:
+		fieldOpts.Inherit = true
 	case option == stringOption:
 		fieldOpts.FromString = true
 	case strings.HasPrefix(option, optionalOption):
@@ -320,26 +341,33 @@ func parseOption(fieldOpts *fieldOptions, fieldName, option string) error {
 	case option == optionalOption:
 		fieldOpts.Optional = true
 	case strings.HasPrefix(option, optionsOption):
-		segs := strings.Split(option, equalToken)
-		if len(segs) != 2 {
-			return fmt.Errorf("field %s has wrong options", fieldName)
+		val, err := parseProperty(fieldName, optionsOption, option)
+		if err != nil {
+			return err
 		}
 
-		fieldOpts.Options = parseOptions(segs[1])
+		fieldOpts.Options = parseOptions(val)
 	case strings.HasPrefix(option, defaultOption):
-		segs := strings.Split(option, equalToken)
-		if len(segs) != 2 {
-			return fmt.Errorf("field %s has wrong default option", fieldName)
+		val, err := parseProperty(fieldName, defaultOption, option)
+		if err != nil {
+			return err
 		}
 
-		fieldOpts.Default = strings.TrimSpace(segs[1])
+		fieldOpts.Default = val
+	case strings.HasPrefix(option, envOption):
+		val, err := parseProperty(fieldName, envOption, option)
+		if err != nil {
+			return err
+		}
+
+		fieldOpts.EnvVar = val
 	case strings.HasPrefix(option, rangeOption):
-		segs := strings.Split(option, equalToken)
-		if len(segs) != 2 {
-			return fmt.Errorf("field %s has wrong range", fieldName)
+		val, err := parseProperty(fieldName, rangeOption, option)
+		if err != nil {
+			return err
 		}
 
-		nr, err := parseNumberRange(segs[1])
+		nr, err := parseNumberRange(val)
 		if err != nil {
 			return err
 		}
@@ -362,6 +390,15 @@ func parseOptions(val string) []string {
 	}
 
 	return strings.Split(val, optionSeparator)
+}
+
+func parseProperty(field, tag, val string) (string, error) {
+	segs := strings.Split(val, equalToken)
+	if len(segs) != 2 {
+		return "", fmt.Errorf("field %s has wrong %s", field, tag)
+	}
+
+	return strings.TrimSpace(segs[1]), nil
 }
 
 func parseSegments(val string) []string {
@@ -413,47 +450,6 @@ func parseSegments(val string) []string {
 	return segments
 }
 
-func reprOfValue(val reflect.Value) string {
-	switch vt := val.Interface().(type) {
-	case bool:
-		return strconv.FormatBool(vt)
-	case error:
-		return vt.Error()
-	case float32:
-		return strconv.FormatFloat(float64(vt), 'f', -1, 32)
-	case float64:
-		return strconv.FormatFloat(vt, 'f', -1, 64)
-	case fmt.Stringer:
-		return vt.String()
-	case int:
-		return strconv.Itoa(vt)
-	case int8:
-		return strconv.Itoa(int(vt))
-	case int16:
-		return strconv.Itoa(int(vt))
-	case int32:
-		return strconv.Itoa(int(vt))
-	case int64:
-		return strconv.FormatInt(vt, 10)
-	case string:
-		return vt
-	case uint:
-		return strconv.FormatUint(uint64(vt), 10)
-	case uint8:
-		return strconv.FormatUint(uint64(vt), 10)
-	case uint16:
-		return strconv.FormatUint(uint64(vt), 10)
-	case uint32:
-		return strconv.FormatUint(uint64(vt), 10)
-	case uint64:
-		return strconv.FormatUint(vt, 10)
-	case []byte:
-		return string(vt)
-	default:
-		return fmt.Sprint(val.Interface())
-	}
-}
-
 func setMatchedPrimitiveValue(kind reflect.Kind, value reflect.Value, v interface{}) error {
 	switch kind {
 	case reflect.Bool:
@@ -478,6 +474,7 @@ func setValue(kind reflect.Kind, value reflect.Value, str string) error {
 		return errValueNotSettable
 	}
 
+	value = ensureValue(value)
 	v, err := convertType(kind, str)
 	if err != nil {
 		return err
@@ -592,16 +589,16 @@ func validateNumberRange(fv float64, nr *numberRange) error {
 	return nil
 }
 
-func validateValueInOptions(options []string, value interface{}) error {
+func validateValueInOptions(val interface{}, options []string) error {
 	if len(options) > 0 {
-		switch v := value.(type) {
+		switch v := val.(type) {
 		case string:
 			if !stringx.Contains(options, v) {
 				return fmt.Errorf(`error: value "%s" is not defined in options "%v"`, v, options)
 			}
 		default:
 			if !stringx.Contains(options, Repr(v)) {
-				return fmt.Errorf(`error: value "%v" is not defined in options "%v"`, value, options)
+				return fmt.Errorf(`error: value "%v" is not defined in options "%v"`, val, options)
 			}
 		}
 	}

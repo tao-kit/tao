@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 // GoBin returns a path of GOBIN.

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/sllt/tao/core/lang"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/lang"
 )
 
 func TestWorkerGroup(t *testing.T) {

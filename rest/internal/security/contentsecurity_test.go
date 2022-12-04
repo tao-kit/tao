@@ -15,10 +15,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/codec"
+	"github.com/sllt/tao/core/fs"
+	"github.com/sllt/tao/rest/httpx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/codec"
-	"manlu.org/tao/core/fs"
-	"manlu.org/tao/rest/httpx"
 )
 
 const (

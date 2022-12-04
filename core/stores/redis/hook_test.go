@@ -2,25 +2,26 @@ package redis
 
 import (
 	"context"
-	tracesdk "go.opentelemetry.io/otel/trace"
 	"log"
-	"manlu.org/tao/core/logx"
-	ztrace "manlu.org/tao/core/trace"
 	"strings"
 	"testing"
 	"time"
 
 	red "github.com/go-redis/redis/v8"
+	"github.com/sllt/tao/core/logx"
+	ztrace "github.com/sllt/tao/core/trace"
 	"github.com/stretchr/testify/assert"
+	tracesdk "go.opentelemetry.io/otel/trace"
 )
 
 func TestHookProcessCase1(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
 	})
+	defer ztrace.StopAgent()
 
 	writer := log.Writer()
 	var buf strings.Builder
@@ -39,11 +40,12 @@ func TestHookProcessCase1(t *testing.T) {
 
 func TestHookProcessCase2(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
 	})
+	defer ztrace.StopAgent()
 
 	w, restore := injectLog()
 	defer restore()
@@ -89,10 +91,10 @@ func TestHookProcessPipelineCase1(t *testing.T) {
 	log.SetOutput(&buf)
 	defer log.SetOutput(writer)
 
-	ctx, err := durationHook.BeforeProcessPipeline(context.Background(), []red.Cmder{red.NewCmd(context.Background())})
-	if err != nil {
-		t.Fatal(err)
-	}
+	ctx, err := durationHook.BeforeProcessPipeline(context.Background(), []red.Cmder{
+		red.NewCmd(context.Background()),
+	})
+	assert.NoError(t, err)
 	assert.Equal(t, "redis", tracesdk.SpanFromContext(ctx).(interface{ Name() string }).Name())
 
 	assert.Nil(t, durationHook.AfterProcessPipeline(ctx, []red.Cmder{
@@ -103,19 +105,20 @@ func TestHookProcessPipelineCase1(t *testing.T) {
 
 func TestHookProcessPipelineCase2(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
 	})
+	defer ztrace.StopAgent()
 
 	w, restore := injectLog()
 	defer restore()
 
-	ctx, err := durationHook.BeforeProcessPipeline(context.Background(), []red.Cmder{red.NewCmd(context.Background())})
-	if err != nil {
-		t.Fatal(err)
-	}
+	ctx, err := durationHook.BeforeProcessPipeline(context.Background(), []red.Cmder{
+		red.NewCmd(context.Background()),
+	})
+	assert.NoError(t, err)
 	assert.Equal(t, "redis", tracesdk.SpanFromContext(ctx).(interface{ Name() string }).Name())
 
 	time.Sleep(slowThreshold.Load() + time.Millisecond)
@@ -156,8 +159,26 @@ func TestHookProcessPipelineCase5(t *testing.T) {
 	defer log.SetOutput(writer)
 
 	ctx := context.WithValue(context.Background(), startTimeKey, "foo")
-	assert.Nil(t, durationHook.AfterProcessPipeline(ctx, []red.Cmder{red.NewCmd(context.Background())}))
+	assert.Nil(t, durationHook.AfterProcessPipeline(ctx, []red.Cmder{
+		red.NewCmd(context.Background()),
+	}))
 	assert.True(t, buf.Len() == 0)
+}
+
+func TestLogDuration(t *testing.T) {
+	w, restore := injectLog()
+	defer restore()
+
+	logDuration(context.Background(), []red.Cmder{
+		red.NewCmd(context.Background(), "get", "foo"),
+	}, 1*time.Second)
+	assert.True(t, strings.Contains(w.String(), "get foo"))
+
+	logDuration(context.Background(), []red.Cmder{
+		red.NewCmd(context.Background(), "get", "foo"),
+		red.NewCmd(context.Background(), "set", "bar", 0),
+	}, 1*time.Second)
+	assert.True(t, strings.Contains(w.String(), `get foo\nset bar 0`))
 }
 
 func injectLog() (r *strings.Builder, restore func()) {

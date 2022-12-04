@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"time"
 
-	"manlu.org/tao/core/timex"
+	"github.com/sllt/tao/core/timex"
 )
 
-// A ElapsedTimer is a timer to track the elapsed time.
+// An ElapsedTimer is a timer to track the elapsed time.
 type ElapsedTimer struct {
 	start time.Duration
 }
 
-// NewElapsedTimer returns a ElapsedTimer.
+// NewElapsedTimer returns an ElapsedTimer.
 func NewElapsedTimer() *ElapsedTimer {
 	return &ElapsedTimer{
 		start: timex.Now(),

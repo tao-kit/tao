@@ -7,9 +7,9 @@ import (
 	"net/http/httputil"
 
 	"github.com/golang-jwt/jwt/v4"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/rest/internal/response"
-	"manlu.org/tao/rest/token"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/rest/internal/response"
+	"github.com/sllt/tao/rest/token"
 )
 
 const (
@@ -29,7 +29,7 @@ var (
 )
 
 type (
-	// A AuthorizeOptions is authorize options.
+	// An AuthorizeOptions is authorize options.
 	AuthorizeOptions struct {
 		PrevSecret string
 		Callback   UnauthorizedCallback
@@ -41,7 +41,7 @@ type (
 	AuthorizeOption func(opts *AuthorizeOptions)
 )
 
-// Authorize returns an authorize middleware.
+// Authorize returns an authorization middleware.
 func Authorize(secret string, opts ...AuthorizeOption) func(http.Handler) http.Handler {
 	var authOpts AuthorizeOptions
 	for _, opt := range opts {

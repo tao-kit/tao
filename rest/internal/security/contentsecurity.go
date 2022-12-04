@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"manlu.org/tao/core/codec"
-	"manlu.org/tao/core/iox"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/rest/httpx"
+	"github.com/sllt/tao/core/codec"
+	"github.com/sllt/tao/core/iox"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/rest/httpx"
 )
 
 const (

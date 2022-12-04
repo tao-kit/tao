@@ -6,11 +6,11 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/sllt/tao/tools/taoctl/rpc/generator"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/console"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/rpc/generator"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/console"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 var (
@@ -42,6 +42,8 @@ var (
 	VarBoolIdea bool
 	// VarBoolVerbose describes whether verbose.
 	VarBoolVerbose bool
+	// VarBoolMultiple describes whether support generating multiple rpc services or not.
+	VarBoolMultiple bool
 )
 
 // RPCNew is to generate rpc greet service, this greet service can speed
@@ -102,8 +104,10 @@ func RPCNew(_ *cobra.Command, args []string) error {
 }
 
 // RPCTemplate is the entry for generate rpc template
-func RPCTemplate(_ *cobra.Command, _ []string) error {
-	console.Warning("deprecated: taoctl rpc template -o is deprecated and will be removed in the future, use taoctl rpc -o instead")
+func RPCTemplate(latest bool) error {
+	if !latest {
+		console.Warning("deprecated: taoctl rpc template -o is deprecated and will be removed in the future, use taoctl rpc -o instead")
+	}
 	protoFile := VarStringOutput
 	home := VarStringHome
 	remote := VarStringRemote

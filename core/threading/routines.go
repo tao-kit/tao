@@ -5,7 +5,7 @@ import (
 	"runtime"
 	"strconv"
 
-	"manlu.org/tao/core/rescue"
+	"github.com/sllt/tao/core/rescue"
 )
 
 // GoSafe runs the given fn using another goroutine, recovers if fn panics.

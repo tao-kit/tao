@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package stream;
 
-option go_package = "manlu.org/tao";
+option go_package = "github.com/sllt/tao";
 
 message placeholder {}
 

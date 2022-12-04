@@ -16,10 +16,10 @@ import (
 	"time"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/sllt/tao/tools/taoctl/util/console"
+	"github.com/sllt/tao/tools/taoctl/util/ctx"
+	"github.com/sllt/tao/tools/taoctl/vars"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/util/console"
-	"manlu.org/tao/tools/taoctl/util/ctx"
-	"manlu.org/tao/tools/taoctl/vars"
 )
 
 const defaultMigrateVersion = "v1.3.0"

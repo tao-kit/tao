@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/sllt/tao/tools/taoctl/api/parser"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/api/parser"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 var (

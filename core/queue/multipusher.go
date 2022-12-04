@@ -1,6 +1,6 @@
 package queue
 
-import "manlu.org/tao/core/errorx"
+import "github.com/sllt/tao/core/errorx"
 
 // A MultiPusher is a pusher that can push messages to multiple underlying pushers.
 type MultiPusher struct {

@@ -5,10 +5,9 @@ import (
 	"strconv"
 	"time"
 
-	"manlu.org/tao/core/metric"
-	"manlu.org/tao/core/prometheus"
-	"manlu.org/tao/core/timex"
-	"manlu.org/tao/rest/internal/response"
+	"github.com/sllt/tao/core/metric"
+	"github.com/sllt/tao/core/timex"
+	"github.com/sllt/tao/rest/internal/response"
 )
 
 const serverNamespace = "http_server"
@@ -35,10 +34,6 @@ var (
 // PrometheusHandler returns a middleware that reports stats to prometheus.
 func PrometheusHandler(path string) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
-		if !prometheus.Enabled() {
-			return next
-		}
-
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			startTime := timex.Now()
 			cw := &response.WithCodeResponseWriter{Writer: w}

@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/proc"
+	"github.com/sllt/tao/core/threading"
+	"github.com/sllt/tao/zrpc/resolver/internal/kube"
 	"google.golang.org/grpc/resolver"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/proc"
-	"manlu.org/tao/core/threading"
-	"manlu.org/tao/zrpc/resolver/internal/kube"
 )
 
 const (

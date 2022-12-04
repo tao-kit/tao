@@ -3,19 +3,23 @@ package generate
 import (
 	"fmt"
 
-	"manlu.org/tao/tools/taoctl/model/mongo/template"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/model/mongo/template"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 const (
-	category          = "mongo"
-	modelTemplateFile = "model.tpl"
-	errTemplateFile   = "err.tpl"
+	category                = "mongo"
+	modelTemplateFile       = "model.tpl"
+	modelCustomTemplateFile = "model_custom.tpl"
+	modelTypesTemplateFile  = "model_types.tpl"
+	errTemplateFile         = "err.tpl"
 )
 
 var templates = map[string]string{
-	modelTemplateFile: template.Text,
-	errTemplateFile:   template.Error,
+	modelTemplateFile:       template.ModelText,
+	modelCustomTemplateFile: template.ModelCustomText,
+	modelTypesTemplateFile:  template.ModelTypesText,
+	errTemplateFile:         template.Error,
 }
 
 // Category returns the mongo category.

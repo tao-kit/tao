@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/rpc/execx"
+	"github.com/sllt/tao/tools/taoctl/rpc/execx"
 )
 
 // GenPb generates the pb.go file, which is a layer of packaging for protoc to generate gprc,

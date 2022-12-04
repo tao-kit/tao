@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"time"
 
-	"manlu.org/tao/core/codec"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/internal/security"
+	"github.com/sllt/tao/core/codec"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/rest/httpx"
+	"github.com/sllt/tao/rest/internal/security"
 )
 
 const contentSecurity = "X-Content-Security"

@@ -7,16 +7,15 @@ import (
 	"go/format"
 	"go/scanner"
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 
+	"github.com/sllt/tao/core/errorx"
+	"github.com/sllt/tao/tools/taoctl/api/parser"
+	"github.com/sllt/tao/tools/taoctl/api/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/core/errorx"
-	"manlu.org/tao/tools/taoctl/api/parser"
-	"manlu.org/tao/tools/taoctl/api/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const (
@@ -76,7 +75,7 @@ func GoFormatApi(_ *cobra.Command, _ []string) error {
 // apiFormatReader
 // filename is needed when there are `import` literals.
 func apiFormatReader(reader io.Reader, filename string, skipCheckDeclare bool) error {
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return err
 	}
@@ -91,7 +90,7 @@ func apiFormatReader(reader io.Reader, filename string, skipCheckDeclare bool) e
 
 // ApiFormatByPath format api from file path
 func ApiFormatByPath(apiFilePath string, skipCheckDeclare bool) error {
-	data, err := ioutil.ReadFile(apiFilePath)
+	data, err := os.ReadFile(apiFilePath)
 	if err != nil {
 		return err
 	}
@@ -111,7 +110,7 @@ func ApiFormatByPath(apiFilePath string, skipCheckDeclare bool) error {
 		return err
 	}
 
-	return ioutil.WriteFile(apiFilePath, []byte(result), os.ModePerm)
+	return os.WriteFile(apiFilePath, []byte(result), os.ModePerm)
 }
 
 func apiFormat(data string, skipCheckDeclare bool, filename ...string) (string, error) {
@@ -145,12 +144,12 @@ func apiFormat(data string, skipCheckDeclare bool, filename ...string) (string, 
 		}
 
 		if tapCount == 0 {
-			format, err := formatGoTypeDef(line, s, &builder)
+			ft, err := formatGoTypeDef(line, s, &builder)
 			if err != nil {
 				return "", err
 			}
 
-			if format {
+			if ft {
 				continue
 			}
 		}

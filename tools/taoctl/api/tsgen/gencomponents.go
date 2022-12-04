@@ -6,9 +6,9 @@ import (
 	"strings"
 	"text/template"
 
-	"manlu.org/tao/tools/taoctl/api/spec"
-	apiutil "manlu.org/tao/tools/taoctl/api/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
+	apiutil "github.com/sllt/tao/tools/taoctl/api/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 //go:embed components.tpl

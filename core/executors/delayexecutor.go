@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"manlu.org/tao/core/threading"
+	"github.com/sllt/tao/core/threading"
 )
 
 // A DelayExecutor delays a tasks on given delay interval.

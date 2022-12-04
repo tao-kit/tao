@@ -5,12 +5,12 @@ import (
 	"encoding/json"
 	"time"
 
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/core/syncx"
+	"github.com/sllt/tao/core/timex"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stat"
-	"manlu.org/tao/core/syncx"
-	"manlu.org/tao/core/timex"
 )
 
 const defaultSlowThreshold = time.Millisecond * 500

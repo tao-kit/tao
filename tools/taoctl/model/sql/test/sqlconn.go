@@ -6,7 +6,7 @@ import (
 	"context"
 	"database/sql"
 
-	"manlu.org/tao/core/stores/sqlx"
+	"github.com/sllt/tao/core/stores/sqlx"
 )
 
 type (

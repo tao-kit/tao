@@ -1,16 +1,17 @@
 package collection
 
 import (
-	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/stringx"
-	"manlu.org/tao/core/syncx"
-	"manlu.org/tao/core/timex"
 	"sort"
 	"sync"
 	"sync/atomic"
 	"testing"
 	"time"
+
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/stringx"
+	"github.com/sllt/tao/core/syncx"
+	"github.com/sllt/tao/core/timex"
+	"github.com/stretchr/testify/assert"
 )
 
 const (

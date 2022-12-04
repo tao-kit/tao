@@ -4,8 +4,8 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"github.com/sllt/tao/core/color"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/color"
 )
 
 func TestWithColor(t *testing.T) {

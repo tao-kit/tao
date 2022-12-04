@@ -3,9 +3,9 @@ package gen
 import (
 	"fmt"
 
-	"manlu.org/tao/tools/taoctl/model/sql/template"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/model/sql/template"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 func genNew(table Table, withCache, postgreSql bool) (string, error) {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/pkg/env"
+	"github.com/sllt/tao/tools/taoctl/pkg/env"
 )
 
 var errorFormat = `taoctl error: %+v

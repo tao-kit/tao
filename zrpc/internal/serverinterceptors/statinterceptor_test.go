@@ -6,11 +6,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/stat"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/stat"
 )
 
 func TestSetSlowThreshold(t *testing.T) {

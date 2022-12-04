@@ -8,8 +8,8 @@ import (
 	"runtime"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/util/pathx"
-	"manlu.org/tao/tools/taoctl/vars"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/vars"
 )
 
 // RunFunc defines a function type of Run function

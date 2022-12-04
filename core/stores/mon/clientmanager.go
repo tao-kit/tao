@@ -5,9 +5,9 @@ import (
 	"io"
 	"time"
 
+	"github.com/sllt/tao/core/syncx"
 	"go.mongodb.org/mongo-driver/mongo"
 	mopt "go.mongodb.org/mongo-driver/mongo/options"
-	"manlu.org/tao/core/syncx"
 )
 
 const defaultTimeout = time.Second

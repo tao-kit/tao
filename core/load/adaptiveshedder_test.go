@@ -7,12 +7,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/collection"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/mathx"
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/core/syncx"
+	"github.com/sllt/tao/core/timex"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/collection"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/mathx"
-	"manlu.org/tao/core/stat"
-	"manlu.org/tao/core/syncx"
 )
 
 const (
@@ -136,7 +137,7 @@ func TestAdaptiveShedderShouldDrop(t *testing.T) {
 		passCounter:     passCounter,
 		rtCounter:       rtCounter,
 		windows:         buckets,
-		dropTime:        syncx.NewAtomicDuration(),
+		overloadTime:    syncx.NewAtomicDuration(),
 		droppedRecently: syncx.NewAtomicBool(),
 	}
 	// cpu >=  800, inflight < maxPass
@@ -190,12 +191,15 @@ func TestAdaptiveShedderStillHot(t *testing.T) {
 		passCounter:     passCounter,
 		rtCounter:       rtCounter,
 		windows:         buckets,
-		dropTime:        syncx.NewAtomicDuration(),
+		overloadTime:    syncx.NewAtomicDuration(),
 		droppedRecently: syncx.ForAtomicBool(true),
 	}
 	assert.False(t, shedder.stillHot())
-	shedder.dropTime.Set(-coolOffDuration * 2)
+	shedder.overloadTime.Set(-coolOffDuration * 2)
 	assert.False(t, shedder.stillHot())
+	shedder.droppedRecently.Set(true)
+	shedder.overloadTime.Set(timex.Now())
+	assert.True(t, shedder.stillHot())
 }
 
 func BenchmarkAdaptiveShedder_Allow(b *testing.B) {

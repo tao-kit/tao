@@ -4,7 +4,7 @@ import (
 	"errors"
 	"os"
 
-	"manlu.org/tao/tools/taoctl/rpc/execx"
+	"github.com/sllt/tao/tools/taoctl/rpc/execx"
 )
 
 // IsGoMod is used to determine whether workDir is a go module project through command `go list -json -m`

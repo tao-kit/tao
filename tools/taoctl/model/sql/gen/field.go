@@ -3,10 +3,10 @@ package gen
 import (
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/model/sql/parser"
-	"manlu.org/tao/tools/taoctl/model/sql/template"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/model/sql/parser"
+	"github.com/sllt/tao/tools/taoctl/model/sql/template"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 func genFields(table Table, fields []*parser.Field) (string, error) {

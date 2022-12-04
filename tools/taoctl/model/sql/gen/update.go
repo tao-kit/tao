@@ -4,23 +4,24 @@ import (
 	"sort"
 	"strings"
 
-	"manlu.org/tao/core/collection"
-	"manlu.org/tao/tools/taoctl/model/sql/template"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
-	"manlu.org/tao/tools/taoctl/util/stringx"
+	"github.com/sllt/tao/core/collection"
+	"github.com/sllt/tao/tools/taoctl/model/sql/template"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/stringx"
 )
 
 func genUpdate(table Table, withCache, postgreSql bool) (
-	string, string, error) {
+	string, string, error,
+) {
 	expressionValues := make([]string, 0)
-	var pkg = "data."
+	pkg := "data."
 	if table.ContainsUniqueCacheKey {
 		pkg = "newData."
 	}
 	for _, field := range table.Fields {
 		camel := util.SafeString(field.Name.ToCamel())
-		if camel == "CreateTime" || camel == "UpdateTime" {
+		if table.isIgnoreColumns(field.Name.Source()) {
 			continue
 		}
 

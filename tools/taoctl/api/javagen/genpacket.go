@@ -7,10 +7,10 @@ import (
 	"strings"
 	"text/template"
 
-	"manlu.org/tao/core/stringx"
-	"manlu.org/tao/tools/taoctl/api/spec"
-	apiutil "manlu.org/tao/tools/taoctl/api/util"
-	"manlu.org/tao/tools/taoctl/util"
+	"github.com/sllt/tao/core/stringx"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
+	apiutil "github.com/sllt/tao/tools/taoctl/api/util"
+	"github.com/sllt/tao/tools/taoctl/util"
 )
 
 //go:embed packet.tpl

@@ -1,13 +1,12 @@
 package conf
 
 import (
-	"io/ioutil"
 	"os"
 	"testing"
 
+	"github.com/sllt/tao/core/fs"
+	"github.com/sllt/tao/core/hash"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/fs"
-	"manlu.org/tao/core/hash"
 )
 
 func TestLoadConfig_notExists(t *testing.T) {
@@ -106,7 +105,6 @@ d = "abcd!@#112"
 	assert.Equal(t, 1, val.B)
 	assert.Equal(t, "2", val.C)
 	assert.Equal(t, "abcd!@#112", val.D)
-
 }
 
 func TestConfigJsonEnv(t *testing.T) {
@@ -146,12 +144,12 @@ func TestConfigJsonEnv(t *testing.T) {
 }
 
 func createTempFile(ext, text string) (string, error) {
-	tmpfile, err := ioutil.TempFile(os.TempDir(), hash.Md5Hex([]byte(text))+"*"+ext)
+	tmpfile, err := os.CreateTemp(os.TempDir(), hash.Md5Hex([]byte(text))+"*"+ext)
 	if err != nil {
 		return "", err
 	}
 
-	if err := ioutil.WriteFile(tmpfile.Name(), []byte(text), os.ModeTemporary); err != nil {
+	if err := os.WriteFile(tmpfile.Name(), []byte(text), os.ModeTemporary); err != nil {
 		return "", err
 	}
 

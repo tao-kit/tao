@@ -6,10 +6,10 @@ import (
 	"strings"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/tools/taoctl/api/parser"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/tools/taoctl/api/parser"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 var (

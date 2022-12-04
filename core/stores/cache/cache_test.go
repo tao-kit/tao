@@ -10,12 +10,12 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/errorx"
+	"github.com/sllt/tao/core/hash"
+	"github.com/sllt/tao/core/stores/redis"
+	"github.com/sllt/tao/core/stores/redis/redistest"
+	"github.com/sllt/tao/core/syncx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/errorx"
-	"manlu.org/tao/core/hash"
-	"manlu.org/tao/core/stores/redis"
-	"manlu.org/tao/core/stores/redis/redistest"
-	"manlu.org/tao/core/syncx"
 )
 
 var _ Cache = (*mockedNode)(nil)

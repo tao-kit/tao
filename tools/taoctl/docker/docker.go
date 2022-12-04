@@ -4,15 +4,16 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 	"text/template"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/env"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/env"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const (
@@ -24,6 +25,7 @@ const (
 // Docker describes a dockerfile
 type Docker struct {
 	Chinese     bool
+	GoMainFrom  string
 	GoRelPath   string
 	GoFile      string
 	ExeFile     string
@@ -65,11 +67,7 @@ func dockerCommand(_ *cobra.Command, _ []string) (err error) {
 		pathx.RegisterTaoctlHome(home)
 	}
 
-	if len(goFile) == 0 {
-		return errors.New("-go can't be empty")
-	}
-
-	if !pathx.FileExists(goFile) {
+	if len(goFile) > 0 && !pathx.FileExists(goFile) {
 		return fmt.Errorf("file %q not found", goFile)
 	}
 
@@ -126,9 +124,13 @@ func findConfig(file, dir string) (string, error) {
 }
 
 func generateDockerfile(goFile, base string, port int, version, timezone string, args ...string) error {
-	projPath, err := getFilePath(filepath.Dir(goFile))
-	if err != nil {
-		return err
+	var projPath string
+	var err error
+	if len(goFile) > 0 {
+		projPath, err = getFilePath(filepath.Dir(goFile))
+		if err != nil {
+			return err
+		}
 	}
 
 	if len(projPath) == 0 {
@@ -151,17 +153,27 @@ func generateDockerfile(goFile, base string, port int, version, timezone string,
 		builder.WriteString(`, "` + arg + `"`)
 	}
 
-	absGoPath, err := filepath.Abs(goFile)
-	if err != nil {
-		return err
+	var exeName string
+	if len(varExeName) > 0 {
+		exeName = varExeName
+	} else if len(goFile) > 0 {
+		exeName = pathx.FileNameWithoutExt(filepath.Base(goFile))
+	} else {
+		absPath, err := filepath.Abs(projPath)
+		if err != nil {
+			return err
+		}
+
+		exeName = filepath.Base(absPath)
 	}
 
 	t := template.Must(template.New("dockerfile").Parse(text))
 	return t.Execute(out, Docker{
 		Chinese:     env.InChina(),
+		GoMainFrom:  path.Join(projPath, goFile),
 		GoRelPath:   projPath,
 		GoFile:      goFile,
-		ExeFile:     filepath.Base(absGoPath),
+		ExeFile:     exeName,
 		BaseImage:   base,
 		HasPort:     port > 0,
 		Port:        port,

@@ -1,6 +1,6 @@
 package fx
 
-import "manlu.org/tao/core/errorx"
+import "github.com/sllt/tao/core/errorx"
 
 const defaultRetryTimes = 3
 

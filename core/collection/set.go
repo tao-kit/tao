@@ -1,8 +1,8 @@
 package collection
 
 import (
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/logx"
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/logx"
 )
 
 const (
@@ -29,7 +29,7 @@ func NewSet() *Set {
 	}
 }
 
-// NewUnmanagedSet returns a unmanaged Set, which can put values with different types.
+// NewUnmanagedSet returns an unmanaged Set, which can put values with different types.
 func NewUnmanagedSet() *Set {
 	return &Set{
 		data: make(map[interface{}]lang.PlaceholderType),

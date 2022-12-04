@@ -4,9 +4,9 @@ import (
 	"sort"
 	"testing"
 
+	"github.com/sllt/tao/tools/taoctl/model/sql/parser"
+	"github.com/sllt/tao/tools/taoctl/util/stringx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/tools/taoctl/model/sql/parser"
-	"manlu.org/tao/tools/taoctl/util/stringx"
 )
 
 func TestGenCacheKeys(t *testing.T) {
@@ -36,7 +36,7 @@ func TestGenCacheKeys(t *testing.T) {
 	}
 	primariCacheKey, uniqueCacheKey := genCacheKeys(parser.Table{
 		Name: stringx.From("user"),
-		Db:   stringx.From("go_tao"),
+		Db:   stringx.From("go_zero"),
 		PrimaryKey: parser.Primary{
 			Field:         *primaryField,
 			AutoIncrement: true,

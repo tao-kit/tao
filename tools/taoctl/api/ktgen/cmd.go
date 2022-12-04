@@ -3,8 +3,8 @@ package ktgen
 import (
 	"errors"
 
+	"github.com/sllt/tao/tools/taoctl/api/parser"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/api/parser"
 )
 
 var (

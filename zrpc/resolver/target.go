@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"manlu.org/tao/zrpc/resolver/internal"
+	"github.com/sllt/tao/zrpc/resolver/internal"
 )
 
 // BuildDirectTarget returns a string that represents the given endpoints with direct schema.

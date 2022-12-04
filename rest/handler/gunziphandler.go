@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"manlu.org/tao/rest/httpx"
+	"github.com/sllt/tao/rest/httpx"
 )
 
 const gzipEncoding = "gzip"

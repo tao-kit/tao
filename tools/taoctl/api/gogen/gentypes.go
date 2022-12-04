@@ -8,11 +8,11 @@ import (
 	"path"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/api/spec"
-	apiutil "manlu.org/tao/tools/taoctl/api/util"
-	"manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/format"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
+	apiutil "github.com/sllt/tao/tools/taoctl/api/util"
+	"github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/format"
 )
 
 const typesFile = "types"

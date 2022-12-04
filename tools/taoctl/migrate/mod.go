@@ -6,17 +6,17 @@ import (
 	"os"
 	"time"
 
-	"manlu.org/tao/core/stringx"
-	"manlu.org/tao/tools/taoctl/rpc/execx"
-	"manlu.org/tao/tools/taoctl/util/console"
-	"manlu.org/tao/tools/taoctl/util/ctx"
+	"github.com/sllt/tao/core/stringx"
+	"github.com/sllt/tao/tools/taoctl/rpc/execx"
+	"github.com/sllt/tao/tools/taoctl/util/console"
+	"github.com/sllt/tao/tools/taoctl/util/ctx"
 )
 
 const (
-	deprecatedGoZeroMod = "github.com/tal-tech/go-zero"
-	deprecatedBuilderx  = "github.com/tal-tech/go-zero/tools/taoctl/model/sql/builderx"
-	replacementBuilderx = "manlu.org/tao/core/stores/builder"
-	goZeroMod           = "manlu.org/tao"
+	deprecatedGoZeroMod = "github.com/tal-tech/go-tao"
+	deprecatedBuilderx  = "github.com/tal-tech/go-tao/tools/taoctl/model/sql/builderx"
+	replacementBuilderx = "github.com/sllt/tao/core/stores/builder"
+	goZeroMod           = "github.com/sllt/tao"
 )
 
 var errInvalidGoMod = errors.New("it's only working for go module")

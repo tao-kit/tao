@@ -1,27 +1,18 @@
 package gogen
 
 import (
+	_ "embed"
 	"fmt"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/api/spec"
-	"manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/util/format"
-	"manlu.org/tao/tools/taoctl/vars"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/util/format"
+	"github.com/sllt/tao/tools/taoctl/vars"
 )
 
 const (
-	configFile     = "config"
-	configTemplate = `package config
-
-import {{.authImport}}
-
-type Config struct {
-	rest.RestConf
-	{{.auth}}
-	{{.jwtTrans}}
-}
-`
+	configFile = "config"
 
 	jwtTemplate = ` struct {
 		AccessSecret string
@@ -34,6 +25,9 @@ type Config struct {
 	}
 `
 )
+
+//go:embed config.tpl
+var configTemplate string
 
 func genConfig(dir string, cfg *config.Config, api *spec.ApiSpec) error {
 	filename, err := format.FileNamingFormat(cfg.NamingFormat, configFile)

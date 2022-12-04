@@ -4,10 +4,10 @@ import (
 	"log"
 	"time"
 
+	"github.com/sllt/tao/zrpc/internal"
+	"github.com/sllt/tao/zrpc/internal/auth"
+	"github.com/sllt/tao/zrpc/internal/clientinterceptors"
 	"google.golang.org/grpc"
-	"manlu.org/tao/zrpc/internal"
-	"manlu.org/tao/zrpc/internal/auth"
-	"manlu.org/tao/zrpc/internal/clientinterceptors"
 )
 
 var (

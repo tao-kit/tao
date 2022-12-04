@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"manlu.org/tao/core/lang"
+	"github.com/sllt/tao/core/lang"
 )
 
 // errTimeout indicates a timeout.

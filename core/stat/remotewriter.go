@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"manlu.org/tao/core/logx"
+	"github.com/sllt/tao/core/logx"
 )
 
 const (

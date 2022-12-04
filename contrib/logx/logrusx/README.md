@@ -2,16 +2,16 @@
 
 Prerequesites:
 
-- Install `go-zero`:
+- Install `tao`:
 
 ```console
-go get -u manlu.org/tao
+go get -u github.com/sllt/tao
 ```
 
 Download the module:
 
 ```console
-go get -u manlu.org/tao/contrib/logx/logrusx
+go get -u github.com/sllt/tao/contrib/logx/logrusx
 ```
 
 For example:
@@ -23,8 +23,8 @@ import (
 	"context"
 	"time"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/contrib/logx/logrusx"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/contrib/logx/logrusx"
 )
 
 func main() {

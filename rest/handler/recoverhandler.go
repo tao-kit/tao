@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"runtime/debug"
 
-	"manlu.org/tao/rest/internal"
+	"github.com/sllt/tao/rest/internal"
 )
 
 // RecoverHandler returns a middleware that recovers if panic happens.

@@ -7,8 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
-	"manlu.org/tao/core/color"
 	"net"
 	"net/http"
 	"net/http/httputil"
@@ -16,13 +14,14 @@ import (
 	"strings"
 	"time"
 
-	"manlu.org/tao/core/iox"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/syncx"
-	"manlu.org/tao/core/timex"
-	"manlu.org/tao/core/utils"
-	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/internal"
+	"github.com/sllt/tao/core/color"
+	"github.com/sllt/tao/core/iox"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/syncx"
+	"github.com/sllt/tao/core/timex"
+	"github.com/sllt/tao/core/utils"
+	"github.com/sllt/tao/rest/httpx"
+	"github.com/sllt/tao/rest/internal"
 )
 
 const (
@@ -171,16 +170,16 @@ func logBrief(r *http.Request, code int, timer *utils.ElapsedTimer, logs *intern
 	buf.WriteString(fmt.Sprintf("[HTTP] %s - %s %s - %s - %s",
 		wrapStatusCode(code), wrapMethod(r.Method), r.RequestURI, httpx.GetRemoteAddr(r), r.UserAgent()))
 	if duration > slowThreshold.Load() {
-		logger.Slowf("[HTTP] %s - %s - %s %s - %s - slowcall(%s)",
+		logger.Slowf("[HTTP] %s - %s %s - %s - %s - slowcall(%s)",
 			wrapStatusCode(code), wrapMethod(r.Method), r.RequestURI, httpx.GetRemoteAddr(r), r.UserAgent(),
-			fmt.Sprintf("slowcall(%s)", timex.ReprOfDuration(duration)))
+			timex.ReprOfDuration(duration))
 	}
 
 	ok := isOkResponse(code)
 	if !ok {
 		fullReq := dumpRequest(r)
 		limitReader := io.LimitReader(strings.NewReader(fullReq), limitBodyBytes)
-		body, err := ioutil.ReadAll(limitReader)
+		body, err := io.ReadAll(limitReader)
 		if err != nil {
 			buf.WriteString(fmt.Sprintf("\n%s", fullReq))
 		} else {

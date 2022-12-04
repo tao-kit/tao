@@ -3,7 +3,7 @@ package prof
 import (
 	"testing"
 
-	"manlu.org/tao/core/utils"
+	"github.com/sllt/tao/core/utils"
 )
 
 func TestProfiler(t *testing.T) {

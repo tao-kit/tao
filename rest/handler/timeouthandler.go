@@ -13,13 +13,15 @@ import (
 	"sync"
 	"time"
 
-	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/rest/internal"
+	"github.com/sllt/tao/rest/httpx"
+	"github.com/sllt/tao/rest/internal"
 )
 
 const (
 	statusClientClosedRequest = 499
 	reason                    = "Request Timeout"
+	headerUpgrade             = "Upgrade"
+	valueWebsocket            = "websocket"
 )
 
 // TimeoutHandler returns the handler with given timeout.
@@ -52,6 +54,11 @@ func (h *timeoutHandler) errorBody() string {
 }
 
 func (h *timeoutHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if r.Header.Get(headerUpgrade) == valueWebsocket {
+		h.handler.ServeHTTP(w, r)
+		return
+	}
+
 	ctx, cancelCtx := context.WithTimeout(r.Context(), h.dt)
 	defer cancelCtx()
 
@@ -92,7 +99,7 @@ func (h *timeoutHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		defer tw.mu.Unlock()
 		// there isn't any user-defined middleware before TimoutHandler,
 		// so we can guarantee that cancelation in biz related code won't come here.
-		httpx.Error(w, ctx.Err(), func(w http.ResponseWriter, err error) {
+		httpx.ErrorCtx(r.Context(), w, ctx.Err(), func(w http.ResponseWriter, err error) {
 			if errors.Is(err, context.Canceled) {
 				w.WriteHeader(statusClientClosedRequest)
 			} else {

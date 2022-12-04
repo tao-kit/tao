@@ -6,9 +6,10 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/mapping"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/mapping"
 )
 
 var errUnbalancedEscape = errors.New("no char after escape char")
@@ -151,6 +152,14 @@ func writeValue(buf *strings.Builder, arg interface{}) {
 	case string:
 		buf.WriteByte('\'')
 		buf.WriteString(escape(v))
+		buf.WriteByte('\'')
+	case time.Time:
+		buf.WriteByte('\'')
+		buf.WriteString(v.String())
+		buf.WriteByte('\'')
+	case *time.Time:
+		buf.WriteByte('\'')
+		buf.WriteString(v.String())
 		buf.WriteByte('\'')
 	default:
 		buf.WriteString(mapping.Repr(v))

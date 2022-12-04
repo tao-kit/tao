@@ -4,9 +4,9 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/zrpc/internal/mock"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stat"
-	"manlu.org/tao/zrpc/internal/mock"
 	"google.golang.org/grpc"
 )
 

@@ -4,9 +4,9 @@ import (
 	_ "embed"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/api/spec"
-	"manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/util/format"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/util/format"
 )
 
 //go:embed middleware.tpl

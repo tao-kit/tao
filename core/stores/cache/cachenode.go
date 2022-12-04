@@ -4,16 +4,17 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"math"
 	"math/rand"
 	"sync"
 	"time"
 
-	"manlu.org/tao/core/jsonx"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/mathx"
-	"manlu.org/tao/core/stat"
-	"manlu.org/tao/core/stores/redis"
-	"manlu.org/tao/core/syncx"
+	"github.com/sllt/tao/core/jsonx"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/mathx"
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/core/stores/redis"
+	"github.com/sllt/tao/core/syncx"
 )
 
 const (
@@ -130,7 +131,7 @@ func (c cacheNode) SetWithExpireCtx(ctx context.Context, key string, val interfa
 		return err
 	}
 
-	return c.rds.SetexCtx(ctx, key, string(data), int(expire.Seconds()))
+	return c.rds.SetexCtx(ctx, key, string(data), int(math.Ceil(expire.Seconds())))
 }
 
 // String returns a string that represents the cacheNode.
@@ -275,5 +276,6 @@ func (c cacheNode) processCache(ctx context.Context, key, data string, v interfa
 }
 
 func (c cacheNode) setCacheWithNotFound(ctx context.Context, key string) error {
-	return c.rds.SetexCtx(ctx, key, notFoundPlaceholder, int(c.aroundDuration(c.notFoundExpiry).Seconds()))
+	seconds := int(math.Ceil(c.aroundDuration(c.notFoundExpiry).Seconds()))
+	return c.rds.SetexCtx(ctx, key, notFoundPlaceholder, seconds)
 }

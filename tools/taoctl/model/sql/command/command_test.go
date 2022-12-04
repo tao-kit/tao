@@ -10,16 +10,17 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/model/sql/gen"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+
+	"github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/model/sql/gen"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 var (
 	//go:embed testdata/user.sql
 	sql string
 	cfg = &config.Config{
-		NamingFormat: "gotao",
+		NamingFormat: "gozero",
 	}
 )
 
@@ -27,12 +28,25 @@ func TestFromDDl(t *testing.T) {
 	err := gen.Clean()
 	assert.Nil(t, err)
 
-	err = fromDDL("./user.sql", pathx.MustTempDir(), cfg, true, false, "go_tao")
+	err = fromDDL(ddlArg{
+		src:      "./user.sql",
+		dir:      pathx.MustTempDir(),
+		cfg:      cfg,
+		cache:    true,
+		database: "go-tao",
+		strict:   false,
+	})
 	assert.Equal(t, errNotMatched, err)
 
 	// case dir is not exists
 	unknownDir := filepath.Join(pathx.MustTempDir(), "test", "user.sql")
-	err = fromDDL(unknownDir, pathx.MustTempDir(), cfg, true, false, "go_tao")
+	err = fromDDL(ddlArg{
+		src:      unknownDir,
+		dir:      pathx.MustTempDir(),
+		cfg:      cfg,
+		cache:    true,
+		database: "go_zero",
+	})
 	assert.True(t, func() bool {
 		switch err.(type) {
 		case *os.PathError:
@@ -43,7 +57,12 @@ func TestFromDDl(t *testing.T) {
 	}())
 
 	// case empty src
-	err = fromDDL("", pathx.MustTempDir(), cfg, true, false, "go_tao")
+	err = fromDDL(ddlArg{
+		dir:      pathx.MustTempDir(),
+		cfg:      cfg,
+		cache:    true,
+		database: "go_zero",
+	})
 	if err != nil {
 		assert.Equal(t, "expected path or path globbing patterns, but nothing found", err.Error())
 	}
@@ -75,18 +94,24 @@ func TestFromDDl(t *testing.T) {
 
 	filename := filepath.Join(tempDir, "usermodel.go")
 	fromDDL := func(db string) {
-		err = fromDDL(filepath.Join(tempDir, "user*.sql"), tempDir, cfg, true, false, db)
+		err = fromDDL(ddlArg{
+			src:      filepath.Join(tempDir, "user*.sql"),
+			dir:      tempDir,
+			cfg:      cfg,
+			cache:    true,
+			database: db,
+		})
 		assert.Nil(t, err)
 
 		_, err = os.Stat(filename)
 		assert.Nil(t, err)
 	}
 
-	fromDDL("go_tao")
+	fromDDL("go_zero")
 	_ = os.Remove(filename)
-	fromDDL("go-zero")
+	fromDDL("go-tao")
 	_ = os.Remove(filename)
-	fromDDL("1gotao")
+	fromDDL("1gozero")
 }
 
 func Test_parseTableList(t *testing.T) {

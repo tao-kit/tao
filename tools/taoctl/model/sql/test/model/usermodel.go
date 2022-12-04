@@ -6,14 +6,14 @@ import (
 	"strings"
 	"time"
 
-	"manlu.org/tao/core/stores/sqlc"
-	"manlu.org/tao/core/stores/sqlx"
-	"manlu.org/tao/core/stringx"
-	"manlu.org/tao/tools/taoctl/model/sql/builderx"
+	"github.com/sllt/tao/core/stores/builder"
+	"github.com/sllt/tao/core/stores/sqlc"
+	"github.com/sllt/tao/core/stores/sqlx"
+	"github.com/sllt/tao/core/stringx"
 )
 
 var (
-	userFieldNames          = builderx.RawFieldNames(&User{})
+	userFieldNames          = builder.RawFieldNames(&User{})
 	userRows                = strings.Join(userFieldNames, ",")
 	userRowsExpectAutoSet   = strings.Join(stringx.Remove(userFieldNames, "`id`", "`create_time`", "`update_time`"), ",")
 	userRowsWithPlaceHolder = strings.Join(stringx.Remove(userFieldNames, "`id`", "`create_time`", "`update_time`"), "=?,") + "=?"

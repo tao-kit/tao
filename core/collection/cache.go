@@ -6,9 +6,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/mathx"
-	"manlu.org/tao/core/syncx"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/mathx"
+	"github.com/sllt/tao/core/syncx"
 )
 
 const (
@@ -26,7 +26,7 @@ type (
 	// CacheOption defines the method to customize a Cache.
 	CacheOption func(cache *Cache)
 
-	// A Cache object is a in-memory cache.
+	// A Cache object is an in-memory cache.
 	Cache struct {
 		name           string
 		lock           sync.Mutex

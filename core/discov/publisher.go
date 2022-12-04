@@ -1,13 +1,13 @@
 package discov
 
 import (
+	"github.com/sllt/tao/core/discov/internal"
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/proc"
+	"github.com/sllt/tao/core/syncx"
+	"github.com/sllt/tao/core/threading"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"manlu.org/tao/core/discov/internal"
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/proc"
-	"manlu.org/tao/core/syncx"
-	"manlu.org/tao/core/threading"
 )
 
 type (

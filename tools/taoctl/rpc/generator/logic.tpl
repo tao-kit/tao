@@ -1,11 +1,11 @@
-package logic
+package {{.packageName}}
 
 import (
 	"context"
 
 	{{.imports}}
 
-	"manlu.org/tao/core/logx"
+	"github.com/sllt/tao/core/logx"
 )
 
 type {{.logicName}} struct {

@@ -4,7 +4,7 @@ Quick Start
 Download the module:
 
 ```console
-go get -u manlu.org/tao/contrib/router/gin
+go get -u github.com/sllt/tao/contrib/router/gin
 ```
 
 For example:
@@ -16,11 +16,11 @@ import (
 	"net/http"
 	"strings"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/service"
-	"manlu.org/tao/rest"
-	"manlu.org/tao/rest/httpx"
-	"manlu.org/tao/contrib/router/gin"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/service"
+	"github.com/sllt/tao/rest"
+	"github.com/sllt/tao/rest/httpx"
+	"github.com/sllt/tao/contrib/router/gin"
 	stdgin "github.com/gin-gonic/gin"
 )
 

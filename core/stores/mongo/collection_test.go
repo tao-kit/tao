@@ -2,23 +2,20 @@ package mongo
 
 import (
 	"errors"
-	"github.com/globalsign/mgo"
-	"github.com/golang/mock/gomock"
-	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/breaker"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stores/mongo/internal"
-	"manlu.org/tao/core/stringx"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/globalsign/mgo"
+	"github.com/golang/mock/gomock"
+	"github.com/sllt/tao/core/breaker"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stores/mongo/internal"
+	"github.com/sllt/tao/core/stringx"
+	"github.com/stretchr/testify/assert"
 )
 
 var errDummy = errors.New("dummy")
-
-func init() {
-	logx.Disable()
-}
 
 func TestKeepPromise_accept(t *testing.T) {
 	p := new(mockPromise)

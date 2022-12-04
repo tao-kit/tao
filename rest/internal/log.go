@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"sync"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/rest/httpx"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/rest/httpx"
 )
 
 // LogContext is a context key.

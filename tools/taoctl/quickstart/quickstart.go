@@ -5,11 +5,11 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/tools/taoctl/util/console"
+	"github.com/sllt/tao/tools/taoctl/util/ctx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/tools/taoctl/util/console"
-	"manlu.org/tao/tools/taoctl/util/ctx"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const baseDir = "greet"

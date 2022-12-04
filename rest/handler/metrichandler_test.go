@@ -5,8 +5,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/sllt/tao/core/stat"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stat"
 )
 
 func TestMetricHandler(t *testing.T) {
@@ -16,7 +16,7 @@ func TestMetricHandler(t *testing.T) {
 		w.WriteHeader(http.StatusOK)
 	}))
 
-	req := httptest.NewRequest(http.MethodGet, "http://localhost", nil)
+	req := httptest.NewRequest(http.MethodGet, "http://localhost", http.NoBody)
 	resp := httptest.NewRecorder()
 	handler.ServeHTTP(resp, req)
 	assert.Equal(t, http.StatusOK, resp.Code)

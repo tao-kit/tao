@@ -6,7 +6,7 @@ import (
 	"runtime"
 
 	"github.com/logrusorgru/aurora"
-	"manlu.org/tao/tools/taoctl/vars"
+	"github.com/sllt/tao/tools/taoctl/vars"
 )
 
 type (
@@ -115,7 +115,7 @@ func (c *colorConsole) Must(err error) {
 	}
 }
 
-// NewIdeaConsole returns a instance of ideaConsole
+// NewIdeaConsole returns an instance of ideaConsole
 func NewIdeaConsole() Console {
 	return &ideaConsole{}
 }

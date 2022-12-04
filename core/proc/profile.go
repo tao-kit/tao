@@ -15,7 +15,7 @@ import (
 	"syscall"
 	"time"
 
-	"manlu.org/tao/core/logx"
+	"github.com/sllt/tao/core/logx"
 )
 
 // DefaultMemProfileRate is the default memory profiling rate.

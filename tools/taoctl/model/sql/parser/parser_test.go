@@ -7,9 +7,10 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/tools/taoctl/model/sql/model"
-	"manlu.org/tao/tools/taoctl/model/sql/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+
+	"github.com/sllt/tao/tools/taoctl/model/sql/model"
+	"github.com/sllt/tao/tools/taoctl/model/sql/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 func TestParsePlainText(t *testing.T) {
@@ -17,7 +18,7 @@ func TestParsePlainText(t *testing.T) {
 	err := ioutil.WriteFile(sqlFile, []byte("plain text"), 0o777)
 	assert.Nil(t, err)
 
-	_, err = Parse(sqlFile, "go_tao")
+	_, err = Parse(sqlFile, "go_zero", false)
 	assert.NotNil(t, err)
 }
 
@@ -26,7 +27,7 @@ func TestParseSelect(t *testing.T) {
 	err := ioutil.WriteFile(sqlFile, []byte("select * from user"), 0o777)
 	assert.Nil(t, err)
 
-	tables, err := Parse(sqlFile, "go_tao")
+	tables, err := Parse(sqlFile, "go_zero", false)
 	assert.Nil(t, err)
 	assert.Equal(t, 0, len(tables))
 }
@@ -39,7 +40,7 @@ func TestParseCreateTable(t *testing.T) {
 	err := ioutil.WriteFile(sqlFile, []byte(user), 0o777)
 	assert.Nil(t, err)
 
-	tables, err := Parse(sqlFile, "go_tao")
+	tables, err := Parse(sqlFile, "go_zero", false)
 	assert.Equal(t, 1, len(tables))
 	table := tables[0]
 	assert.Nil(t, err)

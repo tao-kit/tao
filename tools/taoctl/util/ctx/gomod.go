@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/rpc/execx"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/rpc/execx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 const goModuleWithoutGoFiles = "command-line-arguments"

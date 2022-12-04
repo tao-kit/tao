@@ -1,6 +1,6 @@
 package prof
 
-import "manlu.org/tao/core/utils"
+import "github.com/sllt/tao/core/utils"
 
 type (
 	// A ProfilePoint is a profile time point.

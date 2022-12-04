@@ -12,14 +12,15 @@ import (
 	"time"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/sllt/tao/core/logx"
+	apiformat "github.com/sllt/tao/tools/taoctl/api/format"
+	"github.com/sllt/tao/tools/taoctl/api/parser"
+	apiutil "github.com/sllt/tao/tools/taoctl/api/util"
+	"github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/pkg/golang"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/core/logx"
-	apiformat "manlu.org/tao/tools/taoctl/api/format"
-	"manlu.org/tao/tools/taoctl/api/parser"
-	apiutil "manlu.org/tao/tools/taoctl/api/util"
-	"manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const tmpFile = "%s-%d"
@@ -85,7 +86,7 @@ func DoGenProject(apiFile, dir, style string) error {
 	}
 
 	logx.Must(pathx.MkdirIfNotExist(dir))
-	rootPkg, err := getParentPackage(dir)
+	rootPkg, err := golang.GetParentPackage(dir)
 	if err != nil {
 		return err
 	}

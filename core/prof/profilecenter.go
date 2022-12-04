@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/olekukonko/tablewriter"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/threading"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/threading"
 )
 
 type (

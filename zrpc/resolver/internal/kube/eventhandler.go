@@ -3,8 +3,8 @@ package kube
 import (
 	"sync"
 
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/logx"
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/logx"
 	v1 "k8s.io/api/core/v1"
 )
 

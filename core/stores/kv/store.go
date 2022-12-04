@@ -4,10 +4,11 @@ import (
 	"context"
 	"errors"
 	"log"
-	"manlu.org/tao/core/errorx"
-	"manlu.org/tao/core/hash"
-	"manlu.org/tao/core/stores/cache"
-	"manlu.org/tao/core/stores/redis"
+
+	"github.com/sllt/tao/core/errorx"
+	"github.com/sllt/tao/core/hash"
+	"github.com/sllt/tao/core/stores/cache"
+	"github.com/sllt/tao/core/stores/redis"
 )
 
 // ErrNoRedisNode is an error that indicates no redis node.
@@ -109,7 +110,9 @@ type (
 		Ttl(key string) (int, error)
 		TtlCtx(ctx context.Context, key string) (int, error)
 		Zadd(key string, score int64, value string) (bool, error)
+		ZaddFloat(key string, score float64, value string) (bool, error)
 		ZaddCtx(ctx context.Context, key string, score int64, value string) (bool, error)
+		ZaddFloatCtx(ctx context.Context, key string, score float64, value string) (bool, error)
 		Zadds(key string, ps ...redis.Pair) (int64, error)
 		ZaddsCtx(ctx context.Context, key string, ps ...redis.Pair) (int64, error)
 		Zcard(key string) (int, error)
@@ -786,13 +789,21 @@ func (cs clusterStore) Zadd(key string, score int64, value string) (bool, error)
 	return cs.ZaddCtx(context.Background(), key, score, value)
 }
 
+func (cs clusterStore) ZaddFloat(key string, score float64, value string) (bool, error) {
+	return cs.ZaddFloatCtx(context.Background(), key, score, value)
+}
+
 func (cs clusterStore) ZaddCtx(ctx context.Context, key string, score int64, value string) (bool, error) {
+	return cs.ZaddFloatCtx(ctx, key, float64(score), value)
+}
+
+func (cs clusterStore) ZaddFloatCtx(ctx context.Context, key string, score float64, value string) (bool, error) {
 	node, err := cs.getRedis(key)
 	if err != nil {
 		return false, err
 	}
 
-	return node.ZaddCtx(ctx, key, score, value)
+	return node.ZaddFloatCtx(ctx, key, score, value)
 }
 
 func (cs clusterStore) Zadds(key string, ps ...redis.Pair) (int64, error) {

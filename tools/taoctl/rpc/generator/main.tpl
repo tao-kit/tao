@@ -6,9 +6,9 @@ import (
 
 	{{.imports}}
 
-	"manlu.org/tao/core/conf"
-	"manlu.org/tao/core/service"
-	"manlu.org/tao/zrpc"
+	"github.com/sllt/tao/core/conf"
+	"github.com/sllt/tao/core/service"
+	"github.com/sllt/tao/zrpc"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -21,11 +21,10 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 	ctx := svc.NewServiceContext(c)
-	svr := server.New{{.serviceNew}}Server(ctx)
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		{{.pkg}}.Register{{.service}}Server(grpcServer, svr)
-
+{{range .serviceNames}}       {{.Pkg}}.Register{{.Service}}Server(grpcServer, {{.ServerPkg}}.New{{.Service}}Server(ctx))
+{{end}}
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
 			reflection.Register(grpcServer)
 		}

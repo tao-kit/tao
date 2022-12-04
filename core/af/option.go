@@ -1,7 +1,7 @@
 package af
 
 import (
-	"manlu.org/tao/core/logx"
+	"github.com/sllt/tao/core/logx"
 	"time"
 )
 

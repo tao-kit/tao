@@ -3,7 +3,7 @@ package generator
 import (
 	"fmt"
 
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 const (
@@ -23,18 +23,16 @@ const (
 )
 
 var templates = map[string]string{
-	callTemplateFile:                  callTemplateText,
-	callInterfaceFunctionTemplateFile: callInterfaceFunctionTemplate,
-	callFunctionTemplateFile:          callFunctionTemplate,
-	configTemplateFileFile:            configTemplate,
-	etcTemplateFileFile:               etcTemplate,
-	logicTemplateFileFile:             logicTemplate,
-	logicFuncTemplateFileFile:         logicFunctionTemplate,
-	mainTemplateFile:                  mainTemplate,
-	serverTemplateFile:                serverTemplate,
-	serverFuncTemplateFile:            functionTemplate,
-	svcTemplateFile:                   svcTemplate,
-	rpcTemplateFile:                   rpcTemplateText,
+	callTemplateFile:          callTemplateText,
+	configTemplateFileFile:    configTemplate,
+	etcTemplateFileFile:       etcTemplate,
+	logicTemplateFileFile:     logicTemplate,
+	logicFuncTemplateFileFile: logicFunctionTemplate,
+	mainTemplateFile:          mainTemplate,
+	serverTemplateFile:        serverTemplate,
+	serverFuncTemplateFile:    functionTemplate,
+	svcTemplateFile:           svcTemplate,
+	rpcTemplateFile:           rpcTemplateText,
 }
 
 // GenTemplates is the entry for command taoctl template,

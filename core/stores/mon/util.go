@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/timex"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/timex"
 )
 
 const mongoAddrSep = ","

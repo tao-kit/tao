@@ -4,9 +4,9 @@ import (
 	"log"
 
 	"github.com/globalsign/mgo"
-	"manlu.org/tao/core/stores/cache"
-	"manlu.org/tao/core/stores/mongo"
-	"manlu.org/tao/core/stores/redis"
+	"github.com/sllt/tao/core/stores/cache"
+	"github.com/sllt/tao/core/stores/mongo"
+	"github.com/sllt/tao/core/stores/redis"
 )
 
 // A Model is a mongo model that built with cache capability.

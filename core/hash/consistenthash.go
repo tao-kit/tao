@@ -6,8 +6,7 @@ import (
 	"strconv"
 	"sync"
 
-	"manlu.org/tao/core/lang"
-	"manlu.org/tao/core/mapping"
+	"github.com/sllt/tao/core/lang"
 )
 
 const (
@@ -183,5 +182,5 @@ func innerRepr(node interface{}) string {
 }
 
 func repr(node interface{}) string {
-	return mapping.Repr(node)
+	return lang.Repr(node)
 }

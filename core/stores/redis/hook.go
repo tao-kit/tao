@@ -2,18 +2,22 @@ package redis
 
 import (
 	"context"
+	"io"
+	"net"
+	"strings"
+	"time"
+
 	red "github.com/go-redis/redis/v8"
+	"github.com/sllt/tao/core/breaker"
+	"github.com/sllt/tao/core/errorx"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/mapping"
+	"github.com/sllt/tao/core/timex"
+	"github.com/sllt/tao/core/trace"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	oteltrace "go.opentelemetry.io/otel/trace"
-	"manlu.org/tao/core/errorx"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/mapping"
-	"manlu.org/tao/core/timex"
-	"manlu.org/tao/core/trace"
-	"strings"
-	"time"
 )
 
 // spanName is the span name of the redis calls.
@@ -52,7 +56,12 @@ func (h hook) AfterProcess(ctx context.Context, cmd red.Cmder) error {
 
 	duration := timex.Since(start)
 	if duration > slowThreshold.Load() {
-		logDuration(ctx, cmd, duration)
+		logDuration(ctx, []red.Cmder{cmd}, duration)
+	}
+
+	metricReqDur.Observe(int64(duration/time.Millisecond), cmd.Name())
+	if msg := formatError(err); len(msg) > 0 {
+		metricReqErr.Inc(cmd.Name(), msg)
 	}
 
 	return nil
@@ -94,19 +103,53 @@ func (h hook) AfterProcessPipeline(ctx context.Context, cmds []red.Cmder) error 
 
 	duration := timex.Since(start)
 	if duration > slowThreshold.Load()*time.Duration(len(cmds)) {
-		logDuration(ctx, cmds[0], duration)
+		logDuration(ctx, cmds, duration)
+	}
+
+	metricReqDur.Observe(int64(duration/time.Millisecond), "Pipeline")
+	if msg := formatError(batchError.Err()); len(msg) > 0 {
+		metricReqErr.Inc("Pipeline", msg)
 	}
 
 	return nil
 }
 
-func logDuration(ctx context.Context, cmd red.Cmder, duration time.Duration) {
+func formatError(err error) string {
+	if err == nil || err == red.Nil {
+		return ""
+	}
+
+	opErr, ok := err.(*net.OpError)
+	if ok && opErr.Timeout() {
+		return "timeout"
+	}
+
+	switch err {
+	case io.EOF:
+		return "eof"
+	case context.DeadlineExceeded:
+		return "context deadline"
+	case breaker.ErrServiceUnavailable:
+		return "breaker"
+	default:
+		return "unexpected error"
+	}
+}
+
+func logDuration(ctx context.Context, cmds []red.Cmder, duration time.Duration) {
 	var buf strings.Builder
-	for i, arg := range cmd.Args() {
-		if i > 0 {
-			buf.WriteByte(' ')
+	for k, cmd := range cmds {
+		if k > 0 {
+			buf.WriteByte('\n')
 		}
-		buf.WriteString(mapping.Repr(arg))
+		var build strings.Builder
+		for i, arg := range cmd.Args() {
+			if i > 0 {
+				build.WriteByte(' ')
+			}
+			build.WriteString(mapping.Repr(arg))
+		}
+		buf.WriteString(build.String())
 	}
 	logx.WithContext(ctx).WithDuration(duration).Slowf("[REDIS] slowcall on executing: %s", buf.String())
 }

@@ -13,11 +13,11 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/sllt/tao/tools/taoctl/api/parser"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/rpc/execx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/api/parser"
-	"manlu.org/tao/tools/taoctl/api/spec"
-	"manlu.org/tao/tools/taoctl/rpc/execx"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 const pluginArg = "_plugin"

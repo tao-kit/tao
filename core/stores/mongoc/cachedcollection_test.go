@@ -3,7 +3,7 @@ package mongoc
 import (
 	"encoding/json"
 	"errors"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 	"runtime"
@@ -14,12 +14,12 @@ import (
 
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/core/stores/cache"
+	"github.com/sllt/tao/core/stores/mongo"
+	"github.com/sllt/tao/core/stores/redis"
+	"github.com/sllt/tao/core/stores/redis/redistest"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stat"
-	"manlu.org/tao/core/stores/cache"
-	"manlu.org/tao/core/stores/mongo"
-	"manlu.org/tao/core/stores/redis"
-	"manlu.org/tao/core/stores/redis/redistest"
 )
 
 const dummyCount = 10
@@ -117,7 +117,7 @@ func TestStat(t *testing.T) {
 
 func TestStatCacheFails(t *testing.T) {
 	resetStats()
-	log.SetOutput(ioutil.Discard)
+	log.SetOutput(io.Discard)
 	defer log.SetOutput(os.Stdout)
 
 	r := redis.New("localhost:59999")

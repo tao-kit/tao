@@ -4,8 +4,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stat"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stat"
 )
 
 type (

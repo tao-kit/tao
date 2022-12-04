@@ -3,8 +3,8 @@ package handler
 import (
 	"net/http"
 
-	"manlu.org/tao/core/stat"
-	"manlu.org/tao/core/timex"
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/core/timex"
 )
 
 // MetricHandler returns a middleware that stat the metrics.

@@ -2,11 +2,9 @@ package stringx
 
 import (
 	"errors"
-	"regexp"
-	"strings"
 	"unicode"
 
-	"manlu.org/tao/core/lang"
+	"github.com/sllt/tao/core/lang"
 )
 
 var (
@@ -14,14 +12,6 @@ var (
 	ErrInvalidStartPosition = errors.New("start position is invalid")
 	// ErrInvalidStopPosition is an error that indicates the stop position is invalid.
 	ErrInvalidStopPosition = errors.New("stop position is invalid")
-
-	// regex for convert string.
-	toSnakeReg  = regexp.MustCompile("[A-Z][a-z]")
-	toCamelRegs = map[string]*regexp.Regexp{
-		" ": regexp.MustCompile(" +[a-zA-Z]"),
-		"-": regexp.MustCompile("-+[a-zA-Z]"),
-		"_": regexp.MustCompile("_+[a-zA-Z]"),
-	}
 )
 
 // Contains checks if str is in list.
@@ -80,6 +70,33 @@ func HasEmpty(args ...string) bool {
 	return false
 }
 
+// Join joins any number of elements into a single string, separating them with given sep.
+// Empty elements are ignored. However, if the argument list is empty or all its elements are empty,
+// Join returns an empty string.
+func Join(sep byte, elem ...string) string {
+	var size int
+	for _, e := range elem {
+		size += len(e)
+	}
+	if size == 0 {
+		return ""
+	}
+
+	buf := make([]byte, 0, size+len(elem)-1)
+	for _, e := range elem {
+		if len(e) == 0 {
+			continue
+		}
+
+		if len(buf) > 0 {
+			buf = append(buf, sep)
+		}
+		buf = append(buf, e...)
+	}
+
+	return string(buf)
+}
+
 // NotEmpty checks if all strings are not empty in args.
 func NotEmpty(args ...string) bool {
 	return !HasEmpty(args...)
@@ -114,7 +131,8 @@ func Reverse(s string) string {
 	return string(runes)
 }
 
-// Substr returns runes between start and stop [start, stop) regardless of the chars are ascii or utf8.
+// Substr returns runes between start and stop [start, stop)
+// regardless of the chars are ascii or utf8.
 func Substr(str string, start, stop int) (string, error) {
 	rs := []rune(str)
 	length := len(rs)
@@ -151,6 +169,15 @@ func TakeWithPriority(fns ...func() string) string {
 	return ""
 }
 
+// ToCamelCase returns the string that converts the first letter to lowercase.
+func ToCamelCase(s string) string {
+	for i, v := range s {
+		return string(unicode.ToLower(v)) + s[i+1:]
+	}
+
+	return ""
+}
+
 // Union merges the strings in first and second.
 func Union(first, second []string) []string {
 	set := make(map[string]lang.PlaceholderType)
@@ -168,99 +195,4 @@ func Union(first, second []string) []string {
 	}
 
 	return merged
-}
-
-// IsNumeric checks whether the given string s is numeric.
-func IsNumeric(s string) bool {
-	length := len(s)
-	if length == 0 {
-		return false
-	}
-	for i := 0; i < len(s); i++ {
-		if s[i] == '-' && i == 0 {
-			continue
-		}
-		if s[i] == '.' {
-			if i > 0 && i < len(s)-1 {
-				continue
-			} else {
-				return false
-			}
-		}
-		if s[i] < '0' || s[i] > '9' {
-			return false
-		}
-	}
-	return true
-}
-
-// LowerFirst lower first char
-func LowerFirst(s string) string {
-	if len(s) == 0 {
-		return s
-	}
-
-	rs := []rune(s)
-	f := rs[0]
-	if 'A' <= f && f <= 'Z' {
-		return string(unicode.ToLower(f)) + string(rs[1:])
-	}
-
-	return s
-}
-
-// UpperFirst upper first char
-func UpperFirst(s string) string {
-	if len(s) == 0 {
-		return s
-	}
-	rs := []rune(s)
-	f := rs[0]
-	if 'a' <= f && f <= 'z' {
-		return string(unicode.ToUpper(f)) + string(rs[1:])
-	}
-
-	return s
-}
-
-// SnakeCase convert. eg "RangePrice" -> "range_price"
-func SnakeCase(s string, sep ...string) string {
-	sepChar := "_"
-	if len(sep) > 0 {
-		sepChar = sep[0]
-	}
-
-	newStr := toSnakeReg.ReplaceAllStringFunc(s, func(s string) string {
-		return sepChar + LowerFirst(s)
-	})
-
-	return strings.TrimLeft(newStr, sepChar)
-}
-
-// CamelCase convert string to camel case.
-// Support:
-// 	"range_price" -> "rangePrice"
-// 	"range price" -> "rangePrice"
-// 	"range-price" -> "rangePrice"
-func CamelCase(s string, sep ...string) string {
-	sepChar := "_"
-	if len(sep) > 0 {
-		sepChar = sep[0]
-	}
-
-	// Not contains sep char
-	if !strings.Contains(s, sepChar) {
-		return s
-	}
-
-	// Get regexp instance
-	rgx, ok := toCamelRegs[sepChar]
-	if !ok {
-		rgx = regexp.MustCompile(regexp.QuoteMeta(sepChar) + "+[a-zA-Z]")
-	}
-
-	return rgx.ReplaceAllStringFunc(s, func(s string) string {
-		s = strings.TrimLeft(s, sepChar)
-		return UpperFirst(s)
-	})
 }

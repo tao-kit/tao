@@ -8,10 +8,10 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/mathx"
+	"github.com/sllt/tao/core/stringx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/mathx"
-	"manlu.org/tao/core/stringx"
 	"google.golang.org/grpc/balancer"
 	"google.golang.org/grpc/balancer/base"
 	"google.golang.org/grpc/codes"

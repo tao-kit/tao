@@ -5,9 +5,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stat/internal"
-	"manlu.org/tao/core/threading"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stat/internal"
+	"github.com/sllt/tao/core/threading"
 )
 
 const (

@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/lang"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/lang"
 )
 
 const limit = 10

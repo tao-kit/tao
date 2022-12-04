@@ -3,8 +3,8 @@ package internal
 import (
 	"strings"
 
+	"github.com/sllt/tao/zrpc/resolver/internal/targets"
 	"google.golang.org/grpc/resolver"
-	"manlu.org/tao/zrpc/resolver/internal/targets"
 )
 
 type directBuilder struct{}

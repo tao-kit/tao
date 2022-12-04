@@ -5,7 +5,7 @@ import (
 	"path"
 	"sort"
 
-	"manlu.org/tao/tools/taoctl/api/parser/g4/gen/api"
+	"github.com/sllt/tao/tools/taoctl/api/parser/g4/gen/api"
 )
 
 const (
@@ -210,7 +210,7 @@ func (a *Api) Format() error {
 
 // Equal compares whether the element literals in two Api are equal
 func (a *Api) Equal(v interface{}) bool {
-	if v == nil {
+	if v == nil || a == nil {
 		return false
 	}
 

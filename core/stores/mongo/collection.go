@@ -5,10 +5,10 @@ import (
 	"time"
 
 	"github.com/globalsign/mgo"
-	"manlu.org/tao/core/breaker"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stores/mongo/internal"
-	"manlu.org/tao/core/timex"
+	"github.com/sllt/tao/core/breaker"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stores/mongo/internal"
+	"github.com/sllt/tao/core/timex"
 )
 
 const defaultSlowThreshold = time.Millisecond * 500

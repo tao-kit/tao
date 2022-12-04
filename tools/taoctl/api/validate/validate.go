@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/sllt/tao/tools/taoctl/api/parser"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/api/parser"
 )
 
 // VarStringAPI describes an API.

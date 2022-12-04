@@ -3,9 +3,9 @@ package generator
 import (
 	"log"
 
-	conf "manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/env"
-	"manlu.org/tao/tools/taoctl/util/console"
+	conf "github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/env"
+	"github.com/sllt/tao/tools/taoctl/util/console"
 )
 
 // Generator defines the environment needs of rpc service generation

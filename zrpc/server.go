@@ -4,12 +4,12 @@ import (
 	"log"
 	"time"
 
-	"manlu.org/tao/core/load"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stat"
-	"manlu.org/tao/zrpc/internal"
-	"manlu.org/tao/zrpc/internal/auth"
-	"manlu.org/tao/zrpc/internal/serverinterceptors"
+	"github.com/sllt/tao/core/load"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/zrpc/internal"
+	"github.com/sllt/tao/zrpc/internal/auth"
+	"github.com/sllt/tao/zrpc/internal/serverinterceptors"
 	"google.golang.org/grpc"
 )
 

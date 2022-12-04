@@ -1,20 +1,20 @@
 package builderx
 
 import (
-	"manlu.org/tao/core/stores/builder"
+	"github.com/sllt/tao/core/stores/builder"
 )
 
-// Deprecated: Use manlu.org/tao/core/stores/builder.RawFieldNames instead.
+// Deprecated: Use github.com/sllt/tao/core/stores/builder.RawFieldNames instead.
 func FieldNames(in interface{}) []string {
 	return builder.RawFieldNames(in)
 }
 
-// Deprecated: Use manlu.org/tao/core/stores/builder.RawFieldNames instead.
+// Deprecated: Use github.com/sllt/tao/core/stores/builder.RawFieldNames instead.
 func RawFieldNames(in interface{}, postgresSql ...bool) []string {
 	return builder.RawFieldNames(in, postgresSql...)
 }
 
-// Deprecated: Use manlu.org/tao/core/stores/builderx.PostgreSqlJoin instead.
+// Deprecated: Use github.com/sllt/tao/core/stores/builderx.PostgreSqlJoin instead.
 func PostgreSqlJoin(elems []string) string {
 	return builder.PostgreSqlJoin(elems)
 }

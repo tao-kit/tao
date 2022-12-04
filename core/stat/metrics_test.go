@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/logx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/logx"
 )
 
 func TestMetrics(t *testing.T) {

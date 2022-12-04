@@ -3,7 +3,7 @@ package sysx
 import (
 	"os"
 
-	"manlu.org/tao/core/stringx"
+	"github.com/sllt/tao/core/stringx"
 )
 
 var hostname string

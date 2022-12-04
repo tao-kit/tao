@@ -4,8 +4,8 @@ import (
 	"os"
 	"strings"
 
-	"manlu.org/tao/core/discov"
-	"manlu.org/tao/core/netx"
+	"github.com/sllt/tao/core/discov"
+	"github.com/sllt/tao/core/netx"
 )
 
 const (

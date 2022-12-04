@@ -5,7 +5,7 @@ import (
 	"strings"
 	"text/template"
 
-	"manlu.org/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
 )
 
 const apiTemplate = `import 'api.dart';

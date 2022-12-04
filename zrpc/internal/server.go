@@ -3,10 +3,10 @@ package internal
 import (
 	"time"
 
+	"github.com/sllt/tao/core/stat"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/keepalive"
-	"manlu.org/tao/core/stat"
 )
 
 const defaultConnectionIdleDuration = time.Minute * 5

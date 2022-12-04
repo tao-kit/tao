@@ -3,7 +3,7 @@ package internal
 import (
 	"sync"
 
-	"manlu.org/tao/core/logx"
+	"github.com/sllt/tao/core/logx"
 	"google.golang.org/grpc/grpclog"
 )
 

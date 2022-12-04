@@ -1,12 +1,14 @@
 package gen
 
 import (
+	"fmt"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/model/sql/template"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
-	"manlu.org/tao/tools/taoctl/util/stringx"
+	"github.com/sllt/tao/core/collection"
+	"github.com/sllt/tao/tools/taoctl/model/sql/template"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/stringx"
 )
 
 func genVars(table Table, withCache, postgreSql bool) (string, error) {
@@ -32,6 +34,17 @@ func genVars(table Table, withCache, postgreSql bool) (string, error) {
 		"withCache":             withCache,
 		"postgreSql":            postgreSql,
 		"data":                  table,
+		"ignoreColumns": func() string {
+			var set = collection.NewSet()
+			for _, c := range table.ignoreColumns {
+				if postgreSql {
+					set.AddStr(fmt.Sprintf(`"%s"`, c))
+				} else {
+					set.AddStr(fmt.Sprintf("\"`%s`\"", c))
+				}
+			}
+			return strings.Join(set.KeysStr(), ", ")
+		}(),
 	})
 	if err != nil {
 		return "", err

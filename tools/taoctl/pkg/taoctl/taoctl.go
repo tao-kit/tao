@@ -4,10 +4,10 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"manlu.org/tao/tools/taoctl/pkg/golang"
-	"manlu.org/tao/tools/taoctl/util/console"
-	"manlu.org/tao/tools/taoctl/util/pathx"
-	"manlu.org/tao/tools/taoctl/vars"
+	"github.com/sllt/tao/tools/taoctl/pkg/golang"
+	"github.com/sllt/tao/tools/taoctl/util/console"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/vars"
 )
 
 func Install(cacheDir, name string, installFn func(dest string) (string, error)) (string, error) {

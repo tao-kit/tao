@@ -4,8 +4,8 @@ import (
 	_ "embed"
 	"testing"
 
+	"github.com/sllt/tao/tools/taoctl/api/spec"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/tools/taoctl/api/spec"
 )
 
 //go:embed testdata/test.api

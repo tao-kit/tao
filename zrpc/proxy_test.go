@@ -6,11 +6,11 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"testing"
 
+	"github.com/sllt/tao/zrpc/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"manlu.org/tao/zrpc/internal/mock"
 )
 
 func TestProxy(t *testing.T) {

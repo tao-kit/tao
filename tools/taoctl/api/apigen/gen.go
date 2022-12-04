@@ -9,9 +9,9 @@ import (
 	"strings"
 
 	"github.com/logrusorgru/aurora"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 //go:embed api.tpl

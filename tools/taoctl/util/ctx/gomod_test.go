@@ -8,10 +8,10 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/sllt/tao/core/stringx"
+	"github.com/sllt/tao/tools/taoctl/rpc/execx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stringx"
-	"manlu.org/tao/tools/taoctl/rpc/execx"
-	"manlu.org/tao/tools/taoctl/util/pathx"
 )
 
 func TestProjectFromGoMod(t *testing.T) {

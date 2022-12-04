@@ -3,8 +3,8 @@ package mathx
 import (
 	"testing"
 
+	"github.com/sllt/tao/core/stringx"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/stringx"
 )
 
 func TestMaxInt(t *testing.T) {

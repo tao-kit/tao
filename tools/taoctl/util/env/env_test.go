@@ -8,9 +8,9 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/vars"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/tools/taoctl/util/pathx"
-	"manlu.org/tao/tools/taoctl/vars"
 )
 
 func TestLookUpGo(t *testing.T) {

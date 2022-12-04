@@ -1,7 +1,7 @@
 package resolver
 
 import (
-	"manlu.org/tao/zrpc/resolver/internal"
+	"github.com/sllt/tao/zrpc/resolver/internal"
 )
 
 // Register registers schemes defined zrpc.

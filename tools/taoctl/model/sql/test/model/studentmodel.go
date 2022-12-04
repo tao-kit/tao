@@ -6,15 +6,15 @@ import (
 	"strings"
 	"time"
 
-	"manlu.org/tao/core/stores/cache"
-	"manlu.org/tao/core/stores/sqlc"
-	"manlu.org/tao/core/stores/sqlx"
-	"manlu.org/tao/core/stringx"
-	"manlu.org/tao/tools/taoctl/model/sql/builderx"
+	"github.com/sllt/tao/core/stores/builder"
+	"github.com/sllt/tao/core/stores/cache"
+	"github.com/sllt/tao/core/stores/sqlc"
+	"github.com/sllt/tao/core/stores/sqlx"
+	"github.com/sllt/tao/core/stringx"
 )
 
 var (
-	studentFieldNames          = builderx.RawFieldNames(&Student{})
+	studentFieldNames          = builder.RawFieldNames(&Student{})
 	studentRows                = strings.Join(studentFieldNames, ",")
 	studentRowsExpectAutoSet   = strings.Join(stringx.Remove(studentFieldNames, "`id`", "`create_time`", "`update_time`"), ",")
 	studentRowsWithPlaceHolder = strings.Join(stringx.Remove(studentFieldNames, "`id`", "`create_time`", "`update_time`"), "=?,") + "=?"

@@ -3,7 +3,7 @@ package mongo
 import (
 	"time"
 
-	"manlu.org/tao/core/syncx"
+	"github.com/sllt/tao/core/syncx"
 )
 
 var slowThreshold = syncx.ForAtomicDuration(defaultSlowThreshold)

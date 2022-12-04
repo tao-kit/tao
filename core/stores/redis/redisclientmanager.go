@@ -5,7 +5,7 @@ import (
 	"io"
 
 	red "github.com/go-redis/redis/v8"
-	"manlu.org/tao/core/syncx"
+	"github.com/sllt/tao/core/syncx"
 )
 
 const (

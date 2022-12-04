@@ -1,9 +1,9 @@
 package cmd
 
 import (
+	"github.com/sllt/tao/tools/taoctl/compare/testdata"
+	"github.com/sllt/tao/tools/taoctl/util/console"
 	"github.com/spf13/cobra"
-	"manlu.org/tao/tools/taoctl/compare/testdata"
-	"manlu.org/tao/tools/taoctl/util/console"
 )
 
 var rootCmd = &cobra.Command{

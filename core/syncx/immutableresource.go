@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"manlu.org/tao/core/timex"
+	"github.com/sllt/tao/core/timex"
 )
 
 const defaultRefreshInterval = time.Second

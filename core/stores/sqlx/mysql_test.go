@@ -6,10 +6,10 @@ import (
 	"testing"
 
 	"github.com/go-sql-driver/mysql"
+	"github.com/sllt/tao/core/breaker"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stat"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/breaker"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stat"
 )
 
 func init() {

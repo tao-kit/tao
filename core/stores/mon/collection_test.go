@@ -5,24 +5,20 @@ import (
 	"errors"
 	"strings"
 	"testing"
-	"time"
 
+	"github.com/sllt/tao/core/breaker"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/stringx"
+	"github.com/sllt/tao/core/timex"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/integration/mtest"
 	mopt "go.mongodb.org/mongo-driver/mongo/options"
-	"manlu.org/tao/core/breaker"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/stringx"
 )
 
 var errDummy = errors.New("dummy")
-
-func init() {
-	logx.Disable()
-}
 
 func TestKeepPromise_accept(t *testing.T) {
 	p := new(mockPromise)
@@ -110,14 +106,14 @@ func TestCollection_BulkWrite(t *testing.T) {
 		}
 		mt.AddMockResponses(mtest.CreateSuccessResponse(bson.D{{Key: "ok", Value: 1}}...))
 		res, err := c.BulkWrite(context.Background(), []mongo.WriteModel{
-			mongo.NewInsertOneModel().SetDocument(bson.D{{Key: "foo", Value: 1}})},
-		)
+			mongo.NewInsertOneModel().SetDocument(bson.D{{Key: "foo", Value: 1}}),
+		})
 		assert.Nil(t, err)
 		assert.NotNil(t, res)
 		c.brk = new(dropBreaker)
 		_, err = c.BulkWrite(context.Background(), []mongo.WriteModel{
-			mongo.NewInsertOneModel().SetDocument(bson.D{{Key: "foo", Value: 1}})},
-		)
+			mongo.NewInsertOneModel().SetDocument(bson.D{{Key: "foo", Value: 1}}),
+		})
 		assert.Equal(t, errDummy, err)
 	})
 }
@@ -208,7 +204,7 @@ func TestCollection_EstimatedDocumentCount(t *testing.T) {
 	})
 }
 
-func TestCollectionFind(t *testing.T) {
+func TestCollection_Find(t *testing.T) {
 	mt := mtest.New(t, mtest.NewOptions().ClientType(mtest.Mock))
 	defer mt.Close()
 
@@ -256,7 +252,7 @@ func TestCollectionFind(t *testing.T) {
 	})
 }
 
-func TestCollectionFindOne(t *testing.T) {
+func TestCollection_FindOne(t *testing.T) {
 	mt := mtest.New(t, mtest.NewOptions().ClientType(mtest.Mock))
 	defer mt.Close()
 
@@ -440,7 +436,7 @@ func TestCollection_InsertMany(t *testing.T) {
 	})
 }
 
-func TestCollection_Remove(t *testing.T) {
+func TestCollection_DeleteOne(t *testing.T) {
 	mt := mtest.New(t, mtest.NewOptions().ClientType(mtest.Mock))
 	defer mt.Close()
 
@@ -460,7 +456,7 @@ func TestCollection_Remove(t *testing.T) {
 	})
 }
 
-func TestCollectionRemoveAll(t *testing.T) {
+func TestCollection_DeleteMany(t *testing.T) {
 	mt := mtest.New(t, mtest.NewOptions().ClientType(mtest.Mock))
 	defer mt.Close()
 
@@ -569,7 +565,7 @@ func TestCollection_UpdateMany(t *testing.T) {
 	})
 }
 
-func Test_DecoratedCollectionLogDuration(t *testing.T) {
+func TestDecoratedCollection_LogDuration(t *testing.T) {
 	mt := mtest.New(t, mtest.NewOptions().ClientType(mtest.Mock))
 	defer mt.Close()
 	c := decoratedCollection{
@@ -588,21 +584,40 @@ func Test_DecoratedCollectionLogDuration(t *testing.T) {
 	}()
 
 	buf.Reset()
-	c.logDuration(context.Background(), "foo", time.Millisecond, nil, "bar")
+	c.logDuration(context.Background(), "foo", timex.Now(), nil, "bar")
 	assert.Contains(t, buf.String(), "foo")
 	assert.Contains(t, buf.String(), "bar")
 
 	buf.Reset()
-	c.logDuration(context.Background(), "foo", time.Millisecond, errors.New("bar"), make(chan int))
+	c.logDuration(context.Background(), "foo", timex.Now(), errors.New("bar"), make(chan int))
+	assert.Contains(t, buf.String(), "foo")
 	assert.Contains(t, buf.String(), "bar")
 
 	buf.Reset()
-	c.logDuration(context.Background(), "foo", slowThreshold.Load()+time.Millisecond, errors.New("bar"))
+	c.logDuration(context.Background(), "foo", timex.Now(), nil, make(chan int))
+	assert.Contains(t, buf.String(), "foo")
+
+	buf.Reset()
+	c.logDuration(context.Background(), "foo", timex.Now()-slowThreshold.Load()*2,
+		nil, make(chan int))
 	assert.Contains(t, buf.String(), "foo")
 	assert.Contains(t, buf.String(), "slowcall")
 
 	buf.Reset()
-	c.logDuration(context.Background(), "foo", slowThreshold.Load()+time.Millisecond, nil)
+	c.logDuration(context.Background(), "foo", timex.Now()-slowThreshold.Load()*2,
+		errors.New("bar"), make(chan int))
+	assert.Contains(t, buf.String(), "foo")
+	assert.Contains(t, buf.String(), "bar")
+	assert.Contains(t, buf.String(), "slowcall")
+
+	buf.Reset()
+	c.logDuration(context.Background(), "foo", timex.Now()-slowThreshold.Load()*2,
+		errors.New("bar"))
+	assert.Contains(t, buf.String(), "foo")
+	assert.Contains(t, buf.String(), "slowcall")
+
+	buf.Reset()
+	c.logDuration(context.Background(), "foo", timex.Now()-slowThreshold.Load()*2, nil)
 	assert.Contains(t, buf.String(), "foo")
 	assert.Contains(t, buf.String(), "slowcall")
 }

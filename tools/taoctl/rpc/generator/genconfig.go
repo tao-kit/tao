@@ -6,10 +6,10 @@ import (
 	"os"
 	"path/filepath"
 
-	conf "manlu.org/tao/tools/taoctl/config"
-	"manlu.org/tao/tools/taoctl/rpc/parser"
-	"manlu.org/tao/tools/taoctl/util/format"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	conf "github.com/sllt/tao/tools/taoctl/config"
+	"github.com/sllt/tao/tools/taoctl/rpc/parser"
+	"github.com/sllt/tao/tools/taoctl/util/format"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 //go:embed config.tpl
@@ -18,7 +18,7 @@ var configTemplate string
 // GenConfig generates the configuration structure definition file of the rpc service,
 // which contains the zrpc.RpcServerConf configuration item by default.
 // You can specify the naming style of the target file name through config.Config. For details,
-// see https://manlu.org/tao/tree/master/tools/taoctl/config/config.go
+// see https://github.com/sllt/tao/tree/master/tools/taoctl/config/config.go
 func (g *Generator) GenConfig(ctx DirContext, _ parser.Proto, cfg *conf.Config) error {
 	dir := ctx.GetConfig()
 	configFilename, err := format.FileNamingFormat(cfg.NamingFormat, "config")

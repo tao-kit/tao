@@ -1,10 +1,10 @@
 package gen
 
 import (
-	"manlu.org/tao/tools/taoctl/model/sql/template"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
-	"manlu.org/tao/tools/taoctl/util/stringx"
+	"github.com/sllt/tao/tools/taoctl/model/sql/template"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/stringx"
 )
 
 func genFindOne(table Table, withCache, postgreSql bool) (string, string, error) {

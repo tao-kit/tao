@@ -3,9 +3,9 @@ package internal
 import (
 	"net/http"
 
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/timex"
 	"go.opentelemetry.io/otel/propagation"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/timex"
 )
 
 func LogInterceptor(r *http.Request) (*http.Request, ResponseHandler) {

@@ -3,17 +3,15 @@ package gogen
 import (
 	"bytes"
 	"fmt"
-	goformat "go/format"
 	"io"
-	"path/filepath"
 	"strings"
 	"text/template"
 
-	"manlu.org/tao/core/collection"
-	"manlu.org/tao/tools/taoctl/api/spec"
-	"manlu.org/tao/tools/taoctl/api/util"
-	"manlu.org/tao/tools/taoctl/util/ctx"
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/core/collection"
+	"github.com/sllt/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/api/util"
+	"github.com/sllt/tao/tools/taoctl/pkg/golang"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 type fileGenConfig struct {
@@ -54,36 +52,9 @@ func genFile(c fileGenConfig) error {
 		return err
 	}
 
-	code := formatCode(buffer.String())
+	code := golang.FormatCode(buffer.String())
 	_, err = fp.WriteString(code)
 	return err
-}
-
-func getParentPackage(dir string) (string, error) {
-	abs, err := filepath.Abs(dir)
-	if err != nil {
-		return "", err
-	}
-
-	projectCtx, err := ctx.Prepare(abs)
-	if err != nil {
-		return "", err
-	}
-
-	// fix https://manlu.org/tao/issues/1058
-	wd := projectCtx.WorkDir
-	d := projectCtx.Dir
-	same, err := pathx.SameFile(wd, d)
-	if err != nil {
-		return "", err
-	}
-
-	trim := strings.TrimPrefix(projectCtx.WorkDir, projectCtx.Dir)
-	if same {
-		trim = strings.TrimPrefix(strings.ToLower(projectCtx.WorkDir), strings.ToLower(projectCtx.Dir))
-	}
-
-	return filepath.ToSlash(filepath.Join(projectCtx.Path, trim)), nil
 }
 
 func writeProperty(writer io.Writer, name, tag, comment string, tp spec.Type, indent int) error {
@@ -134,15 +105,6 @@ func getMiddleware(api *spec.ApiSpec) []string {
 	}
 
 	return result.KeysStr()
-}
-
-func formatCode(code string) string {
-	ret, err := goformat.Source([]byte(code))
-	if err != nil {
-		return code
-	}
-
-	return string(ret)
 }
 
 func responseGoTypeName(r spec.Route, pkg ...string) string {

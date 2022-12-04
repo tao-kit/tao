@@ -4,14 +4,14 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/discov"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/service"
+	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/core/stores/redis"
+	"github.com/sllt/tao/zrpc/internal"
+	"github.com/sllt/tao/zrpc/internal/serverinterceptors"
 	"github.com/stretchr/testify/assert"
-	"manlu.org/tao/core/discov"
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/service"
-	"manlu.org/tao/core/stat"
-	"manlu.org/tao/core/stores/redis"
-	"manlu.org/tao/zrpc/internal"
-	"manlu.org/tao/zrpc/internal/serverinterceptors"
 	"google.golang.org/grpc"
 )
 

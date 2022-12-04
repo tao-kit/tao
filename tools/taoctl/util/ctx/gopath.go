@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 // projectFromGoPath is used to find the main module and project file path

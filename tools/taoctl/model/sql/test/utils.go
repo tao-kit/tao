@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"manlu.org/tao/core/logx"
-	"manlu.org/tao/core/mapping"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/mapping"
 )
 
 // ErrNotFound is the alias of sql.ErrNoRows

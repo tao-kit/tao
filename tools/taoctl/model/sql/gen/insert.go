@@ -5,11 +5,11 @@ import (
 	"sort"
 	"strings"
 
-	"manlu.org/tao/core/collection"
-	"manlu.org/tao/tools/taoctl/model/sql/template"
-	"manlu.org/tao/tools/taoctl/util"
-	"manlu.org/tao/tools/taoctl/util/pathx"
-	"manlu.org/tao/tools/taoctl/util/stringx"
+	"github.com/sllt/tao/core/collection"
+	"github.com/sllt/tao/tools/taoctl/model/sql/template"
+	"github.com/sllt/tao/tools/taoctl/util"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/stringx"
 )
 
 func genInsert(table Table, withCache, postgreSql bool) (string, string, error) {
@@ -31,7 +31,7 @@ func genInsert(table Table, withCache, postgreSql bool) (string, string, error) 
 	var count int
 	for _, field := range table.Fields {
 		camel := util.SafeString(field.Name.ToCamel())
-		if camel == "CreateTime" || camel == "UpdateTime" {
+		if table.isIgnoreColumns(field.Name.Source()) {
 			continue
 		}
 

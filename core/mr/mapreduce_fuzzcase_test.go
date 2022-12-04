@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/threading"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/cheggaaa/pb.v1"
-	"manlu.org/tao/core/threading"
 )
 
 // If Fuzz stuck, we don't know why, because it only returns hung or unexpected,

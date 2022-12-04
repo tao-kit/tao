@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"strings"
 
-	"manlu.org/tao/core/mapping"
+	"github.com/sllt/tao/core/mapping"
 )
 
 const tagName = "db"

@@ -3,7 +3,7 @@ package docker
 import (
 	_ "embed"
 
-	"manlu.org/tao/tools/taoctl/util/pathx"
+	"github.com/sllt/tao/tools/taoctl/util/pathx"
 )
 
 const (
