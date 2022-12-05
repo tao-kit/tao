@@ -530,6 +530,10 @@ github.com/sirupsen/logrus v1.2.0/go.mod h1:LxeOpSwHxABJmUn/MG1IvRgCAasNZTLOkJPx
 github.com/sirupsen/logrus v1.4.2/go.mod h1:tLMulIdttU9McNUspp0xgXVQah82FyeX6MwdIuYE2rE=
 github.com/sirupsen/logrus v1.6.0/go.mod h1:7uNnSEd1DgxDLC74fIahvMZmmYsHGZGEOFrfsX/uA88=
 github.com/sirupsen/logrus v1.8.1/go.mod h1:yWOB1SBYBC5VeMP7gHvWumXLIWorT60ONWic61uBYv0=
+github.com/sllt/tao v1.4.2 h1:095nG2HHE+4Sv6GEo/arjv1DxDn8+xR9XxZ6Quz1r8I=
+github.com/sllt/tao v1.4.2/go.mod h1:l7RVlt+fOB6iZHjl2wNJVfCoDcU6KVI+amNP6uWkL44=
+github.com/sllt/tao v1.4.4 h1:1HfBiBZgyXZmJKr9uqY8JcJbGtMsxx3liPOskUomTUU=
+github.com/sllt/tao v1.4.4/go.mod h1:sDvgv91e2X8htD5IBrNA0fgRYM4J362/LGaJ3sZ2IHA=
 github.com/sllt/tao/tools/taoctl v1.4.1/go.mod h1:Yvtal/lX6LY8hA4Hjv43MuJfc+r9KvaDG6Sf9preexs=
 github.com/spaolacci/murmur3 v0.0.0-20180118202830-f09979ecbc72/go.mod h1:JwIasOWyU6f++ZhiEuf87xNszmSA2myDM2Kzu9HwQUA=
 github.com/spaolacci/murmur3 v1.1.0 h1:7c1g84S4BPRrfL5Xrdp6fOJ206sU9y293DDHaoy0bLI=

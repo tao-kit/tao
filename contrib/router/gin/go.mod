@@ -4,8 +4,8 @@ go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.7.7
+	github.com/sllt/tao v1.4.4
 	github.com/stretchr/testify v1.8.0
-	github.com/sllt/tao v1.4.1
 )
 
 require (
@@ -37,5 +37,3 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace github.com/sllt/tao v1.4.1 => ../../..
