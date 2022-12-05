@@ -127,7 +127,7 @@ func init() {
 		"https://github.com/sllt/tao-template directory structure")
 	goCmd.Flags().StringVar(&gogen.VarStringBranch, "branch", "", "The branch of "+
 		"the remote repo, it does work with --remote")
-	goCmd.Flags().StringVar(&gogen.VarStringStyle, "style", "gozero", "The file naming format,"+
+	goCmd.Flags().StringVar(&gogen.VarStringStyle, "style", "gotao", "The file naming format,"+
 		" see [https://github.com/sllt/tao/blob/master/tools/taoctl/config/readme.md]")
 
 	javaCmd.Flags().StringVar(&javagen.VarStringDir, "dir", "", "The target dir")
@@ -146,7 +146,7 @@ func init() {
 		"https://github.com/sllt/tao-template directory structure")
 	newCmd.Flags().StringVar(&new.VarStringBranch, "branch", "", "The branch of "+
 		"the remote repo, it does work with --remote")
-	newCmd.Flags().StringVar(&new.VarStringStyle, "style", "gozero", "The file naming format,"+
+	newCmd.Flags().StringVar(&new.VarStringStyle, "style", "gotao", "The file naming format,"+
 		" see [https://github.com/sllt/tao/blob/master/tools/taoctl/config/readme.md]")
 
 	pluginCmd.Flags().StringVarP(&plugin.VarStringPlugin, "plugin", "p", "", "The plugin file")

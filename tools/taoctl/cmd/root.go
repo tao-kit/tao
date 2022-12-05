@@ -38,10 +38,9 @@ var (
 
 	rootCmd = &cobra.Command{
 		Use:   "taoctl",
-		Short: "A cli tool to generate go-tao code",
+		Short: "A cli tool to generate tao code",
 		Long: "A cli tool to generate api, zrpc, model code\n\n" +
-			"GitHub: https://github.com/sllt/tao\n" +
-			"Site:   https://go-tao.dev",
+			"GitHub: https://github.com/sllt/tao\n",
 	}
 )
 
