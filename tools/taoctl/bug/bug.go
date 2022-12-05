@@ -20,7 +20,7 @@ const (
 
 	os            = "OS"
 	arch          = "ARCH"
-	taoctlVersion = "GOCTL_VERSION"
+	taoctlVersion = "TAOCTL_VERSION"
 	goVersion     = "GO_VERSION"
 )
 

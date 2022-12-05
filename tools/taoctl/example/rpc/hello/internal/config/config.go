@@ -1,6 +1,6 @@
 package config
 
-import "manlu.org/tao/zrpc"
+import "github.com/sllt/tao/zrpc"
 
 type Config struct {
 	zrpc.RpcServerConf

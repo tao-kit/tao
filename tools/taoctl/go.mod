@@ -17,7 +17,6 @@ require (
 	golang.org/x/text v0.3.7
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
-	github.com/sllt/tao v1.4.1
+	github.com/sllt/tao v1.4.3
 )
 
-replace github.com/sllt/tao v1.4.1 => ../../
