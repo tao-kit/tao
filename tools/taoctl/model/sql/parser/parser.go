@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/sllt/tao/core/collection"
-	"github.com/zeromicro/ddl-parser/parser"
+	"github.com/sllt/tao/tools/taoctl/pkg/ddl/parser"
 
 	"github.com/sllt/tao/tools/taoctl/model/sql/converter"
 	"github.com/sllt/tao/tools/taoctl/model/sql/model"

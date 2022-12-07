@@ -5,9 +5,9 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/sllt/tao/tools/taoctl/api/parser/g4/gen/api"
 	"github.com/sllt/tao/tools/taoctl/util/console"
-	"github.com/zeromicro/antlr"
 )
 
 type (

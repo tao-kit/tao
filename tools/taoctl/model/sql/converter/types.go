@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/zeromicro/ddl-parser/parser"
+	"github.com/sllt/tao/tools/taoctl/pkg/ddl/parser"
 )
 
 var unsignedTypeMap = map[string]string{

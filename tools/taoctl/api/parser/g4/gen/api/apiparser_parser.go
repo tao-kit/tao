@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"strconv"
 
-	"github.com/zeromicro/antlr"
+	"github.com/antlr/antlr4/runtime/Go/antlr"
 )
 
 // Suppress unused import errors

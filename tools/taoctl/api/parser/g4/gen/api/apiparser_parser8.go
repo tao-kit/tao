@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/zeromicro/antlr"
+	"github.com/antlr/antlr4/runtime/Go/antlr"
 )
 
 // Part 8
