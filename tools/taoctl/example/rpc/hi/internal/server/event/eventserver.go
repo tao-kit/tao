@@ -5,6 +5,7 @@ package server
 
 import (
 	"context"
+	eventlogic "github.com/sllt/tao/tools/taoctl/example/rpc/hi/internal/logic/event"
 
 	"github.com/sllt/tao/tools/taoctl/example/rpc/hi/internal/svc"
 	"github.com/sllt/tao/tools/taoctl/example/rpc/hi/pb/hi"

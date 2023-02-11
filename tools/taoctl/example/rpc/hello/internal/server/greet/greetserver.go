@@ -5,6 +5,7 @@ package server
 
 import (
 	"context"
+	greetlogic "github.com/sllt/tao/tools/taoctl/example/rpc/hello/internal/logic/greet"
 
 	"github.com/sllt/tao/tools/taoctl/example/rpc/hello/internal/svc"
 	"github.com/sllt/tao/tools/taoctl/example/rpc/hello/pb/hello"
