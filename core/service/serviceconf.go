@@ -1,14 +1,14 @@
 package service
 
 import (
-	"log"
-
 	"github.com/sllt/tao/core/load"
 	"github.com/sllt/tao/core/logx"
 	"github.com/sllt/tao/core/proc"
 	"github.com/sllt/tao/core/prometheus"
 	"github.com/sllt/tao/core/stat"
 	"github.com/sllt/tao/core/trace"
+	"github.com/sllt/tao/internal/devserver"
+	"log"
 )
 
 const (
@@ -28,10 +28,12 @@ const (
 type ServiceConf struct {
 	Name       string
 	Log        logx.LogConf
-	Mode       string            `json:",default=pro,options=dev|test|rt|pre|pro"`
-	MetricsUrl string            `json:",optional"`
+	Mode       string `json:",default=pro,options=dev|test|rt|pre|pro"`
+	MetricsUrl string `json:",optional"`
+	// Deprecated: please use DevServer
 	Prometheus prometheus.Config `json:",optional"`
 	Telemetry  trace.Config      `json:",optional"`
+	DevServer  devserver.Config  `json:",optional"`
 }
 
 // MustSetUp sets up the service, exits on error.
@@ -64,6 +66,7 @@ func (sc ServiceConf) SetUp() error {
 	if len(sc.MetricsUrl) > 0 {
 		stat.SetReportWriter(stat.NewRemoteWriter(sc.MetricsUrl))
 	}
+	devserver.StartAgent(sc.DevServer)
 
 	return nil
 }
