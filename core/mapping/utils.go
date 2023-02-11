@@ -4,14 +4,13 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/sllt/tao/core/lang"
+	"github.com/sllt/tao/core/stringx"
 	"math"
 	"reflect"
 	"strconv"
 	"strings"
 	"sync"
-
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/stringx"
 )
 
 const (
@@ -82,7 +81,14 @@ func ValidatePtr(v *reflect.Value) error {
 func convertType(kind reflect.Kind, str string) (interface{}, error) {
 	switch kind {
 	case reflect.Bool:
-		return str == "1" || strings.ToLower(str) == "true", nil
+		switch strings.ToLower(str) {
+		case "1", "true":
+			return true, nil
+		case "0", "false":
+			return false, nil
+		default:
+			return false, errTypeMismatch
+		}
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 		intValue, err := strconv.ParseInt(str, 10, 64)
 		if err != nil {

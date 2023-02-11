@@ -1,8 +1,10 @@
 package health
 
 import (
+	"fmt"
 	"github.com/sllt/tao/core/syncx"
 	"net/http"
+	"strings"
 	"sync"
 )
 
@@ -38,6 +40,18 @@ type (
 // AddProbe add components probe to global comboHealthManager.
 func AddProbe(probe Probe) {
 	defaultHealthManager.addProbe(probe)
+}
+
+// CreateHttpHandler create health http handler base on given probe.
+func CreateHttpHandler() http.HandlerFunc {
+	return func(w http.ResponseWriter, _ *http.Request) {
+		if defaultHealthManager.IsReady() {
+			_, _ = w.Write([]byte("OK"))
+		} else {
+			http.Error(w, "Service Unavailable\n"+defaultHealthManager.verboseInfo(),
+				http.StatusServiceUnavailable)
+		}
+	}
 }
 
 // NewHealthManager returns a new healthManager.
@@ -101,6 +115,7 @@ func (p *comboHealthManager) IsReady() bool {
 			return false
 		}
 	}
+
 	return true
 }
 
@@ -108,15 +123,16 @@ func (p *comboHealthManager) verboseInfo() string {
 	p.mu.Lock()
 	defer p.mu.Unlock()
 
-	var info string
+	var info strings.Builder
 	for _, probe := range p.probes {
 		if probe.IsReady() {
-			info += probe.Name() + " is ready; \n"
+			info.WriteString(fmt.Sprintf("%s is ready\n", probe.Name()))
 		} else {
-			info += probe.Name() + " is not ready; \n"
+			info.WriteString(fmt.Sprintf("%s is not ready\n", probe.Name()))
 		}
 	}
-	return info
+
+	return info.String()
 }
 
 // addProbe add components probe to comboHealthManager.
@@ -125,15 +141,4 @@ func (p *comboHealthManager) addProbe(probe Probe) {
 	defer p.mu.Unlock()
 
 	p.probes = append(p.probes, probe)
-}
-
-// CreateHttpHandler create health http handler base on given probe.
-func CreateHttpHandler() http.HandlerFunc {
-	return func(w http.ResponseWriter, request *http.Request) {
-		if defaultHealthManager.IsReady() {
-			_, _ = w.Write([]byte("OK"))
-		} else {
-			http.Error(w, "Service Unavailable\n"+defaultHealthManager.verboseInfo(), http.StatusServiceUnavailable)
-		}
-	}
 }
