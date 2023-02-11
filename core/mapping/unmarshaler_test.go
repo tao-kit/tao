@@ -212,6 +212,24 @@ func TestUnmarshalIntPtr(t *testing.T) {
 	assert.Equal(t, 1, *in.Int)
 }
 
+func TestUnmarshalIntSliceOfPtr(t *testing.T) {
+	type inner struct {
+		Ints []*int `key:"ints"`
+	}
+	m := map[string]interface{}{
+		"ints": []int{1, 2, 3},
+	}
+
+	var in inner
+	assert.NoError(t, UnmarshalKey(m, &in))
+	assert.NotEmpty(t, in.Ints)
+	var ints []int
+	for _, i := range in.Ints {
+		ints = append(ints, *i)
+	}
+	assert.EqualValues(t, []int{1, 2, 3}, ints)
+}
+
 func TestUnmarshalIntWithDefault(t *testing.T) {
 	type inner struct {
 		Int int `key:"int,default=5"`
