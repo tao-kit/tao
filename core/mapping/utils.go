@@ -209,8 +209,8 @@ func isRightInclude(b byte) (bool, error) {
 	}
 }
 
-func maybeNewValue(field reflect.StructField, value reflect.Value) {
-	if field.Type.Kind() == reflect.Ptr && value.IsNil() {
+func maybeNewValue(fieldType reflect.Type, value reflect.Value) {
+	if fieldType.Kind() == reflect.Ptr && value.IsNil() {
 		value.Set(reflect.New(value.Type().Elem()))
 	}
 }

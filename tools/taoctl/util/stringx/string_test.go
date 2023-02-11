@@ -7,68 +7,188 @@ import (
 )
 
 func TestString_IsEmptyOrSpace(t *testing.T) {
-	ret := From("  ").IsEmptyOrSpace()
-	assert.Equal(t, true, ret)
-	ret2 := From("ll??").IsEmptyOrSpace()
-	assert.Equal(t, false, ret2)
-	ret3 := From(`
-   		`).IsEmptyOrSpace()
-	assert.Equal(t, true, ret3)
+	cases := []struct {
+		input string
+		want  bool
+	}{
+		{
+			want: true,
+		},
+		{
+			input: " ",
+			want:  true,
+		},
+		{
+			input: "\t",
+			want:  true,
+		},
+		{
+			input: "\n",
+			want:  true,
+		},
+		{
+			input: "\f",
+			want:  true,
+		},
+		{
+			input: "		",
+			want:  true,
+		},
+	}
+	for _, v := range cases {
+		s := From(v.input)
+		assert.Equal(t, v.want, s.IsEmptyOrSpace())
+	}
 }
 
 func TestString_Snake2Camel(t *testing.T) {
-	ret := From("____this_is_snake").ToCamel()
-	assert.Equal(t, "ThisIsSnake", ret)
-
-	ret2 := From("测试_test_Data").ToCamel()
-	assert.Equal(t, "测试TestData", ret2)
-
-	ret3 := From("___").ToCamel()
-	assert.Equal(t, "", ret3)
-
-	ret4 := From("testData_").ToCamel()
-	assert.Equal(t, "TestData", ret4)
-
-	ret5 := From("testDataTestData").ToCamel()
-	assert.Equal(t, "TestDataTestData", ret5)
+	cases := []struct {
+		input string
+		want  string
+	}{
+		{
+			input: "__",
+			want:  "",
+		},
+		{
+			input: "go_tao",
+			want:  "GoTao",
+		},
+		{
+			input: "の_go_tao",
+			want:  "のGoTao",
+		},
+		{
+			input: "goTao",
+			want:  "GoTao",
+		},
+		{
+			input: "goTao",
+			want:  "GoTao",
+		},
+		{
+			input: "goTao_",
+			want:  "GoTao",
+		},
+		{
+			input: "go_Tao_",
+			want:  "GoTao",
+		},
+		{
+			input: "_go_Tao_",
+			want:  "GoTao",
+		},
+	}
+	for _, c := range cases {
+		ret := From(c.input).ToCamel()
+		assert.Equal(t, c.want, ret)
+	}
 }
 
 func TestString_Camel2Snake(t *testing.T) {
-	ret := From("ThisIsCCCamel").ToSnake()
-	assert.Equal(t, "this_is_c_c_camel", ret)
-
-	ret2 := From("测试Test_Data_test_data").ToSnake()
-	assert.Equal(t, "测试_test__data_test_data", ret2)
+	cases := []struct {
+		input string
+		want  string
+	}{
+		{
+			input: "goTao",
+			want:  "go_tao",
+		},
+		{
+			input: "Gotao",
+			want:  "gotao",
+		},
+		{
+			input: "GoTao",
+			want:  "go_tao",
+		},
+		{
+			input: "Go_Tao",
+			want:  "go__tao",
+		},
+	}
+	for _, c := range cases {
+		ret := From(c.input).ToSnake()
+		assert.Equal(t, c.want, ret)
+	}
 }
 
 func TestTitle(t *testing.T) {
 	cases := []struct {
-		src  string
-		exec string
+		input string
+		want  string
 	}{
 		{
-			src:  "hello world!",
-			exec: "Hello World!",
+			input: "go tao",
+			want:  "Go Tao",
 		},
 		{
-			src:  "go tao",
-			exec: "Go Tao",
+			input: "goTao",
+			want:  "GoTao",
 		},
 		{
-			src:  "goTao",
-			exec: "GoTao",
+			input: "GoTao",
+			want:  "GoTao",
 		},
 		{
-			src:  "GoTao",
-			exec: "GoTao",
+			input: "の go tao",
+			want:  "の Go Tao",
 		},
 		{
-			src:  "测试this is data",
-			exec: "测试This Is Data",
+			input: "Gotao",
+			want:  "Gotao",
+		},
+		{
+			input: "Go_tao",
+			want:  "Go_tao",
+		},
+		{
+			input: "go_tao",
+			want:  "Go_tao",
+		},
+		{
+			input: "Go_Tao",
+			want:  "Go_Tao",
 		},
 	}
 	for _, c := range cases {
-		ret := From(c.src).Title()
-		assert.Equal(t, c.exec, ret)
+		ret := From(c.input).Title()
+		assert.Equal(t, c.want, ret)
+	}
+}
+
+func TestUntitle(t *testing.T) {
+	cases := []struct {
+		input string
+		want  string
+	}{
+		{
+			input: "go tao",
+			want:  "go tao",
+		},
+		{
+			input: "GoTao",
+			want:  "goTao",
+		},
+		{
+			input: "Gotao",
+			want:  "gotao",
+		},
+		{
+			input: "Go_tao",
+			want:  "go_tao",
+		},
+		{
+			input: "go_tao",
+			want:  "go_tao",
+		},
+		{
+			input: "Go_Tao",
+			want:  "go_Tao",
+		},
+	}
+	for _, c := range cases {
+		ret := From(c.input).Untitle()
+		assert.Equal(t, c.want, ret)
 	}
 }
