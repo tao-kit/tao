@@ -3,11 +3,6 @@ package p2c
 import (
 	"context"
 	"fmt"
-	"runtime"
-	"strconv"
-	"sync"
-	"testing"
-
 	"github.com/sllt/tao/core/logx"
 	"github.com/sllt/tao/core/mathx"
 	"github.com/sllt/tao/core/stringx"
@@ -17,6 +12,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/resolver"
 	"google.golang.org/grpc/status"
+	"runtime"
+	"strconv"
+	"sync"
+	"testing"
 )
 
 func init() {
@@ -110,7 +109,7 @@ func TestP2cPicker_Pick(t *testing.T) {
 			}
 
 			wg.Wait()
-			dist := make(map[interface{}]int)
+			dist := make(map[any]int)
 			conns := picker.(*p2cPicker).conns
 			for _, conn := range conns {
 				dist[conn.addr.Addr] = int(conn.requests)
@@ -126,6 +125,11 @@ func TestP2cPicker_Pick(t *testing.T) {
 type mockClientConn struct {
 	// add random string member to avoid map key equality.
 	id string
+}
+
+func (m mockClientConn) GetOrBuildProducer(builder balancer.ProducerBuilder) (
+	p balancer.Producer, close func()) {
+	return builder.Build(m)
 }
 
 func (m mockClientConn) UpdateAddresses(addresses []resolver.Address) {
