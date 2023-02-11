@@ -8,7 +8,6 @@ import (
 
 	"github.com/sllt/tao/tools/taoctl/api/spec"
 	"github.com/sllt/tao/tools/taoctl/config"
-	"github.com/sllt/tao/tools/taoctl/pkg/golang"
 	"github.com/sllt/tao/tools/taoctl/util"
 	"github.com/sllt/tao/tools/taoctl/util/format"
 	"github.com/sllt/tao/tools/taoctl/util/pathx"
@@ -41,14 +40,10 @@ func genHandler(dir, rootPkg string, cfg *config.Config, group spec.Group, route
 		handler = strings.Title(handler)
 		logicName = pkgName
 	}
-	parentPkg, err := golang.GetParentPackage(dir)
-	if err != nil {
-		return err
-	}
 
 	return doGenToFile(dir, handler, cfg, group, route, handlerInfo{
 		PkgName:        pkgName,
-		ImportPackages: genHandlerImports(group, route, parentPkg),
+		ImportPackages: genHandlerImports(group, route, rootPkg),
 		HandlerName:    handler,
 		RequestType:    util.Title(route.RequestTypeName()),
 		LogicName:      logicName,
