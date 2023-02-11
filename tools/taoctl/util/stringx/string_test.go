@@ -51,8 +51,16 @@ func TestTitle(t *testing.T) {
 			exec: "Hello World!",
 		},
 		{
-			src:  "go zero",
-			exec: "Go Zero",
+			src:  "go tao",
+			exec: "Go Tao",
+		},
+		{
+			src:  "goTao",
+			exec: "GoTao",
+		},
+		{
+			src:  "GoTao",
+			exec: "GoTao",
 		},
 		{
 			src:  "测试this is data",
