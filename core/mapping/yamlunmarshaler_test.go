@@ -1,12 +1,11 @@
 package mapping
 
 import (
+	"github.com/stretchr/testify/assert"
+	"k8s.io/utils/io"
 	"reflect"
 	"strings"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
-	"k8s.io/utils/io"
 )
 
 func TestUnmarshalYamlBytes(t *testing.T) {
@@ -934,9 +933,8 @@ func TestUnmarshalYamlReaderError(t *testing.T) {
 	err := UnmarshalYamlReader(reader, &v)
 	assert.NotNil(t, err)
 
-	reader = strings.NewReader("chenquan")
-	err = UnmarshalYamlReader(reader, &v)
-	assert.ErrorIs(t, err, ErrUnsupportedType)
+	reader = strings.NewReader("foo")
+	assert.Error(t, UnmarshalYamlReader(reader, &v))
 }
 
 func TestUnmarshalYamlBadReader(t *testing.T) {
@@ -1010,6 +1008,13 @@ func TestUnmarshalYamlMapRune(t *testing.T) {
 	assert.Equal(t, rune(1), v.Machine["node1"])
 	assert.Equal(t, rune(2), v.Machine["node2"])
 	assert.Equal(t, rune(3), v.Machine["node3"])
+}
+
+func TestUnmarshalYamlBadInput(t *testing.T) {
+	var v struct {
+		Any string
+	}
+	assert.Error(t, UnmarshalYamlBytes([]byte("':foo"), &v))
 }
 
 type badReader struct{}

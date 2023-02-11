@@ -2,11 +2,10 @@ package mapping
 
 import (
 	"bytes"
+	"github.com/stretchr/testify/assert"
 	"reflect"
 	"strings"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestUnmarshalBytes(t *testing.T) {
@@ -900,7 +899,9 @@ func TestUnmarshalMap(t *testing.T) {
 			Any string `json:",optional"`
 		}
 
-		err := UnmarshalJsonMap(m, &v)
+		err := UnmarshalJsonMap(m, &v, WithCanonicalKeyFunc(func(s string) string {
+			return s
+		}))
 		assert.Nil(t, err)
 		assert.True(t, len(v.Any) == 0)
 	})
