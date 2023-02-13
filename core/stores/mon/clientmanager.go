@@ -2,15 +2,11 @@ package mon
 
 import (
 	"context"
-	"io"
-	"time"
-
 	"github.com/sllt/tao/core/syncx"
 	"go.mongodb.org/mongo-driver/mongo"
 	mopt "go.mongodb.org/mongo-driver/mongo/options"
+	"io"
 )
-
-const defaultTimeout = time.Second
 
 var clientManager = syncx.NewResourceManager()
 
@@ -30,9 +26,20 @@ func Inject(key string, client *mongo.Client) {
 	clientManager.Inject(key, &ClosableClient{client})
 }
 
-func getClient(url string) (*mongo.Client, error) {
+func getClient(url string, opts ...Option) (*mongo.Client, error) {
 	val, err := clientManager.GetResource(url, func() (io.Closer, error) {
-		cli, err := mongo.Connect(context.Background(), mopt.Client().ApplyURI(url))
+		o := mopt.Client().ApplyURI(url)
+		opts = append([]Option{defaultTimeoutOption()}, opts...)
+		for _, opt := range opts {
+			opt(o)
+		}
+
+		cli, err := mongo.Connect(context.Background(), o)
+		if err != nil {
+			return nil, err
+		}
+
+		err = cli.Ping(context.Background(), nil)
 		if err != nil {
 			return nil, err
 		}
