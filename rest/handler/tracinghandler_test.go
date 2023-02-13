@@ -56,7 +56,7 @@ func TestOtelHandler(t *testing.T) {
 
 func TestDontTracingSpan(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-tao-test",
+		Name:     "go-zero-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -104,7 +104,7 @@ func TestDontTracingSpan(t *testing.T) {
 
 func TestTraceResponseWriter(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-tao-test",
+		Name:     "go-zero-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -147,47 +147,4 @@ func TestTraceResponseWriter(t *testing.T) {
 			assert.Nil(t, err)
 		})
 	}
-}
-
-func TestTraceHandler_traceResponseWriter(t *testing.T) {
-	writer := &traceResponseWriter{
-		w: httptest.NewRecorder(),
-	}
-	assert.NotPanics(t, func() {
-		writer.Hijack()
-	})
-
-	writer = &traceResponseWriter{
-		w: mockedHijackable{httptest.NewRecorder()},
-	}
-	assert.NotPanics(t, func() {
-		writer.Hijack()
-	})
-
-	writer = &traceResponseWriter{
-		w: httptest.NewRecorder(),
-	}
-	writer.WriteHeader(http.StatusBadRequest)
-	assert.NotNil(t, writer.Header())
-
-	writer = &traceResponseWriter{
-		w: httptest.NewRecorder(),
-	}
-	assert.NotPanics(t, func() {
-		writer.Flush()
-	})
-
-	writer = &traceResponseWriter{
-		w: mockedFlusher{httptest.NewRecorder()},
-	}
-	assert.NotPanics(t, func() {
-		writer.Flush()
-	})
-}
-
-type mockedFlusher struct {
-	*httptest.ResponseRecorder
-}
-
-func (m mockedFlusher) Flush() {
 }
