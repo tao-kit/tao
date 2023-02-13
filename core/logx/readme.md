@@ -1,10 +1,6 @@
-<img align="right" width="150px" src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/go-tao.png">
-
 # logx
 
-English | [简体中文](readme-cn.md)
-
-## logx configurations
+## logx 配置
 
 ```go
 type LogConf struct {
@@ -23,30 +19,31 @@ type LogConf struct {
 }
 ```
 
-- `ServiceName`: set the service name, optional. on `volume` mode, the name is used to generate the log files. Within `rest/zrpc` services, the name will be set to the name of `rest` or `zrpc` automatically.
-- `Mode`: the mode to output the logs, default is `console`.
-  -  `console` mode writes the logs to `stdout/stderr`.
-  - `file` mode writes the logs to the files specified by `Path`.
-  - `volume` mode is used in docker, to write logs into mounted volumes.
-- `Encoding`: indicates how to encode the logs, default is `json`.
-  - `json` mode writes the logs in json format.
-  - `plain` mode writes the logs with plain text, with terminal color enabled.
-- `TimeFormat`: customize the time format, optional. Default is `2006-01-02T15:04:05.000Z07:00`.
-- `Path`: set the log path, default to `logs`.
-- `Level`: the logging level to filter logs. Default is `info`.
-  - `info`, all logs are written.
-  - `error`, `info` logs are suppressed.
-  - `severe`, `info` and `error` logs are suppressed, only `severe` logs are written.
-- `Compress`: whether or not to compress log files, only works with `file` mode.
-- `KeepDays`: how many days that the log files are kept, after the given days, the outdated files will be deleted automatically. It has no effect on `console` mode.
-- `StackCooldownMillis`: how many milliseconds to rewrite stacktrace again. It’s used to avoid stacktrace flooding.
-- `MaxBackups`: represents how many backup log files will be kept. 0 means all files will be kept forever. Only take effect when `Rotation` is `size`. NOTE: the level of option `KeepDays` will be higher. Even thougth `MaxBackups` sets 0, log files will still be removed if the `KeepDays` limitation is reached.
-- `MaxSize`: represents how much space the writing log file takes up. 0 means no limit. The unit is `MB`. Only take effect when `Rotation` is `size`.
-- `Rotation`: represents the type of log rotation rule. Default is `daily`.
-  - `daily` rotate the logs by day.
-  - `size` rotate the logs by size of logs.
+- `ServiceName`：设置服务名称，可选。在 `volume` 模式下，该名称用于生成日志文件。在 `rest/zrpc` 服务中，名称将被自动设置为 `rest`或`zrpc` 的名称。
+- `Mode`：输出日志的模式，默认是 `console`
+  - `console` 模式将日志写到 `stdout/stderr`
+  - `file` 模式将日志写到 `Path` 指定目录的文件中
+  - `volume` 模式在 docker 中使用，将日志写入挂载的卷中
+- `Encoding`: 指示如何对日志进行编码，默认是 `json`
+  - `json`模式以 json 格式写日志
+  - `plain`模式用纯文本写日志，并带有终端颜色显示
+- `TimeFormat`：自定义时间格式，可选。默认是 `2006-01-02T15:04:05.000Z07:00`
+- `Path`：设置日志路径，默认为 `logs`
+- `Level`: 用于过滤日志的日志级别。默认为 `info`
+  - `info`，所有日志都被写入
+  - `error`, `info` 的日志被丢弃
+  - `severe`, `info` 和 `error` 日志被丢弃，只有 `severe` 日志被写入
+- `Compress`: 是否压缩日志文件，只在 `file` 模式下工作
+- `KeepDays`：日志文件被保留多少天，在给定的天数之后，过期的文件将被自动删除。对 `console` 模式没有影响
+- `StackCooldownMillis`：多少毫秒后再次写入堆栈跟踪。用来避免堆栈跟踪日志过多
+- `MaxBackups`: 多少个日志文件备份将被保存。0代表所有备份都被保存。当`Rotation`被设置为`size`时才会起作用。注意：`KeepDays`选项的优先级会比`MaxBackups`高，即使`MaxBackups`被设置为0，当达到`KeepDays`上限时备份文件同样会被删除。
+- `MaxSize`: 当前被写入的日志文件最大可占用多少空间。0代表没有上限。单位为`MB`。当`Rotation`被设置为`size`时才会起作用。
+- `Rotation`: 日志轮转策略类型。默认为`daily`（按天轮转）。
+  - `daily` 按天轮转。
+  - `size` 按日志大小轮转。
 
-## Logging methods
+
+## 打印日志方法
 
 ```go
 type Logger interface {
@@ -81,32 +78,32 @@ type Logger interface {
 }
 ```
 
-- `Error`, `Info`, `Slow`: write any kind of messages into logs, with like `fmt.Sprint(…)`.
-- `Errorf`, `Infof`, `Slowf`: write messages with given format into logs.
-- `Errorv`, `Infov`, `Slowv`: write any kind of messages into logs, with json marshalling to encode them.
-- `Errorw`, `Infow`, `Sloww`: write the string message with given `key:value` fields.
-- `WithContext`: inject the given ctx into the log messages, typically used to log `trace-id` and `span-id`.
-- `WithDuration`: write elapsed duration into the log messages, with key `duration`.
+- `Error`, `Info`, `Slow`: 将任何类型的信息写进日志，使用 `fmt.Sprint(...)` 来转换为 `string`
+- `Errorf`, `Infof`, `Slowf`: 将指定格式的信息写入日志
+- `Errorv`, `Infov`, `Slowv`: 将任何类型的信息写入日志，用 `json marshal` 编码
+- `Errorw`, `Infow`, `Sloww`: 写日志，并带上给定的 `key:value` 字段
+- `WithContext`：将给定的 ctx 注入日志信息，例如用于记录 `trace-id`和`span-id`
+- `WithDuration`: 将指定的时间写入日志信息中，字段名为 `duration`
 
-## Integrating with third-party logging libs
+## 与第三方日志库集成
 
 - zap
-  - implementation: [https://github.com/zeromicro/zero-contrib/blob/main/logx/zapx/zap.go](https://github.com/zeromicro/zero-contrib/blob/main/logx/zapx/zap.go)
-  - usage example: [https://github.com/zeromicro/zero-examples/blob/main/logx/zaplog/main.go](https://github.com/zeromicro/zero-examples/blob/main/logx/zaplog/main.go)
+  - 实现：[https://github.com/zeromicro/zero-contrib/blob/main/logx/zapx/zap.go](https://github.com/zeromicro/zero-contrib/blob/main/logx/zapx/zap.go)
+  - 使用示例：[https://github.com/zeromicro/zero-examples/blob/main/logx/zaplog/main.go](https://github.com/zeromicro/zero-examples/blob/main/logx/zaplog/main.go)
 - logrus
-  - implementation: [https://github.com/zeromicro/zero-contrib/blob/main/logx/logrusx/logrus.go](https://github.com/zeromicro/zero-contrib/blob/main/logx/logrusx/logrus.go)
-  - usage example: [https://github.com/zeromicro/zero-examples/blob/main/logx/logrus/main.go](https://github.com/zeromicro/zero-examples/blob/main/logx/logrus/main.go)
+  - 实现：[https://github.com/zeromicro/zero-contrib/blob/main/logx/logrusx/logrus.go](https://github.com/zeromicro/zero-contrib/blob/main/logx/logrusx/logrus.go)
+  - 使用示例：[https://github.com/zeromicro/zero-examples/blob/main/logx/logrus/main.go](https://github.com/zeromicro/zero-examples/blob/main/logx/logrus/main.go)
 
-For more libs, please implement and PR to [https://github.com/zeromicro/zero-contrib](https://github.com/zeromicro/zero-contrib)
+对于其它的日志库，请参考上面示例实现，并欢迎提交 `PR` 到 [https://github.com/zeromicro/zero-contrib](https://github.com/zeromicro/zero-contrib)
 
-## Write the logs to specific stores
+## 将日志写到指定的存储
 
-`logx` defined two interfaces to let you customize `logx` to write logs into any stores.
+`logx`定义了两个接口，方便自定义 `logx`，将日志写入任何存储。
 
 - `logx.NewWriter(w io.Writer)`
-- `logx.SetWriter(writer logx.Writer)`
+- `logx.SetWriter(write logx.Writer)`
 
-For example, if we want to write the logs into kafka instead of console or files, we can do it like below:
+例如，如果我们想把日志写进kafka，而不是控制台或文件，我们可以像下面这样做。
 
 ```go
 type KafkaWriter struct {
@@ -139,11 +136,11 @@ func main() {
 }
 ```
 
-Complete code: [https://github.com/zeromicro/zero-examples/blob/main/logx/tokafka/main.go](https://github.com/zeromicro/zero-examples/blob/main/logx/tokafka/main.go)
+完整代码：[https://github.com/zeromicro/zero-examples/blob/main/logx/tokafka/main.go](https://github.com/zeromicro/zero-examples/blob/main/logx/tokafka/main.go)
 
-## Filtering sensitive fields
+## 过滤敏感字段
 
-If we need to prevent the `password` fields from logging, we can do it like below:
+如果我们需要防止  `password` 字段被记录下来，我们可以像下面这样实现。
 
 ```go
 type (
@@ -194,12 +191,12 @@ func main() {
 }
 ```
 
-Complete code: [https://github.com/zeromicro/zero-examples/blob/main/logx/filterfields/main.go](https://github.com/zeromicro/zero-examples/blob/main/logx/filterfields/main.go)
+完整代码：[https://github.com/zeromicro/zero-examples/blob/main/logx/filterfields/main.go](https://github.com/zeromicro/zero-examples/blob/main/logx/filterfields/main.go)
 
-## More examples
+## 更多示例
 
 [https://github.com/zeromicro/zero-examples/tree/main/logx](https://github.com/zeromicro/zero-examples/tree/main/logx)
 
 ## Give a Star! ⭐
 
-If you like or are using this project to learn or start your solution, please give it a star. Thanks!
+如果你正在使用或者觉得这个项目对你有帮助，请 **star** 支持，感谢！

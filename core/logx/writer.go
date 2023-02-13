@@ -269,7 +269,12 @@ func combineGlobalFields(fields []LogField) []LogField {
 		return fields
 	}
 
-	return append(globals.([]LogField), fields...)
+	gf := globals.([]LogField)
+	ret := make([]LogField, 0, len(gf)+len(fields))
+	ret = append(ret, gf...)
+	ret = append(ret, fields...)
+
+	return ret
 }
 
 func output(writer io.Writer, level string, val interface{}, fields ...LogField) {
