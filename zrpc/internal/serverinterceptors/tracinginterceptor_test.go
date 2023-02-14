@@ -19,7 +19,7 @@ import (
 func TestUnaryOpenTracingInterceptor_Disable(t *testing.T) {
 	_, err := UnaryTracingInterceptor(context.Background(), nil, &grpc.UnaryServerInfo{
 		FullMethod: "/",
-	}, func(ctx context.Context, req interface{}) (interface{}, error) {
+	}, func(ctx context.Context, req any) (any, error) {
 		return nil, nil
 	})
 	assert.Nil(t, err)
@@ -27,14 +27,16 @@ func TestUnaryOpenTracingInterceptor_Disable(t *testing.T) {
 
 func TestUnaryOpenTracingInterceptor_Enabled(t *testing.T) {
 	trace.StartAgent(trace.Config{
-		Name:     "go-tao-test",
+		Name:     "go-zero-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
 	})
+	defer trace.StopAgent()
+
 	_, err := UnaryTracingInterceptor(context.Background(), nil, &grpc.UnaryServerInfo{
 		FullMethod: "/package.TestService.GetUser",
-	}, func(ctx context.Context, req interface{}) (interface{}, error) {
+	}, func(ctx context.Context, req any) (any, error) {
 		return nil, nil
 	})
 	assert.Nil(t, err)
@@ -46,7 +48,7 @@ func TestUnaryTracingInterceptor(t *testing.T) {
 	wg.Add(1)
 	_, err := UnaryTracingInterceptor(context.Background(), nil, &grpc.UnaryServerInfo{
 		FullMethod: "/",
-	}, func(ctx context.Context, req interface{}) (interface{}, error) {
+	}, func(ctx context.Context, req any) (any, error) {
 		defer wg.Done()
 		atomic.AddInt32(&run, 1)
 		return nil, nil
@@ -82,7 +84,7 @@ func TestUnaryTracingInterceptor_WithError(t *testing.T) {
 			ctx := metadata.NewIncomingContext(context.Background(), md)
 			_, err := UnaryTracingInterceptor(ctx, nil, &grpc.UnaryServerInfo{
 				FullMethod: "/",
-			}, func(ctx context.Context, req interface{}) (interface{}, error) {
+			}, func(ctx context.Context, req any) (any, error) {
 				defer wg.Done()
 				return nil, test.err
 			})
@@ -101,7 +103,7 @@ func TestStreamTracingInterceptor_GrpcFormat(t *testing.T) {
 	stream := mockedServerStream{ctx: ctx}
 	err := StreamTracingInterceptor(nil, &stream, &grpc.StreamServerInfo{
 		FullMethod: "/foo",
-	}, func(svr interface{}, stream grpc.ServerStream) error {
+	}, func(svr any, stream grpc.ServerStream) error {
 		defer wg.Done()
 		atomic.AddInt32(&run, 1)
 		return nil
@@ -138,7 +140,7 @@ func TestStreamTracingInterceptor_FinishWithGrpcError(t *testing.T) {
 			stream := mockedServerStream{ctx: ctx}
 			err := StreamTracingInterceptor(nil, &stream, &grpc.StreamServerInfo{
 				FullMethod: "/foo",
-			}, func(svr interface{}, stream grpc.ServerStream) error {
+			}, func(svr any, stream grpc.ServerStream) error {
 				defer wg.Done()
 				return test.err
 			})
@@ -175,7 +177,7 @@ func TestStreamTracingInterceptor_WithError(t *testing.T) {
 			stream := mockedServerStream{ctx: ctx}
 			err := StreamTracingInterceptor(nil, &stream, &grpc.StreamServerInfo{
 				FullMethod: "/foo",
-			}, func(svr interface{}, stream grpc.ServerStream) error {
+			}, func(svr any, stream grpc.ServerStream) error {
 				defer wg.Done()
 				return test.err
 			})
@@ -268,10 +270,10 @@ func (m *mockedServerStream) Context() context.Context {
 	return m.ctx
 }
 
-func (m *mockedServerStream) SendMsg(v interface{}) error {
+func (m *mockedServerStream) SendMsg(v any) error {
 	return m.err
 }
 
-func (m *mockedServerStream) RecvMsg(v interface{}) error {
+func (m *mockedServerStream) RecvMsg(v any) error {
 	return m.err
 }

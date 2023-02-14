@@ -3,20 +3,20 @@ package zrpc
 import (
 	"context"
 	"fmt"
+	"github.com/sllt/tao/core/discov"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/zrpc/internal/mock"
+	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/status"
+	"google.golang.org/grpc/test/bufconn"
 	"log"
 	"net"
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/discov"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/zrpc/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-	"google.golang.org/grpc/test/bufconn"
 )
 
 func init() {
@@ -76,6 +76,13 @@ func TestDepositServer_Deposit(t *testing.T) {
 			App:       "foo",
 			Token:     "bar",
 			Timeout:   1000,
+			Middlewares: ClientMiddlewaresConf{
+				Trace:      true,
+				Duration:   true,
+				Prometheus: true,
+				Breaker:    true,
+				Timeout:    true,
+			},
 		},
 		WithDialOption(grpc.WithContextDialer(dialer())),
 		WithUnaryClientInterceptor(func(ctx context.Context, method string, req, reply interface{},
@@ -90,6 +97,13 @@ func TestDepositServer_Deposit(t *testing.T) {
 			Token:     "bar",
 			Timeout:   1000,
 			NonBlock:  true,
+			Middlewares: ClientMiddlewaresConf{
+				Trace:      true,
+				Duration:   true,
+				Prometheus: true,
+				Breaker:    true,
+				Timeout:    true,
+			},
 		},
 		WithDialOption(grpc.WithContextDialer(dialer())),
 		WithUnaryClientInterceptor(func(ctx context.Context, method string, req, reply interface{},
@@ -103,6 +117,13 @@ func TestDepositServer_Deposit(t *testing.T) {
 			App:     "foo",
 			Token:   "bar",
 			Timeout: 1000,
+			Middlewares: ClientMiddlewaresConf{
+				Trace:      true,
+				Duration:   true,
+				Prometheus: true,
+				Breaker:    true,
+				Timeout:    true,
+			},
 		},
 		WithDialOption(grpc.WithTransportCredentials(insecure.NewCredentials())),
 		WithDialOption(grpc.WithContextDialer(dialer())),
@@ -125,6 +146,7 @@ func TestDepositServer_Deposit(t *testing.T) {
 		tarConfClient,
 		targetClient,
 	}
+	DontLogClientContentForMethod("foo")
 	SetClientSlowThreshold(time.Second)
 
 	for _, tt := range tests {

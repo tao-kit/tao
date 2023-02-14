@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/sllt/tao/core/metric"
-	"github.com/sllt/tao/core/prometheus"
 	"github.com/sllt/tao/core/timex"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/status"
@@ -34,12 +33,8 @@ var (
 )
 
 // PrometheusInterceptor is an interceptor that reports to prometheus server.
-func PrometheusInterceptor(ctx context.Context, method string, req, reply interface{},
+func PrometheusInterceptor(ctx context.Context, method string, req, reply any,
 	cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
-	if !prometheus.Enabled() {
-		return invoker(ctx, method, req, reply, cc, opts...)
-	}
-
 	startTime := timex.Now()
 	err := invoker(ctx, method, req, reply, cc, opts...)
 	metricClientReqDur.Observe(int64(timex.Since(startTime)/time.Millisecond), method)

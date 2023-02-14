@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/sllt/tao/core/metric"
-	"github.com/sllt/tao/core/prometheus"
 	"github.com/sllt/tao/core/timex"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/status"
@@ -34,12 +33,8 @@ var (
 )
 
 // UnaryPrometheusInterceptor reports the statistics to the prometheus server.
-func UnaryPrometheusInterceptor(ctx context.Context, req interface{},
-	info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
-	if !prometheus.Enabled() {
-		return handler(ctx, req)
-	}
-
+func UnaryPrometheusInterceptor(ctx context.Context, req any,
+	info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
 	startTime := timex.Now()
 	resp, err := handler(ctx, req)
 	metricServerReqDur.Observe(int64(timex.Since(startTime)/time.Millisecond), info.FullMethod)
