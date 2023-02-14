@@ -2,10 +2,11 @@ package mapping
 
 import (
 	"bytes"
-	"github.com/stretchr/testify/assert"
 	"reflect"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestUnmarshalBytes(t *testing.T) {
@@ -928,4 +929,14 @@ func TestUnmarshalJsonArray(t *testing.T) {
 	assert.Equal(t, 1, len(v))
 	assert.Equal(t, "kevin", v[0].Name)
 	assert.Equal(t, 18, v[0].Age)
+}
+
+func TestUnmarshalJsonBytesError(t *testing.T) {
+	var v []struct {
+		Name string `json:"name"`
+		Age  int    `json:"age"`
+	}
+
+	assert.Error(t, UnmarshalJsonBytes([]byte((``)), &v))
+	assert.Error(t, UnmarshalJsonReader(strings.NewReader(``), &v))
 }
