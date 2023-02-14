@@ -56,19 +56,16 @@ func TestOtelHandler(t *testing.T) {
 
 func TestDontTracingSpan(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
 	})
 	defer ztrace.StopAgent()
 
-	DontTraceSpan("bar")
-	defer notTracingSpans.Delete("bar")
-
 	for _, test := range []string{"", "bar", "foo"} {
 		t.Run(test, func(t *testing.T) {
-			h := chain.New(TracingHandler("foo", test)).Then(
+			h := chain.New(TracingHandler("foo", test, WithTraceIgnorePaths([]string{"bar"}))).Then(
 				http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 					span := trace.SpanFromContext(r.Context())
 					spanCtx := span.SpanContext()
@@ -104,7 +101,7 @@ func TestDontTracingSpan(t *testing.T) {
 
 func TestTraceResponseWriter(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,

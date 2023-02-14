@@ -16,10 +16,6 @@ func init() {
 	log.SetOutput(io.Discard)
 }
 
-func init() {
-	log.SetOutput(io.Discard)
-}
-
 func TestTimeout(t *testing.T) {
 	timeoutHandler := TimeoutHandler(time.Millisecond)
 	handler := timeoutHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
