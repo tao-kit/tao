@@ -6,7 +6,7 @@ import (
 )
 
 // BuildVersion is the version of taoctl.
-const BuildVersion = "1.4.5"
+const BuildVersion = "1.4.6"
 
 var tag = map[string]int{"pre-alpha": 0, "alpha": 1, "pre-bata": 2, "beta": 3, "released": 4, "": 5}
 
