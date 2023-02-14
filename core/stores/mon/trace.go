@@ -20,6 +20,7 @@ func startSpan(ctx context.Context, cmd string) (context.Context, oteltrace.Span
 		oteltrace.WithSpanKind(oteltrace.SpanKindClient),
 	)
 	span.SetAttributes(mongoCmdAttributeKey.String(cmd))
+
 	return ctx, span
 }
 
