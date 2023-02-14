@@ -8,7 +8,6 @@ require (
 	github.com/alicebob/miniredis/v2 v2.30.0
 	github.com/felixge/fgprof v0.9.3
 	github.com/fullstorydev/grpcurl v1.8.7
-	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8
 	github.com/go-sql-driver/mysql v1.7.0
 	github.com/golang-jwt/jwt/v4 v4.2.0
 	github.com/golang/mock v1.6.0
