@@ -1,4 +1,4 @@
-module github.com/sllt/tao/contrib/logx/zerlogx
+module github.com/sllt/tao/contrib/logx/zerologx
 
 go 1.19
 

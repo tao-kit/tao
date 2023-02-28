@@ -1,4 +1,4 @@
-package zerlogx
+package zerologx
 
 import (
 	"fmt"

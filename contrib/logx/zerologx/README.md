@@ -11,7 +11,7 @@ go get -u github.com/sllt/tao
 Download the module:
 
 ```console
-go get -u github.com/sllt/tao/contrib/logx/zerlogx
+go get -u github.com/sllt/tao/contrib/logx/zerologx
 ```
 
 For example:
@@ -22,7 +22,7 @@ import (
 	"context"
 	"github.com/rs/zerolog"
 	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/contrib/logx/zerlogx"
+	"github.com/sllt/tao/contrib/logx/zerologx"
 	"os"
 	"time"
 )
