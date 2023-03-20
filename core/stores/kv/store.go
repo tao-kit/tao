@@ -3,12 +3,11 @@ package kv
 import (
 	"context"
 	"errors"
-	"log"
-
 	"github.com/sllt/tao/core/errorx"
 	"github.com/sllt/tao/core/hash"
 	"github.com/sllt/tao/core/stores/cache"
 	"github.com/sllt/tao/core/stores/redis"
+	"log"
 )
 
 // ErrNoRedisNode is an error that indicates no redis node.
@@ -164,7 +163,7 @@ func NewStore(c KvConf) Store {
 	// because Store and redis.Redis has different methods.
 	dispatcher := hash.NewConsistentHash()
 	for _, node := range c {
-		cn := node.NewRedis()
+		cn := redis.MustNewRedis(node.RedisConf)
 		dispatcher.AddWithWeight(cn, node.Weight)
 	}
 

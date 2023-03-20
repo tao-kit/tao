@@ -1,6 +1,7 @@
 package zrpc
 
 import (
+	"github.com/sllt/tao/core/stores/redis"
 	"log"
 	"time"
 
@@ -120,7 +121,12 @@ func setupInterceptors(server internal.Server, c RpcServerConf, metrics *stat.Me
 	}
 
 	if c.Auth {
-		authenticator, err := auth.NewAuthenticator(c.Redis.NewRedis(), c.Redis.Key, c.StrictControl)
+		rds, err := redis.NewRedis(c.Redis.RedisConf)
+		if err != nil {
+			return err
+		}
+
+		authenticator, err := auth.NewAuthenticator(rds, c.Redis.Key, c.StrictControl)
 		if err != nil {
 			return err
 		}
