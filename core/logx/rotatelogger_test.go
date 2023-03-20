@@ -1,6 +1,7 @@
 package logx
 
 import (
+	"github.com/sllt/tao/core/stringx"
 	"os"
 	"path/filepath"
 	"syscall"
@@ -230,6 +231,23 @@ func TestRotateLoggerWithSizeLimitRotateRuleMayCompressFileTrue(t *testing.T) {
 	logger.maybeCompressFile(filename)
 	_, err = os.Stat(filename)
 	assert.NotNil(t, err)
+}
+
+func TestRotateLoggerWithSizeLimitRotateRuleMayCompressFileFailed(t *testing.T) {
+	old := os.Stdout
+	os.Stdout = os.NewFile(0, os.DevNull)
+	defer func() {
+		os.Stdout = old
+	}()
+
+	filename := stringx.RandId()
+	logger, err := NewLogger(filename, new(SizeLimitRotateRule), true)
+	defer os.Remove(filename)
+	if assert.NoError(t, err) {
+		assert.NotPanics(t, func() {
+			logger.maybeCompressFile(stringx.RandId())
+		})
+	}
 }
 
 func TestRotateLoggerWithSizeLimitRotateRuleRotate(t *testing.T) {
