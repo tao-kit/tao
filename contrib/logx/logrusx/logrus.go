@@ -20,7 +20,7 @@ func NewLogrusWriter(opts ...func(logger *logrus.Logger)) logx.Writer {
 	}
 }
 
-func (w *LogrusWriter) Alert(v interface{}) {
+func (w *LogrusWriter) Alert(v any) {
 	w.logger.Error(v)
 }
 
@@ -29,31 +29,31 @@ func (w *LogrusWriter) Close() error {
 	return nil
 }
 
-func (w *LogrusWriter) Debug(v interface{}, fields ...logx.LogField) {
+func (w *LogrusWriter) Debug(v any, fields ...logx.LogField) {
 	w.logger.WithFields(toLogrusFields(fields...)).Debug(v)
 }
 
-func (w *LogrusWriter) Error(v interface{}, fields ...logx.LogField) {
+func (w *LogrusWriter) Error(v any, fields ...logx.LogField) {
 	w.logger.WithFields(toLogrusFields(fields...)).Error(v)
 }
 
-func (w *LogrusWriter) Info(v interface{}, fields ...logx.LogField) {
+func (w *LogrusWriter) Info(v any, fields ...logx.LogField) {
 	w.logger.WithFields(toLogrusFields(fields...)).Info(v)
 }
 
-func (w *LogrusWriter) Severe(v interface{}) {
+func (w *LogrusWriter) Severe(v any) {
 	w.logger.Fatal(v)
 }
 
-func (w *LogrusWriter) Slow(v interface{}, fields ...logx.LogField) {
+func (w *LogrusWriter) Slow(v any, fields ...logx.LogField) {
 	w.logger.WithFields(toLogrusFields(fields...)).Warn(v)
 }
 
-func (w *LogrusWriter) Stack(v interface{}) {
+func (w *LogrusWriter) Stack(v any) {
 	w.logger.Error(v)
 }
 
-func (w *LogrusWriter) Stat(v interface{}, fields ...logx.LogField) {
+func (w *LogrusWriter) Stat(v any, fields ...logx.LogField) {
 	w.logger.WithFields(toLogrusFields(fields...)).Info(v)
 }
 

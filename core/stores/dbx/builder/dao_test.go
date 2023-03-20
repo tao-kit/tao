@@ -8,18 +8,18 @@ import (
 
 func TestEq(t *testing.T) {
 	var testData = []struct {
-		in     map[string]interface{}
+		in     map[string]any
 		outCon []string
-		outVal []interface{}
+		outVal []any
 	}{
 		{
-			map[string]interface{}{
+			map[string]any{
 				"foo": "bar",
 				"baz": 1,
 				"qq":  "ttx",
 			},
 			[]string{"baz=?", "foo=?", "qq=?"},
-			[]interface{}{1, "bar", "ttx"},
+			[]any{1, "bar", "ttx"},
 		},
 	}
 	ass := assert.New(t)
@@ -33,17 +33,17 @@ func TestEq(t *testing.T) {
 
 func TestIn(t *testing.T) {
 	var testData = []struct {
-		in      map[string][]interface{}
+		in      map[string][]any
 		outCond []string
-		outVals []interface{}
+		outVals []any
 	}{
 		{
-			in: map[string][]interface{}{
+			in: map[string][]any{
 				"foo": {"bar", "baz"},
 				"age": {5, 7, 9, 11},
 			},
 			outCond: []string{"age IN (?,?,?,?)", "foo IN (?,?)"},
-			outVals: []interface{}{5, 7, 9, 11, "bar", "baz"},
+			outVals: []any{5, 7, 9, 11, "bar", "baz"},
 		},
 	}
 	ass := assert.New(t)
@@ -58,19 +58,19 @@ func TestNestWhere(t *testing.T) {
 	var testData = []struct {
 		in      NestWhere
 		outCond []string
-		outVals []interface{}
+		outVals []any
 	}{
 		{
 			in: NestWhere([]Comparable{
-				Eq(map[string]interface{}{
+				Eq(map[string]any{
 					"aa": 3,
 				}),
-				Eq(map[string]interface{}{
+				Eq(map[string]any{
 					"bb": 4,
 				}),
 			}),
 			outCond: []string{"(aa=? AND bb=?)"},
-			outVals: []interface{}{3, 4},
+			outVals: []any{3, 4},
 		},
 	}
 	ass := assert.New(t)
@@ -83,7 +83,7 @@ func TestNestWhere(t *testing.T) {
 
 func TestResolveFields(t *testing.T) {
 	ass := assert.New(t)
-	m := map[string]interface{}{
+	m := map[string]any{
 		"foo": 1,
 		"bar": 2,
 		"qq":  3,
@@ -113,26 +113,26 @@ func TestAssembleExpression(t *testing.T) {
 
 func TestResolveKV(t *testing.T) {
 	var data = []struct {
-		in      map[string]interface{}
+		in      map[string]any
 		outStr  []string
-		outVals []interface{}
+		outVals []any
 	}{
 		{
-			map[string]interface{}{
+			map[string]any{
 				"foo": "bar",
 				"bar": 1,
 			},
 			[]string{"bar", "foo"},
-			[]interface{}{1, "bar"},
+			[]any{1, "bar"},
 		},
 		{
-			map[string]interface{}{
+			map[string]any{
 				"qq":    "ttt",
 				"some":  123,
 				"other": 456,
 			},
 			[]string{"other", "qq", "some"},
-			[]interface{}{456, "ttt", 123},
+			[]any{456, "ttt", 123},
 		},
 	}
 	ass := assert.New(t)
@@ -147,24 +147,24 @@ func TestWhereConnector(t *testing.T) {
 	var data = []struct {
 		in      []Comparable
 		outStr  string
-		outVals []interface{}
+		outVals []any
 	}{
 		{
 			in: []Comparable{
-				Eq(map[string]interface{}{
+				Eq(map[string]any{
 					"a": "a",
 					"b": "b",
 				}),
-				Ne(map[string]interface{}{
+				Ne(map[string]any{
 					"foo": 1,
 					"sex": "male",
 				}),
-				In(map[string][]interface{}{
+				In(map[string][]any{
 					"qq": {7, 8, 9},
 				}),
 			},
 			outStr:  "(a=? AND b=? AND foo!=? AND sex!=? AND qq IN (?,?,?))",
-			outVals: []interface{}{"a", "b", 1, "male", 7, 8, 9},
+			outVals: []any{"a", "b", 1, "male", 7, 8, 9},
 		},
 	}
 	ass := assert.New(t)
@@ -179,15 +179,15 @@ func TestBuildInsert(t *testing.T) {
 	var data = []struct {
 		table      string
 		insertType insertType
-		data       []map[string]interface{}
+		data       []map[string]any
 		outStr     string
-		outVals    []interface{}
+		outVals    []any
 		outErr     error
 	}{
 		{
 			table:      "tb1",
 			insertType: commonInsert,
-			data: []map[string]interface{}{
+			data: []map[string]any{
 				{
 					"foo": 1,
 					"bar": 2,
@@ -202,13 +202,13 @@ func TestBuildInsert(t *testing.T) {
 				},
 			},
 			outStr:  "INSERT INTO tb1 (bar,foo) VALUES (?,?),(?,?),(?,?)",
-			outVals: []interface{}{2, 1, 4, 3, 6, 5},
+			outVals: []any{2, 1, 4, 3, 6, 5},
 			outErr:  nil,
 		},
 		{
 			table:      "tb1",
 			insertType: replaceInsert,
-			data: []map[string]interface{}{
+			data: []map[string]any{
 				{
 					"foo": 1,
 					"bar": 2,
@@ -223,13 +223,13 @@ func TestBuildInsert(t *testing.T) {
 				},
 			},
 			outStr:  "REPLACE INTO tb1 (bar,foo) VALUES (?,?),(?,?),(?,?)",
-			outVals: []interface{}{2, 1, 4, 3, 6, 5},
+			outVals: []any{2, 1, 4, 3, 6, 5},
 			outErr:  nil,
 		},
 		{
 			table:      "tb1",
 			insertType: ignoreInsert,
-			data: []map[string]interface{}{
+			data: []map[string]any{
 				{
 					"foo": 1,
 					"bar": 2,
@@ -244,7 +244,7 @@ func TestBuildInsert(t *testing.T) {
 				},
 			},
 			outStr:  "INSERT IGNORE INTO tb1 (bar,foo) VALUES (?,?),(?,?),(?,?)",
-			outVals: []interface{}{2, 1, 4, 3, 6, 5},
+			outVals: []any{2, 1, 4, 3, 6, 5},
 			outErr:  nil,
 		},
 	}
@@ -260,15 +260,15 @@ func TestBuildInsert(t *testing.T) {
 func TestBuildInsertOnDuplicate(t *testing.T) {
 	var data = []struct {
 		table   string
-		data    []map[string]interface{}
-		update  map[string]interface{}
+		data    []map[string]any
+		update  map[string]any
 		outErr  error
 		outStr  string
-		outVals []interface{}
+		outVals []any
 	}{
 		{
 			table: "tb",
-			data: []map[string]interface{}{
+			data: []map[string]any{
 				{
 					"a": 1,
 					"b": 2,
@@ -280,13 +280,13 @@ func TestBuildInsertOnDuplicate(t *testing.T) {
 					"c": 6,
 				},
 			},
-			update: map[string]interface{}{
+			update: map[string]any{
 				"b": 7,
 				"c": 8,
 			},
 			outErr:  nil,
 			outStr:  "INSERT INTO tb (a,b,c) VALUES (?,?,?),(?,?,?) ON DUPLICATE KEY UPDATE b=?,c=?",
-			outVals: []interface{}{1, 2, 3, 4, 5, 6, 7, 8},
+			outVals: []any{1, 2, 3, 4, 5, 6, 7, 8},
 		},
 	}
 	ass := assert.New(t)
@@ -302,26 +302,26 @@ func TestBuildUpdate(t *testing.T) {
 	var data = []struct {
 		table      string
 		conditions []Comparable
-		data       map[string]interface{}
+		data       map[string]any
 		outErr     error
 		outStr     string
-		outVals    []interface{}
+		outVals    []any
 	}{
 		{
 			table: "tb",
 			conditions: []Comparable{
-				Eq(map[string]interface{}{
+				Eq(map[string]any{
 					"foo": "bar",
 					"qq":  1,
 				}),
 			},
-			data: map[string]interface{}{
+			data: map[string]any{
 				"name": "deen",
 				"age":  23,
 			},
 			outErr:  nil,
 			outStr:  "UPDATE tb SET age=?,name=? WHERE (foo=? AND qq=?)",
-			outVals: []interface{}{23, "deen", "bar", 1},
+			outVals: []any{23, "deen", "bar", 1},
 		},
 	}
 	ass := assert.New(t)
@@ -338,20 +338,20 @@ func TestBuildDelete(t *testing.T) {
 		table   string
 		where   []Comparable
 		outStr  string
-		outVals []interface{}
+		outVals []any
 		outErr  error
 	}{
 		{
 			table: "tb",
 			where: []Comparable{
-				Eq(map[string]interface{}{
+				Eq(map[string]any{
 					"foo": 1,
 					"bar": 2,
 					"baz": "tt",
 				}),
 			},
 			outStr:  "DELETE FROM tb WHERE (bar=? AND baz=? AND foo=?)",
-			outVals: []interface{}{2, "tt", 1},
+			outVals: []any{2, "tt", 1},
 			outErr:  nil,
 		},
 	}
@@ -374,34 +374,34 @@ func TestBuildSelect(t *testing.T) {
 		limit      *eleLimit
 		lockMode   string
 		outStr     string
-		outVals    []interface{}
+		outVals    []any
 		outErr     error
 	}{
 		{
 			table:  "tb",
 			fields: []string{"foo", "bar"},
 			conditions: []Comparable{
-				Eq(map[string]interface{}{
+				Eq(map[string]any{
 					"foo": 1,
 					"bar": 2,
 				}),
-				In(map[string][]interface{}{
+				In(map[string][]any{
 					"qq": {4, 5, 6},
 				}),
 				OrWhere([]Comparable{
 					NestWhere([]Comparable{
-						Eq(map[string]interface{}{
+						Eq(map[string]any{
 							"aa": 3,
 						}),
-						Eq(map[string]interface{}{
+						Eq(map[string]any{
 							"bb": 4,
 						}),
 					}),
 					NestWhere([]Comparable{
-						Eq(map[string]interface{}{
+						Eq(map[string]any{
 							"cc": 7,
 						}),
-						Eq(map[string]interface{}{
+						Eq(map[string]any{
 							"dd": 8,
 						}),
 					}),
@@ -416,7 +416,7 @@ func TestBuildSelect(t *testing.T) {
 			lockMode: "exclusive",
 			outErr:   nil,
 			outStr:   "SELECT foo,bar FROM tb WHERE (bar=? AND foo=? AND qq IN (?,?,?) AND ((aa=? AND bb=?) OR (cc=? AND dd=?))) ORDER BY foo DESC,baz ASC LIMIT ?,? FOR UPDATE",
-			outVals:  []interface{}{2, 1, 4, 5, 6, 3, 4, 7, 8, 10, 20},
+			outVals:  []any{2, 1, 4, 5, 6, 3, 4, 7, 8, 10, 20},
 		},
 	}
 	ass := assert.New(t)

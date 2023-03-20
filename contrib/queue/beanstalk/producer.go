@@ -81,14 +81,14 @@ func (p *producerCluster) Delay(body []byte, delay time.Duration) (string, error
 func (p *producerCluster) Revoke(ids string) error {
 	var be errorx.BatchError
 
-	fx.From(func(source chan<- interface{}) {
+	fx.From(func(source chan<- any) {
 		for _, node := range p.nodes {
 			source <- node
 		}
-	}).Map(func(item interface{}) interface{} {
+	}).Map(func(item any) any {
 		node := item.(Producer)
 		return node.Revoke(ids)
-	}).ForEach(func(item interface{}) {
+	}).ForEach(func(item any) {
 		if item != nil {
 			be.Add(item.(error))
 		}
@@ -119,18 +119,18 @@ func (p *producerCluster) insert(fn func(node Producer) (string, error)) (string
 		err error
 	}
 	var ret []idErr
-	fx.From(func(source chan<- interface{}) {
+	fx.From(func(source chan<- any) {
 		for _, node := range p.getWriteNodes() {
 			source <- node
 		}
-	}).Map(func(item interface{}) interface{} {
+	}).Map(func(item any) any {
 		node := item.(Producer)
 		id, err := fn(node)
 		return idErr{
 			id:  id,
 			err: err,
 		}
-	}).ForEach(func(item interface{}) {
+	}).ForEach(func(item any) {
 		ret = append(ret, item.(idErr))
 	})
 

@@ -31,7 +31,7 @@ type Rows interface {
 
 	Next() bool
 
-	Scan(dest ...interface{}) error
+	Scan(dest ...any) error
 }
 
 const (
@@ -78,7 +78,7 @@ func newScanErr(structName, fieldName string, from, to reflect.Type) ScanErr {
 // Don't forget to close the rows
 // When the target is not a pointer of slice, ErrEmptyResult
 // may be returned if the query result is empty
-func Scan(rows Rows, target interface{}) error {
+func Scan(rows Rows, target any) error {
 	if nil == target || reflect.ValueOf(target).IsNil() || reflect.TypeOf(target).Kind() != reflect.Ptr {
 		return ErrTargetNotSettable
 	}
@@ -104,18 +104,18 @@ func Scan(rows Rows, target interface{}) error {
 	return err
 }
 
-// ScanMap returns the result in the form of []map[string]interface{}
+// ScanMap returns the result in the form of []map[string]any
 // json.Marshal encodes []byte as a base64 string, while in most cases
 // it's expected to be encoded as string or int. If you want this, use
 // ScanMapDecode instead.
-func ScanMap(rows Rows) ([]map[string]interface{}, error) {
+func ScanMap(rows Rows) ([]map[string]any, error) {
 	return resolveDataFromRows(rows)
 }
 
-// ScanMapDecode returns the result in the form of []map[string]interface{}
+// ScanMapDecode returns the result in the form of []map[string]any
 // If possible, it will convert []uint8 to int or float64, or it will convert
 // []uint8 to string
-func ScanMapDecode(rows Rows) ([]map[string]interface{}, error) {
+func ScanMapDecode(rows Rows) ([]map[string]any, error) {
 	results, err := resolveDataFromRows(rows)
 	if nil != err {
 		return nil, err
@@ -146,10 +146,10 @@ func ScanMapDecode(rows Rows) ([]map[string]interface{}, error) {
 	return results, nil
 }
 
-// ScanMapDecodeClose returns the result in the form of []map[string]interface{}
+// ScanMapDecodeClose returns the result in the form of []map[string]any
 // If possible, it will convert []uint8 to int or float64, or it will convert
 // []uint8 to string. It will close the rows in the end.
-func ScanMapDecodeClose(rows Rows) ([]map[string]interface{}, error) {
+func ScanMapDecodeClose(rows Rows) ([]map[string]any, error) {
 	result, err := ScanMapDecode(rows)
 	if nil != rows {
 		errClose := rows.Close()
@@ -177,7 +177,7 @@ func newCloseErr(err error) error {
 }
 
 // ScanMapClose is the same as ScanMap and close the rows
-func ScanMapClose(rows Rows) ([]map[string]interface{}, error) {
+func ScanMapClose(rows Rows) ([]map[string]any, error) {
 	result, err := ScanMap(rows)
 	if nil != rows {
 		errClose := rows.Close()
@@ -191,7 +191,7 @@ func ScanMapClose(rows Rows) ([]map[string]interface{}, error) {
 // ScanClose is the same as Scan and helps you Close the rows
 // Not necessary exec the rows.Close after calling this.
 // Close is idempotent and does not affect the result of Err.
-func ScanClose(rows Rows, target interface{}) error {
+func ScanClose(rows Rows, target any) error {
 	err := Scan(rows, target)
 	if nil != rows {
 		errClose := rows.Close()
@@ -203,7 +203,7 @@ func ScanClose(rows Rows, target interface{}) error {
 }
 
 // caller must guarantee to pass a &slice as the second param
-func bindSlice(arr []map[string]interface{}, target interface{}) error {
+func bindSlice(arr []map[string]any, target any) error {
 	targetObj := reflect.ValueOf(target)
 	if !targetObj.Elem().CanSet() {
 		return ErrTargetNotSettable
@@ -225,7 +225,7 @@ func bindSlice(arr []map[string]interface{}, target interface{}) error {
 	return nil
 }
 
-func bind(result map[string]interface{}, target interface{}) (resp error) {
+func bind(result map[string]any, target any) (resp error) {
 	if nil != resp {
 		return
 	}
@@ -302,7 +302,7 @@ func isFloatSeriesType(k reflect.Kind) bool {
 	return k == reflect.Float32 || k == reflect.Float64
 }
 
-func resolveDataFromRows(rows Rows) ([]map[string]interface{}, error) {
+func resolveDataFromRows(rows Rows) ([]map[string]any, error) {
 	if nil == rows {
 		return nil, ErrNilRows
 	}
@@ -311,21 +311,21 @@ func resolveDataFromRows(rows Rows) ([]map[string]interface{}, error) {
 		return nil, err
 	}
 	length := len(columns)
-	var result []map[string]interface{}
+	var result []map[string]any
 	//unnecessary to put below into rows.Next loop,reduce allocating
-	values := make([]interface{}, length)
+	values := make([]any, length)
 	for i := 0; i < length; i++ {
-		values[i] = new(interface{})
+		values[i] = new(any)
 	}
 	for rows.Next() {
 		err = rows.Scan(values...)
 		if nil != err {
 			return nil, err
 		}
-		mp := make(map[string]interface{})
+		mp := make(map[string]any)
 		for idx, name := range columns {
 			//mp[name] = reflect.ValueOf(values[idx]).Elem().Interface()
-			mp[name] = *(values[idx].(*interface{}))
+			mp[name] = *(values[idx].(*any))
 		}
 		result = append(result, mp)
 	}
@@ -347,7 +347,7 @@ func lookUpTagName(typeObj reflect.StructField) (string, bool) {
 	return name, ok
 }
 
-func convert(mapValue interface{}, valuei reflect.Value, wrapErr convertErrWrapper) error {
+func convert(mapValue any, valuei reflect.Value, wrapErr convertErrWrapper) error {
 	//vit: ValueI Type
 	vit := valuei.Type()
 	//mvt: MapValue Type
@@ -414,7 +414,7 @@ func convert(mapValue interface{}, valuei reflect.Value, wrapErr convertErrWrapp
 	return nil
 }
 
-func handleConvertSlice(mapValue interface{}, mvt, vit reflect.Type, valuei *reflect.Value, wrapErr convertErrWrapper) error {
+func handleConvertSlice(mapValue any, mvt, vit reflect.Type, valuei *reflect.Value, wrapErr convertErrWrapper) error {
 	mapValueSlice, ok := mapValue.([]byte)
 	if !ok {
 		return ErrSliceToString

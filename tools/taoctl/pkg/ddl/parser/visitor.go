@@ -14,7 +14,7 @@ type visitor struct {
 	logger console.Console
 }
 
-func (v *visitor) trace(msg ...interface{}) {
+func (v *visitor) trace(msg ...any) {
 	if v.debug {
 		v.logger.Debug("Visit Trace: " + fmt.Sprint(msg...))
 	}

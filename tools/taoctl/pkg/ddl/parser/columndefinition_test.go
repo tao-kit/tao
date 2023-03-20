@@ -9,7 +9,7 @@ import (
 
 func TestVisitor_VisitColumnDefinition(t *testing.T) {
 	p := NewParser(WithDebugMode(true))
-	accept := func(p *gen.MySqlParser, visitor *visitor) interface{} {
+	accept := func(p *gen.MySqlParser, visitor *visitor) any {
 		definition := p.ColumnDefinition()
 		ctx := definition.(*gen.ColumnDefinitionContext)
 		return visitor.VisitColumnDefinition(ctx)

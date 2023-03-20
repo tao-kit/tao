@@ -41,7 +41,7 @@ type key bool
 type primary bool
 
 // VisitColumnDefinition visits a parse tree produced by MySqlParser#columnDefinition.
-func (v *visitor) VisitColumnDefinition(ctx *gen.ColumnDefinitionContext) interface{} {
+func (v *visitor) VisitColumnDefinition(ctx *gen.ColumnDefinitionContext) any {
 	v.trace("VisitColumnDefinition")
 
 	var (
@@ -110,7 +110,7 @@ func (v *visitor) visitAutoIncrementColumnConstraint(_ *gen.AutoIncrementColumnC
 }
 
 // VisitPrimaryKeyColumnConstraint visits a parse tree produced by MySqlParser#primaryKeyColumnConstraint.
-func (v *visitor) VisitPrimaryKeyColumnConstraint(ctx *gen.PrimaryKeyColumnConstraintContext) interface{} {
+func (v *visitor) VisitPrimaryKeyColumnConstraint(ctx *gen.PrimaryKeyColumnConstraintContext) any {
 	v.trace("VisitPrimaryKeyColumnConstraint")
 	if ctx.PRIMARY() == nil {
 		var ret key

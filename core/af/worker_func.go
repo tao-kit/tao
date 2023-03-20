@@ -13,7 +13,7 @@ type goWorkerWithFunc struct {
 	pool *PoolWithFunc
 
 	// args is a job should be done.
-	args chan interface{}
+	args chan any
 
 	// recycleTime will be updated when putting a worker back into queue.
 	recycleTime time.Time

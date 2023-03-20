@@ -175,7 +175,7 @@ func (t *Timer) loop() {
 // proceed proceeds the timer job checking and running logic.
 func (t *Timer) proceed(currentTimerTicks int64) {
 	var (
-		value interface{}
+		value any
 	)
 	for {
 		value = t.queue.Pop()

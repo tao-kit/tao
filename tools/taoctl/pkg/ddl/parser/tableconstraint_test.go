@@ -10,7 +10,7 @@ import (
 
 func TestVisitor_VisitTableConstraint(t *testing.T) {
 	p := NewParser(WithDebugMode(true))
-	accept := func(p *gen.MySqlParser, visitor *visitor) interface{} {
+	accept := func(p *gen.MySqlParser, visitor *visitor) any {
 		ctx := p.TableConstraint()
 		return visitor.visitTableConstraint(ctx)
 	}

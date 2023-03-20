@@ -93,7 +93,7 @@ func NewPool(size int, options ...Option) (*Pool, error) {
 		lock:     new(syncx.SpinLock),
 		options:  opts,
 	}
-	p.workerCache.New = func() interface{} {
+	p.workerCache.New = func() any {
 		return &goWorker{
 			pool: p,
 			task: make(chan func(), workerChanCap),

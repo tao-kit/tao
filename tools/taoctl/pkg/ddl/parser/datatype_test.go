@@ -9,7 +9,7 @@ import (
 
 func TestVisitor_VisitDataType(t *testing.T) {
 	p := NewParser(WithDebugMode(true))
-	accept := func(p *gen.MySqlParser, visitor *visitor) interface{} {
+	accept := func(p *gen.MySqlParser, visitor *visitor) any {
 		return visitor.visitDataType(p.DataType())
 	}
 
@@ -271,14 +271,14 @@ func TestVisitor_VisitDataType(t *testing.T) {
 	})
 }
 
-func assertTypeEqual(t *testing.T, expected int, actual interface{}, unsigned ...bool) {
+func assertTypeEqual(t *testing.T, expected int, actual any, unsigned ...bool) {
 	assert.Equal(t, expected, actual.(DataType).Type())
 	if len(unsigned) > 0 {
 		assert.Equal(t, unsigned[0], actual.(DataType).Unsigned())
 	}
 }
 
-func assertEnumTypeEqual(t *testing.T, expectedType int, values []string, actual interface{}) {
+func assertEnumTypeEqual(t *testing.T, expectedType int, values []string, actual any) {
 	assert.Equal(t, expectedType, actual.(DataType).Type())
 	assert.Equal(t, values, actual.(DataType).Value())
 }

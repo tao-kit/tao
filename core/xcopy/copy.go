@@ -55,16 +55,16 @@ type tagNameMapping struct {
 }
 
 // Copy copy things
-func Copy(toValue interface{}, fromValue interface{}) (err error) {
+func Copy(toValue any, fromValue any) (err error) {
 	return deepCopy(toValue, fromValue, Option{})
 }
 
 // CopyWithOption copy with option
-func CopyWithOption(toValue interface{}, fromValue interface{}, opt Option) (err error) {
+func CopyWithOption(toValue any, fromValue any, opt Option) (err error) {
 	return deepCopy(toValue, fromValue, opt)
 }
 
-func deepCopy(toValue interface{}, fromValue interface{}, opt Option) (err error) {
+func deepCopy(toValue any, fromValue any, opt Option) (err error) {
 	var (
 		isSlice bool
 		amount  = 1

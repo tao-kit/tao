@@ -89,7 +89,7 @@ func (v *visitor) visitCreateDefinitions(ctx *gen.CreateDefinitionsContext) []*c
 }
 
 // VisitCreateDefinition visits a parse tree produced by MySqlParser#createDefinition.
-func (v *visitor) VisitCreateDefinition(ctx gen.ICreateDefinitionContext) interface{} {
+func (v *visitor) VisitCreateDefinition(ctx gen.ICreateDefinitionContext) any {
 	v.trace("VisitCreateDefinition")
 	switch tx := ctx.(type) {
 	case *gen.ColumnDeclarationContext:

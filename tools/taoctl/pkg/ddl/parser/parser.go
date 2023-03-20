@@ -28,7 +28,7 @@ type Parser struct {
 type Option func(p *Parser)
 
 // Acceptor is the alias of function
-type Acceptor func(p *gen.MySqlParser, visitor *visitor) interface{}
+type Acceptor func(p *gen.MySqlParser, visitor *visitor) any
 
 // NewParser creates an instance of Parser.
 func NewParser(options ...Option) *Parser {
@@ -46,7 +46,7 @@ func NewParser(options ...Option) *Parser {
 
 // SyntaxError overrides SyntaxError from antlr.DefaultErrorListener, which could catch error from this function, and panic,
 // the parser would catch the panic by testMysqlSyntax and returns.
-func (p *Parser) SyntaxError(_ antlr.Recognizer, _ interface{}, line, column int, msg string, _ antlr.RecognitionException) {
+func (p *Parser) SyntaxError(_ antlr.Recognizer, _ any, line, column int, msg string, _ antlr.RecognitionException) {
 	str := fmt.Sprintf(`%s line %d:%d  %s`, p.prefix, line, column, msg)
 	if p.debug {
 		p.logger.Error(str)
@@ -125,7 +125,7 @@ func (p *Parser) From(filename string) (ret []*Table, err error) {
 }
 
 // testMysqlSyntax tests the mysql syntax with unit test.
-func (p *Parser) testMysqlSyntax(prefix string, acceptor Acceptor, sql string) (v interface{}, err error) {
+func (p *Parser) testMysqlSyntax(prefix string, acceptor Acceptor, sql string) (v any, err error) {
 	defer func() {
 		p := recover()
 		if p != nil {

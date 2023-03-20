@@ -13,7 +13,7 @@ var (
 
 // Map converts a struct to a map
 // type for each field of the struct must be built-in type
-func Map(target interface{}, useTag string) (map[string]interface{}, error) {
+func Map(target any, useTag string) (map[string]any, error) {
 	if nil == target {
 		return nil, nil
 	}
@@ -25,7 +25,7 @@ func Map(target interface{}, useTag string) (map[string]interface{}, error) {
 		return nil, ErrNoneStructTarget
 	}
 	t := v.Type()
-	result := make(map[string]interface{})
+	result := make(map[string]any)
 	for i := 0; i < t.NumField(); i++ {
 		keyName := getKey(t.Field(i), useTag)
 		if "" == keyName {

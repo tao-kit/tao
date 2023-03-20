@@ -10,7 +10,7 @@ import (
 
 func TestVisitor_VisitCreateTable(t *testing.T) {
 	p := NewParser(WithDebugMode(true))
-	accept := func(p *gen.MySqlParser, visitor *visitor) interface{} {
+	accept := func(p *gen.MySqlParser, visitor *visitor) any {
 		ctx := p.CreateTable()
 		return visitor.visitCreateTable(ctx)
 	}
@@ -264,7 +264,7 @@ func TestVisitor_VisitCreateTable(t *testing.T) {
 
 func TestGetTableFromCreateTable(t *testing.T) {
 	p := NewParser(WithDebugMode(true))
-	accept := func(p *gen.MySqlParser, visitor *visitor) interface{} {
+	accept := func(p *gen.MySqlParser, visitor *visitor) any {
 		ctx := p.CreateTable()
 		return visitor.visitCreateTable(ctx)
 	}

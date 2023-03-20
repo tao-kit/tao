@@ -5549,7 +5549,7 @@ func (s *RootContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RootContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RootContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRoot(s)
@@ -5719,7 +5719,7 @@ func (s *SqlStatementsContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SqlStatementsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SqlStatementsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSqlStatements(s)
@@ -5965,7 +5965,7 @@ func (s *SqlStatementContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SqlStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SqlStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSqlStatement(s)
@@ -6102,7 +6102,7 @@ func (s *EmptyStatementContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *EmptyStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *EmptyStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitEmptyStatement(s)
@@ -6537,7 +6537,7 @@ func (s *DdlStatementContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DdlStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DdlStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDdlStatement(s)
@@ -6966,7 +6966,7 @@ func (s *DmlStatementContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DmlStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DmlStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDmlStatement(s)
@@ -7210,7 +7210,7 @@ func (s *TransactionStatementContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TransactionStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TransactionStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTransactionStatement(s)
@@ -7507,7 +7507,7 @@ func (s *ReplicationStatementContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ReplicationStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ReplicationStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitReplicationStatement(s)
@@ -7726,7 +7726,7 @@ func (s *PreparedStatementContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PreparedStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PreparedStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPreparedStatement(s)
@@ -7934,7 +7934,7 @@ func (s *CompoundStatementContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CompoundStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CompoundStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCompoundStatement(s)
@@ -8338,7 +8338,7 @@ func (s *AdministrationStatementContext) ToStringTree(ruleNames []string, recog 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AdministrationStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AdministrationStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAdministrationStatement(s)
@@ -8667,7 +8667,7 @@ func (s *UtilityStatementContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UtilityStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UtilityStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUtilityStatement(s)
@@ -8866,7 +8866,7 @@ func (s *CreateDatabaseContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateDatabaseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateDatabaseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateDatabase(s)
@@ -9103,7 +9103,7 @@ func (s *CreateEventContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateEventContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateEventContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateEvent(s)
@@ -9506,7 +9506,7 @@ func (s *CreateIndexContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateIndexContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateIndexContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateIndex(s)
@@ -9953,7 +9953,7 @@ func (s *CreateLogfileGroupContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateLogfileGroupContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateLogfileGroupContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateLogfileGroup(s)
@@ -10338,7 +10338,7 @@ func (s *CreateProcedureContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateProcedureContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateProcedureContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateProcedure(s)
@@ -10626,7 +10626,7 @@ func (s *CreateFunctionContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateFunctionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateFunctionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateFunction(s)
@@ -10905,7 +10905,7 @@ func (s *CreateServerContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateServerContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateServerContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateServer(s)
@@ -11147,7 +11147,7 @@ func (s *CopyCreateTableContext) IfNotExists() IIfNotExistsContext {
 	return t.(IIfNotExistsContext)
 }
 
-func (s *CopyCreateTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CopyCreateTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCopyCreateTable(s)
@@ -11258,7 +11258,7 @@ func (s *ColumnCreateTableContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *ColumnCreateTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ColumnCreateTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitColumnCreateTable(s)
@@ -11396,7 +11396,7 @@ func (s *QueryCreateTableContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *QueryCreateTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *QueryCreateTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitQueryCreateTable(s)
@@ -11876,7 +11876,7 @@ func (s *CreateTablespaceInnodbContext) ToStringTree(ruleNames []string, recog a
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateTablespaceInnodbContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateTablespaceInnodbContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateTablespaceInnodb(s)
@@ -12235,7 +12235,7 @@ func (s *CreateTablespaceNdbContext) ToStringTree(ruleNames []string, recog antl
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateTablespaceNdbContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateTablespaceNdbContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateTablespaceNdb(s)
@@ -12721,7 +12721,7 @@ func (s *CreateTriggerContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateTriggerContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateTriggerContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateTrigger(s)
@@ -13077,7 +13077,7 @@ func (s *CreateViewContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateViewContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateViewContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateView(s)
@@ -13404,7 +13404,7 @@ func (s *CreateDatabaseOptionContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateDatabaseOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateDatabaseOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateDatabaseOption(s)
@@ -13628,7 +13628,7 @@ func (s *OwnerStatementContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OwnerStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *OwnerStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitOwnerStatement(s)
@@ -13811,7 +13811,7 @@ func (s *PreciseScheduleContext) IntervalExpr(i int) IIntervalExprContext {
 	return t.(IIntervalExprContext)
 }
 
-func (s *PreciseScheduleContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PreciseScheduleContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPreciseSchedule(s)
@@ -13952,7 +13952,7 @@ func (s *IntervalScheduleContext) IntervalExpr(i int) IIntervalExprContext {
 	return t.(IIntervalExprContext)
 }
 
-func (s *IntervalScheduleContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IntervalScheduleContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIntervalSchedule(s)
@@ -14200,7 +14200,7 @@ func (s *TimestampValueContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TimestampValueContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TimestampValueContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTimestampValue(s)
@@ -14350,7 +14350,7 @@ func (s *IntervalExprContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IntervalExprContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IntervalExprContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIntervalExpr(s)
@@ -14517,7 +14517,7 @@ func (s *IntervalTypeContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IntervalTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IntervalTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIntervalType(s)
@@ -14711,7 +14711,7 @@ func (s *EnableTypeContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *EnableTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *EnableTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitEnableType(s)
@@ -14836,7 +14836,7 @@ func (s *IndexTypeContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IndexTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IndexTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIndexType(s)
@@ -14995,7 +14995,7 @@ func (s *IndexOptionContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IndexOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IndexOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIndexOption(s)
@@ -15195,7 +15195,7 @@ func (s *ProcedureParameterContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ProcedureParameterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ProcedureParameterContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitProcedureParameter(s)
@@ -15330,7 +15330,7 @@ func (s *FunctionParameterContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FunctionParameterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FunctionParameterContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFunctionParameter(s)
@@ -15449,7 +15449,7 @@ func (s *RoutineBehaviorContext) NOT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserNOT, 0)
 }
 
-func (s *RoutineBehaviorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RoutineBehaviorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRoutineBehavior(s)
@@ -15485,7 +15485,7 @@ func (s *RoutineLanguageContext) SQL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSQL, 0)
 }
 
-func (s *RoutineLanguageContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RoutineLanguageContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRoutineLanguage(s)
@@ -15521,7 +15521,7 @@ func (s *RoutineCommentContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *RoutineCommentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RoutineCommentContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRoutineComment(s)
@@ -15570,7 +15570,7 @@ func (s *RoutineSecurityContext) INVOKER() antlr.TerminalNode {
 	return s.GetToken(MySqlParserINVOKER, 0)
 }
 
-func (s *RoutineSecurityContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RoutineSecurityContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRoutineSecurity(s)
@@ -15622,7 +15622,7 @@ func (s *RoutineDataContext) MODIFIES() antlr.TerminalNode {
 	return s.GetToken(MySqlParserMODIFIES, 0)
 }
 
-func (s *RoutineDataContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RoutineDataContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRoutineData(s)
@@ -15884,7 +15884,7 @@ func (s *ServerOptionContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ServerOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ServerOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitServerOption(s)
@@ -16087,7 +16087,7 @@ func (s *CreateDefinitionsContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateDefinitionsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateDefinitionsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateDefinitions(s)
@@ -16241,7 +16241,7 @@ func (s *ColumnDeclarationContext) ColumnDefinition() IColumnDefinitionContext {
 	return t.(IColumnDefinitionContext)
 }
 
-func (s *ColumnDeclarationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ColumnDeclarationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitColumnDeclaration(s)
@@ -16279,7 +16279,7 @@ func (s *ConstraintDeclarationContext) TableConstraint() ITableConstraintContext
 	return t.(ITableConstraintContext)
 }
 
-func (s *ConstraintDeclarationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ConstraintDeclarationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitConstraintDeclaration(s)
@@ -16317,7 +16317,7 @@ func (s *IndexDeclarationContext) IndexColumnDefinition() IIndexColumnDefinition
 	return t.(IIndexColumnDefinitionContext)
 }
 
-func (s *IndexDeclarationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IndexDeclarationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIndexDeclaration(s)
@@ -16465,7 +16465,7 @@ func (s *ColumnDefinitionContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ColumnDefinitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ColumnDefinitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitColumnDefinition(s)
@@ -16611,7 +16611,7 @@ func (s *StorageColumnConstraintContext) DEFAULT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserDEFAULT, 0)
 }
 
-func (s *StorageColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StorageColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStorageColumnConstraint(s)
@@ -16661,7 +16661,7 @@ func (s *AutoIncrementColumnConstraintContext) CurrentTimestamp() ICurrentTimest
 	return t.(ICurrentTimestampContext)
 }
 
-func (s *AutoIncrementColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AutoIncrementColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAutoIncrementColumnConstraint(s)
@@ -16697,7 +16697,7 @@ func (s *CommentColumnConstraintContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *CommentColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CommentColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCommentColumnConstraint(s)
@@ -16733,7 +16733,7 @@ func (s *UniqueKeyColumnConstraintContext) KEY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserKEY, 0)
 }
 
-func (s *UniqueKeyColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UniqueKeyColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUniqueKeyColumnConstraint(s)
@@ -16773,7 +16773,7 @@ func (s *SerialDefaultColumnConstraintContext) VALUE() antlr.TerminalNode {
 	return s.GetToken(MySqlParserVALUE, 0)
 }
 
-func (s *SerialDefaultColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SerialDefaultColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSerialDefaultColumnConstraint(s)
@@ -16839,7 +16839,7 @@ func (s *GeneratedColumnConstraintContext) STORED() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTORED, 0)
 }
 
-func (s *GeneratedColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *GeneratedColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitGeneratedColumnConstraint(s)
@@ -16888,7 +16888,7 @@ func (s *FormatColumnConstraintContext) DEFAULT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserDEFAULT, 0)
 }
 
-func (s *FormatColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FormatColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFormatColumnConstraint(s)
@@ -16930,7 +16930,7 @@ func (s *CollateColumnConstraintContext) CollationName() ICollationNameContext {
 	return t.(ICollationNameContext)
 }
 
-func (s *CollateColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CollateColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCollateColumnConstraint(s)
@@ -16966,7 +16966,7 @@ func (s *PrimaryKeyColumnConstraintContext) PRIMARY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserPRIMARY, 0)
 }
 
-func (s *PrimaryKeyColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PrimaryKeyColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPrimaryKeyColumnConstraint(s)
@@ -17035,7 +17035,7 @@ func (s *CheckColumnConstraintContext) Uid() IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *CheckColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CheckColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCheckColumnConstraint(s)
@@ -17073,7 +17073,7 @@ func (s *NullColumnConstraintContext) NullNotnull() INullNotnullContext {
 	return t.(INullNotnullContext)
 }
 
-func (s *NullColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *NullColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitNullColumnConstraint(s)
@@ -17115,7 +17115,7 @@ func (s *DefaultColumnConstraintContext) DefaultValue() IDefaultValueContext {
 	return t.(IDefaultValueContext)
 }
 
-func (s *DefaultColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DefaultColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDefaultColumnConstraint(s)
@@ -17153,7 +17153,7 @@ func (s *ReferenceColumnConstraintContext) ReferenceDefinition() IReferenceDefin
 	return t.(IReferenceDefinitionContext)
 }
 
-func (s *ReferenceColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ReferenceColumnConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitReferenceColumnConstraint(s)
@@ -17646,7 +17646,7 @@ func (s *UniqueKeyTableConstraintContext) KEY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserKEY, 0)
 }
 
-func (s *UniqueKeyTableConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UniqueKeyTableConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUniqueKeyTableConstraint(s)
@@ -17715,7 +17715,7 @@ func (s *CheckTableConstraintContext) Uid() IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *CheckTableConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CheckTableConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCheckTableConstraint(s)
@@ -17831,7 +17831,7 @@ func (s *PrimaryKeyTableConstraintContext) Uid(i int) IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *PrimaryKeyTableConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PrimaryKeyTableConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPrimaryKeyTableConstraint(s)
@@ -17924,7 +17924,7 @@ func (s *ForeignKeyTableConstraintContext) Uid(i int) IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *ForeignKeyTableConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ForeignKeyTableConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitForeignKeyTableConstraint(s)
@@ -18355,7 +18355,7 @@ func (s *ReferenceDefinitionContext) ToStringTree(ruleNames []string, recog antl
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ReferenceDefinitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ReferenceDefinitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitReferenceDefinition(s)
@@ -18555,7 +18555,7 @@ func (s *ReferenceActionContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ReferenceActionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ReferenceActionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitReferenceAction(s)
@@ -18741,7 +18741,7 @@ func (s *ReferenceControlTypeContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ReferenceControlTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ReferenceControlTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitReferenceControlType(s)
@@ -18950,7 +18950,7 @@ func (s *SpecialIndexDeclarationContext) KEY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserKEY, 0)
 }
 
-func (s *SpecialIndexDeclarationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SpecialIndexDeclarationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSpecialIndexDeclaration(s)
@@ -19044,7 +19044,7 @@ func (s *SimpleIndexDeclarationContext) IndexOption(i int) IIndexOptionContext {
 	return t.(IIndexOptionContext)
 }
 
-func (s *SimpleIndexDeclarationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SimpleIndexDeclarationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSimpleIndexDeclaration(s)
@@ -19303,7 +19303,7 @@ func (s *TableOptionEngineContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionEngineContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionEngineContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionEngine(s)
@@ -19349,7 +19349,7 @@ func (s *TableOptionMaxRowsContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionMaxRowsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionMaxRowsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionMaxRows(s)
@@ -19399,7 +19399,7 @@ func (s *TableOptionCollateContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionCollateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionCollateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionCollate(s)
@@ -19452,7 +19452,7 @@ func (s *TableOptionPersistentContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionPersistentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionPersistentContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionPersistent(s)
@@ -19504,7 +19504,7 @@ func (s *TableOptionTablespaceContext) TablespaceStorage() ITablespaceStorageCon
 	return t.(ITablespaceStorageContext)
 }
 
-func (s *TableOptionTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionTablespace(s)
@@ -19557,7 +19557,7 @@ func (s *TableOptionPackKeysContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionPackKeysContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionPackKeysContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionPackKeys(s)
@@ -19597,7 +19597,7 @@ func (s *TableOptionPasswordContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionPasswordContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionPasswordContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionPassword(s)
@@ -19651,7 +19651,7 @@ func (s *TableOptionUnionContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionUnionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionUnionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionUnion(s)
@@ -19697,7 +19697,7 @@ func (s *TableOptionSamplePageContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionSamplePageContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionSamplePageContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionSamplePage(s)
@@ -19759,7 +19759,7 @@ func (s *TableOptionCharsetContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionCharsetContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionCharsetContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionCharset(s)
@@ -19803,7 +19803,7 @@ func (s *TableOptionIndexDirectoryContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionIndexDirectoryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionIndexDirectoryContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionIndexDirectory(s)
@@ -19849,7 +19849,7 @@ func (s *TableOptionKeyBlockSizeContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionKeyBlockSizeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionKeyBlockSizeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionKeyBlockSize(s)
@@ -19889,7 +19889,7 @@ func (s *TableOptionEncryptionContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionEncryptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionEncryptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionEncryption(s)
@@ -19933,7 +19933,7 @@ func (s *TableOptionDataDirectoryContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionDataDirectoryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionDataDirectoryContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionDataDirectory(s)
@@ -19986,7 +19986,7 @@ func (s *TableOptionRecalculationContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionRecalculationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionRecalculationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionRecalculation(s)
@@ -20032,7 +20032,7 @@ func (s *TableOptionAutoIncrementContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionAutoIncrementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionAutoIncrementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionAutoIncrement(s)
@@ -20085,7 +20085,7 @@ func (s *TableOptionChecksumContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionChecksumContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionChecksumContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionChecksum(s)
@@ -20134,7 +20134,7 @@ func (s *TableOptionDelayContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionDelayContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionDelayContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionDelay(s)
@@ -20174,7 +20174,7 @@ func (s *TableOptionConnectionContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionConnectionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionConnectionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionConnection(s)
@@ -20214,7 +20214,7 @@ func (s *TableOptionCommentContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionCommentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionCommentContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionComment(s)
@@ -20260,7 +20260,7 @@ func (s *TableOptionAverageContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionAverageContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionAverageContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionAverage(s)
@@ -20329,7 +20329,7 @@ func (s *TableOptionRowFormatContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionRowFormatContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionRowFormatContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionRowFormat(s)
@@ -20373,7 +20373,7 @@ func (s *TableOptionCompressionContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionCompressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionCompressionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionCompression(s)
@@ -20426,7 +20426,7 @@ func (s *TableOptionInsertMethodContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionInsertMethodContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionInsertMethodContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionInsertMethod(s)
@@ -20472,7 +20472,7 @@ func (s *TableOptionMinRowsContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *TableOptionMinRowsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableOptionMinRowsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableOptionMinRows(s)
@@ -21339,7 +21339,7 @@ func (s *TablespaceStorageContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TablespaceStorageContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TablespaceStorageContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTablespaceStorage(s)
@@ -21564,7 +21564,7 @@ func (s *PartitionDefinitionsContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PartitionDefinitionsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionDefinitionsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionDefinitions(s)
@@ -21818,7 +21818,7 @@ func (s *PartitionFunctionKeyContext) TWO_DECIMAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserTWO_DECIMAL, 0)
 }
 
-func (s *PartitionFunctionKeyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionFunctionKeyContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionFunctionKey(s)
@@ -21872,7 +21872,7 @@ func (s *PartitionFunctionHashContext) LINEAR() antlr.TerminalNode {
 	return s.GetToken(MySqlParserLINEAR, 0)
 }
 
-func (s *PartitionFunctionHashContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionFunctionHashContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionFunctionHash(s)
@@ -21936,7 +21936,7 @@ func (s *PartitionFunctionListContext) UidList() IUidListContext {
 	return t.(IUidListContext)
 }
 
-func (s *PartitionFunctionListContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionFunctionListContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionFunctionList(s)
@@ -22000,7 +22000,7 @@ func (s *PartitionFunctionRangeContext) UidList() IUidListContext {
 	return t.(IUidListContext)
 }
 
-func (s *PartitionFunctionRangeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionFunctionRangeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionFunctionRange(s)
@@ -22322,7 +22322,7 @@ func (s *SubPartitionFunctionHashContext) LINEAR() antlr.TerminalNode {
 	return s.GetToken(MySqlParserLINEAR, 0)
 }
 
-func (s *SubPartitionFunctionHashContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SubPartitionFunctionHashContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSubPartitionFunctionHash(s)
@@ -22397,7 +22397,7 @@ func (s *SubPartitionFunctionKeyContext) TWO_DECIMAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserTWO_DECIMAL, 0)
 }
 
-func (s *SubPartitionFunctionKeyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SubPartitionFunctionKeyContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSubPartitionFunctionKey(s)
@@ -22718,7 +22718,7 @@ func (s *PartitionComparisonContext) SubpartitionDefinition(i int) ISubpartition
 	return t.(ISubpartitionDefinitionContext)
 }
 
-func (s *PartitionComparisonContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionComparisonContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionComparison(s)
@@ -22861,7 +22861,7 @@ func (s *PartitionListAtomContext) SubpartitionDefinition(i int) ISubpartitionDe
 	return t.(ISubpartitionDefinitionContext)
 }
 
-func (s *PartitionListAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionListAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionListAtom(s)
@@ -23004,7 +23004,7 @@ func (s *PartitionListVectorContext) SubpartitionDefinition(i int) ISubpartition
 	return t.(ISubpartitionDefinitionContext)
 }
 
-func (s *PartitionListVectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionListVectorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionListVector(s)
@@ -23108,7 +23108,7 @@ func (s *PartitionSimpleContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *PartitionSimpleContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionSimpleContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionSimple(s)
@@ -23666,7 +23666,7 @@ func (s *PartitionDefinerAtomContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PartitionDefinerAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionDefinerAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionDefinerAtom(s)
@@ -23810,7 +23810,7 @@ func (s *PartitionDefinerVectorContext) ToStringTree(ruleNames []string, recog a
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PartitionDefinerVectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionDefinerVectorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionDefinerVector(s)
@@ -23959,7 +23959,7 @@ func (s *SubpartitionDefinitionContext) ToStringTree(ruleNames []string, recog a
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SubpartitionDefinitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SubpartitionDefinitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSubpartitionDefinition(s)
@@ -24102,7 +24102,7 @@ func (s *PartitionOptionCommentContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *PartitionOptionCommentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionOptionCommentContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionOptionComment(s)
@@ -24153,7 +24153,7 @@ func (s *PartitionOptionNodeGroupContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *PartitionOptionNodeGroupContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionOptionNodeGroupContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionOptionNodeGroup(s)
@@ -24204,7 +24204,7 @@ func (s *PartitionOptionIndexDirectoryContext) EQUAL_SYMBOL() antlr.TerminalNode
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *PartitionOptionIndexDirectoryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionOptionIndexDirectoryContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionOptionIndexDirectory(s)
@@ -24255,7 +24255,7 @@ func (s *PartitionOptionMaxRowsContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *PartitionOptionMaxRowsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionOptionMaxRowsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionOptionMaxRows(s)
@@ -24306,7 +24306,7 @@ func (s *PartitionOptionTablespaceContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *PartitionOptionTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionOptionTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionOptionTablespace(s)
@@ -24356,7 +24356,7 @@ func (s *PartitionOptionEngineContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *PartitionOptionEngineContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionOptionEngineContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionOptionEngine(s)
@@ -24407,7 +24407,7 @@ func (s *PartitionOptionMinRowsContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *PartitionOptionMinRowsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionOptionMinRowsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionOptionMinRows(s)
@@ -24456,7 +24456,7 @@ func (s *PartitionOptionDataDirectoryContext) EQUAL_SYMBOL() antlr.TerminalNode 
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *PartitionOptionDataDirectoryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PartitionOptionDataDirectoryContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPartitionOptionDataDirectory(s)
@@ -24833,7 +24833,7 @@ func (s *AlterUpgradeNameContext) SCHEMA() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSCHEMA, 0)
 }
 
-func (s *AlterUpgradeNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterUpgradeNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterUpgradeName(s)
@@ -24911,7 +24911,7 @@ func (s *AlterSimpleDatabaseContext) CreateDatabaseOption(i int) ICreateDatabase
 	return t.(ICreateDatabaseOptionContext)
 }
 
-func (s *AlterSimpleDatabaseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterSimpleDatabaseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterSimpleDatabase(s)
@@ -25207,7 +25207,7 @@ func (s *AlterEventContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AlterEventContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterEventContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterEvent(s)
@@ -25459,7 +25459,7 @@ func (s *AlterFunctionContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AlterFunctionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterFunctionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterFunction(s)
@@ -25591,7 +25591,7 @@ func (s *AlterInstanceContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AlterInstanceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterInstanceContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterInstance(s)
@@ -25770,7 +25770,7 @@ func (s *AlterLogfileGroupContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AlterLogfileGroupContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterLogfileGroupContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterLogfileGroup(s)
@@ -25977,7 +25977,7 @@ func (s *AlterProcedureContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AlterProcedureContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterProcedureContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterProcedure(s)
@@ -26146,7 +26146,7 @@ func (s *AlterServerContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AlterServerContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterServerContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterServer(s)
@@ -26356,7 +26356,7 @@ func (s *AlterTableContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AlterTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterTable(s)
@@ -26610,7 +26610,7 @@ func (s *AlterTablespaceContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AlterTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterTablespace(s)
@@ -26928,7 +26928,7 @@ func (s *AlterViewContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AlterViewContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterViewContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterView(s)
@@ -27200,7 +27200,7 @@ func (s *AlterByDisableKeysContext) KEYS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserKEYS, 0)
 }
 
-func (s *AlterByDisableKeysContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByDisableKeysContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByDisableKeys(s)
@@ -27272,7 +27272,7 @@ func (s *AlterByDefaultCharsetContext) CollationName() ICollationNameContext {
 	return t.(ICollationNameContext)
 }
 
-func (s *AlterByDefaultCharsetContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByDefaultCharsetContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByDefaultCharset(s)
@@ -27345,7 +27345,7 @@ func (s *AlterByRenameColumnContext) Uid(i int) IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *AlterByRenameColumnContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByRenameColumnContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByRenameColumn(s)
@@ -27413,7 +27413,7 @@ func (s *AlterByConvertCharsetContext) CollationName() ICollationNameContext {
 	return t.(ICollationNameContext)
 }
 
-func (s *AlterByConvertCharsetContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByConvertCharsetContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByConvertCharset(s)
@@ -27488,7 +27488,7 @@ func (s *AlterByAddPartitionContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *AlterByAddPartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAddPartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAddPartition(s)
@@ -27585,7 +27585,7 @@ func (s *AlterByAddForeignKeyContext) Uid(i int) IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *AlterByAddForeignKeyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAddForeignKeyContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAddForeignKey(s)
@@ -27657,7 +27657,7 @@ func (s *AlterByRenameIndexContext) KEY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserKEY, 0)
 }
 
-func (s *AlterByRenameIndexContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByRenameIndexContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByRenameIndex(s)
@@ -27693,7 +27693,7 @@ func (s *AlterByRemovePartitioningContext) PARTITIONING() antlr.TerminalNode {
 	return s.GetToken(MySqlParserPARTITIONING, 0)
 }
 
-func (s *AlterByRemovePartitioningContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByRemovePartitioningContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByRemovePartitioning(s)
@@ -27758,7 +27758,7 @@ func (s *AlterByRenameContext) AS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserAS, 0)
 }
 
-func (s *AlterByRenameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByRenameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByRename(s)
@@ -27808,7 +27808,7 @@ func (s *AlterByOptimizePartitionContext) ALL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserALL, 0)
 }
 
-func (s *AlterByOptimizePartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByOptimizePartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByOptimizePartition(s)
@@ -27844,7 +27844,7 @@ func (s *AlterByImportTablespaceContext) TABLESPACE() antlr.TerminalNode {
 	return s.GetToken(MySqlParserTABLESPACE, 0)
 }
 
-func (s *AlterByImportTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByImportTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByImportTablespace(s)
@@ -27890,7 +27890,7 @@ func (s *AlterByCoalescePartitionContext) DecimalLiteral() IDecimalLiteralContex
 	return t.(IDecimalLiteralContext)
 }
 
-func (s *AlterByCoalescePartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByCoalescePartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByCoalescePartition(s)
@@ -27940,7 +27940,7 @@ func (s *AlterByDropConstraintCheckContext) CHECK() antlr.TerminalNode {
 	return s.GetToken(MySqlParserCHECK, 0)
 }
 
-func (s *AlterByDropConstraintCheckContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByDropConstraintCheckContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByDropConstraintCheck(s)
@@ -28038,7 +28038,7 @@ func (s *AlterByAddColumnsContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *AlterByAddColumnsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAddColumnsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAddColumns(s)
@@ -28092,7 +28092,7 @@ func (s *AlterByAlterIndexVisibilityContext) INVISIBLE() antlr.TerminalNode {
 	return s.GetToken(MySqlParserINVISIBLE, 0)
 }
 
-func (s *AlterByAlterIndexVisibilityContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAlterIndexVisibilityContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAlterIndexVisibility(s)
@@ -28142,7 +28142,7 @@ func (s *AlterByDropForeignKeyContext) Uid() IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *AlterByDropForeignKeyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByDropForeignKeyContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByDropForeignKey(s)
@@ -28215,7 +28215,7 @@ func (s *AlterByAddCheckTableConstraintContext) Uid() IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *AlterByAddCheckTableConstraintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAddCheckTableConstraintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAddCheckTableConstraint(s)
@@ -28265,7 +28265,7 @@ func (s *AlterByRebuildPartitionContext) ALL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserALL, 0)
 }
 
-func (s *AlterByRebuildPartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByRebuildPartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByRebuildPartition(s)
@@ -28301,7 +28301,7 @@ func (s *AlterByUpgradePartitioningContext) PARTITIONING() antlr.TerminalNode {
 	return s.GetToken(MySqlParserPARTITIONING, 0)
 }
 
-func (s *AlterByUpgradePartitioningContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByUpgradePartitioningContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByUpgradePartitioning(s)
@@ -28351,7 +28351,7 @@ func (s *AlterByRepairPartitionContext) ALL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserALL, 0)
 }
 
-func (s *AlterByRepairPartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByRepairPartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByRepairPartition(s)
@@ -28434,7 +28434,7 @@ func (s *AlterByExchangePartitionContext) WITHOUT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserWITHOUT, 0)
 }
 
-func (s *AlterByExchangePartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByExchangePartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByExchangePartition(s)
@@ -28532,7 +28532,7 @@ func (s *AlterByAddIndexContext) IndexOption(i int) IIndexOptionContext {
 	return t.(IIndexOptionContext)
 }
 
-func (s *AlterByAddIndexContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAddIndexContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAddIndex(s)
@@ -28582,7 +28582,7 @@ func (s *AlterByDropColumnContext) RESTRICT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRESTRICT, 0)
 }
 
-func (s *AlterByDropColumnContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByDropColumnContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByDropColumn(s)
@@ -28636,7 +28636,7 @@ func (s *AlterByImportPartitionContext) ALL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserALL, 0)
 }
 
-func (s *AlterByImportPartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByImportPartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByImportPartition(s)
@@ -28704,7 +28704,7 @@ func (s *AlterByChangeDefaultContext) COLUMN() antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOLUMN, 0)
 }
 
-func (s *AlterByChangeDefaultContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByChangeDefaultContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByChangeDefault(s)
@@ -28736,7 +28736,7 @@ func (s *AlterByForceContext) FORCE() antlr.TerminalNode {
 	return s.GetToken(MySqlParserFORCE, 0)
 }
 
-func (s *AlterByForceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByForceContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByForce(s)
@@ -28782,7 +28782,7 @@ func (s *AlterByDropPartitionContext) UidList() IUidListContext {
 	return t.(IUidListContext)
 }
 
-func (s *AlterByDropPartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByDropPartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByDropPartition(s)
@@ -28883,7 +28883,7 @@ func (s *AlterByAddSpecialIndexContext) KEY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserKEY, 0)
 }
 
-func (s *AlterByAddSpecialIndexContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAddSpecialIndexContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAddSpecialIndex(s)
@@ -28960,7 +28960,7 @@ func (s *AlterByModifyColumnContext) AFTER() antlr.TerminalNode {
 	return s.GetToken(MySqlParserAFTER, 0)
 }
 
-func (s *AlterByModifyColumnContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByModifyColumnContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByModifyColumn(s)
@@ -29019,7 +29019,7 @@ func (s *AlterByTableOptionContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *AlterByTableOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByTableOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByTableOption(s)
@@ -29059,7 +29059,7 @@ func (s *AlterByDropPrimaryKeyContext) KEY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserKEY, 0)
 }
 
-func (s *AlterByDropPrimaryKeyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByDropPrimaryKeyContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByDropPrimaryKey(s)
@@ -29116,7 +29116,7 @@ func (s *AlterByLockContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *AlterByLockContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByLockContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByLock(s)
@@ -29170,7 +29170,7 @@ func (s *AlterByDiscardPartitionContext) ALL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserALL, 0)
 }
 
-func (s *AlterByDiscardPartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByDiscardPartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByDiscardPartition(s)
@@ -29206,7 +29206,7 @@ func (s *AlterByDiscardTablespaceContext) TABLESPACE() antlr.TerminalNode {
 	return s.GetToken(MySqlParserTABLESPACE, 0)
 }
 
-func (s *AlterByDiscardTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByDiscardTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByDiscardTablespace(s)
@@ -29251,7 +29251,7 @@ func (s *AlterByValidateContext) WITH() antlr.TerminalNode {
 	return s.GetToken(MySqlParserWITH, 0)
 }
 
-func (s *AlterByValidateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByValidateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByValidate(s)
@@ -29371,7 +29371,7 @@ func (s *AlterByAddPrimaryKeyContext) Uid(i int) IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *AlterByAddPrimaryKeyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAddPrimaryKeyContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAddPrimaryKey(s)
@@ -29421,7 +29421,7 @@ func (s *AlterByCheckPartitionContext) ALL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserALL, 0)
 }
 
-func (s *AlterByCheckPartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByCheckPartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByCheckPartition(s)
@@ -29457,7 +29457,7 @@ func (s *AlterByEnableKeysContext) KEYS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserKEYS, 0)
 }
 
-func (s *AlterByEnableKeysContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByEnableKeysContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByEnableKeys(s)
@@ -29546,7 +29546,7 @@ func (s *AlterByReorganizePartitionContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *AlterByReorganizePartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByReorganizePartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByReorganizePartition(s)
@@ -29599,7 +29599,7 @@ func (s *AlterBySetAlgorithmContext) EQUAL_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEQUAL_SYMBOL, 0)
 }
 
-func (s *AlterBySetAlgorithmContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterBySetAlgorithmContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterBySetAlgorithm(s)
@@ -29649,7 +29649,7 @@ func (s *AlterByAnalyzePartitionContext) ALL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserALL, 0)
 }
 
-func (s *AlterByAnalyzePartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAnalyzePartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAnalyzePartition(s)
@@ -29741,7 +29741,7 @@ func (s *AlterByChangeColumnContext) AFTER() antlr.TerminalNode {
 	return s.GetToken(MySqlParserAFTER, 0)
 }
 
-func (s *AlterByChangeColumnContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByChangeColumnContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByChangeColumn(s)
@@ -29870,7 +29870,7 @@ func (s *AlterByAddUniqueKeyContext) KEY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserKEY, 0)
 }
 
-func (s *AlterByAddUniqueKeyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAddUniqueKeyContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAddUniqueKey(s)
@@ -29920,7 +29920,7 @@ func (s *AlterByTruncatePartitionContext) ALL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserALL, 0)
 }
 
-func (s *AlterByTruncatePartitionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByTruncatePartitionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByTruncatePartition(s)
@@ -29975,7 +29975,7 @@ func (s *AlterByDropIndexContext) KEY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserKEY, 0)
 }
 
-func (s *AlterByDropIndexContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByDropIndexContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByDropIndex(s)
@@ -30052,7 +30052,7 @@ func (s *AlterByAddColumnContext) AFTER() antlr.TerminalNode {
 	return s.GetToken(MySqlParserAFTER, 0)
 }
 
-func (s *AlterByAddColumnContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByAddColumnContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByAddColumn(s)
@@ -30098,7 +30098,7 @@ func (s *AlterByOrderContext) UidList() IUidListContext {
 	return t.(IUidListContext)
 }
 
-func (s *AlterByOrderContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterByOrderContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterByOrder(s)
@@ -31976,7 +31976,7 @@ func (s *DropDatabaseContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropDatabaseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropDatabaseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropDatabase(s)
@@ -32123,7 +32123,7 @@ func (s *DropEventContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropEventContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropEventContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropEvent(s)
@@ -32373,7 +32373,7 @@ func (s *DropIndexContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropIndexContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropIndexContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropIndex(s)
@@ -32630,7 +32630,7 @@ func (s *DropLogfileGroupContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropLogfileGroupContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropLogfileGroupContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropLogfileGroup(s)
@@ -32767,7 +32767,7 @@ func (s *DropProcedureContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropProcedureContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropProcedureContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropProcedure(s)
@@ -32900,7 +32900,7 @@ func (s *DropFunctionContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropFunctionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropFunctionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropFunction(s)
@@ -33033,7 +33033,7 @@ func (s *DropServerContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropServerContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropServerContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropServer(s)
@@ -33189,7 +33189,7 @@ func (s *DropTableContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropTable(s)
@@ -33366,7 +33366,7 @@ func (s *DropTablespaceContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropTablespaceContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropTablespace(s)
@@ -33514,7 +33514,7 @@ func (s *DropTriggerContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropTriggerContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropTriggerContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropTrigger(s)
@@ -33687,7 +33687,7 @@ func (s *DropViewContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropViewContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropViewContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropView(s)
@@ -33874,7 +33874,7 @@ func (s *RenameTableContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RenameTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RenameTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRenameTable(s)
@@ -34013,7 +34013,7 @@ func (s *RenameTableClauseContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RenameTableClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RenameTableClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRenameTableClause(s)
@@ -34124,7 +34124,7 @@ func (s *TruncateTableContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TruncateTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TruncateTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTruncateTable(s)
@@ -34267,7 +34267,7 @@ func (s *CallStatementContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CallStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CallStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCallStatement(s)
@@ -34406,7 +34406,7 @@ func (s *DeleteStatementContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DeleteStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DeleteStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDeleteStatement(s)
@@ -34518,7 +34518,7 @@ func (s *DoStatementContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DoStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DoStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDoStatement(s)
@@ -34647,7 +34647,7 @@ func (s *HandlerStatementContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *HandlerStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerStatement(s)
@@ -34993,7 +34993,7 @@ func (s *InsertStatementContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *InsertStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *InsertStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitInsertStatement(s)
@@ -35590,7 +35590,7 @@ func (s *LoadDataStatementContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LoadDataStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LoadDataStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLoadDataStatement(s)
@@ -36224,7 +36224,7 @@ func (s *LoadXmlStatementContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LoadXmlStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LoadXmlStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLoadXmlStatement(s)
@@ -36737,7 +36737,7 @@ func (s *ReplaceStatementContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ReplaceStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ReplaceStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitReplaceStatement(s)
@@ -37080,7 +37080,7 @@ func (s *UnionSelectContext) DISTINCT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserDISTINCT, 0)
 }
 
-func (s *UnionSelectContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UnionSelectContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUnionSelect(s)
@@ -37198,7 +37198,7 @@ func (s *UnionParenthesisSelectContext) DISTINCT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserDISTINCT, 0)
 }
 
-func (s *UnionParenthesisSelectContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UnionParenthesisSelectContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUnionParenthesisSelect(s)
@@ -37246,7 +37246,7 @@ func (s *SimpleSelectContext) LockClause() ILockClauseContext {
 	return t.(ILockClauseContext)
 }
 
-func (s *SimpleSelectContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SimpleSelectContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSimpleSelect(s)
@@ -37294,7 +37294,7 @@ func (s *ParenthesisSelectContext) LockClause() ILockClauseContext {
 	return t.(ILockClauseContext)
 }
 
-func (s *ParenthesisSelectContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ParenthesisSelectContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitParenthesisSelect(s)
@@ -37648,7 +37648,7 @@ func (s *UpdateStatementContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UpdateStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UpdateStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUpdateStatement(s)
@@ -37822,7 +37822,7 @@ func (s *InsertStatementValueContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *InsertStatementValueContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *InsertStatementValueContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitInsertStatementValue(s)
@@ -38016,7 +38016,7 @@ func (s *UpdatedElementContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UpdatedElementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UpdatedElementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUpdatedElement(s)
@@ -38135,7 +38135,7 @@ func (s *AssignmentFieldContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AssignmentFieldContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AssignmentFieldContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAssignmentField(s)
@@ -38260,7 +38260,7 @@ func (s *LockClauseContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LockClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LockClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLockClause(s)
@@ -38478,7 +38478,7 @@ func (s *SingleDeleteStatementContext) ToStringTree(ruleNames []string, recog an
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SingleDeleteStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SingleDeleteStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSingleDeleteStatement(s)
@@ -38778,7 +38778,7 @@ func (s *MultipleDeleteStatementContext) ToStringTree(ruleNames []string, recog 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *MultipleDeleteStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MultipleDeleteStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMultipleDeleteStatement(s)
@@ -39081,7 +39081,7 @@ func (s *HandlerOpenStatementContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *HandlerOpenStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerOpenStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerOpenStatement(s)
@@ -39318,7 +39318,7 @@ func (s *HandlerReadIndexStatementContext) ToStringTree(ruleNames []string, reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *HandlerReadIndexStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerReadIndexStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerReadIndexStatement(s)
@@ -39559,7 +39559,7 @@ func (s *HandlerReadStatementContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *HandlerReadStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerReadStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerReadStatement(s)
@@ -39719,7 +39719,7 @@ func (s *HandlerCloseStatementContext) ToStringTree(ruleNames []string, recog an
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *HandlerCloseStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerCloseStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerCloseStatement(s)
@@ -39928,7 +39928,7 @@ func (s *SingleUpdateStatementContext) ToStringTree(ruleNames []string, recog an
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SingleUpdateStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SingleUpdateStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSingleUpdateStatement(s)
@@ -40210,7 +40210,7 @@ func (s *MultipleUpdateStatementContext) ToStringTree(ruleNames []string, recog 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *MultipleUpdateStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MultipleUpdateStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMultipleUpdateStatement(s)
@@ -40405,7 +40405,7 @@ func (s *OrderByClauseContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OrderByClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *OrderByClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitOrderByClause(s)
@@ -40546,7 +40546,7 @@ func (s *OrderByExpressionContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OrderByExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *OrderByExpressionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitOrderByExpression(s)
@@ -40687,7 +40687,7 @@ func (s *TableSourcesContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TableSourcesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableSourcesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableSources(s)
@@ -40854,7 +40854,7 @@ func (s *TableSourceNestedContext) JoinPart(i int) IJoinPartContext {
 	return t.(IJoinPartContext)
 }
 
-func (s *TableSourceNestedContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableSourceNestedContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableSourceNested(s)
@@ -40915,7 +40915,7 @@ func (s *TableSourceBaseContext) JoinPart(i int) IJoinPartContext {
 	return t.(IJoinPartContext)
 }
 
-func (s *TableSourceBaseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableSourceBaseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableSourceBase(s)
@@ -41124,7 +41124,7 @@ func (s *SubqueryTableItemContext) AS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserAS, 0)
 }
 
-func (s *SubqueryTableItemContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SubqueryTableItemContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSubqueryTableItem(s)
@@ -41234,7 +41234,7 @@ func (s *AtomTableItemContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *AtomTableItemContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AtomTableItemContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAtomTableItem(s)
@@ -41280,7 +41280,7 @@ func (s *TableSourcesItemContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *TableSourcesItemContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableSourcesItemContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableSourcesItem(s)
@@ -41591,7 +41591,7 @@ func (s *IndexHintContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IndexHintContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IndexHintContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIndexHint(s)
@@ -41752,7 +41752,7 @@ func (s *IndexHintTypeContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IndexHintTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IndexHintTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIndexHintType(s)
@@ -41948,7 +41948,7 @@ func (s *InnerJoinContext) CROSS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserCROSS, 0)
 }
 
-func (s *InnerJoinContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *InnerJoinContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitInnerJoin(s)
@@ -42006,7 +42006,7 @@ func (s *NaturalJoinContext) OUTER() antlr.TerminalNode {
 	return s.GetToken(MySqlParserOUTER, 0)
 }
 
-func (s *NaturalJoinContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *NaturalJoinContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitNaturalJoin(s)
@@ -42096,7 +42096,7 @@ func (s *OuterJoinContext) OUTER() antlr.TerminalNode {
 	return s.GetToken(MySqlParserOUTER, 0)
 }
 
-func (s *OuterJoinContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *OuterJoinContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitOuterJoin(s)
@@ -42152,7 +42152,7 @@ func (s *StraightJoinContext) Expression() IExpressionContext {
 	return t.(IExpressionContext)
 }
 
-func (s *StraightJoinContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StraightJoinContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStraightJoin(s)
@@ -42470,7 +42470,7 @@ func (s *QueryExpressionContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *QueryExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *QueryExpressionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitQueryExpression(s)
@@ -42612,7 +42612,7 @@ func (s *QueryExpressionNointoContext) ToStringTree(ruleNames []string, recog an
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *QueryExpressionNointoContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *QueryExpressionNointoContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitQueryExpressionNointo(s)
@@ -42823,7 +42823,7 @@ func (s *QuerySpecificationContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *QuerySpecificationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *QuerySpecificationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitQuerySpecification(s)
@@ -43177,7 +43177,7 @@ func (s *QuerySpecificationNointoContext) ToStringTree(ruleNames []string, recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *QuerySpecificationNointoContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *QuerySpecificationNointoContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitQuerySpecificationNointo(s)
@@ -43370,7 +43370,7 @@ func (s *UnionParenthesisContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UnionParenthesisContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UnionParenthesisContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUnionParenthesis(s)
@@ -43528,7 +43528,7 @@ func (s *UnionStatementContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UnionStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UnionStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUnionStatement(s)
@@ -43702,7 +43702,7 @@ func (s *SelectSpecContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SelectSpecContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectSpecContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectSpec(s)
@@ -43906,7 +43906,7 @@ func (s *SelectElementsContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SelectElementsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectElementsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectElements(s)
@@ -44079,7 +44079,7 @@ func (s *SelectExpressionElementContext) AS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserAS, 0)
 }
 
-func (s *SelectExpressionElementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectExpressionElementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectExpressionElement(s)
@@ -44131,7 +44131,7 @@ func (s *SelectFunctionElementContext) AS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserAS, 0)
 }
 
-func (s *SelectFunctionElementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectFunctionElementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectFunctionElement(s)
@@ -44177,7 +44177,7 @@ func (s *SelectStarElementContext) STAR() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTAR, 0)
 }
 
-func (s *SelectStarElementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectStarElementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectStarElement(s)
@@ -44229,7 +44229,7 @@ func (s *SelectColumnElementContext) AS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserAS, 0)
 }
 
-func (s *SelectColumnElementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectColumnElementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectColumnElement(s)
@@ -44488,7 +44488,7 @@ func (s *SelectIntoVariablesContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *SelectIntoVariablesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectIntoVariablesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectIntoVariables(s)
@@ -44619,7 +44619,7 @@ func (s *SelectIntoTextFileContext) SelectLinesInto(i int) ISelectLinesIntoConte
 	return t.(ISelectLinesIntoContext)
 }
 
-func (s *SelectIntoTextFileContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectIntoTextFileContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectIntoTextFile(s)
@@ -44659,7 +44659,7 @@ func (s *SelectIntoDumpFileContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *SelectIntoDumpFileContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectIntoDumpFileContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectIntoDumpFile(s)
@@ -44951,7 +44951,7 @@ func (s *SelectFieldsIntoContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SelectFieldsIntoContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectFieldsIntoContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectFieldsInto(s)
@@ -45142,7 +45142,7 @@ func (s *SelectLinesIntoContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SelectLinesIntoContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SelectLinesIntoContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSelectLinesInto(s)
@@ -45304,7 +45304,7 @@ func (s *FromClauseContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FromClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FromClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFromClause(s)
@@ -45459,7 +45459,7 @@ func (s *GroupByClauseContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GroupByClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *GroupByClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitGroupByClause(s)
@@ -45610,7 +45610,7 @@ func (s *HavingClauseContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *HavingClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HavingClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHavingClause(s)
@@ -45731,7 +45731,7 @@ func (s *GroupByItemContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GroupByItemContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *GroupByItemContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitGroupByItem(s)
@@ -45898,7 +45898,7 @@ func (s *LimitClauseContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LimitClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LimitClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLimitClause(s)
@@ -46063,7 +46063,7 @@ func (s *LimitClauseAtomContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LimitClauseAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LimitClauseAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLimitClauseAtom(s)
@@ -46210,7 +46210,7 @@ func (s *StartTransactionContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *StartTransactionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StartTransactionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStartTransaction(s)
@@ -46337,7 +46337,7 @@ func (s *BeginWorkContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *BeginWorkContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *BeginWorkContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitBeginWork(s)
@@ -46484,7 +46484,7 @@ func (s *CommitWorkContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CommitWorkContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CommitWorkContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCommitWork(s)
@@ -46684,7 +46684,7 @@ func (s *RollbackWorkContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RollbackWorkContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RollbackWorkContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRollbackWork(s)
@@ -46848,7 +46848,7 @@ func (s *SavepointStatementContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SavepointStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SavepointStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSavepointStatement(s)
@@ -46963,7 +46963,7 @@ func (s *RollbackStatementContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RollbackStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RollbackStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRollbackStatement(s)
@@ -47096,7 +47096,7 @@ func (s *ReleaseStatementContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ReleaseStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ReleaseStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitReleaseStatement(s)
@@ -47228,7 +47228,7 @@ func (s *LockTablesContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LockTablesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LockTablesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLockTables(s)
@@ -47348,7 +47348,7 @@ func (s *UnlockTablesContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UnlockTablesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UnlockTablesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUnlockTables(s)
@@ -47468,7 +47468,7 @@ func (s *SetAutocommitStatementContext) ToStringTree(ruleNames []string, recog a
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SetAutocommitStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SetAutocommitStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSetAutocommitStatement(s)
@@ -47642,7 +47642,7 @@ func (s *SetTransactionStatementContext) ToStringTree(ruleNames []string, recog 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SetTransactionStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SetTransactionStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSetTransactionStatement(s)
@@ -47803,7 +47803,7 @@ func (s *TransactionModeContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TransactionModeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TransactionModeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTransactionMode(s)
@@ -47958,7 +47958,7 @@ func (s *LockTableElementContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LockTableElementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LockTableElementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLockTableElement(s)
@@ -48086,7 +48086,7 @@ func (s *LockActionContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LockActionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LockActionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLockAction(s)
@@ -48240,7 +48240,7 @@ func (s *TransactionOptionContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TransactionOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TransactionOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTransactionOption(s)
@@ -48381,7 +48381,7 @@ func (s *TransactionLevelContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TransactionLevelContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TransactionLevelContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTransactionLevel(s)
@@ -48558,7 +48558,7 @@ func (s *ChangeMasterContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ChangeMasterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ChangeMasterContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitChangeMaster(s)
@@ -48728,7 +48728,7 @@ func (s *ChangeReplicationFilterContext) ToStringTree(ruleNames []string, recog 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ChangeReplicationFilterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ChangeReplicationFilterContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitChangeReplicationFilter(s)
@@ -48905,7 +48905,7 @@ func (s *PurgeBinaryLogsContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PurgeBinaryLogsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PurgeBinaryLogsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPurgeBinaryLogs(s)
@@ -49054,7 +49054,7 @@ func (s *ResetMasterContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ResetMasterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ResetMasterContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitResetMaster(s)
@@ -49165,7 +49165,7 @@ func (s *ResetSlaveContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ResetSlaveContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ResetSlaveContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitResetSlave(s)
@@ -49363,7 +49363,7 @@ func (s *StartSlaveContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *StartSlaveContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StartSlaveContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStartSlave(s)
@@ -49561,7 +49561,7 @@ func (s *StopSlaveContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *StopSlaveContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StopSlaveContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStopSlave(s)
@@ -49688,7 +49688,7 @@ func (s *StartGroupReplicationContext) ToStringTree(ruleNames []string, recog an
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *StartGroupReplicationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StartGroupReplicationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStartGroupReplication(s)
@@ -49785,7 +49785,7 @@ func (s *StopGroupReplicationContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *StopGroupReplicationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StopGroupReplicationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStopGroupReplication(s)
@@ -49914,7 +49914,7 @@ func (s *MasterStringOptionContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *MasterStringOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MasterStringOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMasterStringOption(s)
@@ -49954,7 +49954,7 @@ func (s *MasterRealOptionContext) REAL_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserREAL_LITERAL, 0)
 }
 
-func (s *MasterRealOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MasterRealOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMasterRealOption(s)
@@ -50009,7 +50009,7 @@ func (s *MasterBoolOptionContext) ONE_DECIMAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserONE_DECIMAL, 0)
 }
 
-func (s *MasterBoolOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MasterBoolOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMasterBoolOption(s)
@@ -50084,7 +50084,7 @@ func (s *MasterUidListOptionContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *MasterUidListOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MasterUidListOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMasterUidListOption(s)
@@ -50136,7 +50136,7 @@ func (s *MasterDecimalOptionContext) DecimalLiteral() IDecimalLiteralContext {
 	return t.(IDecimalLiteralContext)
 }
 
-func (s *MasterDecimalOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MasterDecimalOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMasterDecimalOption(s)
@@ -50407,7 +50407,7 @@ func (s *StringMasterOptionContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *StringMasterOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StringMasterOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStringMasterOption(s)
@@ -50524,7 +50524,7 @@ func (s *DecimalMasterOptionContext) ToStringTree(ruleNames []string, recog antl
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DecimalMasterOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DecimalMasterOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDecimalMasterOption(s)
@@ -50629,7 +50629,7 @@ func (s *BoolMasterOptionContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *BoolMasterOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *BoolMasterOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitBoolMasterOption(s)
@@ -50734,7 +50734,7 @@ func (s *ChannelOptionContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ChannelOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ChannelOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitChannelOption(s)
@@ -50875,7 +50875,7 @@ func (s *WildIgnoreTableReplicationContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *WildIgnoreTableReplicationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *WildIgnoreTableReplicationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitWildIgnoreTableReplication(s)
@@ -50929,7 +50929,7 @@ func (s *DoTableReplicationContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *DoTableReplicationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DoTableReplicationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDoTableReplication(s)
@@ -50983,7 +50983,7 @@ func (s *IgnoreTableReplicationContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *IgnoreTableReplicationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IgnoreTableReplicationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIgnoreTableReplication(s)
@@ -51058,7 +51058,7 @@ func (s *RewriteDbReplicationContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *RewriteDbReplicationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RewriteDbReplicationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRewriteDbReplication(s)
@@ -51112,7 +51112,7 @@ func (s *DoDbReplicationContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *DoDbReplicationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DoDbReplicationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDoDbReplication(s)
@@ -51166,7 +51166,7 @@ func (s *IgnoreDbReplicationContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *IgnoreDbReplicationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IgnoreDbReplicationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIgnoreDbReplication(s)
@@ -51220,7 +51220,7 @@ func (s *WildDoTableReplicationContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *WildDoTableReplicationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *WildDoTableReplicationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitWildDoTableReplication(s)
@@ -51551,7 +51551,7 @@ func (s *TablePairContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TablePairContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TablePairContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTablePair(s)
@@ -51666,7 +51666,7 @@ func (s *ThreadTypeContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ThreadTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ThreadTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitThreadType(s)
@@ -51808,7 +51808,7 @@ func (s *GtidsUntilOptionContext) SQL_AFTER_GTIDS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSQL_AFTER_GTIDS, 0)
 }
 
-func (s *GtidsUntilOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *GtidsUntilOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitGtidsUntilOption(s)
@@ -51840,7 +51840,7 @@ func (s *SqlGapsUntilOptionContext) SQL_AFTER_MTS_GAPS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSQL_AFTER_MTS_GAPS, 0)
 }
 
-func (s *SqlGapsUntilOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SqlGapsUntilOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSqlGapsUntilOption(s)
@@ -51902,7 +51902,7 @@ func (s *MasterLogUntilOptionContext) DecimalLiteral() IDecimalLiteralContext {
 	return t.(IDecimalLiteralContext)
 }
 
-func (s *MasterLogUntilOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MasterLogUntilOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMasterLogUntilOption(s)
@@ -51964,7 +51964,7 @@ func (s *RelayLogUntilOptionContext) DecimalLiteral() IDecimalLiteralContext {
 	return t.(IDecimalLiteralContext)
 }
 
-func (s *RelayLogUntilOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RelayLogUntilOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRelayLogUntilOption(s)
@@ -52193,7 +52193,7 @@ func (s *PluginDirConnectionOptionContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *PluginDirConnectionOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PluginDirConnectionOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPluginDirConnectionOption(s)
@@ -52238,7 +52238,7 @@ func (s *UserConnectionOptionContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *UserConnectionOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UserConnectionOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUserConnectionOption(s)
@@ -52283,7 +52283,7 @@ func (s *DefaultAuthConnectionOptionContext) STRING_LITERAL() antlr.TerminalNode
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *DefaultAuthConnectionOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DefaultAuthConnectionOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDefaultAuthConnectionOption(s)
@@ -52328,7 +52328,7 @@ func (s *PasswordConnectionOptionContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *PasswordConnectionOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PasswordConnectionOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPasswordConnectionOption(s)
@@ -52526,7 +52526,7 @@ func (s *GtuidSetContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GtuidSetContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *GtuidSetContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitGtuidSet(s)
@@ -52698,7 +52698,7 @@ func (s *XaStartTransactionContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *XaStartTransactionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *XaStartTransactionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitXaStartTransaction(s)
@@ -52861,7 +52861,7 @@ func (s *XaEndTransactionContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *XaEndTransactionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *XaEndTransactionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitXaEndTransaction(s)
@@ -52999,7 +52999,7 @@ func (s *XaPrepareStatementContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *XaPrepareStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *XaPrepareStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitXaPrepareStatement(s)
@@ -53118,7 +53118,7 @@ func (s *XaCommitWorkContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *XaCommitWorkContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *XaCommitWorkContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitXaCommitWork(s)
@@ -53245,7 +53245,7 @@ func (s *XaRollbackWorkContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *XaRollbackWorkContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *XaRollbackWorkContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitXaRollbackWork(s)
@@ -53360,7 +53360,7 @@ func (s *XaRecoverWorkContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *XaRecoverWorkContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *XaRecoverWorkContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitXaRecoverWork(s)
@@ -53513,7 +53513,7 @@ func (s *PrepareStatementContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PrepareStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PrepareStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPrepareStatement(s)
@@ -53659,7 +53659,7 @@ func (s *ExecuteStatementContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ExecuteStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ExecuteStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitExecuteStatement(s)
@@ -53797,7 +53797,7 @@ func (s *DeallocatePrepareContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DeallocatePrepareContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DeallocatePrepareContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDeallocatePrepare(s)
@@ -53925,7 +53925,7 @@ func (s *RoutineBodyContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RoutineBodyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RoutineBodyContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRoutineBody(s)
@@ -54181,7 +54181,7 @@ func (s *BlockStatementContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *BlockStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *BlockStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitBlockStatement(s)
@@ -54479,7 +54479,7 @@ func (s *CaseStatementContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CaseStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CaseStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCaseStatement(s)
@@ -54756,7 +54756,7 @@ func (s *IfStatementContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IfStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IfStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIfStatement(s)
@@ -54945,7 +54945,7 @@ func (s *IterateStatementContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IterateStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IterateStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIterateStatement(s)
@@ -55048,7 +55048,7 @@ func (s *LeaveStatementContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LeaveStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LeaveStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLeaveStatement(s)
@@ -55199,7 +55199,7 @@ func (s *LoopStatementContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LoopStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LoopStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLoopStatement(s)
@@ -55416,7 +55416,7 @@ func (s *RepeatStatementContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RepeatStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RepeatStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRepeatStatement(s)
@@ -55579,7 +55579,7 @@ func (s *ReturnStatementContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ReturnStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ReturnStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitReturnStatement(s)
@@ -55744,7 +55744,7 @@ func (s *WhileStatementContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *WhileStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *WhileStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitWhileStatement(s)
@@ -55929,7 +55929,7 @@ func (s *CloseCursorContext) Uid() IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *CloseCursorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CloseCursorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCloseCursor(s)
@@ -55971,7 +55971,7 @@ func (s *OpenCursorContext) Uid() IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *OpenCursorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *OpenCursorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitOpenCursor(s)
@@ -56035,7 +56035,7 @@ func (s *FetchCursorContext) NEXT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserNEXT, 0)
 }
 
-func (s *FetchCursorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FetchCursorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFetchCursor(s)
@@ -56226,7 +56226,7 @@ func (s *DeclareVariableContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DeclareVariableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DeclareVariableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDeclareVariable(s)
@@ -56379,7 +56379,7 @@ func (s *DeclareConditionContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DeclareConditionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DeclareConditionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDeclareCondition(s)
@@ -56543,7 +56543,7 @@ func (s *DeclareCursorContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DeclareCursorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DeclareCursorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDeclareCursor(s)
@@ -56720,7 +56720,7 @@ func (s *DeclareHandlerContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DeclareHandlerContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DeclareHandlerContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDeclareHandler(s)
@@ -56884,7 +56884,7 @@ func (s *HandlerConditionWarningContext) SQLWARNING() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSQLWARNING, 0)
 }
 
-func (s *HandlerConditionWarningContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerConditionWarningContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerConditionWarning(s)
@@ -56922,7 +56922,7 @@ func (s *HandlerConditionCodeContext) DecimalLiteral() IDecimalLiteralContext {
 	return t.(IDecimalLiteralContext)
 }
 
-func (s *HandlerConditionCodeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerConditionCodeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerConditionCode(s)
@@ -56958,7 +56958,7 @@ func (s *HandlerConditionNotfoundContext) FOUND() antlr.TerminalNode {
 	return s.GetToken(MySqlParserFOUND, 0)
 }
 
-func (s *HandlerConditionNotfoundContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerConditionNotfoundContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerConditionNotfound(s)
@@ -56998,7 +56998,7 @@ func (s *HandlerConditionStateContext) VALUE() antlr.TerminalNode {
 	return s.GetToken(MySqlParserVALUE, 0)
 }
 
-func (s *HandlerConditionStateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerConditionStateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerConditionState(s)
@@ -57030,7 +57030,7 @@ func (s *HandlerConditionExceptionContext) SQLEXCEPTION() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSQLEXCEPTION, 0)
 }
 
-func (s *HandlerConditionExceptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerConditionExceptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerConditionException(s)
@@ -57068,7 +57068,7 @@ func (s *HandlerConditionNameContext) Uid() IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *HandlerConditionNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HandlerConditionNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHandlerConditionName(s)
@@ -57247,7 +57247,7 @@ func (s *ProcedureSqlStatementContext) ToStringTree(ruleNames []string, recog an
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ProcedureSqlStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ProcedureSqlStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitProcedureSqlStatement(s)
@@ -57399,7 +57399,7 @@ func (s *CaseAlternativeContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CaseAlternativeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CaseAlternativeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCaseAlternative(s)
@@ -57566,7 +57566,7 @@ func (s *ElifAlternativeContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ElifAlternativeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ElifAlternativeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitElifAlternative(s)
@@ -57741,7 +57741,7 @@ func (s *AlterUserMysqlV56Context) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *AlterUserMysqlV56Context) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterUserMysqlV56Context) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterUserMysqlV56(s)
@@ -57935,7 +57935,7 @@ func (s *AlterUserMysqlV57Context) AND(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserAND, i)
 }
 
-func (s *AlterUserMysqlV57Context) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AlterUserMysqlV57Context) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAlterUserMysqlV57(s)
@@ -58399,7 +58399,7 @@ func (s *CreateUserMysqlV57Context) AND(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserAND, i)
 }
 
-func (s *CreateUserMysqlV57Context) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateUserMysqlV57Context) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateUserMysqlV57(s)
@@ -58466,7 +58466,7 @@ func (s *CreateUserMysqlV56Context) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *CreateUserMysqlV56Context) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateUserMysqlV56Context) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateUserMysqlV56(s)
@@ -58791,7 +58791,7 @@ func (s *DropUserContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DropUserContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DropUserContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDropUser(s)
@@ -59102,7 +59102,7 @@ func (s *GrantStatementContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GrantStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *GrantStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitGrantStatement(s)
@@ -59477,7 +59477,7 @@ func (s *GrantProxyContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *GrantProxyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *GrantProxyContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitGrantProxy(s)
@@ -59669,7 +59669,7 @@ func (s *RenameUserContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RenameUserContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RenameUserContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRenameUser(s)
@@ -59896,7 +59896,7 @@ func (s *DetailRevokeContext) PROCEDURE() antlr.TerminalNode {
 	return s.GetToken(MySqlParserPROCEDURE, 0)
 }
 
-func (s *DetailRevokeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DetailRevokeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDetailRevoke(s)
@@ -59979,7 +59979,7 @@ func (s *ShortRevokeContext) PRIVILEGES() antlr.TerminalNode {
 	return s.GetToken(MySqlParserPRIVILEGES, 0)
 }
 
-func (s *ShortRevokeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShortRevokeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShortRevoke(s)
@@ -60304,7 +60304,7 @@ func (s *RevokeProxyContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RevokeProxyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RevokeProxyContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRevokeProxy(s)
@@ -60478,7 +60478,7 @@ func (s *SetPasswordStatementContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SetPasswordStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SetPasswordStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSetPasswordStatement(s)
@@ -60626,7 +60626,7 @@ func (s *UserSpecificationContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UserSpecificationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UserSpecificationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUserSpecification(s)
@@ -60747,7 +60747,7 @@ func (s *SimpleAuthOptionContext) UserName() IUserNameContext {
 	return t.(IUserNameContext)
 }
 
-func (s *SimpleAuthOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SimpleAuthOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSimpleAuthOption(s)
@@ -60806,7 +60806,7 @@ func (s *PasswordAuthOptionContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *PasswordAuthOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PasswordAuthOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPasswordAuthOption(s)
@@ -60870,7 +60870,7 @@ func (s *StringAuthOptionContext) AuthPlugin() IAuthPluginContext {
 	return t.(IAuthPluginContext)
 }
 
-func (s *StringAuthOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StringAuthOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStringAuthOption(s)
@@ -60934,7 +60934,7 @@ func (s *HashAuthOptionContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *HashAuthOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HashAuthOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHashAuthOption(s)
@@ -61148,7 +61148,7 @@ func (s *TlsOptionContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TlsOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TlsOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTlsOption(s)
@@ -61308,7 +61308,7 @@ func (s *UserResourceOptionContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UserResourceOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UserResourceOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUserResourceOption(s)
@@ -61484,7 +61484,7 @@ func (s *UserPasswordOptionContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UserPasswordOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UserPasswordOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUserPasswordOption(s)
@@ -61639,7 +61639,7 @@ func (s *UserLockOptionContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UserLockOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UserLockOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUserLockOption(s)
@@ -61771,7 +61771,7 @@ func (s *PrivelegeClauseContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PrivelegeClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PrivelegeClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPrivelegeClause(s)
@@ -62152,7 +62152,7 @@ func (s *PrivilegeContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PrivilegeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PrivilegeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPrivilege(s)
@@ -62790,7 +62790,7 @@ func (s *DefiniteSchemaPrivLevelContext) STAR() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTAR, 0)
 }
 
-func (s *DefiniteSchemaPrivLevelContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DefiniteSchemaPrivLevelContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDefiniteSchemaPrivLevel(s)
@@ -62838,7 +62838,7 @@ func (s *DefiniteFullTablePrivLevel2Context) DottedId() IDottedIdContext {
 	return t.(IDottedIdContext)
 }
 
-func (s *DefiniteFullTablePrivLevel2Context) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DefiniteFullTablePrivLevel2Context) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDefiniteFullTablePrivLevel2(s)
@@ -62893,7 +62893,7 @@ func (s *DefiniteFullTablePrivLevelContext) DOT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserDOT, 0)
 }
 
-func (s *DefiniteFullTablePrivLevelContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DefiniteFullTablePrivLevelContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDefiniteFullTablePrivLevel(s)
@@ -62933,7 +62933,7 @@ func (s *GlobalPrivLevelContext) DOT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserDOT, 0)
 }
 
-func (s *GlobalPrivLevelContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *GlobalPrivLevelContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitGlobalPrivLevel(s)
@@ -62971,7 +62971,7 @@ func (s *DefiniteTablePrivLevelContext) Uid() IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *DefiniteTablePrivLevelContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DefiniteTablePrivLevelContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDefiniteTablePrivLevel(s)
@@ -63003,7 +63003,7 @@ func (s *CurrentSchemaPriviLevelContext) STAR() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTAR, 0)
 }
 
-func (s *CurrentSchemaPriviLevelContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CurrentSchemaPriviLevelContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCurrentSchemaPriviLevel(s)
@@ -63212,7 +63212,7 @@ func (s *RenameUserClauseContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RenameUserClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RenameUserClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRenameUserClause(s)
@@ -63348,7 +63348,7 @@ func (s *AnalyzeTableContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AnalyzeTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AnalyzeTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAnalyzeTable(s)
@@ -63508,7 +63508,7 @@ func (s *CheckTableContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CheckTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CheckTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCheckTable(s)
@@ -63653,7 +63653,7 @@ func (s *ChecksumTableContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ChecksumTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ChecksumTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitChecksumTable(s)
@@ -63813,7 +63813,7 @@ func (s *OptimizeTableContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *OptimizeTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *OptimizeTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitOptimizeTable(s)
@@ -63988,7 +63988,7 @@ func (s *RepairTableContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *RepairTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RepairTableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRepairTable(s)
@@ -64168,7 +64168,7 @@ func (s *CheckTableOptionContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CheckTableOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CheckTableOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCheckTableOption(s)
@@ -64362,7 +64362,7 @@ func (s *CreateUdfunctionContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CreateUdfunctionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CreateUdfunctionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCreateUdfunction(s)
@@ -64523,7 +64523,7 @@ func (s *InstallPluginContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *InstallPluginContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *InstallPluginContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitInstallPlugin(s)
@@ -64642,7 +64642,7 @@ func (s *UninstallPluginContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UninstallPluginContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UninstallPluginContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUninstallPlugin(s)
@@ -64767,7 +64767,7 @@ func (s *SetTransactionContext) SetTransactionStatement() ISetTransactionStateme
 	return t.(ISetTransactionStatementContext)
 }
 
-func (s *SetTransactionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SetTransactionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSetTransaction(s)
@@ -64825,7 +64825,7 @@ func (s *SetCharsetContext) DEFAULT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserDEFAULT, 0)
 }
 
-func (s *SetCharsetContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SetCharsetContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSetCharset(s)
@@ -64889,7 +64889,7 @@ func (s *SetNamesContext) CollationName() ICollationNameContext {
 	return t.(ICollationNameContext)
 }
 
-func (s *SetNamesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SetNamesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSetNames(s)
@@ -64927,7 +64927,7 @@ func (s *SetPasswordContext) SetPasswordStatement() ISetPasswordStatementContext
 	return t.(ISetPasswordStatementContext)
 }
 
-func (s *SetPasswordContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SetPasswordContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSetPassword(s)
@@ -64965,7 +64965,7 @@ func (s *SetAutocommitContext) SetAutocommitStatement() ISetAutocommitStatementC
 	return t.(ISetAutocommitStatementContext)
 }
 
-func (s *SetAutocommitContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SetAutocommitContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSetAutocommit(s)
@@ -65067,7 +65067,7 @@ func (s *SetNewValueInsideTriggerContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *SetNewValueInsideTriggerContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SetNewValueInsideTriggerContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSetNewValueInsideTrigger(s)
@@ -65169,7 +65169,7 @@ func (s *SetVariableContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *SetVariableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SetVariableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSetVariable(s)
@@ -65561,7 +65561,7 @@ func (s *ShowOpenTablesContext) IN() antlr.TerminalNode {
 	return s.GetToken(MySqlParserIN, 0)
 }
 
-func (s *ShowOpenTablesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowOpenTablesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowOpenTables(s)
@@ -65603,7 +65603,7 @@ func (s *ShowGlobalInfoContext) ShowGlobalInfoClause() IShowGlobalInfoClauseCont
 	return t.(IShowGlobalInfoClauseContext)
 }
 
-func (s *ShowGlobalInfoContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowGlobalInfoContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowGlobalInfo(s)
@@ -65678,7 +65678,7 @@ func (s *ShowCreateFullIdObjectContext) VIEW() antlr.TerminalNode {
 	return s.GetToken(MySqlParserVIEW, 0)
 }
 
-func (s *ShowCreateFullIdObjectContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowCreateFullIdObjectContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowCreateFullIdObject(s)
@@ -65728,7 +65728,7 @@ func (s *ShowCreateUserContext) UserName() IUserNameContext {
 	return t.(IUserNameContext)
 }
 
-func (s *ShowCreateUserContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowCreateUserContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowCreateUser(s)
@@ -65814,7 +65814,7 @@ func (s *ShowErrorsContext) COMMA() antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, 0)
 }
 
-func (s *ShowErrorsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowErrorsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowErrors(s)
@@ -65875,7 +65875,7 @@ func (s *ShowCountErrorsContext) WARNINGS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserWARNINGS, 0)
 }
 
-func (s *ShowCountErrorsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowCountErrorsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowCountErrors(s)
@@ -65927,7 +65927,7 @@ func (s *ShowObjectFilterContext) ShowFilter() IShowFilterContext {
 	return t.(IShowFilterContext)
 }
 
-func (s *ShowObjectFilterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowObjectFilterContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowObjectFilter(s)
@@ -65996,7 +65996,7 @@ func (s *ShowCreateDbContext) IfNotExists() IIfNotExistsContext {
 	return t.(IIfNotExistsContext)
 }
 
-func (s *ShowCreateDbContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowCreateDbContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowCreateDb(s)
@@ -66055,7 +66055,7 @@ func (s *ShowEngineContext) MUTEX() antlr.TerminalNode {
 	return s.GetToken(MySqlParserMUTEX, 0)
 }
 
-func (s *ShowEngineContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowEngineContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowEngine(s)
@@ -66130,7 +66130,7 @@ func (s *ShowSchemaFilterContext) IN() antlr.TerminalNode {
 	return s.GetToken(MySqlParserIN, 0)
 }
 
-func (s *ShowSchemaFilterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowSchemaFilterContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowSchemaFilter(s)
@@ -66239,7 +66239,7 @@ func (s *ShowIndexesContext) Expression() IExpressionContext {
 	return t.(IExpressionContext)
 }
 
-func (s *ShowIndexesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowIndexesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowIndexes(s)
@@ -66351,7 +66351,7 @@ func (s *ShowLogEventsContext) COMMA() antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, 0)
 }
 
-func (s *ShowLogEventsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowLogEventsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowLogEvents(s)
@@ -66400,7 +66400,7 @@ func (s *ShowMasterLogsContext) MASTER() antlr.TerminalNode {
 	return s.GetToken(MySqlParserMASTER, 0)
 }
 
-func (s *ShowMasterLogsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowMasterLogsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowMasterLogs(s)
@@ -66450,7 +66450,7 @@ func (s *ShowGrantsContext) UserName() IUserNameContext {
 	return t.(IUserNameContext)
 }
 
-func (s *ShowGrantsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowGrantsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowGrants(s)
@@ -66502,7 +66502,7 @@ func (s *ShowSlaveStatusContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *ShowSlaveStatusContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowSlaveStatusContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowSlaveStatus(s)
@@ -66561,7 +66561,7 @@ func (s *ShowRoutineContext) PROCEDURE() antlr.TerminalNode {
 	return s.GetToken(MySqlParserPROCEDURE, 0)
 }
 
-func (s *ShowRoutineContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowRoutineContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowRoutine(s)
@@ -66678,7 +66678,7 @@ func (s *ShowProfileContext) DecimalLiteral(i int) IDecimalLiteralContext {
 	return t.(IDecimalLiteralContext)
 }
 
-func (s *ShowProfileContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowProfileContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowProfile(s)
@@ -66783,7 +66783,7 @@ func (s *ShowColumnsContext) ShowFilter() IShowFilterContext {
 	return t.(IShowFilterContext)
 }
 
-func (s *ShowColumnsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowColumnsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowColumns(s)
@@ -67782,7 +67782,7 @@ func (s *VariableClauseContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *VariableClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *VariableClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitVariableClause(s)
@@ -67967,7 +67967,7 @@ func (s *ShowCommonEntityContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ShowCommonEntityContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowCommonEntityContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowCommonEntity(s)
@@ -68163,7 +68163,7 @@ func (s *ShowFilterContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ShowFilterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowFilterContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowFilter(s)
@@ -68324,7 +68324,7 @@ func (s *ShowGlobalInfoClauseContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ShowGlobalInfoClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowGlobalInfoClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowGlobalInfoClause(s)
@@ -68529,7 +68529,7 @@ func (s *ShowSchemaEntityContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ShowSchemaEntityContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowSchemaEntityContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowSchemaEntity(s)
@@ -68708,7 +68708,7 @@ func (s *ShowProfileTypeContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ShowProfileTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShowProfileTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShowProfileType(s)
@@ -68878,7 +68878,7 @@ func (s *BinlogStatementContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *BinlogStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *BinlogStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitBinlogStatement(s)
@@ -69057,7 +69057,7 @@ func (s *CacheIndexStatementContext) ToStringTree(ruleNames []string, recog antl
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CacheIndexStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CacheIndexStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCacheIndexStatement(s)
@@ -69272,7 +69272,7 @@ func (s *FlushStatementContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FlushStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FlushStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFlushStatement(s)
@@ -69451,7 +69451,7 @@ func (s *KillStatementContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *KillStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *KillStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitKillStatement(s)
@@ -69623,7 +69623,7 @@ func (s *LoadIndexIntoCacheContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LoadIndexIntoCacheContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LoadIndexIntoCacheContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLoadIndexIntoCache(s)
@@ -69755,7 +69755,7 @@ func (s *ResetStatementContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ResetStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ResetStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitResetStatement(s)
@@ -69852,7 +69852,7 @@ func (s *ShutdownStatementContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ShutdownStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ShutdownStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitShutdownStatement(s)
@@ -69984,7 +69984,7 @@ func (s *TableIndexesContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TableIndexesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableIndexesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableIndexes(s)
@@ -70160,7 +70160,7 @@ func (s *TableFlushOptionContext) FlushTableOption() IFlushTableOptionContext {
 	return t.(IFlushTableOptionContext)
 }
 
-func (s *TableFlushOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableFlushOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableFlushOption(s)
@@ -70206,7 +70206,7 @@ func (s *ChannelFlushOptionContext) ChannelOption() IChannelOptionContext {
 	return t.(IChannelOptionContext)
 }
 
-func (s *ChannelFlushOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ChannelFlushOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitChannelFlushOption(s)
@@ -70310,7 +70310,7 @@ func (s *SimpleFlushOptionContext) SLOW() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSLOW, 0)
 }
 
-func (s *SimpleFlushOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SimpleFlushOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSimpleFlushOption(s)
@@ -70567,7 +70567,7 @@ func (s *FlushTableOptionContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FlushTableOptionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FlushTableOptionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFlushTableOption(s)
@@ -70786,7 +70786,7 @@ func (s *LoadedTableIndexesContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LoadedTableIndexesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LoadedTableIndexesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLoadedTableIndexes(s)
@@ -71043,7 +71043,7 @@ func (s *SimpleDescribeStatementContext) ToStringTree(ruleNames []string, recog 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SimpleDescribeStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SimpleDescribeStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSimpleDescribeStatement(s)
@@ -71248,7 +71248,7 @@ func (s *FullDescribeStatementContext) ToStringTree(ruleNames []string, recog an
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FullDescribeStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FullDescribeStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFullDescribeStatement(s)
@@ -71407,7 +71407,7 @@ func (s *HelpStatementContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *HelpStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HelpStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHelpStatement(s)
@@ -71510,7 +71510,7 @@ func (s *UseStatementContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UseStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UseStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUseStatement(s)
@@ -71664,7 +71664,7 @@ func (s *SignalStatementContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SignalStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SignalStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSignalStatement(s)
@@ -71887,7 +71887,7 @@ func (s *ResignalStatementContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ResignalStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ResignalStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitResignalStatement(s)
@@ -72132,7 +72132,7 @@ func (s *SignalConditionInformationContext) ToStringTree(ruleNames []string, rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SignalConditionInformationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SignalConditionInformationContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSignalConditionInformation(s)
@@ -72365,7 +72365,7 @@ func (s *DiagnosticsStatementContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DiagnosticsStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DiagnosticsStatementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDiagnosticsStatement(s)
@@ -72649,7 +72649,7 @@ func (s *DiagnosticsConditionInformationNameContext) ToStringTree(ruleNames []st
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DiagnosticsConditionInformationNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DiagnosticsConditionInformationNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDiagnosticsConditionInformationName(s)
@@ -72814,7 +72814,7 @@ func (s *DescribeStatementsContext) UpdateStatement() IUpdateStatementContext {
 	return t.(IUpdateStatementContext)
 }
 
-func (s *DescribeStatementsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DescribeStatementsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDescribeStatements(s)
@@ -72860,7 +72860,7 @@ func (s *DescribeConnectionContext) Uid() IUidContext {
 	return t.(IUidContext)
 }
 
-func (s *DescribeConnectionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DescribeConnectionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDescribeConnection(s)
@@ -73035,7 +73035,7 @@ func (s *FullIdContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FullIdContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FullIdContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFullId(s)
@@ -73150,7 +73150,7 @@ func (s *TableNameContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TableNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TableNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTableName(s)
@@ -73268,7 +73268,7 @@ func (s *FullColumnNameContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FullColumnNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FullColumnNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFullColumnName(s)
@@ -73450,7 +73450,7 @@ func (s *IndexColumnNameContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IndexColumnNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IndexColumnNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIndexColumnName(s)
@@ -73604,7 +73604,7 @@ func (s *UserNameContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UserNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UserNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUserName(s)
@@ -73705,7 +73705,7 @@ func (s *MysqlVariableContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *MysqlVariableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MysqlVariableContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMysqlVariable(s)
@@ -73820,7 +73820,7 @@ func (s *CharsetNameContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CharsetNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CharsetNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCharsetName(s)
@@ -73949,7 +73949,7 @@ func (s *CollationNameContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CollationNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CollationNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCollationName(s)
@@ -74107,7 +74107,7 @@ func (s *EngineNameContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *EngineNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *EngineNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitEngineName(s)
@@ -74239,7 +74239,7 @@ func (s *UuidSetContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UuidSetContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UuidSetContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUuidSet(s)
@@ -74457,7 +74457,7 @@ func (s *XidContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) st
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *XidContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *XidContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitXid(s)
@@ -74598,7 +74598,7 @@ func (s *XuidStringIdContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *XuidStringIdContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *XuidStringIdContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitXuidStringId(s)
@@ -74731,7 +74731,7 @@ func (s *AuthPluginContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AuthPluginContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AuthPluginContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAuthPlugin(s)
@@ -74847,7 +74847,7 @@ func (s *UidContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) st
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UidContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UidContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUid(s)
@@ -75036,7 +75036,7 @@ func (s *SimpleIdContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SimpleIdContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SimpleIdContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSimpleId(s)
@@ -75201,7 +75201,7 @@ func (s *DottedIdContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DottedIdContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DottedIdContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDottedId(s)
@@ -75322,7 +75322,7 @@ func (s *DecimalLiteralContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DecimalLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DecimalLiteralContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDecimalLiteral(s)
@@ -75429,7 +75429,7 @@ func (s *FileSizeLiteralContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FileSizeLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FileSizeLiteralContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFileSizeLiteral(s)
@@ -75560,7 +75560,7 @@ func (s *StringLiteralContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *StringLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StringLiteralContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStringLiteral(s)
@@ -75754,7 +75754,7 @@ func (s *BooleanLiteralContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *BooleanLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *BooleanLiteralContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitBooleanLiteral(s)
@@ -75855,7 +75855,7 @@ func (s *HexadecimalLiteralContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *HexadecimalLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *HexadecimalLiteralContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitHexadecimalLiteral(s)
@@ -75964,7 +75964,7 @@ func (s *NullNotnullContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *NullNotnullContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *NullNotnullContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitNullNotnull(s)
@@ -76143,7 +76143,7 @@ func (s *ConstantContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ConstantContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ConstantContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitConstant(s)
@@ -76380,7 +76380,7 @@ func (s *SpatialDataTypeContext) GEOMETRY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserGEOMETRY, 0)
 }
 
-func (s *SpatialDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SpatialDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSpatialDataType(s)
@@ -76416,7 +76416,7 @@ func (s *LongVarbinaryDataTypeContext) VARBINARY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserVARBINARY, 0)
 }
 
-func (s *LongVarbinaryDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LongVarbinaryDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLongVarbinaryDataType(s)
@@ -76498,7 +76498,7 @@ func (s *CollectionDataTypeContext) CHARSET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserCHARSET, 0)
 }
 
-func (s *CollectionDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CollectionDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCollectionDataType(s)
@@ -76561,7 +76561,7 @@ func (s *NationalVaryingStringDataTypeContext) BINARY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserBINARY, 0)
 }
 
-func (s *NationalVaryingStringDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *NationalVaryingStringDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitNationalVaryingStringDataType(s)
@@ -76756,7 +76756,7 @@ func (s *DimensionDataTypeContext) YEAR() antlr.TerminalNode {
 	return s.GetToken(MySqlParserYEAR, 0)
 }
 
-func (s *DimensionDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DimensionDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDimensionDataType(s)
@@ -76897,7 +76897,7 @@ func (s *StringDataTypeContext) CHARSET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserCHARSET, 0)
 }
 
-func (s *StringDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *StringDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitStringDataType(s)
@@ -76978,7 +76978,7 @@ func (s *LongVarcharDataTypeContext) CHARSET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserCHARSET, 0)
 }
 
-func (s *LongVarcharDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LongVarcharDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLongVarcharDataType(s)
@@ -77041,7 +77041,7 @@ func (s *NationalStringDataTypeContext) NCHAR() antlr.TerminalNode {
 	return s.GetToken(MySqlParserNCHAR, 0)
 }
 
-func (s *NationalStringDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *NationalStringDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitNationalStringDataType(s)
@@ -77102,7 +77102,7 @@ func (s *SimpleDataTypeContext) SERIAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSERIAL, 0)
 }
 
-func (s *SimpleDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SimpleDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSimpleDataType(s)
@@ -77927,7 +77927,7 @@ func (s *CollectionOptionsContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CollectionOptionsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CollectionOptionsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCollectionOptions(s)
@@ -78136,7 +78136,7 @@ func (s *ConvertedDataTypeContext) ToStringTree(ruleNames []string, recog antlr.
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ConvertedDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ConvertedDataTypeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitConvertedDataType(s)
@@ -78396,7 +78396,7 @@ func (s *LengthOneDimensionContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LengthOneDimensionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LengthOneDimensionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLengthOneDimension(s)
@@ -78524,7 +78524,7 @@ func (s *LengthTwoDimensionContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LengthTwoDimensionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LengthTwoDimensionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLengthTwoDimension(s)
@@ -78660,7 +78660,7 @@ func (s *LengthTwoOptionalDimensionContext) ToStringTree(ruleNames []string, rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LengthTwoOptionalDimensionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LengthTwoOptionalDimensionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLengthTwoOptionalDimension(s)
@@ -78800,7 +78800,7 @@ func (s *UidListContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UidListContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UidListContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUidList(s)
@@ -78938,7 +78938,7 @@ func (s *TablesContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TablesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TablesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTables(s)
@@ -79084,7 +79084,7 @@ func (s *IndexColumnNamesContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IndexColumnNamesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IndexColumnNamesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIndexColumnNames(s)
@@ -79227,7 +79227,7 @@ func (s *ExpressionsContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ExpressionsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ExpressionsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitExpressions(s)
@@ -79362,7 +79362,7 @@ func (s *ExpressionsWithDefaultsContext) ToStringTree(ruleNames []string, recog 
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ExpressionsWithDefaultsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ExpressionsWithDefaultsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitExpressionsWithDefaults(s)
@@ -79497,7 +79497,7 @@ func (s *ConstantsContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ConstantsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ConstantsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitConstants(s)
@@ -79617,7 +79617,7 @@ func (s *SimpleStringsContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SimpleStringsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SimpleStringsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSimpleStrings(s)
@@ -79737,7 +79737,7 @@ func (s *UserVariablesContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UserVariablesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UserVariablesContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUserVariables(s)
@@ -79914,7 +79914,7 @@ func (s *DefaultValueContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DefaultValueContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DefaultValueContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDefaultValue(s)
@@ -80093,7 +80093,7 @@ func (s *CurrentTimestampContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CurrentTimestampContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CurrentTimestampContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCurrentTimestamp(s)
@@ -80259,7 +80259,7 @@ func (s *ExpressionOrDefaultContext) ToStringTree(ruleNames []string, recog antl
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ExpressionOrDefaultContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ExpressionOrDefaultContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitExpressionOrDefault(s)
@@ -80365,7 +80365,7 @@ func (s *IfExistsContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IfExistsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IfExistsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIfExists(s)
@@ -80466,7 +80466,7 @@ func (s *IfNotExistsContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IfNotExistsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IfNotExistsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIfNotExists(s)
@@ -80591,7 +80591,7 @@ func (s *SpecificFunctionCallContext) SpecificFunction() ISpecificFunctionContex
 	return t.(ISpecificFunctionContext)
 }
 
-func (s *SpecificFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SpecificFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSpecificFunctionCall(s)
@@ -80629,7 +80629,7 @@ func (s *PasswordFunctionCallContext) PasswordFunctionClause() IPasswordFunction
 	return t.(IPasswordFunctionClauseContext)
 }
 
-func (s *PasswordFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PasswordFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPasswordFunctionCall(s)
@@ -80685,7 +80685,7 @@ func (s *UdfFunctionCallContext) FunctionArgs() IFunctionArgsContext {
 	return t.(IFunctionArgsContext)
 }
 
-func (s *UdfFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UdfFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUdfFunctionCall(s)
@@ -80723,7 +80723,7 @@ func (s *AggregateFunctionCallContext) AggregateWindowedFunction() IAggregateWin
 	return t.(IAggregateWindowedFunctionContext)
 }
 
-func (s *AggregateFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AggregateFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAggregateFunctionCall(s)
@@ -80779,7 +80779,7 @@ func (s *ScalarFunctionCallContext) FunctionArgs() IFunctionArgsContext {
 	return t.(IFunctionArgsContext)
 }
 
-func (s *ScalarFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ScalarFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitScalarFunctionCall(s)
@@ -81051,7 +81051,7 @@ func (s *PositionFunctionCallContext) Expression(i int) IExpressionContext {
 	return t.(IExpressionContext)
 }
 
-func (s *PositionFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PositionFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPositionFunctionCall(s)
@@ -81178,7 +81178,7 @@ func (s *TrimFunctionCallContext) Expression(i int) IExpressionContext {
 	return t.(IExpressionContext)
 }
 
-func (s *TrimFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TrimFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTrimFunctionCall(s)
@@ -81318,7 +81318,7 @@ func (s *JsonValueFunctionCallContext) DefaultValue(i int) IDefaultValueContext 
 	return t.(IDefaultValueContext)
 }
 
-func (s *JsonValueFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *JsonValueFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitJsonValueFunctionCall(s)
@@ -81396,7 +81396,7 @@ func (s *CaseFunctionCallContext) FunctionArg() IFunctionArgContext {
 	return t.(IFunctionArgContext)
 }
 
-func (s *CaseFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CaseFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCaseFunctionCall(s)
@@ -81484,7 +81484,7 @@ func (s *ExtractFunctionCallContext) Expression() IExpressionContext {
 	return t.(IExpressionContext)
 }
 
-func (s *ExtractFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ExtractFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitExtractFunctionCall(s)
@@ -81575,7 +81575,7 @@ func (s *DataTypeFunctionCallContext) AS() antlr.TerminalNode {
 	return s.GetToken(MySqlParserAS, 0)
 }
 
-func (s *DataTypeFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DataTypeFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDataTypeFunctionCall(s)
@@ -81625,7 +81625,7 @@ func (s *ValuesFunctionCallContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *ValuesFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ValuesFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitValuesFunctionCall(s)
@@ -81713,7 +81713,7 @@ func (s *CaseExpressionFunctionCallContext) FunctionArg() IFunctionArgContext {
 	return t.(IFunctionArgContext)
 }
 
-func (s *CaseExpressionFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CaseExpressionFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCaseExpressionFunctionCall(s)
@@ -81769,7 +81769,7 @@ func (s *SimpleFunctionCallContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *SimpleFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SimpleFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSimpleFunctionCall(s)
@@ -81833,7 +81833,7 @@ func (s *CharFunctionCallContext) CharsetName() ICharsetNameContext {
 	return t.(ICharsetNameContext)
 }
 
-func (s *CharFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CharFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCharFunctionCall(s)
@@ -81938,7 +81938,7 @@ func (s *WeightFunctionCallContext) BINARY() antlr.TerminalNode {
 	return s.GetToken(MySqlParserBINARY, 0)
 }
 
-func (s *WeightFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *WeightFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitWeightFunctionCall(s)
@@ -82009,7 +82009,7 @@ func (s *GetFormatFunctionCallContext) DATETIME() antlr.TerminalNode {
 	return s.GetToken(MySqlParserDATETIME, 0)
 }
 
-func (s *GetFormatFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *GetFormatFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitGetFormatFunctionCall(s)
@@ -82149,7 +82149,7 @@ func (s *SubstrFunctionCallContext) FOR() antlr.TerminalNode {
 	return s.GetToken(MySqlParserFOR, 0)
 }
 
-func (s *SubstrFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SubstrFunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSubstrFunctionCall(s)
@@ -83166,7 +83166,7 @@ func (s *CaseFuncAlternativeContext) ToStringTree(ruleNames []string, recog antl
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CaseFuncAlternativeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CaseFuncAlternativeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCaseFuncAlternative(s)
@@ -83332,7 +83332,7 @@ func (s *LevelWeightRangeContext) DecimalLiteral(i int) IDecimalLiteralContext {
 	return t.(IDecimalLiteralContext)
 }
 
-func (s *LevelWeightRangeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LevelWeightRangeContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLevelWeightRange(s)
@@ -83395,7 +83395,7 @@ func (s *LevelWeightListContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *LevelWeightListContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LevelWeightListContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLevelWeightList(s)
@@ -83569,7 +83569,7 @@ func (s *LevelInWeightListElementContext) ToStringTree(ruleNames []string, recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LevelInWeightListElementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LevelInWeightListElementContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLevelInWeightListElement(s)
@@ -83864,7 +83864,7 @@ func (s *AggregateWindowedFunctionContext) ToStringTree(ruleNames []string, reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *AggregateWindowedFunctionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *AggregateWindowedFunctionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitAggregateWindowedFunction(s)
@@ -84296,7 +84296,7 @@ func (s *ScalarFunctionNameContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ScalarFunctionNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ScalarFunctionNameContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitScalarFunctionName(s)
@@ -84581,7 +84581,7 @@ func (s *PasswordFunctionClauseContext) ToStringTree(ruleNames []string, recog a
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PasswordFunctionClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PasswordFunctionClauseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPasswordFunctionClause(s)
@@ -84793,7 +84793,7 @@ func (s *FunctionArgsContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FunctionArgsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FunctionArgsContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFunctionArgs(s)
@@ -84985,7 +84985,7 @@ func (s *FunctionArgContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FunctionArgContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FunctionArgContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFunctionArg(s)
@@ -85154,7 +85154,7 @@ func (s *IsExpressionContext) NOT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserNOT, 0)
 }
 
-func (s *IsExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IsExpressionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIsExpression(s)
@@ -85205,7 +85205,7 @@ func (s *NotExpressionContext) EXCLAMATION_SYMBOL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserEXCLAMATION_SYMBOL, 0)
 }
 
-func (s *NotExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *NotExpressionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitNotExpression(s)
@@ -85266,7 +85266,7 @@ func (s *LogicalExpressionContext) LogicalOperator() ILogicalOperatorContext {
 	return t.(ILogicalOperatorContext)
 }
 
-func (s *LogicalExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LogicalExpressionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLogicalExpression(s)
@@ -85304,7 +85304,7 @@ func (s *PredicateExpressionContext) Predicate() IPredicateContext {
 	return t.(IPredicateContext)
 }
 
-func (s *PredicateExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PredicateExpressionContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPredicateExpression(s)
@@ -85565,7 +85565,7 @@ func (s *SoundsLikePredicateContext) LIKE() antlr.TerminalNode {
 	return s.GetToken(MySqlParserLIKE, 0)
 }
 
-func (s *SoundsLikePredicateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SoundsLikePredicateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSoundsLikePredicate(s)
@@ -85611,7 +85611,7 @@ func (s *ExpressionAtomPredicateContext) VAR_ASSIGN() antlr.TerminalNode {
 	return s.GetToken(MySqlParserVAR_ASSIGN, 0)
 }
 
-func (s *ExpressionAtomPredicateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ExpressionAtomPredicateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitExpressionAtomPredicate(s)
@@ -85694,7 +85694,7 @@ func (s *SubqueryComparisonPredicateContext) SOME() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSOME, 0)
 }
 
-func (s *SubqueryComparisonPredicateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SubqueryComparisonPredicateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSubqueryComparisonPredicate(s)
@@ -85761,7 +85761,7 @@ func (s *JsonMemberOfPredicateContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *JsonMemberOfPredicateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *JsonMemberOfPredicateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitJsonMemberOfPredicate(s)
@@ -85832,7 +85832,7 @@ func (s *BinaryComparisonPredicateContext) Predicate(i int) IPredicateContext {
 	return t.(IPredicateContext)
 }
 
-func (s *BinaryComparisonPredicateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *BinaryComparisonPredicateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitBinaryComparisonPredicate(s)
@@ -85906,7 +85906,7 @@ func (s *InPredicateContext) NOT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserNOT, 0)
 }
 
-func (s *InPredicateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *InPredicateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitInPredicate(s)
@@ -85969,7 +85969,7 @@ func (s *BetweenPredicateContext) NOT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserNOT, 0)
 }
 
-func (s *BetweenPredicateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *BetweenPredicateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitBetweenPredicate(s)
@@ -86021,7 +86021,7 @@ func (s *IsNullPredicateContext) NullNotnull() INullNotnullContext {
 	return t.(INullNotnullContext)
 }
 
-func (s *IsNullPredicateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IsNullPredicateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIsNullPredicate(s)
@@ -86088,7 +86088,7 @@ func (s *LikePredicateContext) STRING_LITERAL() antlr.TerminalNode {
 	return s.GetToken(MySqlParserSTRING_LITERAL, 0)
 }
 
-func (s *LikePredicateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LikePredicateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLikePredicate(s)
@@ -86156,7 +86156,7 @@ func (s *RegexpPredicateContext) NOT() antlr.TerminalNode {
 	return s.GetToken(MySqlParserNOT, 0)
 }
 
-func (s *RegexpPredicateContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *RegexpPredicateContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitRegexpPredicate(s)
@@ -86635,7 +86635,7 @@ func (s *UnaryExpressionAtomContext) ExpressionAtom() IExpressionAtomContext {
 	return t.(IExpressionAtomContext)
 }
 
-func (s *UnaryExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UnaryExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUnaryExpressionAtom(s)
@@ -86687,7 +86687,7 @@ func (s *CollateExpressionAtomContext) CollationName() ICollationNameContext {
 	return t.(ICollationNameContext)
 }
 
-func (s *CollateExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CollateExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCollateExpressionAtom(s)
@@ -86725,7 +86725,7 @@ func (s *MysqlVariableExpressionAtomContext) MysqlVariable() IMysqlVariableConte
 	return t.(IMysqlVariableContext)
 }
 
-func (s *MysqlVariableExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MysqlVariableExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMysqlVariableExpressionAtom(s)
@@ -86792,7 +86792,7 @@ func (s *NestedExpressionAtomContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *NestedExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *NestedExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitNestedExpressionAtom(s)
@@ -86863,7 +86863,7 @@ func (s *NestedRowExpressionAtomContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(MySqlParserCOMMA, i)
 }
 
-func (s *NestedRowExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *NestedRowExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitNestedRowExpressionAtom(s)
@@ -86934,7 +86934,7 @@ func (s *MathExpressionAtomContext) ExpressionAtom(i int) IExpressionAtomContext
 	return t.(IExpressionAtomContext)
 }
 
-func (s *MathExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MathExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMathExpressionAtom(s)
@@ -86984,7 +86984,7 @@ func (s *ExistsExpressionAtomContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *ExistsExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ExistsExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitExistsExpressionAtom(s)
@@ -87036,7 +87036,7 @@ func (s *IntervalExpressionAtomContext) IntervalType() IIntervalTypeContext {
 	return t.(IIntervalTypeContext)
 }
 
-func (s *IntervalExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IntervalExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIntervalExpressionAtom(s)
@@ -87107,7 +87107,7 @@ func (s *JsonExpressionAtomContext) ExpressionAtom(i int) IExpressionAtomContext
 	return t.(IExpressionAtomContext)
 }
 
-func (s *JsonExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *JsonExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitJsonExpressionAtom(s)
@@ -87153,7 +87153,7 @@ func (s *SubqueryExpressionAtomContext) RR_BRACKET() antlr.TerminalNode {
 	return s.GetToken(MySqlParserRR_BRACKET, 0)
 }
 
-func (s *SubqueryExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *SubqueryExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitSubqueryExpressionAtom(s)
@@ -87191,7 +87191,7 @@ func (s *ConstantExpressionAtomContext) Constant() IConstantContext {
 	return t.(IConstantContext)
 }
 
-func (s *ConstantExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ConstantExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitConstantExpressionAtom(s)
@@ -87229,7 +87229,7 @@ func (s *FunctionCallExpressionAtomContext) FunctionCall() IFunctionCallContext 
 	return t.(IFunctionCallContext)
 }
 
-func (s *FunctionCallExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FunctionCallExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFunctionCallExpressionAtom(s)
@@ -87271,7 +87271,7 @@ func (s *BinaryExpressionAtomContext) ExpressionAtom() IExpressionAtomContext {
 	return t.(IExpressionAtomContext)
 }
 
-func (s *BinaryExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *BinaryExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitBinaryExpressionAtom(s)
@@ -87309,7 +87309,7 @@ func (s *FullColumnNameExpressionAtomContext) FullColumnName() IFullColumnNameCo
 	return t.(IFullColumnNameContext)
 }
 
-func (s *FullColumnNameExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FullColumnNameExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFullColumnNameExpressionAtom(s)
@@ -87380,7 +87380,7 @@ func (s *BitExpressionAtomContext) ExpressionAtom(i int) IExpressionAtomContext 
 	return t.(IExpressionAtomContext)
 }
 
-func (s *BitExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *BitExpressionAtomContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitBitExpressionAtom(s)
@@ -87793,7 +87793,7 @@ func (s *UnaryOperatorContext) ToStringTree(ruleNames []string, recog antlr.Reco
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *UnaryOperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *UnaryOperatorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitUnaryOperator(s)
@@ -87902,7 +87902,7 @@ func (s *ComparisonOperatorContext) ToStringTree(ruleNames []string, recog antlr
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ComparisonOperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *ComparisonOperatorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitComparisonOperator(s)
@@ -88094,7 +88094,7 @@ func (s *LogicalOperatorContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *LogicalOperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *LogicalOperatorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitLogicalOperator(s)
@@ -88252,7 +88252,7 @@ func (s *BitOperatorContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *BitOperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *BitOperatorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitBitOperator(s)
@@ -88414,7 +88414,7 @@ func (s *MathOperatorContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *MathOperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *MathOperatorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitMathOperator(s)
@@ -88519,7 +88519,7 @@ func (s *JsonOperatorContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *JsonOperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *JsonOperatorContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitJsonOperator(s)
@@ -88789,7 +88789,7 @@ func (s *CharsetNameBaseContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CharsetNameBaseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *CharsetNameBaseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitCharsetNameBase(s)
@@ -88898,7 +88898,7 @@ func (s *TransactionLevelBaseContext) ToStringTree(ruleNames []string, recog ant
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TransactionLevelBaseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *TransactionLevelBaseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitTransactionLevelBase(s)
@@ -89027,7 +89027,7 @@ func (s *PrivilegesBaseContext) ToStringTree(ruleNames []string, recog antlr.Rec
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PrivilegesBaseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *PrivilegesBaseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitPrivilegesBase(s)
@@ -89152,7 +89152,7 @@ func (s *IntervalTypeBaseContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *IntervalTypeBaseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *IntervalTypeBaseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitIntervalTypeBase(s)
@@ -89273,7 +89273,7 @@ func (s *DataTypeBaseContext) ToStringTree(ruleNames []string, recog antlr.Recog
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *DataTypeBaseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *DataTypeBaseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitDataTypeBase(s)
@@ -90842,7 +90842,7 @@ func (s *KeywordsCanBeIdContext) ToStringTree(ruleNames []string, recog antlr.Re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *KeywordsCanBeIdContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *KeywordsCanBeIdContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitKeywordsCanBeId(s)
@@ -92339,7 +92339,7 @@ func (s *FunctionNameBaseContext) ToStringTree(ruleNames []string, recog antlr.R
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *FunctionNameBaseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+func (s *FunctionNameBaseContext) Accept(visitor antlr.ParseTreeVisitor) any {
 	switch t := visitor.(type) {
 	case MySqlParserVisitor:
 		return t.VisitFunctionNameBase(s)
