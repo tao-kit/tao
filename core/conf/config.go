@@ -21,7 +21,6 @@ var loaders = map[string]func([]byte, any) error{
 
 type fieldInfo struct {
 	name     string
-	kind     reflect.Kind
 	children map[string]fieldInfo
 }
 
@@ -139,7 +138,6 @@ func buildStructFieldsInfo(tp reflect.Type) map[string]fieldInfo {
 			} else {
 				info[lowerCaseName] = fieldInfo{
 					name: name,
-					kind: ft.Kind(),
 				}
 			}
 			continue
@@ -155,10 +153,16 @@ func buildStructFieldsInfo(tp reflect.Type) map[string]fieldInfo {
 			fields = buildFieldsInfo(ft.Elem())
 		}
 
-		info[lowerCaseName] = fieldInfo{
-			name:     name,
-			kind:     ft.Kind(),
-			children: fields,
+		if prev, ok := info[lowerCaseName]; ok {
+			// merge fields
+			for k, v := range fields {
+				prev.children[k] = v
+			}
+		} else {
+			info[lowerCaseName] = fieldInfo{
+				name:     name,
+				children: fields,
+			}
 		}
 	}
 
