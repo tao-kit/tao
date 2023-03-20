@@ -118,7 +118,7 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
 	go.uber.org/zap v1.21.0 // indirect
-	golang.org/x/net v0.6.0 // indirect
+	golang.org/x/net v0.7.0 // indirect
 	golang.org/x/sys v0.5.0
 	google.golang.org/genproto v0.0.0-20221118155620-16455021b5e6
 	k8s.io/klog/v2 v2.80.1 // indirect
