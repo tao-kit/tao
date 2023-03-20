@@ -3,7 +3,7 @@ module github.com/sllt/tao/tools/taoctl
 go 1.19
 
 require (
-	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20210521184019-c5ad59b459ec
+	github.com/antlr/antlr4/runtime/Go/antlr v1.4.10
 	github.com/emicklei/proto v1.11.1
 	github.com/fatih/structtag v1.2.0
 	github.com/go-sql-driver/mysql v1.7.0
