@@ -1,11 +1,23 @@
 package internal
 
 import (
+	"github.com/sllt/tao/core/discov"
 	"testing"
 
 	"github.com/sllt/tao/core/netx"
 	"github.com/stretchr/testify/assert"
 )
+
+func TestNewRpcPubServer(t *testing.T) {
+	s, err := NewRpcPubServer(discov.EtcdConf{
+		User: "user",
+		Pass: "pass",
+	}, "", ServerMiddlewaresConf{})
+	assert.NoError(t, err)
+	assert.NotPanics(t, func() {
+		s.Start(nil)
+	})
+}
 
 func TestFigureOutListenOn(t *testing.T) {
 	tests := []struct {
@@ -23,6 +35,10 @@ func TestFigureOutListenOn(t *testing.T) {
 		{
 			input:  ":8080",
 			expect: netx.InternalIp() + ":8080",
+		},
+		{
+			input:  "",
+			expect: netx.InternalIp(),
 		},
 	}
 
