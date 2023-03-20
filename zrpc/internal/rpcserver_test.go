@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"github.com/sllt/tao/core/proc"
 	"sync"
 	"testing"
 
@@ -36,6 +37,8 @@ func TestRpcServer(t *testing.T) {
 	}()
 
 	wg.Wait()
+
+	proc.WrapUp()
 	lock.Lock()
 	grpcServer.GracefulStop()
 	lock.Unlock()

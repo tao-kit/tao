@@ -1,6 +1,7 @@
 package metric
 
 import (
+	"github.com/sllt/tao/core/proc"
 	"testing"
 
 	"github.com/prometheus/client_golang/prometheus/testutil"
@@ -17,6 +18,9 @@ func TestNewCounterVec(t *testing.T) {
 	})
 	defer counterVec.close()
 	counterVecNil := NewCounterVec(nil)
+	counterVec.Inc("path", "code")
+	counterVec.Add(1, "path", "code")
+	proc.Shutdown()
 	assert.NotNil(t, counterVec)
 	assert.Nil(t, counterVecNil)
 }

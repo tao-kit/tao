@@ -1,6 +1,7 @@
 package service
 
 import (
+	"github.com/sllt/tao/core/proc"
 	"sync"
 	"testing"
 
@@ -55,6 +56,7 @@ func TestServiceGroup(t *testing.T) {
 	}
 
 	group.Stop()
+	proc.Shutdown()
 
 	mutex.Lock()
 	defer mutex.Unlock()

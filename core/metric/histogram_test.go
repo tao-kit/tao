@@ -1,6 +1,7 @@
 package metric
 
 import (
+	"github.com/sllt/tao/core/proc"
 	"strings"
 	"testing"
 
@@ -47,4 +48,6 @@ func TestHistogramObserve(t *testing.T) {
 
 	err := testutil.CollectAndCompare(hv.histogram, strings.NewReader(metadata+val))
 	assert.Nil(t, err)
+
+	proc.Shutdown()
 }

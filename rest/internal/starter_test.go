@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"github.com/sllt/tao/core/proc"
 	"net/http"
 	"net/http/httptest"
 	"strconv"
@@ -19,6 +20,7 @@ func TestStartHttp(t *testing.T) {
 		svr.IdleTimeout = 0
 	})
 	assert.NotNil(t, err)
+	proc.WrapUp()
 }
 
 func TestStartHttps(t *testing.T) {
@@ -30,4 +32,5 @@ func TestStartHttps(t *testing.T) {
 		svr.IdleTimeout = 0
 	})
 	assert.NotNil(t, err)
+	proc.WrapUp()
 }

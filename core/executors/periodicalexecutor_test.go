@@ -1,6 +1,7 @@
 package executors
 
 import (
+	"github.com/sllt/tao/core/proc"
 	"runtime"
 	"sync"
 	"sync/atomic"
@@ -67,6 +68,7 @@ func TestPeriodicalExecutor_QuitGoroutine(t *testing.T) {
 	ticker.Tick()
 	ticker.Wait(time.Millisecond * idleRound)
 	assert.Equal(t, routines, runtime.NumGoroutine())
+	proc.Shutdown()
 }
 
 func TestPeriodicalExecutor_Bulk(t *testing.T) {

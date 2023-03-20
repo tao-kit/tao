@@ -1,6 +1,7 @@
 package metric
 
 import (
+	"github.com/sllt/tao/core/proc"
 	"testing"
 
 	"github.com/prometheus/client_golang/prometheus/testutil"
@@ -18,6 +19,8 @@ func TestNewGaugeVec(t *testing.T) {
 	gaugeVecNil := NewGaugeVec(nil)
 	assert.NotNil(t, gaugeVec)
 	assert.Nil(t, gaugeVecNil)
+
+	proc.Shutdown()
 }
 
 func TestGaugeInc(t *testing.T) {

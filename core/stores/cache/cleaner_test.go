@@ -1,6 +1,7 @@
 package cache
 
 import (
+	"github.com/sllt/tao/core/proc"
 	"testing"
 	"time"
 
@@ -51,6 +52,7 @@ func TestNextDelay(t *testing.T) {
 			next, ok := nextDelay(test.input)
 			assert.Equal(t, test.ok, ok)
 			assert.Equal(t, test.output, next)
+			proc.Shutdown()
 		})
 	}
 }
