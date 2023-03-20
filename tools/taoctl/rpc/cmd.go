@@ -1,6 +1,7 @@
 package rpc
 
 import (
+	"github.com/sllt/tao/tools/taoctl/config"
 	"github.com/sllt/tao/tools/taoctl/rpc/cli"
 	"github.com/spf13/cobra"
 )
@@ -79,7 +80,7 @@ func init() {
 	protocCmd.Flags().StringSliceVar(&cli.VarStringSlicePlugin, "plugin", nil, "")
 	protocCmd.Flags().StringSliceVarP(&cli.VarStringSliceProtoPath, "proto_path", "I", nil, "")
 	protocCmd.Flags().StringVar(&cli.VarStringZRPCOut, "zrpc_out", "", "The zrpc output directory")
-	protocCmd.Flags().StringVar(&cli.VarStringStyle, "style", "gotao", "The file "+
+	protocCmd.Flags().StringVar(&cli.VarStringStyle, "style", config.DefaultFormat, "The file "+
 		"naming format, see [https://github.com/sllt/tao/tree/master/tools/taoctl/config/readme.md]")
 	protocCmd.Flags().StringVar(&cli.VarStringHome, "home", "", "The taoctl home "+
 		"path of the template, --home and --remote cannot be set at the same time, if they are, "+

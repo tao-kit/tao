@@ -11,6 +11,7 @@ import (
 	"github.com/sllt/tao/tools/taoctl/api/new"
 	"github.com/sllt/tao/tools/taoctl/api/tsgen"
 	"github.com/sllt/tao/tools/taoctl/api/validate"
+	"github.com/sllt/tao/tools/taoctl/config"
 	"github.com/sllt/tao/tools/taoctl/plugin"
 	"github.com/spf13/cobra"
 )
@@ -146,7 +147,7 @@ func init() {
 		"https://github.com/sllt/tao-template directory structure")
 	newCmd.Flags().StringVar(&new.VarStringBranch, "branch", "", "The branch of "+
 		"the remote repo, it does work with --remote")
-	newCmd.Flags().StringVar(&new.VarStringStyle, "style", "gotao", "The file naming format,"+
+	newCmd.Flags().StringVar(&new.VarStringStyle, "style", config.DefaultFormat, "The file naming format,"+
 		" see [https://github.com/sllt/tao/blob/master/tools/taoctl/config/readme.md]")
 
 	pluginCmd.Flags().StringVarP(&plugin.VarStringPlugin, "plugin", "p", "", "The plugin file")
