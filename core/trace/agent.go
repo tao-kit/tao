@@ -3,6 +3,7 @@ package trace
 import (
 	"context"
 	"fmt"
+	"net/url"
 	"sync"
 
 	"github.com/sllt/tao/core/lang"
@@ -35,7 +36,7 @@ func StartAgent(c Config) {
 	lock.Lock()
 	defer lock.Unlock()
 
-	_, ok := agents[c.getEndpoint()]
+	_, ok := agents[c.Endpoint]
 	if ok {
 		return
 	}
@@ -45,7 +46,7 @@ func StartAgent(c Config) {
 		return
 	}
 
-	agents[c.getEndpoint()] = lang.Placeholder
+	agents[c.Endpoint] = lang.Placeholder
 }
 
 // StopAgent shuts down the span processors in the order they were registered.
@@ -57,8 +58,9 @@ func createExporter(c Config) (sdktrace.SpanExporter, error) {
 	// Just support jaeger and zipkin now, more for later
 	switch c.Batcher {
 	case kindJaeger:
-		if c.isAgentEndPoint() {
-			return jaeger.New(jaeger.WithAgentEndpoint(jaeger.WithAgentHost(c.AgentHost), jaeger.WithAgentPort(c.AgentPort)))
+		u, _ := url.Parse(c.Endpoint)
+		if u.Scheme == "udp" {
+			return jaeger.New(jaeger.WithAgentEndpoint(jaeger.WithAgentHost(u.Hostname()), jaeger.WithAgentPort(u.Port())))
 		}
 		return jaeger.New(jaeger.WithCollectorEndpoint(jaeger.WithEndpoint(c.Endpoint)))
 	case kindZipkin:
