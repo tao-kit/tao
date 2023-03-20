@@ -14,7 +14,6 @@ import (
 	"github.com/sllt/tao/core/mapping"
 	"github.com/sllt/tao/core/timex"
 	"github.com/sllt/tao/core/trace"
-
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	oteltrace "go.opentelemetry.io/otel/trace"
