@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"github.com/stretchr/testify/assert"
 	"testing"
 
 	"google.golang.org/grpc/resolver"
@@ -8,19 +9,23 @@ import (
 )
 
 func TestNopResolver(t *testing.T) {
-	// make sure ResolveNow & Close don't panic
-	var r nopResolver
-	r.ResolveNow(resolver.ResolveNowOptions{})
-	r.Close()
+	assert.NotPanics(t, func() {
+		RegisterResolver()
+		// make sure ResolveNow & Close don't panic
+		var r nopResolver
+		r.ResolveNow(resolver.ResolveNowOptions{})
+		r.Close()
+	})
 }
 
 type mockedClientConn struct {
 	state resolver.State
+	err   error
 }
 
 func (m *mockedClientConn) UpdateState(state resolver.State) error {
 	m.state = state
-	return nil
+	return m.err
 }
 
 func (m *mockedClientConn) ReportError(err error) {
