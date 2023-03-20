@@ -1,9 +1,9 @@
 package internal
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc/resolver"
 	"google.golang.org/grpc/serviceconfig"
 )
