@@ -3,20 +3,20 @@ package zrpc
 import (
 	"context"
 	"fmt"
-	"github.com/sllt/tao/core/discov"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/zrpc/internal/mock"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/credentials/insecure"
-	"google.golang.org/grpc/status"
-	"google.golang.org/grpc/test/bufconn"
 	"log"
 	"net"
 	"testing"
 	"time"
 
+	"github.com/sllt/tao/core/discov"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/zrpc/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/status"
+	"google.golang.org/grpc/test/bufconn"
 )
 
 func init() {
@@ -113,10 +113,11 @@ func TestDepositServer_Deposit(t *testing.T) {
 	)
 	tarConfClient := MustNewClient(
 		RpcClientConf{
-			Target:  "foo",
-			App:     "foo",
-			Token:   "bar",
-			Timeout: 1000,
+			Target:        "foo",
+			App:           "foo",
+			Token:         "bar",
+			Timeout:       1000,
+			KeepaliveTime: time.Second * 15,
 			Middlewares: ClientMiddlewaresConf{
 				Trace:      true,
 				Duration:   true,
