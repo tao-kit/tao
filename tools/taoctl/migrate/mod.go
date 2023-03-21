@@ -13,10 +13,10 @@ import (
 )
 
 const (
-	deprecatedGoZeroMod = "github.com/tal-tech/go-tao"
-	deprecatedBuilderx  = "github.com/tal-tech/go-tao/tools/taoctl/model/sql/builderx"
+	deprecatedGoTaoMod  = "github.com/sllt/tao"
+	deprecatedBuilderx  = "github.com/sllt/tao/tools/taoctl/model/sql/builderx"
 	replacementBuilderx = "github.com/sllt/tao/core/stores/builder"
-	goZeroMod           = "github.com/sllt/tao"
+	goTaoMod            = "github.com/sllt/tao"
 )
 
 var errInvalidGoMod = errors.New("it's only working for go module")
@@ -32,7 +32,7 @@ func editMod(version string, verbose bool) error {
 		return nil
 	}
 
-	latest, err := getLatest(goZeroMod, verbose)
+	latest, err := getLatest(goTaoMod, verbose)
 	if err != nil {
 		return err
 	}
@@ -41,8 +41,8 @@ func editMod(version string, verbose bool) error {
 		return fmt.Errorf("release version %q is not found", version)
 	}
 
-	mod := fmt.Sprintf("%s@%s", goZeroMod, version)
-	err = removeRequire(deprecatedGoZeroMod, verbose)
+	mod := fmt.Sprintf("%s@%s", goTaoMod, version)
+	err = removeRequire(deprecatedGoTaoMod, verbose)
 	if err != nil {
 		return err
 	}

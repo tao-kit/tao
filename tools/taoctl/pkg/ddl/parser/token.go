@@ -3,7 +3,7 @@ package parser
 import (
 	"strings"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/zeromicro/antlr"
 )
 
 // Token is an abstraction from each lexical element, literal, etc.

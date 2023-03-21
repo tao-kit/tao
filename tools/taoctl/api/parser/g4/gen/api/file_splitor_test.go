@@ -1,7 +1,7 @@
 // DO NOT EDIT.
 // Tool: split apiparser_parser.go
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during taoctl installation.
+// was too large and caused a possible memory overflow during goctl installation.
 package api
 
 import (
@@ -37,11 +37,11 @@ func TestFileSplitor(t *testing.T) {
 		buffer.Reset()
 		if files > 0 {
 			buffer.WriteString(fmt.Sprintf(`package api
-import "github.com/antlr/antlr4/runtime/Go/antlr"
+import "github.com/zeromicro/antlr"
 
 // Part %s
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during taoctl installation.
+// was too large and caused a possible memory overflow during goctl installation.
 `, part))
 		}
 

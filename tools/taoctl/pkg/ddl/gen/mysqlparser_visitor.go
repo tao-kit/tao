@@ -1,7 +1,7 @@
 // Code generated from /grammar/MySqlParser.g4 by ANTLR 4.9.1. DO NOT EDIT.
 
 package gen // MySqlParser
-import "github.com/antlr/antlr4/runtime/Go/antlr"
+import "github.com/zeromicro/antlr"
 
 // A complete Visitor for a parse tree produced by MySqlParser.
 type MySqlParserVisitor interface {

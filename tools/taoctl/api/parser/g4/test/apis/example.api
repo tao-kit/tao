@@ -1,6 +1,6 @@
 // syntax: specify the api syntax version,
-// through this version can be a good control
-// api syntax upgrade incompatibility issues
+    // through this version can be a good control
+    // api syntax upgrade incompatibility issues
 syntax = "v1"
 
 // Info block is a key-value pair description body,
@@ -9,10 +9,10 @@ syntax = "v1"
 // any key-value pair, which does not participate in the api generation
 info(
     title: sample of api
-    desc: "you can add a newline
+desc: "you can add a newline
 description by quotes"
-    author: songmeizi
-    anyAnotherKey: anyTnotherValue
+author: songmeizi
+anyAnotherKey: anyTnotherValue
 )
 
 // The structure in the api evolved from the structure of golang,
@@ -51,8 +51,8 @@ type (
     anyAnotherKey: anyTnotherValue
 )
 
-// service block is the description of the api service,
-// including @doc block, @handler and api routing information
+    // service block is the description of the api service,
+    // including @doc block, @handler and api routing information
 service foo-api {
     // shortening doc declaration
     @doc("foo")
@@ -63,7 +63,7 @@ service foo-api {
 
 
     @doc(
-        summary: foo
+        summary: "foo"
     )
     @server(
         handler: bar

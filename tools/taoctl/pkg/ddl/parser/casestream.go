@@ -3,7 +3,7 @@ package parser
 import (
 	"unicode"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/zeromicro/antlr"
 )
 
 type CaseChangingStream struct {

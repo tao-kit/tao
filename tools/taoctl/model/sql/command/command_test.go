@@ -20,7 +20,7 @@ var (
 	//go:embed testdata/user.sql
 	sql string
 	cfg = &config.Config{
-		NamingFormat: "gozero",
+		NamingFormat: "gotao",
 	}
 )
 
@@ -45,7 +45,7 @@ func TestFromDDl(t *testing.T) {
 		dir:      pathx.MustTempDir(),
 		cfg:      cfg,
 		cache:    true,
-		database: "go_zero",
+		database: "go_tao",
 	})
 	assert.True(t, func() bool {
 		switch err.(type) {
@@ -61,7 +61,7 @@ func TestFromDDl(t *testing.T) {
 		dir:      pathx.MustTempDir(),
 		cfg:      cfg,
 		cache:    true,
-		database: "go_zero",
+		database: "go_tao",
 	})
 	if err != nil {
 		assert.Equal(t, "expected path or path globbing patterns, but nothing found", err.Error())
@@ -107,11 +107,11 @@ func TestFromDDl(t *testing.T) {
 		assert.Nil(t, err)
 	}
 
-	fromDDL("go_zero")
+	fromDDL("go_tao")
 	_ = os.Remove(filename)
 	fromDDL("go-tao")
 	_ = os.Remove(filename)
-	fromDDL("1gozero")
+	fromDDL("1gotao")
 }
 
 func Test_parseTableList(t *testing.T) {

@@ -13,7 +13,7 @@ type Config struct {
 	// NamingFormat is used to define the naming format of the generated file name.
 	// just like time formatting, you can specify the formatting style through the
 	// two format characters go, and zero. for example: snake format you can
-	// define as go_zero, camel case format you can it is defined as goZero,
+	// define as go_zero, camel case format you can it is defined as gotao,
 	// and even split characters can be specified, such as go#zero. in theory,
 	// any combination can be used, but the prerequisite must meet the naming conventions
 	// of each operating system file name.

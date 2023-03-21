@@ -36,7 +36,7 @@ func TestGenCacheKeys(t *testing.T) {
 	}
 	primariCacheKey, uniqueCacheKey := genCacheKeys(parser.Table{
 		Name: stringx.From("user"),
-		Db:   stringx.From("go_zero"),
+		Db:   stringx.From("go_tao"),
 		PrimaryKey: parser.Primary{
 			Field:         *primaryField,
 			AutoIncrement: true,
@@ -71,14 +71,14 @@ func TestGenCacheKeys(t *testing.T) {
 	t.Run("primaryCacheKey", func(t *testing.T) {
 		assert.Equal(t, true, func() bool {
 			return cacheKeyEqual(primariCacheKey, Key{
-				VarLeft:           "cacheGoZeroUserIdPrefix",
-				VarRight:          `"cache:goZero:user:id:"`,
-				VarExpression:     `cacheGoZeroUserIdPrefix = "cache:goZero:user:id:"`,
-				KeyLeft:           "goZeroUserIdKey",
-				KeyRight:          `fmt.Sprintf("%s%v", cacheGoZeroUserIdPrefix, id)`,
-				DataKeyRight:      `fmt.Sprintf("%s%v", cacheGoZeroUserIdPrefix, data.Id)`,
-				KeyExpression:     `goZeroUserIdKey := fmt.Sprintf("%s%v", cacheGoZeroUserIdPrefix, id)`,
-				DataKeyExpression: `goZeroUserIdKey := fmt.Sprintf("%s%v", cacheGoZeroUserIdPrefix, data.Id)`,
+				VarLeft:           "cacheGoTaoUserIdPrefix",
+				VarRight:          `"cache:goTao:user:id:"`,
+				VarExpression:     `cacheGoTaoUserIdPrefix = "cache:goTao:user:id:"`,
+				KeyLeft:           "goTaoUserIdKey",
+				KeyRight:          `fmt.Sprintf("%s%v", cacheGoTaoUserIdPrefix, id)`,
+				DataKeyRight:      `fmt.Sprintf("%s%v", cacheGoTaoUserIdPrefix, data.Id)`,
+				KeyExpression:     `goTaoUserIdKey := fmt.Sprintf("%s%v", cacheGoTaoUserIdPrefix, id)`,
+				DataKeyExpression: `goTaoUserIdKey := fmt.Sprintf("%s%v", cacheGoTaoUserIdPrefix, data.Id)`,
 				FieldNameJoin:     []string{"id"},
 			})
 		}())
@@ -88,25 +88,25 @@ func TestGenCacheKeys(t *testing.T) {
 		assert.Equal(t, true, func() bool {
 			expected := []Key{
 				{
-					VarLeft:           "cacheGoZeroUserClassNamePrefix",
-					VarRight:          `"cache:goZero:user:class:name:"`,
-					VarExpression:     `cacheGoZeroUserClassNamePrefix = "cache:goZero:user:class:name:"`,
-					KeyLeft:           "goZeroUserClassNameKey",
-					KeyRight:          `fmt.Sprintf("%s%v:%v", cacheGoZeroUserClassNamePrefix, class, name)`,
-					DataKeyRight:      `fmt.Sprintf("%s%v:%v", cacheGoZeroUserClassNamePrefix, data.Class, data.Name)`,
-					KeyExpression:     `goZeroUserClassNameKey := fmt.Sprintf("%s%v:%v", cacheGoZeroUserClassNamePrefix, class, name)`,
-					DataKeyExpression: `goZeroUserClassNameKey := fmt.Sprintf("%s%v:%v", cacheGoZeroUserClassNamePrefix, data.Class, data.Name)`,
+					VarLeft:           "cacheGoTaoUserClassNamePrefix",
+					VarRight:          `"cache:goTao:user:class:name:"`,
+					VarExpression:     `cacheGoTaoUserClassNamePrefix = "cache:goTao:user:class:name:"`,
+					KeyLeft:           "goTaoUserClassNameKey",
+					KeyRight:          `fmt.Sprintf("%s%v:%v", cacheGoTaoUserClassNamePrefix, class, name)`,
+					DataKeyRight:      `fmt.Sprintf("%s%v:%v", cacheGoTaoUserClassNamePrefix, data.Class, data.Name)`,
+					KeyExpression:     `goTaoUserClassNameKey := fmt.Sprintf("%s%v:%v", cacheGoTaoUserClassNamePrefix, class, name)`,
+					DataKeyExpression: `goTaoUserClassNameKey := fmt.Sprintf("%s%v:%v", cacheGoTaoUserClassNamePrefix, data.Class, data.Name)`,
 					FieldNameJoin:     []string{"class", "name"},
 				},
 				{
-					VarLeft:           "cacheGoZeroUserMobilePrefix",
-					VarRight:          `"cache:goZero:user:mobile:"`,
-					VarExpression:     `cacheGoZeroUserMobilePrefix = "cache:goZero:user:mobile:"`,
-					KeyLeft:           "goZeroUserMobileKey",
-					KeyRight:          `fmt.Sprintf("%s%v", cacheGoZeroUserMobilePrefix, mobile)`,
-					DataKeyRight:      `fmt.Sprintf("%s%v", cacheGoZeroUserMobilePrefix, data.Mobile)`,
-					KeyExpression:     `goZeroUserMobileKey := fmt.Sprintf("%s%v", cacheGoZeroUserMobilePrefix, mobile)`,
-					DataKeyExpression: `goZeroUserMobileKey := fmt.Sprintf("%s%v", cacheGoZeroUserMobilePrefix, data.Mobile)`,
+					VarLeft:           "cacheGoTaoUserMobilePrefix",
+					VarRight:          `"cache:goTao:user:mobile:"`,
+					VarExpression:     `cacheGoTaoUserMobilePrefix = "cache:goTao:user:mobile:"`,
+					KeyLeft:           "goTaoUserMobileKey",
+					KeyRight:          `fmt.Sprintf("%s%v", cacheGoTaoUserMobilePrefix, mobile)`,
+					DataKeyRight:      `fmt.Sprintf("%s%v", cacheGoTaoUserMobilePrefix, data.Mobile)`,
+					KeyExpression:     `goTaoUserMobileKey := fmt.Sprintf("%s%v", cacheGoTaoUserMobilePrefix, mobile)`,
+					DataKeyExpression: `goTaoUserMobileKey := fmt.Sprintf("%s%v", cacheGoTaoUserMobilePrefix, data.Mobile)`,
 					FieldNameJoin:     []string{"mobile"},
 				},
 			}

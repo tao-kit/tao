@@ -3,12 +3,12 @@ package api
 import (
 	"reflect"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/zeromicro/antlr"
 )
 
 // Part 6
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during taoctl installation.
+// was too large and caused a possible memory overflow during goctl installation.
 
 type AtServerContext struct {
 	*antlr.BaseParserRuleContext

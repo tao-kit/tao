@@ -119,7 +119,7 @@ func rewriteFile(pkgs map[string]*ast.Package, verbose bool) error {
 		for filename, file := range pkg.Files {
 			var containsDeprecatedBuilderxPkg bool
 			for _, imp := range file.Imports {
-				if !strings.Contains(imp.Path.Value, deprecatedGoZeroMod) {
+				if !strings.Contains(imp.Path.Value, deprecatedGoTaoMod) {
 					continue
 				}
 
@@ -143,7 +143,7 @@ func rewriteFile(pkgs map[string]*ast.Package, verbose bool) error {
 					}
 				}
 
-				newPath := strings.ReplaceAll(imp.Path.Value, deprecatedGoZeroMod, goZeroMod)
+				newPath := strings.ReplaceAll(imp.Path.Value, deprecatedGoTaoMod, goTaoMod)
 				imp.EndPos = imp.End()
 				imp.Path.Value = newPath
 			}

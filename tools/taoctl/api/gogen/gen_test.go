@@ -260,11 +260,11 @@ func TestCamelStyle(t *testing.T) {
 	_, err = parser.Parse(filename)
 	assert.Nil(t, err)
 
-	validateWithCamel(t, filename, "GoZero")
+	validateWithCamel(t, filename, "GoTao")
 }
 
 func validate(t *testing.T, api string) {
-	validateWithCamel(t, api, "gozero")
+	validateWithCamel(t, api, "gotao")
 }
 
 func validateWithCamel(t *testing.T, api, camel string) {

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"strconv"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/zeromicro/antlr"
 )
 
 // Suppress unused import errors
@@ -171,7 +171,7 @@ var parserATN = []uint16{
 }
 var literalNames = []string{
 	"", "'='", "'('", "')'", "'{'", "'}'", "'*'", "'time.Time'", "'['", "']'",
-	"'returns'", "'-'", "'/'", "'/:'", "'@doc'", "'@handler'", "'any'",
+	"'returns'", "'-'", "'/'", "'/:'", "'@doc'", "'@handler'", "'interface{}'",
 	"'@server'",
 }
 var symbolicNames = []string{

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"unicode"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/zeromicro/antlr"
 )
 
 // Suppress unused import error
@@ -155,7 +155,7 @@ var lexerModeNames = []string{
 
 var lexerLiteralNames = []string{
 	"", "'='", "'('", "')'", "'{'", "'}'", "'*'", "'time.Time'", "'['", "']'",
-	"'returns'", "'-'", "'/'", "'/:'", "'@doc'", "'@handler'", "'any'",
+	"'returns'", "'-'", "'/'", "'/:'", "'@doc'", "'@handler'", "'interface{}'",
 	"'@server'",
 }
 

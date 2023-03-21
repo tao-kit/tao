@@ -8,14 +8,14 @@ require (
 	github.com/felixge/fgprof v0.9.3
 	github.com/fullstorydev/grpcurl v1.8.7
 	github.com/go-sql-driver/mysql v1.7.0
-	github.com/golang-jwt/jwt/v4 v4.2.0
+	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/golang/mock v1.6.0
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.3.0
 	github.com/jackc/pgx/v5 v5.3.1
 	github.com/jhump/protoreflect v1.14.1
 	github.com/olekukonko/tablewriter v0.0.5
-	github.com/pelletier/go-toml/v2 v2.0.1
+	github.com/pelletier/go-toml/v2 v2.0.7
 	github.com/prometheus/client_golang v1.11.0
 	github.com/spaolacci/murmur3 v1.1.0
 	github.com/stretchr/testify v1.8.1
@@ -24,7 +24,7 @@ require (
 	go.mongodb.org/mongo-driver v1.11.1
 	go.opentelemetry.io/otel v1.13.0
 	go.opentelemetry.io/otel/exporters/jaeger v1.3.0
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.11.2
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.13.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.13.0
 	go.opentelemetry.io/otel/exporters/zipkin v1.3.0
 	go.opentelemetry.io/otel/sdk v1.13.0

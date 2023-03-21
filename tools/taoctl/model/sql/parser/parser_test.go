@@ -18,7 +18,7 @@ func TestParsePlainText(t *testing.T) {
 	err := ioutil.WriteFile(sqlFile, []byte("plain text"), 0o777)
 	assert.Nil(t, err)
 
-	_, err = Parse(sqlFile, "go_zero", false)
+	_, err = Parse(sqlFile, "go_tao", false)
 	assert.NotNil(t, err)
 }
 
@@ -27,7 +27,7 @@ func TestParseSelect(t *testing.T) {
 	err := ioutil.WriteFile(sqlFile, []byte("select * from user"), 0o777)
 	assert.Nil(t, err)
 
-	tables, err := Parse(sqlFile, "go_zero", false)
+	tables, err := Parse(sqlFile, "go_tao", false)
 	assert.Nil(t, err)
 	assert.Equal(t, 0, len(tables))
 }
@@ -40,7 +40,7 @@ func TestParseCreateTable(t *testing.T) {
 	err := ioutil.WriteFile(sqlFile, []byte(user), 0o777)
 	assert.Nil(t, err)
 
-	tables, err := Parse(sqlFile, "go_zero", false)
+	tables, err := Parse(sqlFile, "go_tao", false)
 	assert.Equal(t, 1, len(tables))
 	table := tables[0]
 	assert.Nil(t, err)
