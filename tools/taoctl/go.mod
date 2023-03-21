@@ -4,7 +4,6 @@ go 1.19
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.0
-	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20210521184019-c5ad59b459ec
 	github.com/emicklei/proto v1.11.1
 	github.com/fatih/structtag v1.2.0
 	github.com/go-sql-driver/mysql v1.7.0
@@ -14,7 +13,7 @@ require (
 	github.com/spf13/cobra v1.6.1
 	github.com/stretchr/testify v1.8.1
 	github.com/withfig/autocomplete-tools/integrations/cobra v0.0.0-20220705165518-2761d7f4b8bc
-	github.com/zeromicro/antlr v1.0.0
+	github.com/zeromicro/antlr v0.0.1
 	golang.org/x/text v0.7.0
 	google.golang.org/grpc v1.53.0
 	google.golang.org/protobuf v1.28.1
