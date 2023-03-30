@@ -13,7 +13,7 @@ require (
 	github.com/sllt/tao v1.4.4
 	github.com/spf13/cobra v1.6.1
 	github.com/stretchr/testify v1.8.1
-	github.com/withfig/autocomplete-tools/integrations/cobra v0.0.0-20220705165518-2761d7f4b8bc
+	github.com/withfig/autocomplete-tools/integrations/cobra v1.2.1
 	golang.org/x/text v0.7.0
 	google.golang.org/grpc v1.53.0
 	google.golang.org/protobuf v1.28.1
