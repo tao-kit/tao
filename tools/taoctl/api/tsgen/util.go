@@ -98,6 +98,8 @@ func goTypeToTs(tp spec.Type, fromPacket bool) (string, error) {
 		return "any", nil
 	case spec.PointerType:
 		return goTypeToTs(v.Type, fromPacket)
+	case spec.SnowflakeIDType:
+		return "string", nil
 	}
 
 	return "", errors.New("unsupported type " + tp.Name())
