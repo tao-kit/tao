@@ -1,2220 +1,2220 @@
-// Code generated from /grammar/MySqlParser.g4 by ANTLR 4.9.1. DO NOT EDIT.
+// Code generated from MySqlParser.g4 by ANTLR 4.12.0. DO NOT EDIT.
 
 package gen // MySqlParser
-import "github.com/zeromicro/antlr"
+import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 
 type BaseMySqlParserVisitor struct {
 	*antlr.BaseParseTreeVisitor
 }
 
-func (v *BaseMySqlParserVisitor) VisitRoot(ctx *RootContext) any {
+func (v *BaseMySqlParserVisitor) VisitRoot(ctx *RootContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSqlStatements(ctx *SqlStatementsContext) any {
+func (v *BaseMySqlParserVisitor) VisitSqlStatements(ctx *SqlStatementsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSqlStatement(ctx *SqlStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSqlStatement(ctx *SqlStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitEmptyStatement(ctx *EmptyStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitEmptyStatement(ctx *EmptyStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDdlStatement(ctx *DdlStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitDdlStatement(ctx *DdlStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDmlStatement(ctx *DmlStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitDmlStatement(ctx *DmlStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTransactionStatement(ctx *TransactionStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitTransactionStatement(ctx *TransactionStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitReplicationStatement(ctx *ReplicationStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitReplicationStatement(ctx *ReplicationStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPreparedStatement(ctx *PreparedStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitPreparedStatement(ctx *PreparedStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCompoundStatement(ctx *CompoundStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitCompoundStatement(ctx *CompoundStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAdministrationStatement(ctx *AdministrationStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitAdministrationStatement(ctx *AdministrationStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUtilityStatement(ctx *UtilityStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitUtilityStatement(ctx *UtilityStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateDatabase(ctx *CreateDatabaseContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateDatabase(ctx *CreateDatabaseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateEvent(ctx *CreateEventContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateEvent(ctx *CreateEventContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateIndex(ctx *CreateIndexContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateIndex(ctx *CreateIndexContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateLogfileGroup(ctx *CreateLogfileGroupContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateLogfileGroup(ctx *CreateLogfileGroupContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateProcedure(ctx *CreateProcedureContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateProcedure(ctx *CreateProcedureContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateFunction(ctx *CreateFunctionContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateFunction(ctx *CreateFunctionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateServer(ctx *CreateServerContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateServer(ctx *CreateServerContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCopyCreateTable(ctx *CopyCreateTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitCopyCreateTable(ctx *CopyCreateTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitQueryCreateTable(ctx *QueryCreateTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitQueryCreateTable(ctx *QueryCreateTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitColumnCreateTable(ctx *ColumnCreateTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitColumnCreateTable(ctx *ColumnCreateTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateTablespaceInnodb(ctx *CreateTablespaceInnodbContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateTablespaceInnodb(ctx *CreateTablespaceInnodbContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateTablespaceNdb(ctx *CreateTablespaceNdbContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateTablespaceNdb(ctx *CreateTablespaceNdbContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateTrigger(ctx *CreateTriggerContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateTrigger(ctx *CreateTriggerContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateView(ctx *CreateViewContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateView(ctx *CreateViewContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateDatabaseOption(ctx *CreateDatabaseOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateDatabaseOption(ctx *CreateDatabaseOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitOwnerStatement(ctx *OwnerStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitOwnerStatement(ctx *OwnerStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPreciseSchedule(ctx *PreciseScheduleContext) any {
+func (v *BaseMySqlParserVisitor) VisitPreciseSchedule(ctx *PreciseScheduleContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIntervalSchedule(ctx *IntervalScheduleContext) any {
+func (v *BaseMySqlParserVisitor) VisitIntervalSchedule(ctx *IntervalScheduleContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTimestampValue(ctx *TimestampValueContext) any {
+func (v *BaseMySqlParserVisitor) VisitTimestampValue(ctx *TimestampValueContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIntervalExpr(ctx *IntervalExprContext) any {
+func (v *BaseMySqlParserVisitor) VisitIntervalExpr(ctx *IntervalExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIntervalType(ctx *IntervalTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitIntervalType(ctx *IntervalTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitEnableType(ctx *EnableTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitEnableType(ctx *EnableTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIndexType(ctx *IndexTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitIndexType(ctx *IndexTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIndexOption(ctx *IndexOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitIndexOption(ctx *IndexOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitProcedureParameter(ctx *ProcedureParameterContext) any {
+func (v *BaseMySqlParserVisitor) VisitProcedureParameter(ctx *ProcedureParameterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFunctionParameter(ctx *FunctionParameterContext) any {
+func (v *BaseMySqlParserVisitor) VisitFunctionParameter(ctx *FunctionParameterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRoutineComment(ctx *RoutineCommentContext) any {
+func (v *BaseMySqlParserVisitor) VisitRoutineComment(ctx *RoutineCommentContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRoutineLanguage(ctx *RoutineLanguageContext) any {
+func (v *BaseMySqlParserVisitor) VisitRoutineLanguage(ctx *RoutineLanguageContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRoutineBehavior(ctx *RoutineBehaviorContext) any {
+func (v *BaseMySqlParserVisitor) VisitRoutineBehavior(ctx *RoutineBehaviorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRoutineData(ctx *RoutineDataContext) any {
+func (v *BaseMySqlParserVisitor) VisitRoutineData(ctx *RoutineDataContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRoutineSecurity(ctx *RoutineSecurityContext) any {
+func (v *BaseMySqlParserVisitor) VisitRoutineSecurity(ctx *RoutineSecurityContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitServerOption(ctx *ServerOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitServerOption(ctx *ServerOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateDefinitions(ctx *CreateDefinitionsContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateDefinitions(ctx *CreateDefinitionsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitColumnDeclaration(ctx *ColumnDeclarationContext) any {
+func (v *BaseMySqlParserVisitor) VisitColumnDeclaration(ctx *ColumnDeclarationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitConstraintDeclaration(ctx *ConstraintDeclarationContext) any {
+func (v *BaseMySqlParserVisitor) VisitConstraintDeclaration(ctx *ConstraintDeclarationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIndexDeclaration(ctx *IndexDeclarationContext) any {
+func (v *BaseMySqlParserVisitor) VisitIndexDeclaration(ctx *IndexDeclarationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitColumnDefinition(ctx *ColumnDefinitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitColumnDefinition(ctx *ColumnDefinitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitNullColumnConstraint(ctx *NullColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitNullColumnConstraint(ctx *NullColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDefaultColumnConstraint(ctx *DefaultColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitDefaultColumnConstraint(ctx *DefaultColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAutoIncrementColumnConstraint(ctx *AutoIncrementColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitAutoIncrementColumnConstraint(ctx *AutoIncrementColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPrimaryKeyColumnConstraint(ctx *PrimaryKeyColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitPrimaryKeyColumnConstraint(ctx *PrimaryKeyColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUniqueKeyColumnConstraint(ctx *UniqueKeyColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitUniqueKeyColumnConstraint(ctx *UniqueKeyColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCommentColumnConstraint(ctx *CommentColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitCommentColumnConstraint(ctx *CommentColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFormatColumnConstraint(ctx *FormatColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitFormatColumnConstraint(ctx *FormatColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStorageColumnConstraint(ctx *StorageColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitStorageColumnConstraint(ctx *StorageColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitReferenceColumnConstraint(ctx *ReferenceColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitReferenceColumnConstraint(ctx *ReferenceColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCollateColumnConstraint(ctx *CollateColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitCollateColumnConstraint(ctx *CollateColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitGeneratedColumnConstraint(ctx *GeneratedColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitGeneratedColumnConstraint(ctx *GeneratedColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSerialDefaultColumnConstraint(ctx *SerialDefaultColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitSerialDefaultColumnConstraint(ctx *SerialDefaultColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCheckColumnConstraint(ctx *CheckColumnConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitCheckColumnConstraint(ctx *CheckColumnConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPrimaryKeyTableConstraint(ctx *PrimaryKeyTableConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitPrimaryKeyTableConstraint(ctx *PrimaryKeyTableConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUniqueKeyTableConstraint(ctx *UniqueKeyTableConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitUniqueKeyTableConstraint(ctx *UniqueKeyTableConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitForeignKeyTableConstraint(ctx *ForeignKeyTableConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitForeignKeyTableConstraint(ctx *ForeignKeyTableConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCheckTableConstraint(ctx *CheckTableConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitCheckTableConstraint(ctx *CheckTableConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitReferenceDefinition(ctx *ReferenceDefinitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitReferenceDefinition(ctx *ReferenceDefinitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitReferenceAction(ctx *ReferenceActionContext) any {
+func (v *BaseMySqlParserVisitor) VisitReferenceAction(ctx *ReferenceActionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitReferenceControlType(ctx *ReferenceControlTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitReferenceControlType(ctx *ReferenceControlTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSimpleIndexDeclaration(ctx *SimpleIndexDeclarationContext) any {
+func (v *BaseMySqlParserVisitor) VisitSimpleIndexDeclaration(ctx *SimpleIndexDeclarationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSpecialIndexDeclaration(ctx *SpecialIndexDeclarationContext) any {
+func (v *BaseMySqlParserVisitor) VisitSpecialIndexDeclaration(ctx *SpecialIndexDeclarationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionEngine(ctx *TableOptionEngineContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionEngine(ctx *TableOptionEngineContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionAutoIncrement(ctx *TableOptionAutoIncrementContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionAutoIncrement(ctx *TableOptionAutoIncrementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionAverage(ctx *TableOptionAverageContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionAverage(ctx *TableOptionAverageContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionCharset(ctx *TableOptionCharsetContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionCharset(ctx *TableOptionCharsetContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionChecksum(ctx *TableOptionChecksumContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionChecksum(ctx *TableOptionChecksumContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionCollate(ctx *TableOptionCollateContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionCollate(ctx *TableOptionCollateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionComment(ctx *TableOptionCommentContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionComment(ctx *TableOptionCommentContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionCompression(ctx *TableOptionCompressionContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionCompression(ctx *TableOptionCompressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionConnection(ctx *TableOptionConnectionContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionConnection(ctx *TableOptionConnectionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionDataDirectory(ctx *TableOptionDataDirectoryContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionDataDirectory(ctx *TableOptionDataDirectoryContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionDelay(ctx *TableOptionDelayContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionDelay(ctx *TableOptionDelayContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionEncryption(ctx *TableOptionEncryptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionEncryption(ctx *TableOptionEncryptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionIndexDirectory(ctx *TableOptionIndexDirectoryContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionIndexDirectory(ctx *TableOptionIndexDirectoryContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionInsertMethod(ctx *TableOptionInsertMethodContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionInsertMethod(ctx *TableOptionInsertMethodContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionKeyBlockSize(ctx *TableOptionKeyBlockSizeContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionKeyBlockSize(ctx *TableOptionKeyBlockSizeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionMaxRows(ctx *TableOptionMaxRowsContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionMaxRows(ctx *TableOptionMaxRowsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionMinRows(ctx *TableOptionMinRowsContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionMinRows(ctx *TableOptionMinRowsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionPackKeys(ctx *TableOptionPackKeysContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionPackKeys(ctx *TableOptionPackKeysContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionPassword(ctx *TableOptionPasswordContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionPassword(ctx *TableOptionPasswordContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionRowFormat(ctx *TableOptionRowFormatContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionRowFormat(ctx *TableOptionRowFormatContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionRecalculation(ctx *TableOptionRecalculationContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionRecalculation(ctx *TableOptionRecalculationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionPersistent(ctx *TableOptionPersistentContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionPersistent(ctx *TableOptionPersistentContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionSamplePage(ctx *TableOptionSamplePageContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionSamplePage(ctx *TableOptionSamplePageContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionTablespace(ctx *TableOptionTablespaceContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionTablespace(ctx *TableOptionTablespaceContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableOptionUnion(ctx *TableOptionUnionContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableOptionUnion(ctx *TableOptionUnionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTablespaceStorage(ctx *TablespaceStorageContext) any {
+func (v *BaseMySqlParserVisitor) VisitTablespaceStorage(ctx *TablespaceStorageContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionDefinitions(ctx *PartitionDefinitionsContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionDefinitions(ctx *PartitionDefinitionsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionFunctionHash(ctx *PartitionFunctionHashContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionFunctionHash(ctx *PartitionFunctionHashContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionFunctionKey(ctx *PartitionFunctionKeyContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionFunctionKey(ctx *PartitionFunctionKeyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionFunctionRange(ctx *PartitionFunctionRangeContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionFunctionRange(ctx *PartitionFunctionRangeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionFunctionList(ctx *PartitionFunctionListContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionFunctionList(ctx *PartitionFunctionListContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSubPartitionFunctionHash(ctx *SubPartitionFunctionHashContext) any {
+func (v *BaseMySqlParserVisitor) VisitSubPartitionFunctionHash(ctx *SubPartitionFunctionHashContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSubPartitionFunctionKey(ctx *SubPartitionFunctionKeyContext) any {
+func (v *BaseMySqlParserVisitor) VisitSubPartitionFunctionKey(ctx *SubPartitionFunctionKeyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionComparison(ctx *PartitionComparisonContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionComparison(ctx *PartitionComparisonContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionListAtom(ctx *PartitionListAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionListAtom(ctx *PartitionListAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionListVector(ctx *PartitionListVectorContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionListVector(ctx *PartitionListVectorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionSimple(ctx *PartitionSimpleContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionSimple(ctx *PartitionSimpleContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionDefinerAtom(ctx *PartitionDefinerAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionDefinerAtom(ctx *PartitionDefinerAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionDefinerVector(ctx *PartitionDefinerVectorContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionDefinerVector(ctx *PartitionDefinerVectorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSubpartitionDefinition(ctx *SubpartitionDefinitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitSubpartitionDefinition(ctx *SubpartitionDefinitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionOptionEngine(ctx *PartitionOptionEngineContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionOptionEngine(ctx *PartitionOptionEngineContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionOptionComment(ctx *PartitionOptionCommentContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionOptionComment(ctx *PartitionOptionCommentContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionOptionDataDirectory(ctx *PartitionOptionDataDirectoryContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionOptionDataDirectory(ctx *PartitionOptionDataDirectoryContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionOptionIndexDirectory(ctx *PartitionOptionIndexDirectoryContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionOptionIndexDirectory(ctx *PartitionOptionIndexDirectoryContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionOptionMaxRows(ctx *PartitionOptionMaxRowsContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionOptionMaxRows(ctx *PartitionOptionMaxRowsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionOptionMinRows(ctx *PartitionOptionMinRowsContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionOptionMinRows(ctx *PartitionOptionMinRowsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionOptionTablespace(ctx *PartitionOptionTablespaceContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionOptionTablespace(ctx *PartitionOptionTablespaceContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPartitionOptionNodeGroup(ctx *PartitionOptionNodeGroupContext) any {
+func (v *BaseMySqlParserVisitor) VisitPartitionOptionNodeGroup(ctx *PartitionOptionNodeGroupContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterSimpleDatabase(ctx *AlterSimpleDatabaseContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterSimpleDatabase(ctx *AlterSimpleDatabaseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterUpgradeName(ctx *AlterUpgradeNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterUpgradeName(ctx *AlterUpgradeNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterEvent(ctx *AlterEventContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterEvent(ctx *AlterEventContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterFunction(ctx *AlterFunctionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterFunction(ctx *AlterFunctionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterInstance(ctx *AlterInstanceContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterInstance(ctx *AlterInstanceContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterLogfileGroup(ctx *AlterLogfileGroupContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterLogfileGroup(ctx *AlterLogfileGroupContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterProcedure(ctx *AlterProcedureContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterProcedure(ctx *AlterProcedureContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterServer(ctx *AlterServerContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterServer(ctx *AlterServerContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterTable(ctx *AlterTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterTable(ctx *AlterTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterTablespace(ctx *AlterTablespaceContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterTablespace(ctx *AlterTablespaceContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterView(ctx *AlterViewContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterView(ctx *AlterViewContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByTableOption(ctx *AlterByTableOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByTableOption(ctx *AlterByTableOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAddColumn(ctx *AlterByAddColumnContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAddColumn(ctx *AlterByAddColumnContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAddColumns(ctx *AlterByAddColumnsContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAddColumns(ctx *AlterByAddColumnsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAddIndex(ctx *AlterByAddIndexContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAddIndex(ctx *AlterByAddIndexContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAddPrimaryKey(ctx *AlterByAddPrimaryKeyContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAddPrimaryKey(ctx *AlterByAddPrimaryKeyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAddUniqueKey(ctx *AlterByAddUniqueKeyContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAddUniqueKey(ctx *AlterByAddUniqueKeyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAddSpecialIndex(ctx *AlterByAddSpecialIndexContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAddSpecialIndex(ctx *AlterByAddSpecialIndexContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAddForeignKey(ctx *AlterByAddForeignKeyContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAddForeignKey(ctx *AlterByAddForeignKeyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAddCheckTableConstraint(ctx *AlterByAddCheckTableConstraintContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAddCheckTableConstraint(ctx *AlterByAddCheckTableConstraintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterBySetAlgorithm(ctx *AlterBySetAlgorithmContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterBySetAlgorithm(ctx *AlterBySetAlgorithmContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByChangeDefault(ctx *AlterByChangeDefaultContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByChangeDefault(ctx *AlterByChangeDefaultContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByChangeColumn(ctx *AlterByChangeColumnContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByChangeColumn(ctx *AlterByChangeColumnContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByRenameColumn(ctx *AlterByRenameColumnContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByRenameColumn(ctx *AlterByRenameColumnContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByLock(ctx *AlterByLockContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByLock(ctx *AlterByLockContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByModifyColumn(ctx *AlterByModifyColumnContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByModifyColumn(ctx *AlterByModifyColumnContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByDropColumn(ctx *AlterByDropColumnContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByDropColumn(ctx *AlterByDropColumnContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByDropConstraintCheck(ctx *AlterByDropConstraintCheckContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByDropConstraintCheck(ctx *AlterByDropConstraintCheckContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByDropPrimaryKey(ctx *AlterByDropPrimaryKeyContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByDropPrimaryKey(ctx *AlterByDropPrimaryKeyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByRenameIndex(ctx *AlterByRenameIndexContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByRenameIndex(ctx *AlterByRenameIndexContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAlterIndexVisibility(ctx *AlterByAlterIndexVisibilityContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAlterIndexVisibility(ctx *AlterByAlterIndexVisibilityContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByDropIndex(ctx *AlterByDropIndexContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByDropIndex(ctx *AlterByDropIndexContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByDropForeignKey(ctx *AlterByDropForeignKeyContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByDropForeignKey(ctx *AlterByDropForeignKeyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByDisableKeys(ctx *AlterByDisableKeysContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByDisableKeys(ctx *AlterByDisableKeysContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByEnableKeys(ctx *AlterByEnableKeysContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByEnableKeys(ctx *AlterByEnableKeysContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByRename(ctx *AlterByRenameContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByRename(ctx *AlterByRenameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByOrder(ctx *AlterByOrderContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByOrder(ctx *AlterByOrderContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByConvertCharset(ctx *AlterByConvertCharsetContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByConvertCharset(ctx *AlterByConvertCharsetContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByDefaultCharset(ctx *AlterByDefaultCharsetContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByDefaultCharset(ctx *AlterByDefaultCharsetContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByDiscardTablespace(ctx *AlterByDiscardTablespaceContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByDiscardTablespace(ctx *AlterByDiscardTablespaceContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByImportTablespace(ctx *AlterByImportTablespaceContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByImportTablespace(ctx *AlterByImportTablespaceContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByForce(ctx *AlterByForceContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByForce(ctx *AlterByForceContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByValidate(ctx *AlterByValidateContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByValidate(ctx *AlterByValidateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAddPartition(ctx *AlterByAddPartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAddPartition(ctx *AlterByAddPartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByDropPartition(ctx *AlterByDropPartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByDropPartition(ctx *AlterByDropPartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByDiscardPartition(ctx *AlterByDiscardPartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByDiscardPartition(ctx *AlterByDiscardPartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByImportPartition(ctx *AlterByImportPartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByImportPartition(ctx *AlterByImportPartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByTruncatePartition(ctx *AlterByTruncatePartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByTruncatePartition(ctx *AlterByTruncatePartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByCoalescePartition(ctx *AlterByCoalescePartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByCoalescePartition(ctx *AlterByCoalescePartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByReorganizePartition(ctx *AlterByReorganizePartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByReorganizePartition(ctx *AlterByReorganizePartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByExchangePartition(ctx *AlterByExchangePartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByExchangePartition(ctx *AlterByExchangePartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByAnalyzePartition(ctx *AlterByAnalyzePartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByAnalyzePartition(ctx *AlterByAnalyzePartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByCheckPartition(ctx *AlterByCheckPartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByCheckPartition(ctx *AlterByCheckPartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByOptimizePartition(ctx *AlterByOptimizePartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByOptimizePartition(ctx *AlterByOptimizePartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByRebuildPartition(ctx *AlterByRebuildPartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByRebuildPartition(ctx *AlterByRebuildPartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByRepairPartition(ctx *AlterByRepairPartitionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByRepairPartition(ctx *AlterByRepairPartitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByRemovePartitioning(ctx *AlterByRemovePartitioningContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByRemovePartitioning(ctx *AlterByRemovePartitioningContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterByUpgradePartitioning(ctx *AlterByUpgradePartitioningContext) any {
+func (v *BaseMySqlParserVisitor) VisitAlterByUpgradePartitioning(ctx *AlterByUpgradePartitioningContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropDatabase(ctx *DropDatabaseContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropDatabase(ctx *DropDatabaseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropEvent(ctx *DropEventContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropEvent(ctx *DropEventContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropIndex(ctx *DropIndexContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropIndex(ctx *DropIndexContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropLogfileGroup(ctx *DropLogfileGroupContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropLogfileGroup(ctx *DropLogfileGroupContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropProcedure(ctx *DropProcedureContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropProcedure(ctx *DropProcedureContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropFunction(ctx *DropFunctionContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropFunction(ctx *DropFunctionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropServer(ctx *DropServerContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropServer(ctx *DropServerContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropTable(ctx *DropTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropTable(ctx *DropTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropTablespace(ctx *DropTablespaceContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropTablespace(ctx *DropTablespaceContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropTrigger(ctx *DropTriggerContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropTrigger(ctx *DropTriggerContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropView(ctx *DropViewContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropView(ctx *DropViewContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRenameTable(ctx *RenameTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitRenameTable(ctx *RenameTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRenameTableClause(ctx *RenameTableClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitRenameTableClause(ctx *RenameTableClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTruncateTable(ctx *TruncateTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitTruncateTable(ctx *TruncateTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCallStatement(ctx *CallStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitCallStatement(ctx *CallStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDeleteStatement(ctx *DeleteStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitDeleteStatement(ctx *DeleteStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDoStatement(ctx *DoStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitDoStatement(ctx *DoStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerStatement(ctx *HandlerStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerStatement(ctx *HandlerStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitInsertStatement(ctx *InsertStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitInsertStatement(ctx *InsertStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLoadDataStatement(ctx *LoadDataStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitLoadDataStatement(ctx *LoadDataStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLoadXmlStatement(ctx *LoadXmlStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitLoadXmlStatement(ctx *LoadXmlStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitReplaceStatement(ctx *ReplaceStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitReplaceStatement(ctx *ReplaceStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSimpleSelect(ctx *SimpleSelectContext) any {
+func (v *BaseMySqlParserVisitor) VisitSimpleSelect(ctx *SimpleSelectContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitParenthesisSelect(ctx *ParenthesisSelectContext) any {
+func (v *BaseMySqlParserVisitor) VisitParenthesisSelect(ctx *ParenthesisSelectContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUnionSelect(ctx *UnionSelectContext) any {
+func (v *BaseMySqlParserVisitor) VisitUnionSelect(ctx *UnionSelectContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUnionParenthesisSelect(ctx *UnionParenthesisSelectContext) any {
+func (v *BaseMySqlParserVisitor) VisitUnionParenthesisSelect(ctx *UnionParenthesisSelectContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUpdateStatement(ctx *UpdateStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitUpdateStatement(ctx *UpdateStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitInsertStatementValue(ctx *InsertStatementValueContext) any {
+func (v *BaseMySqlParserVisitor) VisitInsertStatementValue(ctx *InsertStatementValueContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUpdatedElement(ctx *UpdatedElementContext) any {
+func (v *BaseMySqlParserVisitor) VisitUpdatedElement(ctx *UpdatedElementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAssignmentField(ctx *AssignmentFieldContext) any {
+func (v *BaseMySqlParserVisitor) VisitAssignmentField(ctx *AssignmentFieldContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLockClause(ctx *LockClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitLockClause(ctx *LockClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSingleDeleteStatement(ctx *SingleDeleteStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSingleDeleteStatement(ctx *SingleDeleteStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMultipleDeleteStatement(ctx *MultipleDeleteStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitMultipleDeleteStatement(ctx *MultipleDeleteStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerOpenStatement(ctx *HandlerOpenStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerOpenStatement(ctx *HandlerOpenStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerReadIndexStatement(ctx *HandlerReadIndexStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerReadIndexStatement(ctx *HandlerReadIndexStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerReadStatement(ctx *HandlerReadStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerReadStatement(ctx *HandlerReadStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerCloseStatement(ctx *HandlerCloseStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerCloseStatement(ctx *HandlerCloseStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSingleUpdateStatement(ctx *SingleUpdateStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSingleUpdateStatement(ctx *SingleUpdateStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMultipleUpdateStatement(ctx *MultipleUpdateStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitMultipleUpdateStatement(ctx *MultipleUpdateStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitOrderByClause(ctx *OrderByClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitOrderByClause(ctx *OrderByClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitOrderByExpression(ctx *OrderByExpressionContext) any {
+func (v *BaseMySqlParserVisitor) VisitOrderByExpression(ctx *OrderByExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableSources(ctx *TableSourcesContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableSources(ctx *TableSourcesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableSourceBase(ctx *TableSourceBaseContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableSourceBase(ctx *TableSourceBaseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableSourceNested(ctx *TableSourceNestedContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableSourceNested(ctx *TableSourceNestedContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAtomTableItem(ctx *AtomTableItemContext) any {
+func (v *BaseMySqlParserVisitor) VisitAtomTableItem(ctx *AtomTableItemContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSubqueryTableItem(ctx *SubqueryTableItemContext) any {
+func (v *BaseMySqlParserVisitor) VisitSubqueryTableItem(ctx *SubqueryTableItemContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableSourcesItem(ctx *TableSourcesItemContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableSourcesItem(ctx *TableSourcesItemContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIndexHint(ctx *IndexHintContext) any {
+func (v *BaseMySqlParserVisitor) VisitIndexHint(ctx *IndexHintContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIndexHintType(ctx *IndexHintTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitIndexHintType(ctx *IndexHintTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitInnerJoin(ctx *InnerJoinContext) any {
+func (v *BaseMySqlParserVisitor) VisitInnerJoin(ctx *InnerJoinContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStraightJoin(ctx *StraightJoinContext) any {
+func (v *BaseMySqlParserVisitor) VisitStraightJoin(ctx *StraightJoinContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitOuterJoin(ctx *OuterJoinContext) any {
+func (v *BaseMySqlParserVisitor) VisitOuterJoin(ctx *OuterJoinContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitNaturalJoin(ctx *NaturalJoinContext) any {
+func (v *BaseMySqlParserVisitor) VisitNaturalJoin(ctx *NaturalJoinContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitQueryExpression(ctx *QueryExpressionContext) any {
+func (v *BaseMySqlParserVisitor) VisitQueryExpression(ctx *QueryExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitQueryExpressionNointo(ctx *QueryExpressionNointoContext) any {
+func (v *BaseMySqlParserVisitor) VisitQueryExpressionNointo(ctx *QueryExpressionNointoContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitQuerySpecification(ctx *QuerySpecificationContext) any {
+func (v *BaseMySqlParserVisitor) VisitQuerySpecification(ctx *QuerySpecificationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitQuerySpecificationNointo(ctx *QuerySpecificationNointoContext) any {
+func (v *BaseMySqlParserVisitor) VisitQuerySpecificationNointo(ctx *QuerySpecificationNointoContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUnionParenthesis(ctx *UnionParenthesisContext) any {
+func (v *BaseMySqlParserVisitor) VisitUnionParenthesis(ctx *UnionParenthesisContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUnionStatement(ctx *UnionStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitUnionStatement(ctx *UnionStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectSpec(ctx *SelectSpecContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectSpec(ctx *SelectSpecContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectElements(ctx *SelectElementsContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectElements(ctx *SelectElementsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectStarElement(ctx *SelectStarElementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectStarElement(ctx *SelectStarElementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectColumnElement(ctx *SelectColumnElementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectColumnElement(ctx *SelectColumnElementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectFunctionElement(ctx *SelectFunctionElementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectFunctionElement(ctx *SelectFunctionElementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectExpressionElement(ctx *SelectExpressionElementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectExpressionElement(ctx *SelectExpressionElementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectIntoVariables(ctx *SelectIntoVariablesContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectIntoVariables(ctx *SelectIntoVariablesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectIntoDumpFile(ctx *SelectIntoDumpFileContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectIntoDumpFile(ctx *SelectIntoDumpFileContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectIntoTextFile(ctx *SelectIntoTextFileContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectIntoTextFile(ctx *SelectIntoTextFileContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectFieldsInto(ctx *SelectFieldsIntoContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectFieldsInto(ctx *SelectFieldsIntoContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSelectLinesInto(ctx *SelectLinesIntoContext) any {
+func (v *BaseMySqlParserVisitor) VisitSelectLinesInto(ctx *SelectLinesIntoContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFromClause(ctx *FromClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitFromClause(ctx *FromClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitGroupByClause(ctx *GroupByClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitGroupByClause(ctx *GroupByClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHavingClause(ctx *HavingClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitHavingClause(ctx *HavingClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitGroupByItem(ctx *GroupByItemContext) any {
+func (v *BaseMySqlParserVisitor) VisitGroupByItem(ctx *GroupByItemContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLimitClause(ctx *LimitClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitLimitClause(ctx *LimitClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLimitClauseAtom(ctx *LimitClauseAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitLimitClauseAtom(ctx *LimitClauseAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStartTransaction(ctx *StartTransactionContext) any {
+func (v *BaseMySqlParserVisitor) VisitStartTransaction(ctx *StartTransactionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitBeginWork(ctx *BeginWorkContext) any {
+func (v *BaseMySqlParserVisitor) VisitBeginWork(ctx *BeginWorkContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCommitWork(ctx *CommitWorkContext) any {
+func (v *BaseMySqlParserVisitor) VisitCommitWork(ctx *CommitWorkContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRollbackWork(ctx *RollbackWorkContext) any {
+func (v *BaseMySqlParserVisitor) VisitRollbackWork(ctx *RollbackWorkContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSavepointStatement(ctx *SavepointStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSavepointStatement(ctx *SavepointStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRollbackStatement(ctx *RollbackStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitRollbackStatement(ctx *RollbackStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitReleaseStatement(ctx *ReleaseStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitReleaseStatement(ctx *ReleaseStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLockTables(ctx *LockTablesContext) any {
+func (v *BaseMySqlParserVisitor) VisitLockTables(ctx *LockTablesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUnlockTables(ctx *UnlockTablesContext) any {
+func (v *BaseMySqlParserVisitor) VisitUnlockTables(ctx *UnlockTablesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSetAutocommitStatement(ctx *SetAutocommitStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSetAutocommitStatement(ctx *SetAutocommitStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSetTransactionStatement(ctx *SetTransactionStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSetTransactionStatement(ctx *SetTransactionStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTransactionMode(ctx *TransactionModeContext) any {
+func (v *BaseMySqlParserVisitor) VisitTransactionMode(ctx *TransactionModeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLockTableElement(ctx *LockTableElementContext) any {
+func (v *BaseMySqlParserVisitor) VisitLockTableElement(ctx *LockTableElementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLockAction(ctx *LockActionContext) any {
+func (v *BaseMySqlParserVisitor) VisitLockAction(ctx *LockActionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTransactionOption(ctx *TransactionOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitTransactionOption(ctx *TransactionOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTransactionLevel(ctx *TransactionLevelContext) any {
+func (v *BaseMySqlParserVisitor) VisitTransactionLevel(ctx *TransactionLevelContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitChangeMaster(ctx *ChangeMasterContext) any {
+func (v *BaseMySqlParserVisitor) VisitChangeMaster(ctx *ChangeMasterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitChangeReplicationFilter(ctx *ChangeReplicationFilterContext) any {
+func (v *BaseMySqlParserVisitor) VisitChangeReplicationFilter(ctx *ChangeReplicationFilterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPurgeBinaryLogs(ctx *PurgeBinaryLogsContext) any {
+func (v *BaseMySqlParserVisitor) VisitPurgeBinaryLogs(ctx *PurgeBinaryLogsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitResetMaster(ctx *ResetMasterContext) any {
+func (v *BaseMySqlParserVisitor) VisitResetMaster(ctx *ResetMasterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitResetSlave(ctx *ResetSlaveContext) any {
+func (v *BaseMySqlParserVisitor) VisitResetSlave(ctx *ResetSlaveContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStartSlave(ctx *StartSlaveContext) any {
+func (v *BaseMySqlParserVisitor) VisitStartSlave(ctx *StartSlaveContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStopSlave(ctx *StopSlaveContext) any {
+func (v *BaseMySqlParserVisitor) VisitStopSlave(ctx *StopSlaveContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStartGroupReplication(ctx *StartGroupReplicationContext) any {
+func (v *BaseMySqlParserVisitor) VisitStartGroupReplication(ctx *StartGroupReplicationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStopGroupReplication(ctx *StopGroupReplicationContext) any {
+func (v *BaseMySqlParserVisitor) VisitStopGroupReplication(ctx *StopGroupReplicationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMasterStringOption(ctx *MasterStringOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitMasterStringOption(ctx *MasterStringOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMasterDecimalOption(ctx *MasterDecimalOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitMasterDecimalOption(ctx *MasterDecimalOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMasterBoolOption(ctx *MasterBoolOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitMasterBoolOption(ctx *MasterBoolOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMasterRealOption(ctx *MasterRealOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitMasterRealOption(ctx *MasterRealOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMasterUidListOption(ctx *MasterUidListOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitMasterUidListOption(ctx *MasterUidListOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStringMasterOption(ctx *StringMasterOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitStringMasterOption(ctx *StringMasterOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDecimalMasterOption(ctx *DecimalMasterOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitDecimalMasterOption(ctx *DecimalMasterOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitBoolMasterOption(ctx *BoolMasterOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitBoolMasterOption(ctx *BoolMasterOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitChannelOption(ctx *ChannelOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitChannelOption(ctx *ChannelOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDoDbReplication(ctx *DoDbReplicationContext) any {
+func (v *BaseMySqlParserVisitor) VisitDoDbReplication(ctx *DoDbReplicationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIgnoreDbReplication(ctx *IgnoreDbReplicationContext) any {
+func (v *BaseMySqlParserVisitor) VisitIgnoreDbReplication(ctx *IgnoreDbReplicationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDoTableReplication(ctx *DoTableReplicationContext) any {
+func (v *BaseMySqlParserVisitor) VisitDoTableReplication(ctx *DoTableReplicationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIgnoreTableReplication(ctx *IgnoreTableReplicationContext) any {
+func (v *BaseMySqlParserVisitor) VisitIgnoreTableReplication(ctx *IgnoreTableReplicationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitWildDoTableReplication(ctx *WildDoTableReplicationContext) any {
+func (v *BaseMySqlParserVisitor) VisitWildDoTableReplication(ctx *WildDoTableReplicationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitWildIgnoreTableReplication(ctx *WildIgnoreTableReplicationContext) any {
+func (v *BaseMySqlParserVisitor) VisitWildIgnoreTableReplication(ctx *WildIgnoreTableReplicationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRewriteDbReplication(ctx *RewriteDbReplicationContext) any {
+func (v *BaseMySqlParserVisitor) VisitRewriteDbReplication(ctx *RewriteDbReplicationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTablePair(ctx *TablePairContext) any {
+func (v *BaseMySqlParserVisitor) VisitTablePair(ctx *TablePairContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitThreadType(ctx *ThreadTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitThreadType(ctx *ThreadTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitGtidsUntilOption(ctx *GtidsUntilOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitGtidsUntilOption(ctx *GtidsUntilOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMasterLogUntilOption(ctx *MasterLogUntilOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitMasterLogUntilOption(ctx *MasterLogUntilOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRelayLogUntilOption(ctx *RelayLogUntilOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitRelayLogUntilOption(ctx *RelayLogUntilOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSqlGapsUntilOption(ctx *SqlGapsUntilOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitSqlGapsUntilOption(ctx *SqlGapsUntilOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUserConnectionOption(ctx *UserConnectionOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitUserConnectionOption(ctx *UserConnectionOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPasswordConnectionOption(ctx *PasswordConnectionOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitPasswordConnectionOption(ctx *PasswordConnectionOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDefaultAuthConnectionOption(ctx *DefaultAuthConnectionOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitDefaultAuthConnectionOption(ctx *DefaultAuthConnectionOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPluginDirConnectionOption(ctx *PluginDirConnectionOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitPluginDirConnectionOption(ctx *PluginDirConnectionOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitGtuidSet(ctx *GtuidSetContext) any {
+func (v *BaseMySqlParserVisitor) VisitGtuidSet(ctx *GtuidSetContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitXaStartTransaction(ctx *XaStartTransactionContext) any {
+func (v *BaseMySqlParserVisitor) VisitXaStartTransaction(ctx *XaStartTransactionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitXaEndTransaction(ctx *XaEndTransactionContext) any {
+func (v *BaseMySqlParserVisitor) VisitXaEndTransaction(ctx *XaEndTransactionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitXaPrepareStatement(ctx *XaPrepareStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitXaPrepareStatement(ctx *XaPrepareStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitXaCommitWork(ctx *XaCommitWorkContext) any {
+func (v *BaseMySqlParserVisitor) VisitXaCommitWork(ctx *XaCommitWorkContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitXaRollbackWork(ctx *XaRollbackWorkContext) any {
+func (v *BaseMySqlParserVisitor) VisitXaRollbackWork(ctx *XaRollbackWorkContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitXaRecoverWork(ctx *XaRecoverWorkContext) any {
+func (v *BaseMySqlParserVisitor) VisitXaRecoverWork(ctx *XaRecoverWorkContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPrepareStatement(ctx *PrepareStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitPrepareStatement(ctx *PrepareStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitExecuteStatement(ctx *ExecuteStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitExecuteStatement(ctx *ExecuteStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDeallocatePrepare(ctx *DeallocatePrepareContext) any {
+func (v *BaseMySqlParserVisitor) VisitDeallocatePrepare(ctx *DeallocatePrepareContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRoutineBody(ctx *RoutineBodyContext) any {
+func (v *BaseMySqlParserVisitor) VisitRoutineBody(ctx *RoutineBodyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitBlockStatement(ctx *BlockStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitBlockStatement(ctx *BlockStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCaseStatement(ctx *CaseStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitCaseStatement(ctx *CaseStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIfStatement(ctx *IfStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitIfStatement(ctx *IfStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIterateStatement(ctx *IterateStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitIterateStatement(ctx *IterateStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLeaveStatement(ctx *LeaveStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitLeaveStatement(ctx *LeaveStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLoopStatement(ctx *LoopStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitLoopStatement(ctx *LoopStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRepeatStatement(ctx *RepeatStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitRepeatStatement(ctx *RepeatStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitReturnStatement(ctx *ReturnStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitReturnStatement(ctx *ReturnStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitWhileStatement(ctx *WhileStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitWhileStatement(ctx *WhileStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCloseCursor(ctx *CloseCursorContext) any {
+func (v *BaseMySqlParserVisitor) VisitCloseCursor(ctx *CloseCursorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFetchCursor(ctx *FetchCursorContext) any {
+func (v *BaseMySqlParserVisitor) VisitFetchCursor(ctx *FetchCursorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitOpenCursor(ctx *OpenCursorContext) any {
+func (v *BaseMySqlParserVisitor) VisitOpenCursor(ctx *OpenCursorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDeclareVariable(ctx *DeclareVariableContext) any {
+func (v *BaseMySqlParserVisitor) VisitDeclareVariable(ctx *DeclareVariableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDeclareCondition(ctx *DeclareConditionContext) any {
+func (v *BaseMySqlParserVisitor) VisitDeclareCondition(ctx *DeclareConditionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDeclareCursor(ctx *DeclareCursorContext) any {
+func (v *BaseMySqlParserVisitor) VisitDeclareCursor(ctx *DeclareCursorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDeclareHandler(ctx *DeclareHandlerContext) any {
+func (v *BaseMySqlParserVisitor) VisitDeclareHandler(ctx *DeclareHandlerContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerConditionCode(ctx *HandlerConditionCodeContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerConditionCode(ctx *HandlerConditionCodeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerConditionState(ctx *HandlerConditionStateContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerConditionState(ctx *HandlerConditionStateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerConditionName(ctx *HandlerConditionNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerConditionName(ctx *HandlerConditionNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerConditionWarning(ctx *HandlerConditionWarningContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerConditionWarning(ctx *HandlerConditionWarningContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerConditionNotfound(ctx *HandlerConditionNotfoundContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerConditionNotfound(ctx *HandlerConditionNotfoundContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHandlerConditionException(ctx *HandlerConditionExceptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitHandlerConditionException(ctx *HandlerConditionExceptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitProcedureSqlStatement(ctx *ProcedureSqlStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitProcedureSqlStatement(ctx *ProcedureSqlStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCaseAlternative(ctx *CaseAlternativeContext) any {
+func (v *BaseMySqlParserVisitor) VisitCaseAlternative(ctx *CaseAlternativeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitElifAlternative(ctx *ElifAlternativeContext) any {
+func (v *BaseMySqlParserVisitor) VisitElifAlternative(ctx *ElifAlternativeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterUserMysqlV56(ctx *AlterUserMysqlV56Context) any {
+func (v *BaseMySqlParserVisitor) VisitAlterUserMysqlV56(ctx *AlterUserMysqlV56Context) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAlterUserMysqlV57(ctx *AlterUserMysqlV57Context) any {
+func (v *BaseMySqlParserVisitor) VisitAlterUserMysqlV57(ctx *AlterUserMysqlV57Context) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateUserMysqlV56(ctx *CreateUserMysqlV56Context) any {
+func (v *BaseMySqlParserVisitor) VisitCreateUserMysqlV56(ctx *CreateUserMysqlV56Context) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateUserMysqlV57(ctx *CreateUserMysqlV57Context) any {
+func (v *BaseMySqlParserVisitor) VisitCreateUserMysqlV57(ctx *CreateUserMysqlV57Context) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDropUser(ctx *DropUserContext) any {
+func (v *BaseMySqlParserVisitor) VisitDropUser(ctx *DropUserContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitGrantStatement(ctx *GrantStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitGrantStatement(ctx *GrantStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitGrantProxy(ctx *GrantProxyContext) any {
+func (v *BaseMySqlParserVisitor) VisitGrantProxy(ctx *GrantProxyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRenameUser(ctx *RenameUserContext) any {
+func (v *BaseMySqlParserVisitor) VisitRenameUser(ctx *RenameUserContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDetailRevoke(ctx *DetailRevokeContext) any {
+func (v *BaseMySqlParserVisitor) VisitDetailRevoke(ctx *DetailRevokeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShortRevoke(ctx *ShortRevokeContext) any {
+func (v *BaseMySqlParserVisitor) VisitShortRevoke(ctx *ShortRevokeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRevokeProxy(ctx *RevokeProxyContext) any {
+func (v *BaseMySqlParserVisitor) VisitRevokeProxy(ctx *RevokeProxyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSetPasswordStatement(ctx *SetPasswordStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSetPasswordStatement(ctx *SetPasswordStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUserSpecification(ctx *UserSpecificationContext) any {
+func (v *BaseMySqlParserVisitor) VisitUserSpecification(ctx *UserSpecificationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPasswordAuthOption(ctx *PasswordAuthOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitPasswordAuthOption(ctx *PasswordAuthOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStringAuthOption(ctx *StringAuthOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitStringAuthOption(ctx *StringAuthOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHashAuthOption(ctx *HashAuthOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitHashAuthOption(ctx *HashAuthOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSimpleAuthOption(ctx *SimpleAuthOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitSimpleAuthOption(ctx *SimpleAuthOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTlsOption(ctx *TlsOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitTlsOption(ctx *TlsOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUserResourceOption(ctx *UserResourceOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitUserResourceOption(ctx *UserResourceOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUserPasswordOption(ctx *UserPasswordOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitUserPasswordOption(ctx *UserPasswordOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUserLockOption(ctx *UserLockOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitUserLockOption(ctx *UserLockOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPrivelegeClause(ctx *PrivelegeClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitPrivelegeClause(ctx *PrivelegeClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPrivilege(ctx *PrivilegeContext) any {
+func (v *BaseMySqlParserVisitor) VisitPrivilege(ctx *PrivilegeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCurrentSchemaPriviLevel(ctx *CurrentSchemaPriviLevelContext) any {
+func (v *BaseMySqlParserVisitor) VisitCurrentSchemaPriviLevel(ctx *CurrentSchemaPriviLevelContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitGlobalPrivLevel(ctx *GlobalPrivLevelContext) any {
+func (v *BaseMySqlParserVisitor) VisitGlobalPrivLevel(ctx *GlobalPrivLevelContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDefiniteSchemaPrivLevel(ctx *DefiniteSchemaPrivLevelContext) any {
+func (v *BaseMySqlParserVisitor) VisitDefiniteSchemaPrivLevel(ctx *DefiniteSchemaPrivLevelContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDefiniteFullTablePrivLevel(ctx *DefiniteFullTablePrivLevelContext) any {
+func (v *BaseMySqlParserVisitor) VisitDefiniteFullTablePrivLevel(ctx *DefiniteFullTablePrivLevelContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDefiniteFullTablePrivLevel2(ctx *DefiniteFullTablePrivLevel2Context) any {
+func (v *BaseMySqlParserVisitor) VisitDefiniteFullTablePrivLevel2(ctx *DefiniteFullTablePrivLevel2Context) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDefiniteTablePrivLevel(ctx *DefiniteTablePrivLevelContext) any {
+func (v *BaseMySqlParserVisitor) VisitDefiniteTablePrivLevel(ctx *DefiniteTablePrivLevelContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRenameUserClause(ctx *RenameUserClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitRenameUserClause(ctx *RenameUserClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAnalyzeTable(ctx *AnalyzeTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitAnalyzeTable(ctx *AnalyzeTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCheckTable(ctx *CheckTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitCheckTable(ctx *CheckTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitChecksumTable(ctx *ChecksumTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitChecksumTable(ctx *ChecksumTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitOptimizeTable(ctx *OptimizeTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitOptimizeTable(ctx *OptimizeTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRepairTable(ctx *RepairTableContext) any {
+func (v *BaseMySqlParserVisitor) VisitRepairTable(ctx *RepairTableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCheckTableOption(ctx *CheckTableOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitCheckTableOption(ctx *CheckTableOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCreateUdfunction(ctx *CreateUdfunctionContext) any {
+func (v *BaseMySqlParserVisitor) VisitCreateUdfunction(ctx *CreateUdfunctionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitInstallPlugin(ctx *InstallPluginContext) any {
+func (v *BaseMySqlParserVisitor) VisitInstallPlugin(ctx *InstallPluginContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUninstallPlugin(ctx *UninstallPluginContext) any {
+func (v *BaseMySqlParserVisitor) VisitUninstallPlugin(ctx *UninstallPluginContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSetVariable(ctx *SetVariableContext) any {
+func (v *BaseMySqlParserVisitor) VisitSetVariable(ctx *SetVariableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSetCharset(ctx *SetCharsetContext) any {
+func (v *BaseMySqlParserVisitor) VisitSetCharset(ctx *SetCharsetContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSetNames(ctx *SetNamesContext) any {
+func (v *BaseMySqlParserVisitor) VisitSetNames(ctx *SetNamesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSetPassword(ctx *SetPasswordContext) any {
+func (v *BaseMySqlParserVisitor) VisitSetPassword(ctx *SetPasswordContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSetTransaction(ctx *SetTransactionContext) any {
+func (v *BaseMySqlParserVisitor) VisitSetTransaction(ctx *SetTransactionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSetAutocommit(ctx *SetAutocommitContext) any {
+func (v *BaseMySqlParserVisitor) VisitSetAutocommit(ctx *SetAutocommitContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSetNewValueInsideTrigger(ctx *SetNewValueInsideTriggerContext) any {
+func (v *BaseMySqlParserVisitor) VisitSetNewValueInsideTrigger(ctx *SetNewValueInsideTriggerContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowMasterLogs(ctx *ShowMasterLogsContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowMasterLogs(ctx *ShowMasterLogsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowLogEvents(ctx *ShowLogEventsContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowLogEvents(ctx *ShowLogEventsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowObjectFilter(ctx *ShowObjectFilterContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowObjectFilter(ctx *ShowObjectFilterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowColumns(ctx *ShowColumnsContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowColumns(ctx *ShowColumnsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowCreateDb(ctx *ShowCreateDbContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowCreateDb(ctx *ShowCreateDbContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowCreateFullIdObject(ctx *ShowCreateFullIdObjectContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowCreateFullIdObject(ctx *ShowCreateFullIdObjectContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowCreateUser(ctx *ShowCreateUserContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowCreateUser(ctx *ShowCreateUserContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowEngine(ctx *ShowEngineContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowEngine(ctx *ShowEngineContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowGlobalInfo(ctx *ShowGlobalInfoContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowGlobalInfo(ctx *ShowGlobalInfoContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowErrors(ctx *ShowErrorsContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowErrors(ctx *ShowErrorsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowCountErrors(ctx *ShowCountErrorsContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowCountErrors(ctx *ShowCountErrorsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowSchemaFilter(ctx *ShowSchemaFilterContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowSchemaFilter(ctx *ShowSchemaFilterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowRoutine(ctx *ShowRoutineContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowRoutine(ctx *ShowRoutineContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowGrants(ctx *ShowGrantsContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowGrants(ctx *ShowGrantsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowIndexes(ctx *ShowIndexesContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowIndexes(ctx *ShowIndexesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowOpenTables(ctx *ShowOpenTablesContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowOpenTables(ctx *ShowOpenTablesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowProfile(ctx *ShowProfileContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowProfile(ctx *ShowProfileContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowSlaveStatus(ctx *ShowSlaveStatusContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowSlaveStatus(ctx *ShowSlaveStatusContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitVariableClause(ctx *VariableClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitVariableClause(ctx *VariableClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowCommonEntity(ctx *ShowCommonEntityContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowCommonEntity(ctx *ShowCommonEntityContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowFilter(ctx *ShowFilterContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowFilter(ctx *ShowFilterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowGlobalInfoClause(ctx *ShowGlobalInfoClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowGlobalInfoClause(ctx *ShowGlobalInfoClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowSchemaEntity(ctx *ShowSchemaEntityContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowSchemaEntity(ctx *ShowSchemaEntityContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShowProfileType(ctx *ShowProfileTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitShowProfileType(ctx *ShowProfileTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitBinlogStatement(ctx *BinlogStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitBinlogStatement(ctx *BinlogStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCacheIndexStatement(ctx *CacheIndexStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitCacheIndexStatement(ctx *CacheIndexStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFlushStatement(ctx *FlushStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitFlushStatement(ctx *FlushStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitKillStatement(ctx *KillStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitKillStatement(ctx *KillStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLoadIndexIntoCache(ctx *LoadIndexIntoCacheContext) any {
+func (v *BaseMySqlParserVisitor) VisitLoadIndexIntoCache(ctx *LoadIndexIntoCacheContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitResetStatement(ctx *ResetStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitResetStatement(ctx *ResetStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitShutdownStatement(ctx *ShutdownStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitShutdownStatement(ctx *ShutdownStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableIndexes(ctx *TableIndexesContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableIndexes(ctx *TableIndexesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSimpleFlushOption(ctx *SimpleFlushOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitSimpleFlushOption(ctx *SimpleFlushOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitChannelFlushOption(ctx *ChannelFlushOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitChannelFlushOption(ctx *ChannelFlushOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableFlushOption(ctx *TableFlushOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableFlushOption(ctx *TableFlushOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFlushTableOption(ctx *FlushTableOptionContext) any {
+func (v *BaseMySqlParserVisitor) VisitFlushTableOption(ctx *FlushTableOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLoadedTableIndexes(ctx *LoadedTableIndexesContext) any {
+func (v *BaseMySqlParserVisitor) VisitLoadedTableIndexes(ctx *LoadedTableIndexesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSimpleDescribeStatement(ctx *SimpleDescribeStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSimpleDescribeStatement(ctx *SimpleDescribeStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFullDescribeStatement(ctx *FullDescribeStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitFullDescribeStatement(ctx *FullDescribeStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHelpStatement(ctx *HelpStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitHelpStatement(ctx *HelpStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUseStatement(ctx *UseStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitUseStatement(ctx *UseStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSignalStatement(ctx *SignalStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitSignalStatement(ctx *SignalStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitResignalStatement(ctx *ResignalStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitResignalStatement(ctx *ResignalStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSignalConditionInformation(ctx *SignalConditionInformationContext) any {
+func (v *BaseMySqlParserVisitor) VisitSignalConditionInformation(ctx *SignalConditionInformationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDiagnosticsStatement(ctx *DiagnosticsStatementContext) any {
+func (v *BaseMySqlParserVisitor) VisitDiagnosticsStatement(ctx *DiagnosticsStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDiagnosticsConditionInformationName(ctx *DiagnosticsConditionInformationNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitDiagnosticsConditionInformationName(ctx *DiagnosticsConditionInformationNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDescribeStatements(ctx *DescribeStatementsContext) any {
+func (v *BaseMySqlParserVisitor) VisitDescribeStatements(ctx *DescribeStatementsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDescribeConnection(ctx *DescribeConnectionContext) any {
+func (v *BaseMySqlParserVisitor) VisitDescribeConnection(ctx *DescribeConnectionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFullId(ctx *FullIdContext) any {
+func (v *BaseMySqlParserVisitor) VisitFullId(ctx *FullIdContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTableName(ctx *TableNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitTableName(ctx *TableNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFullColumnName(ctx *FullColumnNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitFullColumnName(ctx *FullColumnNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIndexColumnName(ctx *IndexColumnNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitIndexColumnName(ctx *IndexColumnNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUserName(ctx *UserNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitUserName(ctx *UserNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMysqlVariable(ctx *MysqlVariableContext) any {
+func (v *BaseMySqlParserVisitor) VisitMysqlVariable(ctx *MysqlVariableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCharsetName(ctx *CharsetNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitCharsetName(ctx *CharsetNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCollationName(ctx *CollationNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitCollationName(ctx *CollationNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitEngineName(ctx *EngineNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitEngineName(ctx *EngineNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUuidSet(ctx *UuidSetContext) any {
+func (v *BaseMySqlParserVisitor) VisitUuidSet(ctx *UuidSetContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitXid(ctx *XidContext) any {
+func (v *BaseMySqlParserVisitor) VisitXid(ctx *XidContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitXuidStringId(ctx *XuidStringIdContext) any {
+func (v *BaseMySqlParserVisitor) VisitXuidStringId(ctx *XuidStringIdContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAuthPlugin(ctx *AuthPluginContext) any {
+func (v *BaseMySqlParserVisitor) VisitAuthPlugin(ctx *AuthPluginContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUid(ctx *UidContext) any {
+func (v *BaseMySqlParserVisitor) VisitUid(ctx *UidContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSimpleId(ctx *SimpleIdContext) any {
+func (v *BaseMySqlParserVisitor) VisitSimpleId(ctx *SimpleIdContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDottedId(ctx *DottedIdContext) any {
+func (v *BaseMySqlParserVisitor) VisitDottedId(ctx *DottedIdContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDecimalLiteral(ctx *DecimalLiteralContext) any {
+func (v *BaseMySqlParserVisitor) VisitDecimalLiteral(ctx *DecimalLiteralContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFileSizeLiteral(ctx *FileSizeLiteralContext) any {
+func (v *BaseMySqlParserVisitor) VisitFileSizeLiteral(ctx *FileSizeLiteralContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStringLiteral(ctx *StringLiteralContext) any {
+func (v *BaseMySqlParserVisitor) VisitStringLiteral(ctx *StringLiteralContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitBooleanLiteral(ctx *BooleanLiteralContext) any {
+func (v *BaseMySqlParserVisitor) VisitBooleanLiteral(ctx *BooleanLiteralContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitHexadecimalLiteral(ctx *HexadecimalLiteralContext) any {
+func (v *BaseMySqlParserVisitor) VisitHexadecimalLiteral(ctx *HexadecimalLiteralContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitNullNotnull(ctx *NullNotnullContext) any {
+func (v *BaseMySqlParserVisitor) VisitNullNotnull(ctx *NullNotnullContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitConstant(ctx *ConstantContext) any {
+func (v *BaseMySqlParserVisitor) VisitConstant(ctx *ConstantContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitStringDataType(ctx *StringDataTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitStringDataType(ctx *StringDataTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitNationalStringDataType(ctx *NationalStringDataTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitNationalStringDataType(ctx *NationalStringDataTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitNationalVaryingStringDataType(ctx *NationalVaryingStringDataTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitNationalVaryingStringDataType(ctx *NationalVaryingStringDataTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDimensionDataType(ctx *DimensionDataTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitDimensionDataType(ctx *DimensionDataTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSimpleDataType(ctx *SimpleDataTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitSimpleDataType(ctx *SimpleDataTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCollectionDataType(ctx *CollectionDataTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitCollectionDataType(ctx *CollectionDataTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSpatialDataType(ctx *SpatialDataTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitSpatialDataType(ctx *SpatialDataTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLongVarcharDataType(ctx *LongVarcharDataTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitLongVarcharDataType(ctx *LongVarcharDataTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLongVarbinaryDataType(ctx *LongVarbinaryDataTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitLongVarbinaryDataType(ctx *LongVarbinaryDataTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCollectionOptions(ctx *CollectionOptionsContext) any {
+func (v *BaseMySqlParserVisitor) VisitCollectionOptions(ctx *CollectionOptionsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitConvertedDataType(ctx *ConvertedDataTypeContext) any {
+func (v *BaseMySqlParserVisitor) VisitConvertedDataType(ctx *ConvertedDataTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLengthOneDimension(ctx *LengthOneDimensionContext) any {
+func (v *BaseMySqlParserVisitor) VisitLengthOneDimension(ctx *LengthOneDimensionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLengthTwoDimension(ctx *LengthTwoDimensionContext) any {
+func (v *BaseMySqlParserVisitor) VisitLengthTwoDimension(ctx *LengthTwoDimensionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLengthTwoOptionalDimension(ctx *LengthTwoOptionalDimensionContext) any {
+func (v *BaseMySqlParserVisitor) VisitLengthTwoOptionalDimension(ctx *LengthTwoOptionalDimensionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUidList(ctx *UidListContext) any {
+func (v *BaseMySqlParserVisitor) VisitUidList(ctx *UidListContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTables(ctx *TablesContext) any {
+func (v *BaseMySqlParserVisitor) VisitTables(ctx *TablesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIndexColumnNames(ctx *IndexColumnNamesContext) any {
+func (v *BaseMySqlParserVisitor) VisitIndexColumnNames(ctx *IndexColumnNamesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitExpressions(ctx *ExpressionsContext) any {
+func (v *BaseMySqlParserVisitor) VisitExpressions(ctx *ExpressionsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitExpressionsWithDefaults(ctx *ExpressionsWithDefaultsContext) any {
+func (v *BaseMySqlParserVisitor) VisitExpressionsWithDefaults(ctx *ExpressionsWithDefaultsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitConstants(ctx *ConstantsContext) any {
+func (v *BaseMySqlParserVisitor) VisitConstants(ctx *ConstantsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSimpleStrings(ctx *SimpleStringsContext) any {
+func (v *BaseMySqlParserVisitor) VisitSimpleStrings(ctx *SimpleStringsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUserVariables(ctx *UserVariablesContext) any {
+func (v *BaseMySqlParserVisitor) VisitUserVariables(ctx *UserVariablesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDefaultValue(ctx *DefaultValueContext) any {
+func (v *BaseMySqlParserVisitor) VisitDefaultValue(ctx *DefaultValueContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCurrentTimestamp(ctx *CurrentTimestampContext) any {
+func (v *BaseMySqlParserVisitor) VisitCurrentTimestamp(ctx *CurrentTimestampContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitExpressionOrDefault(ctx *ExpressionOrDefaultContext) any {
+func (v *BaseMySqlParserVisitor) VisitExpressionOrDefault(ctx *ExpressionOrDefaultContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIfExists(ctx *IfExistsContext) any {
+func (v *BaseMySqlParserVisitor) VisitIfExists(ctx *IfExistsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIfNotExists(ctx *IfNotExistsContext) any {
+func (v *BaseMySqlParserVisitor) VisitIfNotExists(ctx *IfNotExistsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSpecificFunctionCall(ctx *SpecificFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitSpecificFunctionCall(ctx *SpecificFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAggregateFunctionCall(ctx *AggregateFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitAggregateFunctionCall(ctx *AggregateFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitScalarFunctionCall(ctx *ScalarFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitScalarFunctionCall(ctx *ScalarFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUdfFunctionCall(ctx *UdfFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitUdfFunctionCall(ctx *UdfFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPasswordFunctionCall(ctx *PasswordFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitPasswordFunctionCall(ctx *PasswordFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSimpleFunctionCall(ctx *SimpleFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitSimpleFunctionCall(ctx *SimpleFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDataTypeFunctionCall(ctx *DataTypeFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitDataTypeFunctionCall(ctx *DataTypeFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitValuesFunctionCall(ctx *ValuesFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitValuesFunctionCall(ctx *ValuesFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCaseExpressionFunctionCall(ctx *CaseExpressionFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitCaseExpressionFunctionCall(ctx *CaseExpressionFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCaseFunctionCall(ctx *CaseFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitCaseFunctionCall(ctx *CaseFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCharFunctionCall(ctx *CharFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitCharFunctionCall(ctx *CharFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPositionFunctionCall(ctx *PositionFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitPositionFunctionCall(ctx *PositionFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSubstrFunctionCall(ctx *SubstrFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitSubstrFunctionCall(ctx *SubstrFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTrimFunctionCall(ctx *TrimFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitTrimFunctionCall(ctx *TrimFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitWeightFunctionCall(ctx *WeightFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitWeightFunctionCall(ctx *WeightFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitExtractFunctionCall(ctx *ExtractFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitExtractFunctionCall(ctx *ExtractFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitGetFormatFunctionCall(ctx *GetFormatFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitGetFormatFunctionCall(ctx *GetFormatFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitJsonValueFunctionCall(ctx *JsonValueFunctionCallContext) any {
+func (v *BaseMySqlParserVisitor) VisitJsonValueFunctionCall(ctx *JsonValueFunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCaseFuncAlternative(ctx *CaseFuncAlternativeContext) any {
+func (v *BaseMySqlParserVisitor) VisitCaseFuncAlternative(ctx *CaseFuncAlternativeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLevelWeightList(ctx *LevelWeightListContext) any {
+func (v *BaseMySqlParserVisitor) VisitLevelWeightList(ctx *LevelWeightListContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLevelWeightRange(ctx *LevelWeightRangeContext) any {
+func (v *BaseMySqlParserVisitor) VisitLevelWeightRange(ctx *LevelWeightRangeContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLevelInWeightListElement(ctx *LevelInWeightListElementContext) any {
+func (v *BaseMySqlParserVisitor) VisitLevelInWeightListElement(ctx *LevelInWeightListElementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitAggregateWindowedFunction(ctx *AggregateWindowedFunctionContext) any {
+func (v *BaseMySqlParserVisitor) VisitAggregateWindowedFunction(ctx *AggregateWindowedFunctionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitScalarFunctionName(ctx *ScalarFunctionNameContext) any {
+func (v *BaseMySqlParserVisitor) VisitScalarFunctionName(ctx *ScalarFunctionNameContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPasswordFunctionClause(ctx *PasswordFunctionClauseContext) any {
+func (v *BaseMySqlParserVisitor) VisitPasswordFunctionClause(ctx *PasswordFunctionClauseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFunctionArgs(ctx *FunctionArgsContext) any {
+func (v *BaseMySqlParserVisitor) VisitFunctionArgs(ctx *FunctionArgsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFunctionArg(ctx *FunctionArgContext) any {
+func (v *BaseMySqlParserVisitor) VisitFunctionArg(ctx *FunctionArgContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIsExpression(ctx *IsExpressionContext) any {
+func (v *BaseMySqlParserVisitor) VisitIsExpression(ctx *IsExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitNotExpression(ctx *NotExpressionContext) any {
+func (v *BaseMySqlParserVisitor) VisitNotExpression(ctx *NotExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLogicalExpression(ctx *LogicalExpressionContext) any {
+func (v *BaseMySqlParserVisitor) VisitLogicalExpression(ctx *LogicalExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPredicateExpression(ctx *PredicateExpressionContext) any {
+func (v *BaseMySqlParserVisitor) VisitPredicateExpression(ctx *PredicateExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSoundsLikePredicate(ctx *SoundsLikePredicateContext) any {
+func (v *BaseMySqlParserVisitor) VisitSoundsLikePredicate(ctx *SoundsLikePredicateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitExpressionAtomPredicate(ctx *ExpressionAtomPredicateContext) any {
+func (v *BaseMySqlParserVisitor) VisitExpressionAtomPredicate(ctx *ExpressionAtomPredicateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSubqueryComparisonPredicate(ctx *SubqueryComparisonPredicateContext) any {
+func (v *BaseMySqlParserVisitor) VisitSubqueryComparisonPredicate(ctx *SubqueryComparisonPredicateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitJsonMemberOfPredicate(ctx *JsonMemberOfPredicateContext) any {
+func (v *BaseMySqlParserVisitor) VisitJsonMemberOfPredicate(ctx *JsonMemberOfPredicateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitBinaryComparisonPredicate(ctx *BinaryComparisonPredicateContext) any {
+func (v *BaseMySqlParserVisitor) VisitBinaryComparisonPredicate(ctx *BinaryComparisonPredicateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitInPredicate(ctx *InPredicateContext) any {
+func (v *BaseMySqlParserVisitor) VisitInPredicate(ctx *InPredicateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitBetweenPredicate(ctx *BetweenPredicateContext) any {
+func (v *BaseMySqlParserVisitor) VisitBetweenPredicate(ctx *BetweenPredicateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIsNullPredicate(ctx *IsNullPredicateContext) any {
+func (v *BaseMySqlParserVisitor) VisitIsNullPredicate(ctx *IsNullPredicateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLikePredicate(ctx *LikePredicateContext) any {
+func (v *BaseMySqlParserVisitor) VisitLikePredicate(ctx *LikePredicateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitRegexpPredicate(ctx *RegexpPredicateContext) any {
+func (v *BaseMySqlParserVisitor) VisitRegexpPredicate(ctx *RegexpPredicateContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUnaryExpressionAtom(ctx *UnaryExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitUnaryExpressionAtom(ctx *UnaryExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCollateExpressionAtom(ctx *CollateExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitCollateExpressionAtom(ctx *CollateExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMysqlVariableExpressionAtom(ctx *MysqlVariableExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitMysqlVariableExpressionAtom(ctx *MysqlVariableExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitNestedExpressionAtom(ctx *NestedExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitNestedExpressionAtom(ctx *NestedExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitNestedRowExpressionAtom(ctx *NestedRowExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitNestedRowExpressionAtom(ctx *NestedRowExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMathExpressionAtom(ctx *MathExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitMathExpressionAtom(ctx *MathExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitExistsExpressionAtom(ctx *ExistsExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitExistsExpressionAtom(ctx *ExistsExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIntervalExpressionAtom(ctx *IntervalExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitIntervalExpressionAtom(ctx *IntervalExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitJsonExpressionAtom(ctx *JsonExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitJsonExpressionAtom(ctx *JsonExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitSubqueryExpressionAtom(ctx *SubqueryExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitSubqueryExpressionAtom(ctx *SubqueryExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitConstantExpressionAtom(ctx *ConstantExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitConstantExpressionAtom(ctx *ConstantExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFunctionCallExpressionAtom(ctx *FunctionCallExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitFunctionCallExpressionAtom(ctx *FunctionCallExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitBinaryExpressionAtom(ctx *BinaryExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitBinaryExpressionAtom(ctx *BinaryExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFullColumnNameExpressionAtom(ctx *FullColumnNameExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitFullColumnNameExpressionAtom(ctx *FullColumnNameExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitBitExpressionAtom(ctx *BitExpressionAtomContext) any {
+func (v *BaseMySqlParserVisitor) VisitBitExpressionAtom(ctx *BitExpressionAtomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitUnaryOperator(ctx *UnaryOperatorContext) any {
+func (v *BaseMySqlParserVisitor) VisitUnaryOperator(ctx *UnaryOperatorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitComparisonOperator(ctx *ComparisonOperatorContext) any {
+func (v *BaseMySqlParserVisitor) VisitComparisonOperator(ctx *ComparisonOperatorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitLogicalOperator(ctx *LogicalOperatorContext) any {
+func (v *BaseMySqlParserVisitor) VisitLogicalOperator(ctx *LogicalOperatorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitBitOperator(ctx *BitOperatorContext) any {
+func (v *BaseMySqlParserVisitor) VisitBitOperator(ctx *BitOperatorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitMathOperator(ctx *MathOperatorContext) any {
+func (v *BaseMySqlParserVisitor) VisitMathOperator(ctx *MathOperatorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitJsonOperator(ctx *JsonOperatorContext) any {
+func (v *BaseMySqlParserVisitor) VisitJsonOperator(ctx *JsonOperatorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitCharsetNameBase(ctx *CharsetNameBaseContext) any {
+func (v *BaseMySqlParserVisitor) VisitCharsetNameBase(ctx *CharsetNameBaseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitTransactionLevelBase(ctx *TransactionLevelBaseContext) any {
+func (v *BaseMySqlParserVisitor) VisitTransactionLevelBase(ctx *TransactionLevelBaseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitPrivilegesBase(ctx *PrivilegesBaseContext) any {
+func (v *BaseMySqlParserVisitor) VisitPrivilegesBase(ctx *PrivilegesBaseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitIntervalTypeBase(ctx *IntervalTypeBaseContext) any {
+func (v *BaseMySqlParserVisitor) VisitIntervalTypeBase(ctx *IntervalTypeBaseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitDataTypeBase(ctx *DataTypeBaseContext) any {
+func (v *BaseMySqlParserVisitor) VisitDataTypeBase(ctx *DataTypeBaseContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitKeywordsCanBeId(ctx *KeywordsCanBeIdContext) any {
+func (v *BaseMySqlParserVisitor) VisitKeywordsCanBeId(ctx *KeywordsCanBeIdContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseMySqlParserVisitor) VisitFunctionNameBase(ctx *FunctionNameBaseContext) any {
+func (v *BaseMySqlParserVisitor) VisitFunctionNameBase(ctx *FunctionNameBaseContext) interface{} {
 	return v.VisitChildren(ctx)
 }

@@ -2,6 +2,7 @@ package ast
 
 import (
 	"fmt"
+	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 	"os"
 	"path"
 	"path/filepath"
@@ -9,7 +10,6 @@ import (
 
 	"github.com/sllt/tao/tools/taoctl/api/parser/g4/gen/api"
 	"github.com/sllt/tao/tools/taoctl/util/console"
-	"github.com/zeromicro/antlr"
 )
 
 type (

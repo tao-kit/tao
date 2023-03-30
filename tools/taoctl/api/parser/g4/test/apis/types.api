@@ -18,6 +18,7 @@ type FooBar {
     Array1 []*Bar
     Array2 []Bar
     Pointer *Bar
+    ID snowflake.ID
     Bar
 }
 

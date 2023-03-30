@@ -231,6 +231,20 @@ func TestDataType_Time(t *testing.T) {
 	})
 }
 
+func TestDataType_SnowflakeID(t *testing.T) {
+	dt := func(p *api.ApiParserParser, visitor *ast.ApiVisitor) any {
+		return p.DataType().Accept(visitor)
+	}
+	t.Run("normal", func(t *testing.T) {
+		v, err := parser.Accept(dt, `snowflake.ID`)
+		assert.Nil(t, err)
+		id := v.(*ast.SnowflakeID)
+		assert.True(t, id.Equal(&ast.SnowflakeID{
+			Literal: ast.NewTextExpr("snowflake.ID"),
+		}))
+	})
+}
+
 func TestDataType_Pointer(t *testing.T) {
 	dt := func(p *api.ApiParserParser, visitor *ast.ApiVisitor) any {
 		return p.PointerType().Accept(visitor)

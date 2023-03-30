@@ -1,219 +1,238 @@
+// Code generated from ApiParser.g4 by ANTLR 4.12.0. DO NOT EDIT.
+
 package api // ApiParser
 import (
 	"fmt"
-	"reflect"
 	"strconv"
+	"sync"
 
-	"github.com/zeromicro/antlr"
+	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 )
 
 // Suppress unused import errors
 var _ = fmt.Printf
-var _ = reflect.Copy
 var _ = strconv.Itoa
-
-var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 27, 356,
-	4, 2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7,
-	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 4, 13,
-	9, 13, 4, 14, 9, 14, 4, 15, 9, 15, 4, 16, 9, 16, 4, 17, 9, 17, 4, 18, 9,
-	18, 4, 19, 9, 19, 4, 20, 9, 20, 4, 21, 9, 21, 4, 22, 9, 22, 4, 23, 9, 23,
-	4, 24, 9, 24, 4, 25, 9, 25, 4, 26, 9, 26, 4, 27, 9, 27, 4, 28, 9, 28, 4,
-	29, 9, 29, 4, 30, 9, 30, 4, 31, 9, 31, 4, 32, 9, 32, 4, 33, 9, 33, 4, 34,
-	9, 34, 4, 35, 9, 35, 4, 36, 9, 36, 4, 37, 9, 37, 4, 38, 9, 38, 4, 39, 9,
-	39, 3, 2, 7, 2, 80, 10, 2, 12, 2, 14, 2, 83, 11, 2, 3, 3, 3, 3, 3, 3, 3,
-	3, 3, 3, 5, 3, 90, 10, 3, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 5, 3,
-	5, 5, 5, 100, 10, 5, 3, 6, 3, 6, 3, 6, 3, 6, 3, 7, 3, 7, 3, 7, 3, 7, 6,
-	7, 110, 10, 7, 13, 7, 14, 7, 111, 3, 7, 3, 7, 3, 8, 3, 8, 3, 9, 3, 9, 3,
-	9, 3, 10, 3, 10, 3, 10, 3, 10, 6, 10, 125, 10, 10, 13, 10, 14, 10, 126,
-	3, 10, 3, 10, 3, 11, 3, 11, 5, 11, 133, 10, 11, 3, 12, 3, 12, 3, 12, 3,
-	12, 3, 13, 3, 13, 3, 13, 3, 13, 7, 13, 143, 10, 13, 12, 13, 14, 13, 146,
-	11, 13, 3, 13, 3, 13, 3, 14, 3, 14, 5, 14, 152, 10, 14, 3, 15, 3, 15, 5,
-	15, 156, 10, 15, 3, 16, 3, 16, 3, 16, 5, 16, 161, 10, 16, 3, 16, 3, 16,
-	7, 16, 165, 10, 16, 12, 16, 14, 16, 168, 11, 16, 3, 16, 3, 16, 3, 17, 3,
-	17, 3, 17, 5, 17, 175, 10, 17, 3, 17, 3, 17, 3, 18, 3, 18, 3, 18, 5, 18,
-	182, 10, 18, 3, 18, 3, 18, 7, 18, 186, 10, 18, 12, 18, 14, 18, 189, 11,
-	18, 3, 18, 3, 18, 3, 19, 3, 19, 3, 19, 5, 19, 196, 10, 19, 3, 19, 3, 19,
-	3, 20, 3, 20, 3, 20, 5, 20, 203, 10, 20, 3, 21, 3, 21, 3, 21, 3, 21, 5,
-	21, 209, 10, 21, 3, 22, 5, 22, 212, 10, 22, 3, 22, 3, 22, 3, 23, 3, 23,
-	3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 5, 23, 224, 10, 23, 3, 24, 3,
-	24, 3, 24, 3, 24, 3, 25, 3, 25, 3, 25, 3, 25, 3, 25, 3, 25, 3, 25, 3, 25,
-	3, 26, 3, 26, 3, 26, 3, 26, 3, 27, 5, 27, 243, 10, 27, 3, 27, 3, 27, 3,
-	28, 3, 28, 3, 28, 6, 28, 250, 10, 28, 13, 28, 14, 28, 251, 3, 28, 3, 28,
-	3, 29, 3, 29, 3, 29, 3, 29, 3, 29, 7, 29, 261, 10, 29, 12, 29, 14, 29,
-	264, 11, 29, 3, 29, 3, 29, 3, 30, 5, 30, 269, 10, 30, 3, 30, 3, 30, 5,
-	30, 273, 10, 30, 3, 30, 3, 30, 3, 31, 3, 31, 5, 31, 279, 10, 31, 3, 31,
-	6, 31, 282, 10, 31, 13, 31, 14, 31, 283, 3, 31, 5, 31, 287, 10, 31, 3,
-	31, 5, 31, 290, 10, 31, 3, 32, 3, 32, 3, 32, 3, 33, 3, 33, 3, 33, 3, 33,
-	5, 33, 299, 10, 33, 3, 33, 5, 33, 302, 10, 33, 3, 34, 3, 34, 5, 34, 306,
-	10, 34, 3, 34, 3, 34, 3, 35, 3, 35, 3, 35, 5, 35, 313, 10, 35, 3, 35, 3,
-	35, 3, 36, 3, 36, 3, 36, 3, 36, 3, 37, 3, 37, 5, 37, 323, 10, 37, 6, 37,
-	325, 10, 37, 13, 37, 14, 37, 326, 3, 38, 3, 38, 3, 38, 3, 38, 7, 38, 333,
-	10, 38, 12, 38, 14, 38, 336, 11, 38, 3, 38, 3, 38, 3, 38, 3, 38, 5, 38,
-	342, 10, 38, 6, 38, 344, 10, 38, 13, 38, 14, 38, 345, 3, 38, 5, 38, 349,
-	10, 38, 3, 39, 6, 39, 352, 10, 39, 13, 39, 14, 39, 353, 3, 39, 2, 2, 40,
-	2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38,
-	40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74,
-	76, 2, 3, 3, 2, 26, 27, 2, 365, 2, 81, 3, 2, 2, 2, 4, 89, 3, 2, 2, 2, 6,
-	91, 3, 2, 2, 2, 8, 99, 3, 2, 2, 2, 10, 101, 3, 2, 2, 2, 12, 105, 3, 2,
-	2, 2, 14, 115, 3, 2, 2, 2, 16, 117, 3, 2, 2, 2, 18, 120, 3, 2, 2, 2, 20,
-	132, 3, 2, 2, 2, 22, 134, 3, 2, 2, 2, 24, 138, 3, 2, 2, 2, 26, 151, 3,
-	2, 2, 2, 28, 155, 3, 2, 2, 2, 30, 157, 3, 2, 2, 2, 32, 171, 3, 2, 2, 2,
-	34, 178, 3, 2, 2, 2, 36, 192, 3, 2, 2, 2, 38, 202, 3, 2, 2, 2, 40, 204,
-	3, 2, 2, 2, 42, 211, 3, 2, 2, 2, 44, 223, 3, 2, 2, 2, 46, 225, 3, 2, 2,
-	2, 48, 229, 3, 2, 2, 2, 50, 237, 3, 2, 2, 2, 52, 242, 3, 2, 2, 2, 54, 246,
-	3, 2, 2, 2, 56, 255, 3, 2, 2, 2, 58, 268, 3, 2, 2, 2, 60, 276, 3, 2, 2,
-	2, 62, 291, 3, 2, 2, 2, 64, 294, 3, 2, 2, 2, 66, 303, 3, 2, 2, 2, 68, 309,
-	3, 2, 2, 2, 70, 316, 3, 2, 2, 2, 72, 324, 3, 2, 2, 2, 74, 348, 3, 2, 2,
-	2, 76, 351, 3, 2, 2, 2, 78, 80, 5, 4, 3, 2, 79, 78, 3, 2, 2, 2, 80, 83,
-	3, 2, 2, 2, 81, 79, 3, 2, 2, 2, 81, 82, 3, 2, 2, 2, 82, 3, 3, 2, 2, 2,
-	83, 81, 3, 2, 2, 2, 84, 90, 5, 6, 4, 2, 85, 90, 5, 8, 5, 2, 86, 90, 5,
-	18, 10, 2, 87, 90, 5, 20, 11, 2, 88, 90, 5, 52, 27, 2, 89, 84, 3, 2, 2,
-	2, 89, 85, 3, 2, 2, 2, 89, 86, 3, 2, 2, 2, 89, 87, 3, 2, 2, 2, 89, 88,
-	3, 2, 2, 2, 90, 5, 3, 2, 2, 2, 91, 92, 8, 4, 1, 2, 92, 93, 7, 26, 2, 2,
-	93, 94, 7, 3, 2, 2, 94, 95, 8, 4, 1, 2, 95, 96, 7, 23, 2, 2, 96, 7, 3,
-	2, 2, 2, 97, 100, 5, 10, 6, 2, 98, 100, 5, 12, 7, 2, 99, 97, 3, 2, 2, 2,
-	99, 98, 3, 2, 2, 2, 100, 9, 3, 2, 2, 2, 101, 102, 8, 6, 1, 2, 102, 103,
-	7, 26, 2, 2, 103, 104, 5, 16, 9, 2, 104, 11, 3, 2, 2, 2, 105, 106, 8, 7,
-	1, 2, 106, 107, 7, 26, 2, 2, 107, 109, 7, 4, 2, 2, 108, 110, 5, 14, 8,
-	2, 109, 108, 3, 2, 2, 2, 110, 111, 3, 2, 2, 2, 111, 109, 3, 2, 2, 2, 111,
-	112, 3, 2, 2, 2, 112, 113, 3, 2, 2, 2, 113, 114, 7, 5, 2, 2, 114, 13, 3,
-	2, 2, 2, 115, 116, 5, 16, 9, 2, 116, 15, 3, 2, 2, 2, 117, 118, 8, 9, 1,
-	2, 118, 119, 7, 23, 2, 2, 119, 17, 3, 2, 2, 2, 120, 121, 8, 10, 1, 2, 121,
-	122, 7, 26, 2, 2, 122, 124, 7, 4, 2, 2, 123, 125, 5, 70, 36, 2, 124, 123,
-	3, 2, 2, 2, 125, 126, 3, 2, 2, 2, 126, 124, 3, 2, 2, 2, 126, 127, 3, 2,
-	2, 2, 127, 128, 3, 2, 2, 2, 128, 129, 7, 5, 2, 2, 129, 19, 3, 2, 2, 2,
-	130, 133, 5, 22, 12, 2, 131, 133, 5, 24, 13, 2, 132, 130, 3, 2, 2, 2, 132,
-	131, 3, 2, 2, 2, 133, 21, 3, 2, 2, 2, 134, 135, 8, 12, 1, 2, 135, 136,
-	7, 26, 2, 2, 136, 137, 5, 26, 14, 2, 137, 23, 3, 2, 2, 2, 138, 139, 8,
-	13, 1, 2, 139, 140, 7, 26, 2, 2, 140, 144, 7, 4, 2, 2, 141, 143, 5, 28,
-	15, 2, 142, 141, 3, 2, 2, 2, 143, 146, 3, 2, 2, 2, 144, 142, 3, 2, 2, 2,
-	144, 145, 3, 2, 2, 2, 145, 147, 3, 2, 2, 2, 146, 144, 3, 2, 2, 2, 147,
-	148, 7, 5, 2, 2, 148, 25, 3, 2, 2, 2, 149, 152, 5, 30, 16, 2, 150, 152,
-	5, 32, 17, 2, 151, 149, 3, 2, 2, 2, 151, 150, 3, 2, 2, 2, 152, 27, 3, 2,
-	2, 2, 153, 156, 5, 34, 18, 2, 154, 156, 5, 36, 19, 2, 155, 153, 3, 2, 2,
-	2, 155, 154, 3, 2, 2, 2, 156, 29, 3, 2, 2, 2, 157, 158, 8, 16, 1, 2, 158,
-	160, 7, 26, 2, 2, 159, 161, 7, 26, 2, 2, 160, 159, 3, 2, 2, 2, 160, 161,
-	3, 2, 2, 2, 161, 162, 3, 2, 2, 2, 162, 166, 7, 6, 2, 2, 163, 165, 5, 38,
-	20, 2, 164, 163, 3, 2, 2, 2, 165, 168, 3, 2, 2, 2, 166, 164, 3, 2, 2, 2,
-	166, 167, 3, 2, 2, 2, 167, 169, 3, 2, 2, 2, 168, 166, 3, 2, 2, 2, 169,
-	170, 7, 7, 2, 2, 170, 31, 3, 2, 2, 2, 171, 172, 8, 17, 1, 2, 172, 174,
-	7, 26, 2, 2, 173, 175, 7, 3, 2, 2, 174, 173, 3, 2, 2, 2, 174, 175, 3, 2,
-	2, 2, 175, 176, 3, 2, 2, 2, 176, 177, 5, 44, 23, 2, 177, 33, 3, 2, 2, 2,
-	178, 179, 8, 18, 1, 2, 179, 181, 7, 26, 2, 2, 180, 182, 7, 26, 2, 2, 181,
-	180, 3, 2, 2, 2, 181, 182, 3, 2, 2, 2, 182, 183, 3, 2, 2, 2, 183, 187,
-	7, 6, 2, 2, 184, 186, 5, 38, 20, 2, 185, 184, 3, 2, 2, 2, 186, 189, 3,
-	2, 2, 2, 187, 185, 3, 2, 2, 2, 187, 188, 3, 2, 2, 2, 188, 190, 3, 2, 2,
-	2, 189, 187, 3, 2, 2, 2, 190, 191, 7, 7, 2, 2, 191, 35, 3, 2, 2, 2, 192,
-	193, 8, 19, 1, 2, 193, 195, 7, 26, 2, 2, 194, 196, 7, 3, 2, 2, 195, 194,
-	3, 2, 2, 2, 195, 196, 3, 2, 2, 2, 196, 197, 3, 2, 2, 2, 197, 198, 5, 44,
-	23, 2, 198, 37, 3, 2, 2, 2, 199, 200, 6, 20, 2, 2, 200, 203, 5, 40, 21,
-	2, 201, 203, 5, 42, 22, 2, 202, 199, 3, 2, 2, 2, 202, 201, 3, 2, 2, 2,
-	203, 39, 3, 2, 2, 2, 204, 205, 8, 21, 1, 2, 205, 206, 7, 26, 2, 2, 206,
-	208, 5, 44, 23, 2, 207, 209, 7, 24, 2, 2, 208, 207, 3, 2, 2, 2, 208, 209,
-	3, 2, 2, 2, 209, 41, 3, 2, 2, 2, 210, 212, 7, 8, 2, 2, 211, 210, 3, 2,
-	2, 2, 211, 212, 3, 2, 2, 2, 212, 213, 3, 2, 2, 2, 213, 214, 7, 26, 2, 2,
-	214, 43, 3, 2, 2, 2, 215, 216, 8, 23, 1, 2, 216, 224, 7, 26, 2, 2, 217,
-	224, 5, 48, 25, 2, 218, 224, 5, 50, 26, 2, 219, 224, 7, 18, 2, 2, 220,
-	224, 7, 9, 2, 2, 221, 224, 5, 46, 24, 2, 222, 224, 5, 30, 16, 2, 223, 215,
-	3, 2, 2, 2, 223, 217, 3, 2, 2, 2, 223, 218, 3, 2, 2, 2, 223, 219, 3, 2,
-	2, 2, 223, 220, 3, 2, 2, 2, 223, 221, 3, 2, 2, 2, 223, 222, 3, 2, 2, 2,
-	224, 45, 3, 2, 2, 2, 225, 226, 7, 8, 2, 2, 226, 227, 8, 24, 1, 2, 227,
-	228, 7, 26, 2, 2, 228, 47, 3, 2, 2, 2, 229, 230, 8, 25, 1, 2, 230, 231,
-	7, 26, 2, 2, 231, 232, 7, 10, 2, 2, 232, 233, 8, 25, 1, 2, 233, 234, 7,
-	26, 2, 2, 234, 235, 7, 11, 2, 2, 235, 236, 5, 44, 23, 2, 236, 49, 3, 2,
-	2, 2, 237, 238, 7, 10, 2, 2, 238, 239, 7, 11, 2, 2, 239, 240, 5, 44, 23,
-	2, 240, 51, 3, 2, 2, 2, 241, 243, 5, 54, 28, 2, 242, 241, 3, 2, 2, 2, 242,
-	243, 3, 2, 2, 2, 243, 244, 3, 2, 2, 2, 244, 245, 5, 56, 29, 2, 245, 53,
-	3, 2, 2, 2, 246, 247, 7, 19, 2, 2, 247, 249, 7, 4, 2, 2, 248, 250, 5, 70,
-	36, 2, 249, 248, 3, 2, 2, 2, 250, 251, 3, 2, 2, 2, 251, 249, 3, 2, 2, 2,
-	251, 252, 3, 2, 2, 2, 252, 253, 3, 2, 2, 2, 253, 254, 7, 5, 2, 2, 254,
-	55, 3, 2, 2, 2, 255, 256, 8, 29, 1, 2, 256, 257, 7, 26, 2, 2, 257, 258,
-	5, 72, 37, 2, 258, 262, 7, 6, 2, 2, 259, 261, 5, 58, 30, 2, 260, 259, 3,
-	2, 2, 2, 261, 264, 3, 2, 2, 2, 262, 260, 3, 2, 2, 2, 262, 263, 3, 2, 2,
-	2, 263, 265, 3, 2, 2, 2, 264, 262, 3, 2, 2, 2, 265, 266, 7, 7, 2, 2, 266,
-	57, 3, 2, 2, 2, 267, 269, 5, 60, 31, 2, 268, 267, 3, 2, 2, 2, 268, 269,
-	3, 2, 2, 2, 269, 272, 3, 2, 2, 2, 270, 273, 5, 54, 28, 2, 271, 273, 5,
-	62, 32, 2, 272, 270, 3, 2, 2, 2, 272, 271, 3, 2, 2, 2, 273, 274, 3, 2,
-	2, 2, 274, 275, 5, 64, 33, 2, 275, 59, 3, 2, 2, 2, 276, 278, 7, 16, 2,
-	2, 277, 279, 7, 4, 2, 2, 278, 277, 3, 2, 2, 2, 278, 279, 3, 2, 2, 2, 279,
-	286, 3, 2, 2, 2, 280, 282, 5, 70, 36, 2, 281, 280, 3, 2, 2, 2, 282, 283,
-	3, 2, 2, 2, 283, 281, 3, 2, 2, 2, 283, 284, 3, 2, 2, 2, 284, 287, 3, 2,
-	2, 2, 285, 287, 7, 23, 2, 2, 286, 281, 3, 2, 2, 2, 286, 285, 3, 2, 2, 2,
-	287, 289, 3, 2, 2, 2, 288, 290, 7, 5, 2, 2, 289, 288, 3, 2, 2, 2, 289,
-	290, 3, 2, 2, 2, 290, 61, 3, 2, 2, 2, 291, 292, 7, 17, 2, 2, 292, 293,
-	7, 26, 2, 2, 293, 63, 3, 2, 2, 2, 294, 295, 8, 33, 1, 2, 295, 296, 7, 26,
-	2, 2, 296, 298, 5, 74, 38, 2, 297, 299, 5, 66, 34, 2, 298, 297, 3, 2, 2,
-	2, 298, 299, 3, 2, 2, 2, 299, 301, 3, 2, 2, 2, 300, 302, 5, 68, 35, 2,
-	301, 300, 3, 2, 2, 2, 301, 302, 3, 2, 2, 2, 302, 65, 3, 2, 2, 2, 303, 305,
-	7, 4, 2, 2, 304, 306, 7, 26, 2, 2, 305, 304, 3, 2, 2, 2, 305, 306, 3, 2,
-	2, 2, 306, 307, 3, 2, 2, 2, 307, 308, 7, 5, 2, 2, 308, 67, 3, 2, 2, 2,
-	309, 310, 7, 12, 2, 2, 310, 312, 7, 4, 2, 2, 311, 313, 5, 44, 23, 2, 312,
-	311, 3, 2, 2, 2, 312, 313, 3, 2, 2, 2, 313, 314, 3, 2, 2, 2, 314, 315,
-	7, 5, 2, 2, 315, 69, 3, 2, 2, 2, 316, 317, 7, 26, 2, 2, 317, 318, 8, 36,
-	1, 2, 318, 319, 7, 25, 2, 2, 319, 71, 3, 2, 2, 2, 320, 322, 7, 26, 2, 2,
-	321, 323, 7, 13, 2, 2, 322, 321, 3, 2, 2, 2, 322, 323, 3, 2, 2, 2, 323,
-	325, 3, 2, 2, 2, 324, 320, 3, 2, 2, 2, 325, 326, 3, 2, 2, 2, 326, 324,
-	3, 2, 2, 2, 326, 327, 3, 2, 2, 2, 327, 73, 3, 2, 2, 2, 328, 329, 7, 14,
-	2, 2, 329, 334, 5, 76, 39, 2, 330, 331, 7, 13, 2, 2, 331, 333, 5, 76, 39,
-	2, 332, 330, 3, 2, 2, 2, 333, 336, 3, 2, 2, 2, 334, 332, 3, 2, 2, 2, 334,
-	335, 3, 2, 2, 2, 335, 344, 3, 2, 2, 2, 336, 334, 3, 2, 2, 2, 337, 338,
-	7, 15, 2, 2, 338, 341, 5, 76, 39, 2, 339, 340, 7, 13, 2, 2, 340, 342, 5,
-	76, 39, 2, 341, 339, 3, 2, 2, 2, 341, 342, 3, 2, 2, 2, 342, 344, 3, 2,
-	2, 2, 343, 328, 3, 2, 2, 2, 343, 337, 3, 2, 2, 2, 344, 345, 3, 2, 2, 2,
-	345, 343, 3, 2, 2, 2, 345, 346, 3, 2, 2, 2, 346, 349, 3, 2, 2, 2, 347,
-	349, 7, 14, 2, 2, 348, 343, 3, 2, 2, 2, 348, 347, 3, 2, 2, 2, 349, 75,
-	3, 2, 2, 2, 350, 352, 9, 2, 2, 2, 351, 350, 3, 2, 2, 2, 352, 353, 3, 2,
-	2, 2, 353, 351, 3, 2, 2, 2, 353, 354, 3, 2, 2, 2, 354, 77, 3, 2, 2, 2,
-	42, 81, 89, 99, 111, 126, 132, 144, 151, 155, 160, 166, 174, 181, 187,
-	195, 202, 208, 211, 223, 242, 251, 262, 268, 272, 278, 283, 286, 289, 298,
-	301, 305, 312, 322, 326, 334, 341, 343, 345, 348, 353,
-}
-var literalNames = []string{
-	"", "'='", "'('", "')'", "'{'", "'}'", "'*'", "'time.Time'", "'['", "']'",
-	"'returns'", "'-'", "'/'", "'/:'", "'@doc'", "'@handler'", "'interface{}'",
-	"'@server'",
-}
-var symbolicNames = []string{
-	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "ATDOC", "ATHANDLER",
-	"INTERFACE", "ATSERVER", "WS", "COMMENT", "LINE_COMMENT", "STRING", "RAW_STRING",
-	"LINE_VALUE", "ID", "LetterOrDigit",
-}
-
-var ruleNames = []string{
-	"api", "spec", "syntaxLit", "importSpec", "importLit", "importBlock", "importBlockValue",
-	"importValue", "infoSpec", "typeSpec", "typeLit", "typeBlock", "typeLitBody",
-	"typeBlockBody", "typeStruct", "typeAlias", "typeBlockStruct", "typeBlockAlias",
-	"field", "normalField", "anonymousFiled", "dataType", "pointerType", "mapType",
-	"arrayType", "serviceSpec", "atServer", "serviceApi", "serviceRoute", "atDoc",
-	"atHandler", "route", "body", "replybody", "kvLit", "serviceName", "path",
-	"pathItem",
-}
+var _ = sync.Once{}
 
 type ApiParserParser struct {
 	*antlr.BaseParser
 }
 
-// NewApiParserParser produces a new parser instance for the optional input antlr.TokenStream.
-//
-// The *ApiParserParser instance produced may be reused by calling the SetInputStream method.
-// The initial parser configuration is expensive to construct, and the object is not thread-safe;
-// however, if used within a Golang sync.Pool, the construction cost amortizes well and the
-// objects can be used in a thread-safe manner.
-func NewApiParserParser(input antlr.TokenStream) *ApiParserParser {
-	this := new(ApiParserParser)
-	deserializer := antlr.NewATNDeserializer(nil)
-	deserializedATN := deserializer.DeserializeFromUInt16(parserATN)
-	decisionToDFA := make([]*antlr.DFA, len(deserializedATN.DecisionToState))
-	for index, ds := range deserializedATN.DecisionToState {
-		decisionToDFA[index] = antlr.NewDFA(ds, index)
-	}
-	this.BaseParser = antlr.NewBaseParser(input)
+var apiparserParserStaticData struct {
+	once                   sync.Once
+	serializedATN          []int32
+	literalNames           []string
+	symbolicNames          []string
+	ruleNames              []string
+	predictionContextCache *antlr.PredictionContextCache
+	atn                    *antlr.ATN
+	decisionToDFA          []*antlr.DFA
+}
 
-	this.Interpreter = antlr.NewParserATNSimulator(this, deserializedATN, decisionToDFA, antlr.NewPredictionContextCache())
-	this.RuleNames = ruleNames
-	this.LiteralNames = literalNames
-	this.SymbolicNames = symbolicNames
+func apiparserParserInit() {
+	staticData := &apiparserParserStaticData
+	staticData.literalNames = []string{
+		"", "'='", "'('", "')'", "'{'", "'}'", "'*'", "'time.Time'", "'snowflake.ID'",
+		"'['", "']'", "'returns'", "'-'", "'/'", "'/:'", "'@doc'", "'@handler'",
+		"'interface{}'", "'@server'",
+	}
+	staticData.symbolicNames = []string{
+		"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "ATDOC",
+		"ATHANDLER", "INTERFACE", "ATSERVER", "WS", "COMMENT", "LINE_COMMENT",
+		"STRING", "RAW_STRING", "LINE_VALUE", "ID",
+	}
+	staticData.ruleNames = []string{
+		"api", "spec", "syntaxLit", "importSpec", "importLit", "importBlock",
+		"importBlockValue", "importValue", "infoSpec", "typeSpec", "typeLit",
+		"typeBlock", "typeLitBody", "typeBlockBody", "typeStruct", "typeAlias",
+		"typeBlockStruct", "typeBlockAlias", "field", "normalField", "anonymousFiled",
+		"dataType", "pointerType", "mapType", "arrayType", "serviceSpec", "atServer",
+		"serviceApi", "serviceRoute", "atDoc", "atHandler", "route", "body",
+		"replybody", "kvLit", "serviceName", "path",
+	}
+	staticData.predictionContextCache = antlr.NewPredictionContextCache()
+	staticData.serializedATN = []int32{
+		4, 1, 25, 348, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
+		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
+		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
+		21, 7, 21, 2, 22, 7, 22, 2, 23, 7, 23, 2, 24, 7, 24, 2, 25, 7, 25, 2, 26,
+		7, 26, 2, 27, 7, 27, 2, 28, 7, 28, 2, 29, 7, 29, 2, 30, 7, 30, 2, 31, 7,
+		31, 2, 32, 7, 32, 2, 33, 7, 33, 2, 34, 7, 34, 2, 35, 7, 35, 2, 36, 7, 36,
+		1, 0, 5, 0, 76, 8, 0, 10, 0, 12, 0, 79, 9, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		1, 3, 1, 86, 8, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 1, 3, 3, 3,
+		96, 8, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 4, 5, 106, 8,
+		5, 11, 5, 12, 5, 107, 1, 5, 1, 5, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 8, 1,
+		8, 1, 8, 1, 8, 4, 8, 121, 8, 8, 11, 8, 12, 8, 122, 1, 8, 1, 8, 1, 9, 1,
+		9, 3, 9, 129, 8, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1, 11, 1, 11, 1, 11, 1,
+		11, 5, 11, 139, 8, 11, 10, 11, 12, 11, 142, 9, 11, 1, 11, 1, 11, 1, 12,
+		1, 12, 3, 12, 148, 8, 12, 1, 13, 1, 13, 3, 13, 152, 8, 13, 1, 14, 1, 14,
+		1, 14, 3, 14, 157, 8, 14, 1, 14, 1, 14, 5, 14, 161, 8, 14, 10, 14, 12,
+		14, 164, 9, 14, 1, 14, 1, 14, 1, 15, 1, 15, 1, 15, 3, 15, 171, 8, 15, 1,
+		15, 1, 15, 1, 16, 1, 16, 1, 16, 3, 16, 178, 8, 16, 1, 16, 1, 16, 5, 16,
+		182, 8, 16, 10, 16, 12, 16, 185, 9, 16, 1, 16, 1, 16, 1, 17, 1, 17, 1,
+		17, 3, 17, 192, 8, 17, 1, 17, 1, 17, 1, 18, 1, 18, 1, 18, 3, 18, 199, 8,
+		18, 1, 19, 1, 19, 1, 19, 1, 19, 3, 19, 205, 8, 19, 1, 20, 3, 20, 208, 8,
+		20, 1, 20, 1, 20, 1, 21, 1, 21, 1, 21, 1, 21, 1, 21, 1, 21, 1, 21, 1, 21,
+		1, 21, 3, 21, 221, 8, 21, 1, 22, 1, 22, 1, 22, 1, 22, 1, 23, 1, 23, 1,
+		23, 1, 23, 1, 23, 1, 23, 1, 23, 1, 23, 1, 24, 1, 24, 1, 24, 1, 24, 1, 25,
+		3, 25, 240, 8, 25, 1, 25, 1, 25, 1, 26, 1, 26, 1, 26, 4, 26, 247, 8, 26,
+		11, 26, 12, 26, 248, 1, 26, 1, 26, 1, 27, 1, 27, 1, 27, 1, 27, 1, 27, 5,
+		27, 258, 8, 27, 10, 27, 12, 27, 261, 9, 27, 1, 27, 1, 27, 1, 28, 3, 28,
+		266, 8, 28, 1, 28, 1, 28, 3, 28, 270, 8, 28, 1, 28, 1, 28, 1, 29, 1, 29,
+		3, 29, 276, 8, 29, 1, 29, 4, 29, 279, 8, 29, 11, 29, 12, 29, 280, 1, 29,
+		3, 29, 284, 8, 29, 1, 29, 3, 29, 287, 8, 29, 1, 30, 1, 30, 1, 30, 1, 31,
+		1, 31, 1, 31, 1, 31, 3, 31, 296, 8, 31, 1, 31, 3, 31, 299, 8, 31, 1, 32,
+		1, 32, 3, 32, 303, 8, 32, 1, 32, 1, 32, 1, 33, 1, 33, 1, 33, 3, 33, 310,
+		8, 33, 1, 33, 1, 33, 1, 34, 1, 34, 1, 34, 1, 34, 1, 35, 1, 35, 3, 35, 320,
+		8, 35, 4, 35, 322, 8, 35, 11, 35, 12, 35, 323, 1, 36, 1, 36, 1, 36, 1,
+		36, 5, 36, 330, 8, 36, 10, 36, 12, 36, 333, 9, 36, 1, 36, 1, 36, 1, 36,
+		1, 36, 3, 36, 339, 8, 36, 4, 36, 341, 8, 36, 11, 36, 12, 36, 342, 1, 36,
+		3, 36, 346, 8, 36, 1, 36, 0, 0, 37, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18,
+		20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54,
+		56, 58, 60, 62, 64, 66, 68, 70, 72, 0, 0, 358, 0, 77, 1, 0, 0, 0, 2, 85,
+		1, 0, 0, 0, 4, 87, 1, 0, 0, 0, 6, 95, 1, 0, 0, 0, 8, 97, 1, 0, 0, 0, 10,
+		101, 1, 0, 0, 0, 12, 111, 1, 0, 0, 0, 14, 113, 1, 0, 0, 0, 16, 116, 1,
+		0, 0, 0, 18, 128, 1, 0, 0, 0, 20, 130, 1, 0, 0, 0, 22, 134, 1, 0, 0, 0,
+		24, 147, 1, 0, 0, 0, 26, 151, 1, 0, 0, 0, 28, 153, 1, 0, 0, 0, 30, 167,
+		1, 0, 0, 0, 32, 174, 1, 0, 0, 0, 34, 188, 1, 0, 0, 0, 36, 198, 1, 0, 0,
+		0, 38, 200, 1, 0, 0, 0, 40, 207, 1, 0, 0, 0, 42, 220, 1, 0, 0, 0, 44, 222,
+		1, 0, 0, 0, 46, 226, 1, 0, 0, 0, 48, 234, 1, 0, 0, 0, 50, 239, 1, 0, 0,
+		0, 52, 243, 1, 0, 0, 0, 54, 252, 1, 0, 0, 0, 56, 265, 1, 0, 0, 0, 58, 273,
+		1, 0, 0, 0, 60, 288, 1, 0, 0, 0, 62, 291, 1, 0, 0, 0, 64, 300, 1, 0, 0,
+		0, 66, 306, 1, 0, 0, 0, 68, 313, 1, 0, 0, 0, 70, 321, 1, 0, 0, 0, 72, 345,
+		1, 0, 0, 0, 74, 76, 3, 2, 1, 0, 75, 74, 1, 0, 0, 0, 76, 79, 1, 0, 0, 0,
+		77, 75, 1, 0, 0, 0, 77, 78, 1, 0, 0, 0, 78, 1, 1, 0, 0, 0, 79, 77, 1, 0,
+		0, 0, 80, 86, 3, 4, 2, 0, 81, 86, 3, 6, 3, 0, 82, 86, 3, 16, 8, 0, 83,
+		86, 3, 18, 9, 0, 84, 86, 3, 50, 25, 0, 85, 80, 1, 0, 0, 0, 85, 81, 1, 0,
+		0, 0, 85, 82, 1, 0, 0, 0, 85, 83, 1, 0, 0, 0, 85, 84, 1, 0, 0, 0, 86, 3,
+		1, 0, 0, 0, 87, 88, 6, 2, -1, 0, 88, 89, 5, 25, 0, 0, 89, 90, 5, 1, 0,
+		0, 90, 91, 6, 2, -1, 0, 91, 92, 5, 22, 0, 0, 92, 5, 1, 0, 0, 0, 93, 96,
+		3, 8, 4, 0, 94, 96, 3, 10, 5, 0, 95, 93, 1, 0, 0, 0, 95, 94, 1, 0, 0, 0,
+		96, 7, 1, 0, 0, 0, 97, 98, 6, 4, -1, 0, 98, 99, 5, 25, 0, 0, 99, 100, 3,
+		14, 7, 0, 100, 9, 1, 0, 0, 0, 101, 102, 6, 5, -1, 0, 102, 103, 5, 25, 0,
+		0, 103, 105, 5, 2, 0, 0, 104, 106, 3, 12, 6, 0, 105, 104, 1, 0, 0, 0, 106,
+		107, 1, 0, 0, 0, 107, 105, 1, 0, 0, 0, 107, 108, 1, 0, 0, 0, 108, 109,
+		1, 0, 0, 0, 109, 110, 5, 3, 0, 0, 110, 11, 1, 0, 0, 0, 111, 112, 3, 14,
+		7, 0, 112, 13, 1, 0, 0, 0, 113, 114, 6, 7, -1, 0, 114, 115, 5, 22, 0, 0,
+		115, 15, 1, 0, 0, 0, 116, 117, 6, 8, -1, 0, 117, 118, 5, 25, 0, 0, 118,
+		120, 5, 2, 0, 0, 119, 121, 3, 68, 34, 0, 120, 119, 1, 0, 0, 0, 121, 122,
+		1, 0, 0, 0, 122, 120, 1, 0, 0, 0, 122, 123, 1, 0, 0, 0, 123, 124, 1, 0,
+		0, 0, 124, 125, 5, 3, 0, 0, 125, 17, 1, 0, 0, 0, 126, 129, 3, 20, 10, 0,
+		127, 129, 3, 22, 11, 0, 128, 126, 1, 0, 0, 0, 128, 127, 1, 0, 0, 0, 129,
+		19, 1, 0, 0, 0, 130, 131, 6, 10, -1, 0, 131, 132, 5, 25, 0, 0, 132, 133,
+		3, 24, 12, 0, 133, 21, 1, 0, 0, 0, 134, 135, 6, 11, -1, 0, 135, 136, 5,
+		25, 0, 0, 136, 140, 5, 2, 0, 0, 137, 139, 3, 26, 13, 0, 138, 137, 1, 0,
+		0, 0, 139, 142, 1, 0, 0, 0, 140, 138, 1, 0, 0, 0, 140, 141, 1, 0, 0, 0,
+		141, 143, 1, 0, 0, 0, 142, 140, 1, 0, 0, 0, 143, 144, 5, 3, 0, 0, 144,
+		23, 1, 0, 0, 0, 145, 148, 3, 28, 14, 0, 146, 148, 3, 30, 15, 0, 147, 145,
+		1, 0, 0, 0, 147, 146, 1, 0, 0, 0, 148, 25, 1, 0, 0, 0, 149, 152, 3, 32,
+		16, 0, 150, 152, 3, 34, 17, 0, 151, 149, 1, 0, 0, 0, 151, 150, 1, 0, 0,
+		0, 152, 27, 1, 0, 0, 0, 153, 154, 6, 14, -1, 0, 154, 156, 5, 25, 0, 0,
+		155, 157, 5, 25, 0, 0, 156, 155, 1, 0, 0, 0, 156, 157, 1, 0, 0, 0, 157,
+		158, 1, 0, 0, 0, 158, 162, 5, 4, 0, 0, 159, 161, 3, 36, 18, 0, 160, 159,
+		1, 0, 0, 0, 161, 164, 1, 0, 0, 0, 162, 160, 1, 0, 0, 0, 162, 163, 1, 0,
+		0, 0, 163, 165, 1, 0, 0, 0, 164, 162, 1, 0, 0, 0, 165, 166, 5, 5, 0, 0,
+		166, 29, 1, 0, 0, 0, 167, 168, 6, 15, -1, 0, 168, 170, 5, 25, 0, 0, 169,
+		171, 5, 1, 0, 0, 170, 169, 1, 0, 0, 0, 170, 171, 1, 0, 0, 0, 171, 172,
+		1, 0, 0, 0, 172, 173, 3, 42, 21, 0, 173, 31, 1, 0, 0, 0, 174, 175, 6, 16,
+		-1, 0, 175, 177, 5, 25, 0, 0, 176, 178, 5, 25, 0, 0, 177, 176, 1, 0, 0,
+		0, 177, 178, 1, 0, 0, 0, 178, 179, 1, 0, 0, 0, 179, 183, 5, 4, 0, 0, 180,
+		182, 3, 36, 18, 0, 181, 180, 1, 0, 0, 0, 182, 185, 1, 0, 0, 0, 183, 181,
+		1, 0, 0, 0, 183, 184, 1, 0, 0, 0, 184, 186, 1, 0, 0, 0, 185, 183, 1, 0,
+		0, 0, 186, 187, 5, 5, 0, 0, 187, 33, 1, 0, 0, 0, 188, 189, 6, 17, -1, 0,
+		189, 191, 5, 25, 0, 0, 190, 192, 5, 1, 0, 0, 191, 190, 1, 0, 0, 0, 191,
+		192, 1, 0, 0, 0, 192, 193, 1, 0, 0, 0, 193, 194, 3, 42, 21, 0, 194, 35,
+		1, 0, 0, 0, 195, 196, 4, 18, 0, 0, 196, 199, 3, 38, 19, 0, 197, 199, 3,
+		40, 20, 0, 198, 195, 1, 0, 0, 0, 198, 197, 1, 0, 0, 0, 199, 37, 1, 0, 0,
+		0, 200, 201, 6, 19, -1, 0, 201, 202, 5, 25, 0, 0, 202, 204, 3, 42, 21,
+		0, 203, 205, 5, 23, 0, 0, 204, 203, 1, 0, 0, 0, 204, 205, 1, 0, 0, 0, 205,
+		39, 1, 0, 0, 0, 206, 208, 5, 6, 0, 0, 207, 206, 1, 0, 0, 0, 207, 208, 1,
+		0, 0, 0, 208, 209, 1, 0, 0, 0, 209, 210, 5, 25, 0, 0, 210, 41, 1, 0, 0,
+		0, 211, 212, 6, 21, -1, 0, 212, 221, 5, 25, 0, 0, 213, 221, 3, 46, 23,
+		0, 214, 221, 3, 48, 24, 0, 215, 221, 5, 17, 0, 0, 216, 221, 5, 7, 0, 0,
+		217, 221, 5, 8, 0, 0, 218, 221, 3, 44, 22, 0, 219, 221, 3, 28, 14, 0, 220,
+		211, 1, 0, 0, 0, 220, 213, 1, 0, 0, 0, 220, 214, 1, 0, 0, 0, 220, 215,
+		1, 0, 0, 0, 220, 216, 1, 0, 0, 0, 220, 217, 1, 0, 0, 0, 220, 218, 1, 0,
+		0, 0, 220, 219, 1, 0, 0, 0, 221, 43, 1, 0, 0, 0, 222, 223, 5, 6, 0, 0,
+		223, 224, 6, 22, -1, 0, 224, 225, 5, 25, 0, 0, 225, 45, 1, 0, 0, 0, 226,
+		227, 6, 23, -1, 0, 227, 228, 5, 25, 0, 0, 228, 229, 5, 9, 0, 0, 229, 230,
+		6, 23, -1, 0, 230, 231, 5, 25, 0, 0, 231, 232, 5, 10, 0, 0, 232, 233, 3,
+		42, 21, 0, 233, 47, 1, 0, 0, 0, 234, 235, 5, 9, 0, 0, 235, 236, 5, 10,
+		0, 0, 236, 237, 3, 42, 21, 0, 237, 49, 1, 0, 0, 0, 238, 240, 3, 52, 26,
+		0, 239, 238, 1, 0, 0, 0, 239, 240, 1, 0, 0, 0, 240, 241, 1, 0, 0, 0, 241,
+		242, 3, 54, 27, 0, 242, 51, 1, 0, 0, 0, 243, 244, 5, 18, 0, 0, 244, 246,
+		5, 2, 0, 0, 245, 247, 3, 68, 34, 0, 246, 245, 1, 0, 0, 0, 247, 248, 1,
+		0, 0, 0, 248, 246, 1, 0, 0, 0, 248, 249, 1, 0, 0, 0, 249, 250, 1, 0, 0,
+		0, 250, 251, 5, 3, 0, 0, 251, 53, 1, 0, 0, 0, 252, 253, 6, 27, -1, 0, 253,
+		254, 5, 25, 0, 0, 254, 255, 3, 70, 35, 0, 255, 259, 5, 4, 0, 0, 256, 258,
+		3, 56, 28, 0, 257, 256, 1, 0, 0, 0, 258, 261, 1, 0, 0, 0, 259, 257, 1,
+		0, 0, 0, 259, 260, 1, 0, 0, 0, 260, 262, 1, 0, 0, 0, 261, 259, 1, 0, 0,
+		0, 262, 263, 5, 5, 0, 0, 263, 55, 1, 0, 0, 0, 264, 266, 3, 58, 29, 0, 265,
+		264, 1, 0, 0, 0, 265, 266, 1, 0, 0, 0, 266, 269, 1, 0, 0, 0, 267, 270,
+		3, 52, 26, 0, 268, 270, 3, 60, 30, 0, 269, 267, 1, 0, 0, 0, 269, 268, 1,
+		0, 0, 0, 270, 271, 1, 0, 0, 0, 271, 272, 3, 62, 31, 0, 272, 57, 1, 0, 0,
+		0, 273, 275, 5, 15, 0, 0, 274, 276, 5, 2, 0, 0, 275, 274, 1, 0, 0, 0, 275,
+		276, 1, 0, 0, 0, 276, 283, 1, 0, 0, 0, 277, 279, 3, 68, 34, 0, 278, 277,
+		1, 0, 0, 0, 279, 280, 1, 0, 0, 0, 280, 278, 1, 0, 0, 0, 280, 281, 1, 0,
+		0, 0, 281, 284, 1, 0, 0, 0, 282, 284, 5, 22, 0, 0, 283, 278, 1, 0, 0, 0,
+		283, 282, 1, 0, 0, 0, 284, 286, 1, 0, 0, 0, 285, 287, 5, 3, 0, 0, 286,
+		285, 1, 0, 0, 0, 286, 287, 1, 0, 0, 0, 287, 59, 1, 0, 0, 0, 288, 289, 5,
+		16, 0, 0, 289, 290, 5, 25, 0, 0, 290, 61, 1, 0, 0, 0, 291, 292, 6, 31,
+		-1, 0, 292, 293, 5, 25, 0, 0, 293, 295, 3, 72, 36, 0, 294, 296, 3, 64,
+		32, 0, 295, 294, 1, 0, 0, 0, 295, 296, 1, 0, 0, 0, 296, 298, 1, 0, 0, 0,
+		297, 299, 3, 66, 33, 0, 298, 297, 1, 0, 0, 0, 298, 299, 1, 0, 0, 0, 299,
+		63, 1, 0, 0, 0, 300, 302, 5, 2, 0, 0, 301, 303, 5, 25, 0, 0, 302, 301,
+		1, 0, 0, 0, 302, 303, 1, 0, 0, 0, 303, 304, 1, 0, 0, 0, 304, 305, 5, 3,
+		0, 0, 305, 65, 1, 0, 0, 0, 306, 307, 5, 11, 0, 0, 307, 309, 5, 2, 0, 0,
+		308, 310, 3, 42, 21, 0, 309, 308, 1, 0, 0, 0, 309, 310, 1, 0, 0, 0, 310,
+		311, 1, 0, 0, 0, 311, 312, 5, 3, 0, 0, 312, 67, 1, 0, 0, 0, 313, 314, 5,
+		25, 0, 0, 314, 315, 6, 34, -1, 0, 315, 316, 5, 24, 0, 0, 316, 69, 1, 0,
+		0, 0, 317, 319, 5, 25, 0, 0, 318, 320, 5, 12, 0, 0, 319, 318, 1, 0, 0,
+		0, 319, 320, 1, 0, 0, 0, 320, 322, 1, 0, 0, 0, 321, 317, 1, 0, 0, 0, 322,
+		323, 1, 0, 0, 0, 323, 321, 1, 0, 0, 0, 323, 324, 1, 0, 0, 0, 324, 71, 1,
+		0, 0, 0, 325, 326, 5, 13, 0, 0, 326, 331, 5, 25, 0, 0, 327, 328, 5, 12,
+		0, 0, 328, 330, 5, 25, 0, 0, 329, 327, 1, 0, 0, 0, 330, 333, 1, 0, 0, 0,
+		331, 329, 1, 0, 0, 0, 331, 332, 1, 0, 0, 0, 332, 341, 1, 0, 0, 0, 333,
+		331, 1, 0, 0, 0, 334, 335, 5, 14, 0, 0, 335, 338, 5, 25, 0, 0, 336, 337,
+		5, 12, 0, 0, 337, 339, 5, 25, 0, 0, 338, 336, 1, 0, 0, 0, 338, 339, 1,
+		0, 0, 0, 339, 341, 1, 0, 0, 0, 340, 325, 1, 0, 0, 0, 340, 334, 1, 0, 0,
+		0, 341, 342, 1, 0, 0, 0, 342, 340, 1, 0, 0, 0, 342, 343, 1, 0, 0, 0, 343,
+		346, 1, 0, 0, 0, 344, 346, 5, 13, 0, 0, 345, 340, 1, 0, 0, 0, 345, 344,
+		1, 0, 0, 0, 346, 73, 1, 0, 0, 0, 39, 77, 85, 95, 107, 122, 128, 140, 147,
+		151, 156, 162, 170, 177, 183, 191, 198, 204, 207, 220, 239, 248, 259, 265,
+		269, 275, 280, 283, 286, 295, 298, 302, 309, 319, 323, 331, 338, 340, 342,
+		345,
+	}
+	deserializer := antlr.NewATNDeserializer(nil)
+	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
+	atn := staticData.atn
+	staticData.decisionToDFA = make([]*antlr.DFA, len(atn.DecisionToState))
+	decisionToDFA := staticData.decisionToDFA
+	for index, state := range atn.DecisionToState {
+		decisionToDFA[index] = antlr.NewDFA(state, index)
+	}
+}
+
+// ApiParserParserInit initializes any static state used to implement ApiParserParser. By default the
+// static state used to implement the parser is lazily initialized during the first call to
+// NewApiParserParser(). You can call this function if you wish to initialize the static state ahead
+// of time.
+func ApiParserParserInit() {
+	staticData := &apiparserParserStaticData
+	staticData.once.Do(apiparserParserInit)
+}
+
+// NewApiParserParser produces a new parser instance for the optional input antlr.TokenStream.
+func NewApiParserParser(input antlr.TokenStream) *ApiParserParser {
+	ApiParserParserInit()
+	this := new(ApiParserParser)
+	this.BaseParser = antlr.NewBaseParser(input)
+	staticData := &apiparserParserStaticData
+	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.predictionContextCache)
+	this.RuleNames = staticData.ruleNames
+	this.LiteralNames = staticData.literalNames
+	this.SymbolicNames = staticData.symbolicNames
 	this.GrammarFileName = "ApiParser.g4"
 
 	return this
@@ -221,32 +240,32 @@ func NewApiParserParser(input antlr.TokenStream) *ApiParserParser {
 
 // ApiParserParser tokens.
 const (
-	ApiParserParserEOF           = antlr.TokenEOF
-	ApiParserParserT__0          = 1
-	ApiParserParserT__1          = 2
-	ApiParserParserT__2          = 3
-	ApiParserParserT__3          = 4
-	ApiParserParserT__4          = 5
-	ApiParserParserT__5          = 6
-	ApiParserParserT__6          = 7
-	ApiParserParserT__7          = 8
-	ApiParserParserT__8          = 9
-	ApiParserParserT__9          = 10
-	ApiParserParserT__10         = 11
-	ApiParserParserT__11         = 12
-	ApiParserParserT__12         = 13
-	ApiParserParserATDOC         = 14
-	ApiParserParserATHANDLER     = 15
-	ApiParserParserINTERFACE     = 16
-	ApiParserParserATSERVER      = 17
-	ApiParserParserWS            = 18
-	ApiParserParserCOMMENT       = 19
-	ApiParserParserLINE_COMMENT  = 20
-	ApiParserParserSTRING        = 21
-	ApiParserParserRAW_STRING    = 22
-	ApiParserParserLINE_VALUE    = 23
-	ApiParserParserID            = 24
-	ApiParserParserLetterOrDigit = 25
+	ApiParserParserEOF          = antlr.TokenEOF
+	ApiParserParserT__0         = 1
+	ApiParserParserT__1         = 2
+	ApiParserParserT__2         = 3
+	ApiParserParserT__3         = 4
+	ApiParserParserT__4         = 5
+	ApiParserParserT__5         = 6
+	ApiParserParserT__6         = 7
+	ApiParserParserT__7         = 8
+	ApiParserParserT__8         = 9
+	ApiParserParserT__9         = 10
+	ApiParserParserT__10        = 11
+	ApiParserParserT__11        = 12
+	ApiParserParserT__12        = 13
+	ApiParserParserT__13        = 14
+	ApiParserParserATDOC        = 15
+	ApiParserParserATHANDLER    = 16
+	ApiParserParserINTERFACE    = 17
+	ApiParserParserATSERVER     = 18
+	ApiParserParserWS           = 19
+	ApiParserParserCOMMENT      = 20
+	ApiParserParserLINE_COMMENT = 21
+	ApiParserParserSTRING       = 22
+	ApiParserParserRAW_STRING   = 23
+	ApiParserParserLINE_VALUE   = 24
+	ApiParserParserID           = 25
 )
 
 // ApiParserParser rules.
@@ -288,7 +307,6 @@ const (
 	ApiParserParserRULE_kvLit            = 34
 	ApiParserParserRULE_serviceName      = 35
 	ApiParserParserRULE_path             = 36
-	ApiParserParserRULE_pathItem         = 37
 )
 
 // IApiContext is an interface to support dynamic dispatch.
@@ -297,6 +315,10 @@ type IApiContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	AllSpec() []ISpecContext
+	Spec(i int) ISpecContext
 
 	// IsApiContext differentiates from other interfaces.
 	IsApiContext()
@@ -330,12 +352,20 @@ func NewApiContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoking
 func (s *ApiContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ApiContext) AllSpec() []ISpecContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ISpecContext)(nil)).Elem())
-	var tst = make([]ISpecContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(ISpecContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]ISpecContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(ISpecContext); ok {
 			tst[i] = t.(ISpecContext)
+			i++
 		}
 	}
 
@@ -343,7 +373,17 @@ func (s *ApiContext) AllSpec() []ISpecContext {
 }
 
 func (s *ApiContext) Spec(i int) ISpecContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISpecContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ISpecContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -360,7 +400,19 @@ func (s *ApiContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) st
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *ApiContext) Accept(visitor antlr.ParseTreeVisitor) any {
+func (s *ApiContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(ApiParserListener); ok {
+		listenerT.EnterApi(s)
+	}
+}
+
+func (s *ApiContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(ApiParserListener); ok {
+		listenerT.ExitApi(s)
+	}
+}
+
+func (s *ApiContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 	switch t := visitor.(type) {
 	case ApiParserVisitor:
 		return t.VisitApi(s)
@@ -371,6 +423,9 @@ func (s *ApiContext) Accept(visitor antlr.ParseTreeVisitor) any {
 }
 
 func (p *ApiParserParser) Api() (localctx IApiContext) {
+	this := p
+	_ = this
+
 	localctx = NewApiContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 0, ApiParserParserRULE_api)
 	var _la int
@@ -392,17 +447,17 @@ func (p *ApiParserParser) Api() (localctx IApiContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(79)
+	p.SetState(77)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == ApiParserParserATSERVER || _la == ApiParserParserID {
 		{
-			p.SetState(76)
+			p.SetState(74)
 			p.Spec()
 		}
 
-		p.SetState(81)
+		p.SetState(79)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
@@ -416,6 +471,13 @@ type ISpecContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	SyntaxLit() ISyntaxLitContext
+	ImportSpec() IImportSpecContext
+	InfoSpec() IInfoSpecContext
+	TypeSpec() ITypeSpecContext
+	ServiceSpec() IServiceSpecContext
 
 	// IsSpecContext differentiates from other interfaces.
 	IsSpecContext()
@@ -449,7 +511,13 @@ func NewSpecContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 func (s *SpecContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *SpecContext) SyntaxLit() ISyntaxLitContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISyntaxLitContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ISyntaxLitContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -459,7 +527,13 @@ func (s *SpecContext) SyntaxLit() ISyntaxLitContext {
 }
 
 func (s *SpecContext) ImportSpec() IImportSpecContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IImportSpecContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IImportSpecContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -469,7 +543,13 @@ func (s *SpecContext) ImportSpec() IImportSpecContext {
 }
 
 func (s *SpecContext) InfoSpec() IInfoSpecContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IInfoSpecContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IInfoSpecContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -479,7 +559,13 @@ func (s *SpecContext) InfoSpec() IInfoSpecContext {
 }
 
 func (s *SpecContext) TypeSpec() ITypeSpecContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ITypeSpecContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ITypeSpecContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -489,7 +575,13 @@ func (s *SpecContext) TypeSpec() ITypeSpecContext {
 }
 
 func (s *SpecContext) ServiceSpec() IServiceSpecContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IServiceSpecContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IServiceSpecContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -506,7 +598,19 @@ func (s *SpecContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) s
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *SpecContext) Accept(visitor antlr.ParseTreeVisitor) any {
+func (s *SpecContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(ApiParserListener); ok {
+		listenerT.EnterSpec(s)
+	}
+}
+
+func (s *SpecContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(ApiParserListener); ok {
+		listenerT.ExitSpec(s)
+	}
+}
+
+func (s *SpecContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 	switch t := visitor.(type) {
 	case ApiParserVisitor:
 		return t.VisitSpec(s)
@@ -517,6 +621,9 @@ func (s *SpecContext) Accept(visitor antlr.ParseTreeVisitor) any {
 }
 
 func (p *ApiParserParser) Spec() (localctx ISpecContext) {
+	this := p
+	_ = this
+
 	localctx = NewSpecContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 2, ApiParserParserRULE_spec)
 
@@ -536,120 +643,45 @@ func (p *ApiParserParser) Spec() (localctx ISpecContext) {
 		}
 	}()
 
-	p.SetState(87)
+	p.SetState(85)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(82)
+			p.SetState(80)
 			p.SyntaxLit()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(83)
+			p.SetState(81)
 			p.ImportSpec()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(84)
+			p.SetState(82)
 			p.InfoSpec()
 		}
 
 	case 4:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(85)
+			p.SetState(83)
 			p.TypeSpec()
 		}
 
 	case 5:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(86)
+			p.SetState(84)
 			p.ServiceSpec()
 		}
 
 	}
 
 	return localctx
-}
-
-// ISyntaxLitContext is an interface to support dynamic dispatch.
-type ISyntaxLitContext interface {
-	antlr.ParserRuleContext
-
-	// GetParser returns the parser.
-	GetParser() antlr.Parser
-
-	// GetSyntaxToken returns the syntaxToken token.
-	GetSyntaxToken() antlr.Token
-
-	// GetAssign returns the assign token.
-	GetAssign() antlr.Token
-
-	// GetVersion returns the version token.
-	GetVersion() antlr.Token
-
-	// SetSyntaxToken sets the syntaxToken token.
-	SetSyntaxToken(antlr.Token)
-
-	// SetAssign sets the assign token.
-	SetAssign(antlr.Token)
-
-	// SetVersion sets the version token.
-	SetVersion(antlr.Token)
-
-	// IsSyntaxLitContext differentiates from other interfaces.
-	IsSyntaxLitContext()
-}
-
-type SyntaxLitContext struct {
-	*antlr.BaseParserRuleContext
-	parser      antlr.Parser
-	syntaxToken antlr.Token
-	assign      antlr.Token
-	version     antlr.Token
-}
-
-func NewEmptySyntaxLitContext() *SyntaxLitContext {
-	var p = new(SyntaxLitContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = ApiParserParserRULE_syntaxLit
-	return p
-}
-
-func (*SyntaxLitContext) IsSyntaxLitContext() {}
-
-func NewSyntaxLitContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SyntaxLitContext {
-	var p = new(SyntaxLitContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = ApiParserParserRULE_syntaxLit
-
-	return p
-}
-
-func (s *SyntaxLitContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *SyntaxLitContext) GetSyntaxToken() antlr.Token { return s.syntaxToken }
-
-func (s *SyntaxLitContext) GetAssign() antlr.Token { return s.assign }
-
-func (s *SyntaxLitContext) GetVersion() antlr.Token { return s.version }
-
-func (s *SyntaxLitContext) SetSyntaxToken(v antlr.Token) { s.syntaxToken = v }
-
-func (s *SyntaxLitContext) SetAssign(v antlr.Token) { s.assign = v }
-
-func (s *SyntaxLitContext) SetVersion(v antlr.Token) { s.version = v }
-
-func (s *SyntaxLitContext) ID() antlr.TerminalNode {
-	return s.GetToken(ApiParserParserID, 0)
 }

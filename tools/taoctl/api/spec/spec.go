@@ -21,11 +21,12 @@ type (
 
 	// ApiSpec describes an api file
 	ApiSpec struct {
-		Info    Info
-		Syntax  ApiSyntax
-		Imports []Import
-		Types   []Type
-		Service Service
+		Info           Info
+		Syntax         ApiSyntax
+		Imports        []Import
+		Types          []Type
+		Service        Service
+		HasSnowflakeID bool
 	}
 
 	// Import describes api import
@@ -144,5 +145,10 @@ type (
 	AtDoc struct {
 		Properties map[string]string
 		Text       string
+	}
+
+	// SnowflakeIDType describes a snowflake id for api
+	SnowflakeIDType struct {
+		RawName string
 	}
 )

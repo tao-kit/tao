@@ -5,9 +5,9 @@ import (
 	"io/ioutil"
 	"path/filepath"
 
+	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 	"github.com/sllt/tao/tools/taoctl/pkg/ddl/console"
 	"github.com/sllt/tao/tools/taoctl/pkg/ddl/gen"
-	"github.com/zeromicro/antlr"
 )
 
 var (

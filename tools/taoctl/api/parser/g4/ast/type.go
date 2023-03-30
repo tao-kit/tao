@@ -89,6 +89,11 @@ type (
 		Literal Expr
 	}
 
+	// SnowflakeID describes the snowflake id ast for api syntax
+	SnowflakeID struct {
+		Literal Expr
+	}
+
 	// Pointer describes the pointer ast for api syntax
 	Pointer struct {
 		PointerExpr Expr
@@ -318,6 +323,10 @@ func (v *ApiVisitor) VisitDataType(ctx *api.DataTypeContext) any {
 		timeExpr := v.newExprWithToken(ctx.GetTime())
 		v.panic(timeExpr, "unsupported time.Time")
 		return &Time{Literal: timeExpr}
+	}
+	if ctx.GetSid() != nil {
+		sid := v.newExprWithToken(ctx.GetSid())
+		return &SnowflakeID{Literal: sid}
 	}
 	if ctx.PointerType() != nil {
 		return ctx.PointerType().Accept(v)
@@ -563,6 +572,36 @@ func (t *Time) Equal(dt DataType) bool {
 
 // IsNotNil returns whether the instance is nil or not
 func (t *Time) IsNotNil() bool {
+	return t != nil
+}
+
+// Expr returns the expression string of Time
+func (t *SnowflakeID) Expr() Expr {
+	return t.Literal
+}
+
+// Format provides a formatter for api command, now nothing to do
+func (t *SnowflakeID) Format() error {
+	// todo
+	return nil
+}
+
+// Equal compares whether the element literals in two Time are equal
+func (t *SnowflakeID) Equal(dt DataType) bool {
+	if dt == nil {
+		return false
+	}
+
+	v, ok := dt.(*SnowflakeID)
+	if !ok {
+		return false
+	}
+
+	return t.Literal.Equal(v.Literal)
+}
+
+// IsNotNil returns whether the instance is nil or not
+func (t *SnowflakeID) IsNotNil() bool {
 	return t != nil
 }
 

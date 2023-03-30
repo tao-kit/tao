@@ -1,1668 +1,1668 @@
-// Code generated from /grammar/MySqlParser.g4 by ANTLR 4.9.1. DO NOT EDIT.
+// Code generated from MySqlParser.g4 by ANTLR 4.12.0. DO NOT EDIT.
 
 package gen // MySqlParser
-import "github.com/zeromicro/antlr"
+import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 
 // A complete Visitor for a parse tree produced by MySqlParser.
 type MySqlParserVisitor interface {
 	antlr.ParseTreeVisitor
 
 	// Visit a parse tree produced by MySqlParser#root.
-	VisitRoot(ctx *RootContext) any
+	VisitRoot(ctx *RootContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#sqlStatements.
-	VisitSqlStatements(ctx *SqlStatementsContext) any
+	VisitSqlStatements(ctx *SqlStatementsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#sqlStatement.
-	VisitSqlStatement(ctx *SqlStatementContext) any
+	VisitSqlStatement(ctx *SqlStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#emptyStatement.
-	VisitEmptyStatement(ctx *EmptyStatementContext) any
+	VisitEmptyStatement(ctx *EmptyStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#ddlStatement.
-	VisitDdlStatement(ctx *DdlStatementContext) any
+	VisitDdlStatement(ctx *DdlStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dmlStatement.
-	VisitDmlStatement(ctx *DmlStatementContext) any
+	VisitDmlStatement(ctx *DmlStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#transactionStatement.
-	VisitTransactionStatement(ctx *TransactionStatementContext) any
+	VisitTransactionStatement(ctx *TransactionStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#replicationStatement.
-	VisitReplicationStatement(ctx *ReplicationStatementContext) any
+	VisitReplicationStatement(ctx *ReplicationStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#preparedStatement.
-	VisitPreparedStatement(ctx *PreparedStatementContext) any
+	VisitPreparedStatement(ctx *PreparedStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#compoundStatement.
-	VisitCompoundStatement(ctx *CompoundStatementContext) any
+	VisitCompoundStatement(ctx *CompoundStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#administrationStatement.
-	VisitAdministrationStatement(ctx *AdministrationStatementContext) any
+	VisitAdministrationStatement(ctx *AdministrationStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#utilityStatement.
-	VisitUtilityStatement(ctx *UtilityStatementContext) any
+	VisitUtilityStatement(ctx *UtilityStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createDatabase.
-	VisitCreateDatabase(ctx *CreateDatabaseContext) any
+	VisitCreateDatabase(ctx *CreateDatabaseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createEvent.
-	VisitCreateEvent(ctx *CreateEventContext) any
+	VisitCreateEvent(ctx *CreateEventContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createIndex.
-	VisitCreateIndex(ctx *CreateIndexContext) any
+	VisitCreateIndex(ctx *CreateIndexContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createLogfileGroup.
-	VisitCreateLogfileGroup(ctx *CreateLogfileGroupContext) any
+	VisitCreateLogfileGroup(ctx *CreateLogfileGroupContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createProcedure.
-	VisitCreateProcedure(ctx *CreateProcedureContext) any
+	VisitCreateProcedure(ctx *CreateProcedureContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createFunction.
-	VisitCreateFunction(ctx *CreateFunctionContext) any
+	VisitCreateFunction(ctx *CreateFunctionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createServer.
-	VisitCreateServer(ctx *CreateServerContext) any
+	VisitCreateServer(ctx *CreateServerContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#copyCreateTable.
-	VisitCopyCreateTable(ctx *CopyCreateTableContext) any
+	VisitCopyCreateTable(ctx *CopyCreateTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#queryCreateTable.
-	VisitQueryCreateTable(ctx *QueryCreateTableContext) any
+	VisitQueryCreateTable(ctx *QueryCreateTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#columnCreateTable.
-	VisitColumnCreateTable(ctx *ColumnCreateTableContext) any
+	VisitColumnCreateTable(ctx *ColumnCreateTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createTablespaceInnodb.
-	VisitCreateTablespaceInnodb(ctx *CreateTablespaceInnodbContext) any
+	VisitCreateTablespaceInnodb(ctx *CreateTablespaceInnodbContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createTablespaceNdb.
-	VisitCreateTablespaceNdb(ctx *CreateTablespaceNdbContext) any
+	VisitCreateTablespaceNdb(ctx *CreateTablespaceNdbContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createTrigger.
-	VisitCreateTrigger(ctx *CreateTriggerContext) any
+	VisitCreateTrigger(ctx *CreateTriggerContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createView.
-	VisitCreateView(ctx *CreateViewContext) any
+	VisitCreateView(ctx *CreateViewContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createDatabaseOption.
-	VisitCreateDatabaseOption(ctx *CreateDatabaseOptionContext) any
+	VisitCreateDatabaseOption(ctx *CreateDatabaseOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#ownerStatement.
-	VisitOwnerStatement(ctx *OwnerStatementContext) any
+	VisitOwnerStatement(ctx *OwnerStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#preciseSchedule.
-	VisitPreciseSchedule(ctx *PreciseScheduleContext) any
+	VisitPreciseSchedule(ctx *PreciseScheduleContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#intervalSchedule.
-	VisitIntervalSchedule(ctx *IntervalScheduleContext) any
+	VisitIntervalSchedule(ctx *IntervalScheduleContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#timestampValue.
-	VisitTimestampValue(ctx *TimestampValueContext) any
+	VisitTimestampValue(ctx *TimestampValueContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#intervalExpr.
-	VisitIntervalExpr(ctx *IntervalExprContext) any
+	VisitIntervalExpr(ctx *IntervalExprContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#intervalType.
-	VisitIntervalType(ctx *IntervalTypeContext) any
+	VisitIntervalType(ctx *IntervalTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#enableType.
-	VisitEnableType(ctx *EnableTypeContext) any
+	VisitEnableType(ctx *EnableTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#indexType.
-	VisitIndexType(ctx *IndexTypeContext) any
+	VisitIndexType(ctx *IndexTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#indexOption.
-	VisitIndexOption(ctx *IndexOptionContext) any
+	VisitIndexOption(ctx *IndexOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#procedureParameter.
-	VisitProcedureParameter(ctx *ProcedureParameterContext) any
+	VisitProcedureParameter(ctx *ProcedureParameterContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#functionParameter.
-	VisitFunctionParameter(ctx *FunctionParameterContext) any
+	VisitFunctionParameter(ctx *FunctionParameterContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#routineComment.
-	VisitRoutineComment(ctx *RoutineCommentContext) any
+	VisitRoutineComment(ctx *RoutineCommentContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#routineLanguage.
-	VisitRoutineLanguage(ctx *RoutineLanguageContext) any
+	VisitRoutineLanguage(ctx *RoutineLanguageContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#routineBehavior.
-	VisitRoutineBehavior(ctx *RoutineBehaviorContext) any
+	VisitRoutineBehavior(ctx *RoutineBehaviorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#routineData.
-	VisitRoutineData(ctx *RoutineDataContext) any
+	VisitRoutineData(ctx *RoutineDataContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#routineSecurity.
-	VisitRoutineSecurity(ctx *RoutineSecurityContext) any
+	VisitRoutineSecurity(ctx *RoutineSecurityContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#serverOption.
-	VisitServerOption(ctx *ServerOptionContext) any
+	VisitServerOption(ctx *ServerOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createDefinitions.
-	VisitCreateDefinitions(ctx *CreateDefinitionsContext) any
+	VisitCreateDefinitions(ctx *CreateDefinitionsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#columnDeclaration.
-	VisitColumnDeclaration(ctx *ColumnDeclarationContext) any
+	VisitColumnDeclaration(ctx *ColumnDeclarationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#constraintDeclaration.
-	VisitConstraintDeclaration(ctx *ConstraintDeclarationContext) any
+	VisitConstraintDeclaration(ctx *ConstraintDeclarationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#indexDeclaration.
-	VisitIndexDeclaration(ctx *IndexDeclarationContext) any
+	VisitIndexDeclaration(ctx *IndexDeclarationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#columnDefinition.
-	VisitColumnDefinition(ctx *ColumnDefinitionContext) any
+	VisitColumnDefinition(ctx *ColumnDefinitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#nullColumnConstraint.
-	VisitNullColumnConstraint(ctx *NullColumnConstraintContext) any
+	VisitNullColumnConstraint(ctx *NullColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#defaultColumnConstraint.
-	VisitDefaultColumnConstraint(ctx *DefaultColumnConstraintContext) any
+	VisitDefaultColumnConstraint(ctx *DefaultColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#autoIncrementColumnConstraint.
-	VisitAutoIncrementColumnConstraint(ctx *AutoIncrementColumnConstraintContext) any
+	VisitAutoIncrementColumnConstraint(ctx *AutoIncrementColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#primaryKeyColumnConstraint.
-	VisitPrimaryKeyColumnConstraint(ctx *PrimaryKeyColumnConstraintContext) any
+	VisitPrimaryKeyColumnConstraint(ctx *PrimaryKeyColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#uniqueKeyColumnConstraint.
-	VisitUniqueKeyColumnConstraint(ctx *UniqueKeyColumnConstraintContext) any
+	VisitUniqueKeyColumnConstraint(ctx *UniqueKeyColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#commentColumnConstraint.
-	VisitCommentColumnConstraint(ctx *CommentColumnConstraintContext) any
+	VisitCommentColumnConstraint(ctx *CommentColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#formatColumnConstraint.
-	VisitFormatColumnConstraint(ctx *FormatColumnConstraintContext) any
+	VisitFormatColumnConstraint(ctx *FormatColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#storageColumnConstraint.
-	VisitStorageColumnConstraint(ctx *StorageColumnConstraintContext) any
+	VisitStorageColumnConstraint(ctx *StorageColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#referenceColumnConstraint.
-	VisitReferenceColumnConstraint(ctx *ReferenceColumnConstraintContext) any
+	VisitReferenceColumnConstraint(ctx *ReferenceColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#collateColumnConstraint.
-	VisitCollateColumnConstraint(ctx *CollateColumnConstraintContext) any
+	VisitCollateColumnConstraint(ctx *CollateColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#generatedColumnConstraint.
-	VisitGeneratedColumnConstraint(ctx *GeneratedColumnConstraintContext) any
+	VisitGeneratedColumnConstraint(ctx *GeneratedColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#serialDefaultColumnConstraint.
-	VisitSerialDefaultColumnConstraint(ctx *SerialDefaultColumnConstraintContext) any
+	VisitSerialDefaultColumnConstraint(ctx *SerialDefaultColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#checkColumnConstraint.
-	VisitCheckColumnConstraint(ctx *CheckColumnConstraintContext) any
+	VisitCheckColumnConstraint(ctx *CheckColumnConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#primaryKeyTableConstraint.
-	VisitPrimaryKeyTableConstraint(ctx *PrimaryKeyTableConstraintContext) any
+	VisitPrimaryKeyTableConstraint(ctx *PrimaryKeyTableConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#uniqueKeyTableConstraint.
-	VisitUniqueKeyTableConstraint(ctx *UniqueKeyTableConstraintContext) any
+	VisitUniqueKeyTableConstraint(ctx *UniqueKeyTableConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#foreignKeyTableConstraint.
-	VisitForeignKeyTableConstraint(ctx *ForeignKeyTableConstraintContext) any
+	VisitForeignKeyTableConstraint(ctx *ForeignKeyTableConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#checkTableConstraint.
-	VisitCheckTableConstraint(ctx *CheckTableConstraintContext) any
+	VisitCheckTableConstraint(ctx *CheckTableConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#referenceDefinition.
-	VisitReferenceDefinition(ctx *ReferenceDefinitionContext) any
+	VisitReferenceDefinition(ctx *ReferenceDefinitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#referenceAction.
-	VisitReferenceAction(ctx *ReferenceActionContext) any
+	VisitReferenceAction(ctx *ReferenceActionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#referenceControlType.
-	VisitReferenceControlType(ctx *ReferenceControlTypeContext) any
+	VisitReferenceControlType(ctx *ReferenceControlTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#simpleIndexDeclaration.
-	VisitSimpleIndexDeclaration(ctx *SimpleIndexDeclarationContext) any
+	VisitSimpleIndexDeclaration(ctx *SimpleIndexDeclarationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#specialIndexDeclaration.
-	VisitSpecialIndexDeclaration(ctx *SpecialIndexDeclarationContext) any
+	VisitSpecialIndexDeclaration(ctx *SpecialIndexDeclarationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionEngine.
-	VisitTableOptionEngine(ctx *TableOptionEngineContext) any
+	VisitTableOptionEngine(ctx *TableOptionEngineContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionAutoIncrement.
-	VisitTableOptionAutoIncrement(ctx *TableOptionAutoIncrementContext) any
+	VisitTableOptionAutoIncrement(ctx *TableOptionAutoIncrementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionAverage.
-	VisitTableOptionAverage(ctx *TableOptionAverageContext) any
+	VisitTableOptionAverage(ctx *TableOptionAverageContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionCharset.
-	VisitTableOptionCharset(ctx *TableOptionCharsetContext) any
+	VisitTableOptionCharset(ctx *TableOptionCharsetContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionChecksum.
-	VisitTableOptionChecksum(ctx *TableOptionChecksumContext) any
+	VisitTableOptionChecksum(ctx *TableOptionChecksumContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionCollate.
-	VisitTableOptionCollate(ctx *TableOptionCollateContext) any
+	VisitTableOptionCollate(ctx *TableOptionCollateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionComment.
-	VisitTableOptionComment(ctx *TableOptionCommentContext) any
+	VisitTableOptionComment(ctx *TableOptionCommentContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionCompression.
-	VisitTableOptionCompression(ctx *TableOptionCompressionContext) any
+	VisitTableOptionCompression(ctx *TableOptionCompressionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionConnection.
-	VisitTableOptionConnection(ctx *TableOptionConnectionContext) any
+	VisitTableOptionConnection(ctx *TableOptionConnectionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionDataDirectory.
-	VisitTableOptionDataDirectory(ctx *TableOptionDataDirectoryContext) any
+	VisitTableOptionDataDirectory(ctx *TableOptionDataDirectoryContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionDelay.
-	VisitTableOptionDelay(ctx *TableOptionDelayContext) any
+	VisitTableOptionDelay(ctx *TableOptionDelayContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionEncryption.
-	VisitTableOptionEncryption(ctx *TableOptionEncryptionContext) any
+	VisitTableOptionEncryption(ctx *TableOptionEncryptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionIndexDirectory.
-	VisitTableOptionIndexDirectory(ctx *TableOptionIndexDirectoryContext) any
+	VisitTableOptionIndexDirectory(ctx *TableOptionIndexDirectoryContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionInsertMethod.
-	VisitTableOptionInsertMethod(ctx *TableOptionInsertMethodContext) any
+	VisitTableOptionInsertMethod(ctx *TableOptionInsertMethodContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionKeyBlockSize.
-	VisitTableOptionKeyBlockSize(ctx *TableOptionKeyBlockSizeContext) any
+	VisitTableOptionKeyBlockSize(ctx *TableOptionKeyBlockSizeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionMaxRows.
-	VisitTableOptionMaxRows(ctx *TableOptionMaxRowsContext) any
+	VisitTableOptionMaxRows(ctx *TableOptionMaxRowsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionMinRows.
-	VisitTableOptionMinRows(ctx *TableOptionMinRowsContext) any
+	VisitTableOptionMinRows(ctx *TableOptionMinRowsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionPackKeys.
-	VisitTableOptionPackKeys(ctx *TableOptionPackKeysContext) any
+	VisitTableOptionPackKeys(ctx *TableOptionPackKeysContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionPassword.
-	VisitTableOptionPassword(ctx *TableOptionPasswordContext) any
+	VisitTableOptionPassword(ctx *TableOptionPasswordContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionRowFormat.
-	VisitTableOptionRowFormat(ctx *TableOptionRowFormatContext) any
+	VisitTableOptionRowFormat(ctx *TableOptionRowFormatContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionRecalculation.
-	VisitTableOptionRecalculation(ctx *TableOptionRecalculationContext) any
+	VisitTableOptionRecalculation(ctx *TableOptionRecalculationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionPersistent.
-	VisitTableOptionPersistent(ctx *TableOptionPersistentContext) any
+	VisitTableOptionPersistent(ctx *TableOptionPersistentContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionSamplePage.
-	VisitTableOptionSamplePage(ctx *TableOptionSamplePageContext) any
+	VisitTableOptionSamplePage(ctx *TableOptionSamplePageContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionTablespace.
-	VisitTableOptionTablespace(ctx *TableOptionTablespaceContext) any
+	VisitTableOptionTablespace(ctx *TableOptionTablespaceContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableOptionUnion.
-	VisitTableOptionUnion(ctx *TableOptionUnionContext) any
+	VisitTableOptionUnion(ctx *TableOptionUnionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tablespaceStorage.
-	VisitTablespaceStorage(ctx *TablespaceStorageContext) any
+	VisitTablespaceStorage(ctx *TablespaceStorageContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionDefinitions.
-	VisitPartitionDefinitions(ctx *PartitionDefinitionsContext) any
+	VisitPartitionDefinitions(ctx *PartitionDefinitionsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionFunctionHash.
-	VisitPartitionFunctionHash(ctx *PartitionFunctionHashContext) any
+	VisitPartitionFunctionHash(ctx *PartitionFunctionHashContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionFunctionKey.
-	VisitPartitionFunctionKey(ctx *PartitionFunctionKeyContext) any
+	VisitPartitionFunctionKey(ctx *PartitionFunctionKeyContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionFunctionRange.
-	VisitPartitionFunctionRange(ctx *PartitionFunctionRangeContext) any
+	VisitPartitionFunctionRange(ctx *PartitionFunctionRangeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionFunctionList.
-	VisitPartitionFunctionList(ctx *PartitionFunctionListContext) any
+	VisitPartitionFunctionList(ctx *PartitionFunctionListContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#subPartitionFunctionHash.
-	VisitSubPartitionFunctionHash(ctx *SubPartitionFunctionHashContext) any
+	VisitSubPartitionFunctionHash(ctx *SubPartitionFunctionHashContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#subPartitionFunctionKey.
-	VisitSubPartitionFunctionKey(ctx *SubPartitionFunctionKeyContext) any
+	VisitSubPartitionFunctionKey(ctx *SubPartitionFunctionKeyContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionComparison.
-	VisitPartitionComparison(ctx *PartitionComparisonContext) any
+	VisitPartitionComparison(ctx *PartitionComparisonContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionListAtom.
-	VisitPartitionListAtom(ctx *PartitionListAtomContext) any
+	VisitPartitionListAtom(ctx *PartitionListAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionListVector.
-	VisitPartitionListVector(ctx *PartitionListVectorContext) any
+	VisitPartitionListVector(ctx *PartitionListVectorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionSimple.
-	VisitPartitionSimple(ctx *PartitionSimpleContext) any
+	VisitPartitionSimple(ctx *PartitionSimpleContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionDefinerAtom.
-	VisitPartitionDefinerAtom(ctx *PartitionDefinerAtomContext) any
+	VisitPartitionDefinerAtom(ctx *PartitionDefinerAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionDefinerVector.
-	VisitPartitionDefinerVector(ctx *PartitionDefinerVectorContext) any
+	VisitPartitionDefinerVector(ctx *PartitionDefinerVectorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#subpartitionDefinition.
-	VisitSubpartitionDefinition(ctx *SubpartitionDefinitionContext) any
+	VisitSubpartitionDefinition(ctx *SubpartitionDefinitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionOptionEngine.
-	VisitPartitionOptionEngine(ctx *PartitionOptionEngineContext) any
+	VisitPartitionOptionEngine(ctx *PartitionOptionEngineContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionOptionComment.
-	VisitPartitionOptionComment(ctx *PartitionOptionCommentContext) any
+	VisitPartitionOptionComment(ctx *PartitionOptionCommentContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionOptionDataDirectory.
-	VisitPartitionOptionDataDirectory(ctx *PartitionOptionDataDirectoryContext) any
+	VisitPartitionOptionDataDirectory(ctx *PartitionOptionDataDirectoryContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionOptionIndexDirectory.
-	VisitPartitionOptionIndexDirectory(ctx *PartitionOptionIndexDirectoryContext) any
+	VisitPartitionOptionIndexDirectory(ctx *PartitionOptionIndexDirectoryContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionOptionMaxRows.
-	VisitPartitionOptionMaxRows(ctx *PartitionOptionMaxRowsContext) any
+	VisitPartitionOptionMaxRows(ctx *PartitionOptionMaxRowsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionOptionMinRows.
-	VisitPartitionOptionMinRows(ctx *PartitionOptionMinRowsContext) any
+	VisitPartitionOptionMinRows(ctx *PartitionOptionMinRowsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionOptionTablespace.
-	VisitPartitionOptionTablespace(ctx *PartitionOptionTablespaceContext) any
+	VisitPartitionOptionTablespace(ctx *PartitionOptionTablespaceContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#partitionOptionNodeGroup.
-	VisitPartitionOptionNodeGroup(ctx *PartitionOptionNodeGroupContext) any
+	VisitPartitionOptionNodeGroup(ctx *PartitionOptionNodeGroupContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterSimpleDatabase.
-	VisitAlterSimpleDatabase(ctx *AlterSimpleDatabaseContext) any
+	VisitAlterSimpleDatabase(ctx *AlterSimpleDatabaseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterUpgradeName.
-	VisitAlterUpgradeName(ctx *AlterUpgradeNameContext) any
+	VisitAlterUpgradeName(ctx *AlterUpgradeNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterEvent.
-	VisitAlterEvent(ctx *AlterEventContext) any
+	VisitAlterEvent(ctx *AlterEventContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterFunction.
-	VisitAlterFunction(ctx *AlterFunctionContext) any
+	VisitAlterFunction(ctx *AlterFunctionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterInstance.
-	VisitAlterInstance(ctx *AlterInstanceContext) any
+	VisitAlterInstance(ctx *AlterInstanceContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterLogfileGroup.
-	VisitAlterLogfileGroup(ctx *AlterLogfileGroupContext) any
+	VisitAlterLogfileGroup(ctx *AlterLogfileGroupContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterProcedure.
-	VisitAlterProcedure(ctx *AlterProcedureContext) any
+	VisitAlterProcedure(ctx *AlterProcedureContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterServer.
-	VisitAlterServer(ctx *AlterServerContext) any
+	VisitAlterServer(ctx *AlterServerContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterTable.
-	VisitAlterTable(ctx *AlterTableContext) any
+	VisitAlterTable(ctx *AlterTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterTablespace.
-	VisitAlterTablespace(ctx *AlterTablespaceContext) any
+	VisitAlterTablespace(ctx *AlterTablespaceContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterView.
-	VisitAlterView(ctx *AlterViewContext) any
+	VisitAlterView(ctx *AlterViewContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByTableOption.
-	VisitAlterByTableOption(ctx *AlterByTableOptionContext) any
+	VisitAlterByTableOption(ctx *AlterByTableOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAddColumn.
-	VisitAlterByAddColumn(ctx *AlterByAddColumnContext) any
+	VisitAlterByAddColumn(ctx *AlterByAddColumnContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAddColumns.
-	VisitAlterByAddColumns(ctx *AlterByAddColumnsContext) any
+	VisitAlterByAddColumns(ctx *AlterByAddColumnsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAddIndex.
-	VisitAlterByAddIndex(ctx *AlterByAddIndexContext) any
+	VisitAlterByAddIndex(ctx *AlterByAddIndexContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAddPrimaryKey.
-	VisitAlterByAddPrimaryKey(ctx *AlterByAddPrimaryKeyContext) any
+	VisitAlterByAddPrimaryKey(ctx *AlterByAddPrimaryKeyContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAddUniqueKey.
-	VisitAlterByAddUniqueKey(ctx *AlterByAddUniqueKeyContext) any
+	VisitAlterByAddUniqueKey(ctx *AlterByAddUniqueKeyContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAddSpecialIndex.
-	VisitAlterByAddSpecialIndex(ctx *AlterByAddSpecialIndexContext) any
+	VisitAlterByAddSpecialIndex(ctx *AlterByAddSpecialIndexContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAddForeignKey.
-	VisitAlterByAddForeignKey(ctx *AlterByAddForeignKeyContext) any
+	VisitAlterByAddForeignKey(ctx *AlterByAddForeignKeyContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAddCheckTableConstraint.
-	VisitAlterByAddCheckTableConstraint(ctx *AlterByAddCheckTableConstraintContext) any
+	VisitAlterByAddCheckTableConstraint(ctx *AlterByAddCheckTableConstraintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterBySetAlgorithm.
-	VisitAlterBySetAlgorithm(ctx *AlterBySetAlgorithmContext) any
+	VisitAlterBySetAlgorithm(ctx *AlterBySetAlgorithmContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByChangeDefault.
-	VisitAlterByChangeDefault(ctx *AlterByChangeDefaultContext) any
+	VisitAlterByChangeDefault(ctx *AlterByChangeDefaultContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByChangeColumn.
-	VisitAlterByChangeColumn(ctx *AlterByChangeColumnContext) any
+	VisitAlterByChangeColumn(ctx *AlterByChangeColumnContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByRenameColumn.
-	VisitAlterByRenameColumn(ctx *AlterByRenameColumnContext) any
+	VisitAlterByRenameColumn(ctx *AlterByRenameColumnContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByLock.
-	VisitAlterByLock(ctx *AlterByLockContext) any
+	VisitAlterByLock(ctx *AlterByLockContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByModifyColumn.
-	VisitAlterByModifyColumn(ctx *AlterByModifyColumnContext) any
+	VisitAlterByModifyColumn(ctx *AlterByModifyColumnContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByDropColumn.
-	VisitAlterByDropColumn(ctx *AlterByDropColumnContext) any
+	VisitAlterByDropColumn(ctx *AlterByDropColumnContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByDropConstraintCheck.
-	VisitAlterByDropConstraintCheck(ctx *AlterByDropConstraintCheckContext) any
+	VisitAlterByDropConstraintCheck(ctx *AlterByDropConstraintCheckContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByDropPrimaryKey.
-	VisitAlterByDropPrimaryKey(ctx *AlterByDropPrimaryKeyContext) any
+	VisitAlterByDropPrimaryKey(ctx *AlterByDropPrimaryKeyContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByRenameIndex.
-	VisitAlterByRenameIndex(ctx *AlterByRenameIndexContext) any
+	VisitAlterByRenameIndex(ctx *AlterByRenameIndexContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAlterIndexVisibility.
-	VisitAlterByAlterIndexVisibility(ctx *AlterByAlterIndexVisibilityContext) any
+	VisitAlterByAlterIndexVisibility(ctx *AlterByAlterIndexVisibilityContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByDropIndex.
-	VisitAlterByDropIndex(ctx *AlterByDropIndexContext) any
+	VisitAlterByDropIndex(ctx *AlterByDropIndexContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByDropForeignKey.
-	VisitAlterByDropForeignKey(ctx *AlterByDropForeignKeyContext) any
+	VisitAlterByDropForeignKey(ctx *AlterByDropForeignKeyContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByDisableKeys.
-	VisitAlterByDisableKeys(ctx *AlterByDisableKeysContext) any
+	VisitAlterByDisableKeys(ctx *AlterByDisableKeysContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByEnableKeys.
-	VisitAlterByEnableKeys(ctx *AlterByEnableKeysContext) any
+	VisitAlterByEnableKeys(ctx *AlterByEnableKeysContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByRename.
-	VisitAlterByRename(ctx *AlterByRenameContext) any
+	VisitAlterByRename(ctx *AlterByRenameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByOrder.
-	VisitAlterByOrder(ctx *AlterByOrderContext) any
+	VisitAlterByOrder(ctx *AlterByOrderContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByConvertCharset.
-	VisitAlterByConvertCharset(ctx *AlterByConvertCharsetContext) any
+	VisitAlterByConvertCharset(ctx *AlterByConvertCharsetContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByDefaultCharset.
-	VisitAlterByDefaultCharset(ctx *AlterByDefaultCharsetContext) any
+	VisitAlterByDefaultCharset(ctx *AlterByDefaultCharsetContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByDiscardTablespace.
-	VisitAlterByDiscardTablespace(ctx *AlterByDiscardTablespaceContext) any
+	VisitAlterByDiscardTablespace(ctx *AlterByDiscardTablespaceContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByImportTablespace.
-	VisitAlterByImportTablespace(ctx *AlterByImportTablespaceContext) any
+	VisitAlterByImportTablespace(ctx *AlterByImportTablespaceContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByForce.
-	VisitAlterByForce(ctx *AlterByForceContext) any
+	VisitAlterByForce(ctx *AlterByForceContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByValidate.
-	VisitAlterByValidate(ctx *AlterByValidateContext) any
+	VisitAlterByValidate(ctx *AlterByValidateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAddPartition.
-	VisitAlterByAddPartition(ctx *AlterByAddPartitionContext) any
+	VisitAlterByAddPartition(ctx *AlterByAddPartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByDropPartition.
-	VisitAlterByDropPartition(ctx *AlterByDropPartitionContext) any
+	VisitAlterByDropPartition(ctx *AlterByDropPartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByDiscardPartition.
-	VisitAlterByDiscardPartition(ctx *AlterByDiscardPartitionContext) any
+	VisitAlterByDiscardPartition(ctx *AlterByDiscardPartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByImportPartition.
-	VisitAlterByImportPartition(ctx *AlterByImportPartitionContext) any
+	VisitAlterByImportPartition(ctx *AlterByImportPartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByTruncatePartition.
-	VisitAlterByTruncatePartition(ctx *AlterByTruncatePartitionContext) any
+	VisitAlterByTruncatePartition(ctx *AlterByTruncatePartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByCoalescePartition.
-	VisitAlterByCoalescePartition(ctx *AlterByCoalescePartitionContext) any
+	VisitAlterByCoalescePartition(ctx *AlterByCoalescePartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByReorganizePartition.
-	VisitAlterByReorganizePartition(ctx *AlterByReorganizePartitionContext) any
+	VisitAlterByReorganizePartition(ctx *AlterByReorganizePartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByExchangePartition.
-	VisitAlterByExchangePartition(ctx *AlterByExchangePartitionContext) any
+	VisitAlterByExchangePartition(ctx *AlterByExchangePartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByAnalyzePartition.
-	VisitAlterByAnalyzePartition(ctx *AlterByAnalyzePartitionContext) any
+	VisitAlterByAnalyzePartition(ctx *AlterByAnalyzePartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByCheckPartition.
-	VisitAlterByCheckPartition(ctx *AlterByCheckPartitionContext) any
+	VisitAlterByCheckPartition(ctx *AlterByCheckPartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByOptimizePartition.
-	VisitAlterByOptimizePartition(ctx *AlterByOptimizePartitionContext) any
+	VisitAlterByOptimizePartition(ctx *AlterByOptimizePartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByRebuildPartition.
-	VisitAlterByRebuildPartition(ctx *AlterByRebuildPartitionContext) any
+	VisitAlterByRebuildPartition(ctx *AlterByRebuildPartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByRepairPartition.
-	VisitAlterByRepairPartition(ctx *AlterByRepairPartitionContext) any
+	VisitAlterByRepairPartition(ctx *AlterByRepairPartitionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByRemovePartitioning.
-	VisitAlterByRemovePartitioning(ctx *AlterByRemovePartitioningContext) any
+	VisitAlterByRemovePartitioning(ctx *AlterByRemovePartitioningContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterByUpgradePartitioning.
-	VisitAlterByUpgradePartitioning(ctx *AlterByUpgradePartitioningContext) any
+	VisitAlterByUpgradePartitioning(ctx *AlterByUpgradePartitioningContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropDatabase.
-	VisitDropDatabase(ctx *DropDatabaseContext) any
+	VisitDropDatabase(ctx *DropDatabaseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropEvent.
-	VisitDropEvent(ctx *DropEventContext) any
+	VisitDropEvent(ctx *DropEventContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropIndex.
-	VisitDropIndex(ctx *DropIndexContext) any
+	VisitDropIndex(ctx *DropIndexContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropLogfileGroup.
-	VisitDropLogfileGroup(ctx *DropLogfileGroupContext) any
+	VisitDropLogfileGroup(ctx *DropLogfileGroupContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropProcedure.
-	VisitDropProcedure(ctx *DropProcedureContext) any
+	VisitDropProcedure(ctx *DropProcedureContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropFunction.
-	VisitDropFunction(ctx *DropFunctionContext) any
+	VisitDropFunction(ctx *DropFunctionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropServer.
-	VisitDropServer(ctx *DropServerContext) any
+	VisitDropServer(ctx *DropServerContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropTable.
-	VisitDropTable(ctx *DropTableContext) any
+	VisitDropTable(ctx *DropTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropTablespace.
-	VisitDropTablespace(ctx *DropTablespaceContext) any
+	VisitDropTablespace(ctx *DropTablespaceContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropTrigger.
-	VisitDropTrigger(ctx *DropTriggerContext) any
+	VisitDropTrigger(ctx *DropTriggerContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropView.
-	VisitDropView(ctx *DropViewContext) any
+	VisitDropView(ctx *DropViewContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#renameTable.
-	VisitRenameTable(ctx *RenameTableContext) any
+	VisitRenameTable(ctx *RenameTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#renameTableClause.
-	VisitRenameTableClause(ctx *RenameTableClauseContext) any
+	VisitRenameTableClause(ctx *RenameTableClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#truncateTable.
-	VisitTruncateTable(ctx *TruncateTableContext) any
+	VisitTruncateTable(ctx *TruncateTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#callStatement.
-	VisitCallStatement(ctx *CallStatementContext) any
+	VisitCallStatement(ctx *CallStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#deleteStatement.
-	VisitDeleteStatement(ctx *DeleteStatementContext) any
+	VisitDeleteStatement(ctx *DeleteStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#doStatement.
-	VisitDoStatement(ctx *DoStatementContext) any
+	VisitDoStatement(ctx *DoStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerStatement.
-	VisitHandlerStatement(ctx *HandlerStatementContext) any
+	VisitHandlerStatement(ctx *HandlerStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#insertStatement.
-	VisitInsertStatement(ctx *InsertStatementContext) any
+	VisitInsertStatement(ctx *InsertStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#loadDataStatement.
-	VisitLoadDataStatement(ctx *LoadDataStatementContext) any
+	VisitLoadDataStatement(ctx *LoadDataStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#loadXmlStatement.
-	VisitLoadXmlStatement(ctx *LoadXmlStatementContext) any
+	VisitLoadXmlStatement(ctx *LoadXmlStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#replaceStatement.
-	VisitReplaceStatement(ctx *ReplaceStatementContext) any
+	VisitReplaceStatement(ctx *ReplaceStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#simpleSelect.
-	VisitSimpleSelect(ctx *SimpleSelectContext) any
+	VisitSimpleSelect(ctx *SimpleSelectContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#parenthesisSelect.
-	VisitParenthesisSelect(ctx *ParenthesisSelectContext) any
+	VisitParenthesisSelect(ctx *ParenthesisSelectContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#unionSelect.
-	VisitUnionSelect(ctx *UnionSelectContext) any
+	VisitUnionSelect(ctx *UnionSelectContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#unionParenthesisSelect.
-	VisitUnionParenthesisSelect(ctx *UnionParenthesisSelectContext) any
+	VisitUnionParenthesisSelect(ctx *UnionParenthesisSelectContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#updateStatement.
-	VisitUpdateStatement(ctx *UpdateStatementContext) any
+	VisitUpdateStatement(ctx *UpdateStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#insertStatementValue.
-	VisitInsertStatementValue(ctx *InsertStatementValueContext) any
+	VisitInsertStatementValue(ctx *InsertStatementValueContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#updatedElement.
-	VisitUpdatedElement(ctx *UpdatedElementContext) any
+	VisitUpdatedElement(ctx *UpdatedElementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#assignmentField.
-	VisitAssignmentField(ctx *AssignmentFieldContext) any
+	VisitAssignmentField(ctx *AssignmentFieldContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#lockClause.
-	VisitLockClause(ctx *LockClauseContext) any
+	VisitLockClause(ctx *LockClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#singleDeleteStatement.
-	VisitSingleDeleteStatement(ctx *SingleDeleteStatementContext) any
+	VisitSingleDeleteStatement(ctx *SingleDeleteStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#multipleDeleteStatement.
-	VisitMultipleDeleteStatement(ctx *MultipleDeleteStatementContext) any
+	VisitMultipleDeleteStatement(ctx *MultipleDeleteStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerOpenStatement.
-	VisitHandlerOpenStatement(ctx *HandlerOpenStatementContext) any
+	VisitHandlerOpenStatement(ctx *HandlerOpenStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerReadIndexStatement.
-	VisitHandlerReadIndexStatement(ctx *HandlerReadIndexStatementContext) any
+	VisitHandlerReadIndexStatement(ctx *HandlerReadIndexStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerReadStatement.
-	VisitHandlerReadStatement(ctx *HandlerReadStatementContext) any
+	VisitHandlerReadStatement(ctx *HandlerReadStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerCloseStatement.
-	VisitHandlerCloseStatement(ctx *HandlerCloseStatementContext) any
+	VisitHandlerCloseStatement(ctx *HandlerCloseStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#singleUpdateStatement.
-	VisitSingleUpdateStatement(ctx *SingleUpdateStatementContext) any
+	VisitSingleUpdateStatement(ctx *SingleUpdateStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#multipleUpdateStatement.
-	VisitMultipleUpdateStatement(ctx *MultipleUpdateStatementContext) any
+	VisitMultipleUpdateStatement(ctx *MultipleUpdateStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#orderByClause.
-	VisitOrderByClause(ctx *OrderByClauseContext) any
+	VisitOrderByClause(ctx *OrderByClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#orderByExpression.
-	VisitOrderByExpression(ctx *OrderByExpressionContext) any
+	VisitOrderByExpression(ctx *OrderByExpressionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableSources.
-	VisitTableSources(ctx *TableSourcesContext) any
+	VisitTableSources(ctx *TableSourcesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableSourceBase.
-	VisitTableSourceBase(ctx *TableSourceBaseContext) any
+	VisitTableSourceBase(ctx *TableSourceBaseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableSourceNested.
-	VisitTableSourceNested(ctx *TableSourceNestedContext) any
+	VisitTableSourceNested(ctx *TableSourceNestedContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#atomTableItem.
-	VisitAtomTableItem(ctx *AtomTableItemContext) any
+	VisitAtomTableItem(ctx *AtomTableItemContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#subqueryTableItem.
-	VisitSubqueryTableItem(ctx *SubqueryTableItemContext) any
+	VisitSubqueryTableItem(ctx *SubqueryTableItemContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableSourcesItem.
-	VisitTableSourcesItem(ctx *TableSourcesItemContext) any
+	VisitTableSourcesItem(ctx *TableSourcesItemContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#indexHint.
-	VisitIndexHint(ctx *IndexHintContext) any
+	VisitIndexHint(ctx *IndexHintContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#indexHintType.
-	VisitIndexHintType(ctx *IndexHintTypeContext) any
+	VisitIndexHintType(ctx *IndexHintTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#innerJoin.
-	VisitInnerJoin(ctx *InnerJoinContext) any
+	VisitInnerJoin(ctx *InnerJoinContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#straightJoin.
-	VisitStraightJoin(ctx *StraightJoinContext) any
+	VisitStraightJoin(ctx *StraightJoinContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#outerJoin.
-	VisitOuterJoin(ctx *OuterJoinContext) any
+	VisitOuterJoin(ctx *OuterJoinContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#naturalJoin.
-	VisitNaturalJoin(ctx *NaturalJoinContext) any
+	VisitNaturalJoin(ctx *NaturalJoinContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#queryExpression.
-	VisitQueryExpression(ctx *QueryExpressionContext) any
+	VisitQueryExpression(ctx *QueryExpressionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#queryExpressionNointo.
-	VisitQueryExpressionNointo(ctx *QueryExpressionNointoContext) any
+	VisitQueryExpressionNointo(ctx *QueryExpressionNointoContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#querySpecification.
-	VisitQuerySpecification(ctx *QuerySpecificationContext) any
+	VisitQuerySpecification(ctx *QuerySpecificationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#querySpecificationNointo.
-	VisitQuerySpecificationNointo(ctx *QuerySpecificationNointoContext) any
+	VisitQuerySpecificationNointo(ctx *QuerySpecificationNointoContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#unionParenthesis.
-	VisitUnionParenthesis(ctx *UnionParenthesisContext) any
+	VisitUnionParenthesis(ctx *UnionParenthesisContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#unionStatement.
-	VisitUnionStatement(ctx *UnionStatementContext) any
+	VisitUnionStatement(ctx *UnionStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectSpec.
-	VisitSelectSpec(ctx *SelectSpecContext) any
+	VisitSelectSpec(ctx *SelectSpecContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectElements.
-	VisitSelectElements(ctx *SelectElementsContext) any
+	VisitSelectElements(ctx *SelectElementsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectStarElement.
-	VisitSelectStarElement(ctx *SelectStarElementContext) any
+	VisitSelectStarElement(ctx *SelectStarElementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectColumnElement.
-	VisitSelectColumnElement(ctx *SelectColumnElementContext) any
+	VisitSelectColumnElement(ctx *SelectColumnElementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectFunctionElement.
-	VisitSelectFunctionElement(ctx *SelectFunctionElementContext) any
+	VisitSelectFunctionElement(ctx *SelectFunctionElementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectExpressionElement.
-	VisitSelectExpressionElement(ctx *SelectExpressionElementContext) any
+	VisitSelectExpressionElement(ctx *SelectExpressionElementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectIntoVariables.
-	VisitSelectIntoVariables(ctx *SelectIntoVariablesContext) any
+	VisitSelectIntoVariables(ctx *SelectIntoVariablesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectIntoDumpFile.
-	VisitSelectIntoDumpFile(ctx *SelectIntoDumpFileContext) any
+	VisitSelectIntoDumpFile(ctx *SelectIntoDumpFileContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectIntoTextFile.
-	VisitSelectIntoTextFile(ctx *SelectIntoTextFileContext) any
+	VisitSelectIntoTextFile(ctx *SelectIntoTextFileContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectFieldsInto.
-	VisitSelectFieldsInto(ctx *SelectFieldsIntoContext) any
+	VisitSelectFieldsInto(ctx *SelectFieldsIntoContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#selectLinesInto.
-	VisitSelectLinesInto(ctx *SelectLinesIntoContext) any
+	VisitSelectLinesInto(ctx *SelectLinesIntoContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#fromClause.
-	VisitFromClause(ctx *FromClauseContext) any
+	VisitFromClause(ctx *FromClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#groupByClause.
-	VisitGroupByClause(ctx *GroupByClauseContext) any
+	VisitGroupByClause(ctx *GroupByClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#havingClause.
-	VisitHavingClause(ctx *HavingClauseContext) any
+	VisitHavingClause(ctx *HavingClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#groupByItem.
-	VisitGroupByItem(ctx *GroupByItemContext) any
+	VisitGroupByItem(ctx *GroupByItemContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#limitClause.
-	VisitLimitClause(ctx *LimitClauseContext) any
+	VisitLimitClause(ctx *LimitClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#limitClauseAtom.
-	VisitLimitClauseAtom(ctx *LimitClauseAtomContext) any
+	VisitLimitClauseAtom(ctx *LimitClauseAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#startTransaction.
-	VisitStartTransaction(ctx *StartTransactionContext) any
+	VisitStartTransaction(ctx *StartTransactionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#beginWork.
-	VisitBeginWork(ctx *BeginWorkContext) any
+	VisitBeginWork(ctx *BeginWorkContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#commitWork.
-	VisitCommitWork(ctx *CommitWorkContext) any
+	VisitCommitWork(ctx *CommitWorkContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#rollbackWork.
-	VisitRollbackWork(ctx *RollbackWorkContext) any
+	VisitRollbackWork(ctx *RollbackWorkContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#savepointStatement.
-	VisitSavepointStatement(ctx *SavepointStatementContext) any
+	VisitSavepointStatement(ctx *SavepointStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#rollbackStatement.
-	VisitRollbackStatement(ctx *RollbackStatementContext) any
+	VisitRollbackStatement(ctx *RollbackStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#releaseStatement.
-	VisitReleaseStatement(ctx *ReleaseStatementContext) any
+	VisitReleaseStatement(ctx *ReleaseStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#lockTables.
-	VisitLockTables(ctx *LockTablesContext) any
+	VisitLockTables(ctx *LockTablesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#unlockTables.
-	VisitUnlockTables(ctx *UnlockTablesContext) any
+	VisitUnlockTables(ctx *UnlockTablesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#setAutocommitStatement.
-	VisitSetAutocommitStatement(ctx *SetAutocommitStatementContext) any
+	VisitSetAutocommitStatement(ctx *SetAutocommitStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#setTransactionStatement.
-	VisitSetTransactionStatement(ctx *SetTransactionStatementContext) any
+	VisitSetTransactionStatement(ctx *SetTransactionStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#transactionMode.
-	VisitTransactionMode(ctx *TransactionModeContext) any
+	VisitTransactionMode(ctx *TransactionModeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#lockTableElement.
-	VisitLockTableElement(ctx *LockTableElementContext) any
+	VisitLockTableElement(ctx *LockTableElementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#lockAction.
-	VisitLockAction(ctx *LockActionContext) any
+	VisitLockAction(ctx *LockActionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#transactionOption.
-	VisitTransactionOption(ctx *TransactionOptionContext) any
+	VisitTransactionOption(ctx *TransactionOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#transactionLevel.
-	VisitTransactionLevel(ctx *TransactionLevelContext) any
+	VisitTransactionLevel(ctx *TransactionLevelContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#changeMaster.
-	VisitChangeMaster(ctx *ChangeMasterContext) any
+	VisitChangeMaster(ctx *ChangeMasterContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#changeReplicationFilter.
-	VisitChangeReplicationFilter(ctx *ChangeReplicationFilterContext) any
+	VisitChangeReplicationFilter(ctx *ChangeReplicationFilterContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#purgeBinaryLogs.
-	VisitPurgeBinaryLogs(ctx *PurgeBinaryLogsContext) any
+	VisitPurgeBinaryLogs(ctx *PurgeBinaryLogsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#resetMaster.
-	VisitResetMaster(ctx *ResetMasterContext) any
+	VisitResetMaster(ctx *ResetMasterContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#resetSlave.
-	VisitResetSlave(ctx *ResetSlaveContext) any
+	VisitResetSlave(ctx *ResetSlaveContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#startSlave.
-	VisitStartSlave(ctx *StartSlaveContext) any
+	VisitStartSlave(ctx *StartSlaveContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#stopSlave.
-	VisitStopSlave(ctx *StopSlaveContext) any
+	VisitStopSlave(ctx *StopSlaveContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#startGroupReplication.
-	VisitStartGroupReplication(ctx *StartGroupReplicationContext) any
+	VisitStartGroupReplication(ctx *StartGroupReplicationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#stopGroupReplication.
-	VisitStopGroupReplication(ctx *StopGroupReplicationContext) any
+	VisitStopGroupReplication(ctx *StopGroupReplicationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#masterStringOption.
-	VisitMasterStringOption(ctx *MasterStringOptionContext) any
+	VisitMasterStringOption(ctx *MasterStringOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#masterDecimalOption.
-	VisitMasterDecimalOption(ctx *MasterDecimalOptionContext) any
+	VisitMasterDecimalOption(ctx *MasterDecimalOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#masterBoolOption.
-	VisitMasterBoolOption(ctx *MasterBoolOptionContext) any
+	VisitMasterBoolOption(ctx *MasterBoolOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#masterRealOption.
-	VisitMasterRealOption(ctx *MasterRealOptionContext) any
+	VisitMasterRealOption(ctx *MasterRealOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#masterUidListOption.
-	VisitMasterUidListOption(ctx *MasterUidListOptionContext) any
+	VisitMasterUidListOption(ctx *MasterUidListOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#stringMasterOption.
-	VisitStringMasterOption(ctx *StringMasterOptionContext) any
+	VisitStringMasterOption(ctx *StringMasterOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#decimalMasterOption.
-	VisitDecimalMasterOption(ctx *DecimalMasterOptionContext) any
+	VisitDecimalMasterOption(ctx *DecimalMasterOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#boolMasterOption.
-	VisitBoolMasterOption(ctx *BoolMasterOptionContext) any
+	VisitBoolMasterOption(ctx *BoolMasterOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#channelOption.
-	VisitChannelOption(ctx *ChannelOptionContext) any
+	VisitChannelOption(ctx *ChannelOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#doDbReplication.
-	VisitDoDbReplication(ctx *DoDbReplicationContext) any
+	VisitDoDbReplication(ctx *DoDbReplicationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#ignoreDbReplication.
-	VisitIgnoreDbReplication(ctx *IgnoreDbReplicationContext) any
+	VisitIgnoreDbReplication(ctx *IgnoreDbReplicationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#doTableReplication.
-	VisitDoTableReplication(ctx *DoTableReplicationContext) any
+	VisitDoTableReplication(ctx *DoTableReplicationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#ignoreTableReplication.
-	VisitIgnoreTableReplication(ctx *IgnoreTableReplicationContext) any
+	VisitIgnoreTableReplication(ctx *IgnoreTableReplicationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#wildDoTableReplication.
-	VisitWildDoTableReplication(ctx *WildDoTableReplicationContext) any
+	VisitWildDoTableReplication(ctx *WildDoTableReplicationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#wildIgnoreTableReplication.
-	VisitWildIgnoreTableReplication(ctx *WildIgnoreTableReplicationContext) any
+	VisitWildIgnoreTableReplication(ctx *WildIgnoreTableReplicationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#rewriteDbReplication.
-	VisitRewriteDbReplication(ctx *RewriteDbReplicationContext) any
+	VisitRewriteDbReplication(ctx *RewriteDbReplicationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tablePair.
-	VisitTablePair(ctx *TablePairContext) any
+	VisitTablePair(ctx *TablePairContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#threadType.
-	VisitThreadType(ctx *ThreadTypeContext) any
+	VisitThreadType(ctx *ThreadTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#gtidsUntilOption.
-	VisitGtidsUntilOption(ctx *GtidsUntilOptionContext) any
+	VisitGtidsUntilOption(ctx *GtidsUntilOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#masterLogUntilOption.
-	VisitMasterLogUntilOption(ctx *MasterLogUntilOptionContext) any
+	VisitMasterLogUntilOption(ctx *MasterLogUntilOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#relayLogUntilOption.
-	VisitRelayLogUntilOption(ctx *RelayLogUntilOptionContext) any
+	VisitRelayLogUntilOption(ctx *RelayLogUntilOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#sqlGapsUntilOption.
-	VisitSqlGapsUntilOption(ctx *SqlGapsUntilOptionContext) any
+	VisitSqlGapsUntilOption(ctx *SqlGapsUntilOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#userConnectionOption.
-	VisitUserConnectionOption(ctx *UserConnectionOptionContext) any
+	VisitUserConnectionOption(ctx *UserConnectionOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#passwordConnectionOption.
-	VisitPasswordConnectionOption(ctx *PasswordConnectionOptionContext) any
+	VisitPasswordConnectionOption(ctx *PasswordConnectionOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#defaultAuthConnectionOption.
-	VisitDefaultAuthConnectionOption(ctx *DefaultAuthConnectionOptionContext) any
+	VisitDefaultAuthConnectionOption(ctx *DefaultAuthConnectionOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#pluginDirConnectionOption.
-	VisitPluginDirConnectionOption(ctx *PluginDirConnectionOptionContext) any
+	VisitPluginDirConnectionOption(ctx *PluginDirConnectionOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#gtuidSet.
-	VisitGtuidSet(ctx *GtuidSetContext) any
+	VisitGtuidSet(ctx *GtuidSetContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#xaStartTransaction.
-	VisitXaStartTransaction(ctx *XaStartTransactionContext) any
+	VisitXaStartTransaction(ctx *XaStartTransactionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#xaEndTransaction.
-	VisitXaEndTransaction(ctx *XaEndTransactionContext) any
+	VisitXaEndTransaction(ctx *XaEndTransactionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#xaPrepareStatement.
-	VisitXaPrepareStatement(ctx *XaPrepareStatementContext) any
+	VisitXaPrepareStatement(ctx *XaPrepareStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#xaCommitWork.
-	VisitXaCommitWork(ctx *XaCommitWorkContext) any
+	VisitXaCommitWork(ctx *XaCommitWorkContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#xaRollbackWork.
-	VisitXaRollbackWork(ctx *XaRollbackWorkContext) any
+	VisitXaRollbackWork(ctx *XaRollbackWorkContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#xaRecoverWork.
-	VisitXaRecoverWork(ctx *XaRecoverWorkContext) any
+	VisitXaRecoverWork(ctx *XaRecoverWorkContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#prepareStatement.
-	VisitPrepareStatement(ctx *PrepareStatementContext) any
+	VisitPrepareStatement(ctx *PrepareStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#executeStatement.
-	VisitExecuteStatement(ctx *ExecuteStatementContext) any
+	VisitExecuteStatement(ctx *ExecuteStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#deallocatePrepare.
-	VisitDeallocatePrepare(ctx *DeallocatePrepareContext) any
+	VisitDeallocatePrepare(ctx *DeallocatePrepareContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#routineBody.
-	VisitRoutineBody(ctx *RoutineBodyContext) any
+	VisitRoutineBody(ctx *RoutineBodyContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#blockStatement.
-	VisitBlockStatement(ctx *BlockStatementContext) any
+	VisitBlockStatement(ctx *BlockStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#caseStatement.
-	VisitCaseStatement(ctx *CaseStatementContext) any
+	VisitCaseStatement(ctx *CaseStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#ifStatement.
-	VisitIfStatement(ctx *IfStatementContext) any
+	VisitIfStatement(ctx *IfStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#iterateStatement.
-	VisitIterateStatement(ctx *IterateStatementContext) any
+	VisitIterateStatement(ctx *IterateStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#leaveStatement.
-	VisitLeaveStatement(ctx *LeaveStatementContext) any
+	VisitLeaveStatement(ctx *LeaveStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#loopStatement.
-	VisitLoopStatement(ctx *LoopStatementContext) any
+	VisitLoopStatement(ctx *LoopStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#repeatStatement.
-	VisitRepeatStatement(ctx *RepeatStatementContext) any
+	VisitRepeatStatement(ctx *RepeatStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#returnStatement.
-	VisitReturnStatement(ctx *ReturnStatementContext) any
+	VisitReturnStatement(ctx *ReturnStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#whileStatement.
-	VisitWhileStatement(ctx *WhileStatementContext) any
+	VisitWhileStatement(ctx *WhileStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#CloseCursor.
-	VisitCloseCursor(ctx *CloseCursorContext) any
+	VisitCloseCursor(ctx *CloseCursorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#FetchCursor.
-	VisitFetchCursor(ctx *FetchCursorContext) any
+	VisitFetchCursor(ctx *FetchCursorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#OpenCursor.
-	VisitOpenCursor(ctx *OpenCursorContext) any
+	VisitOpenCursor(ctx *OpenCursorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#declareVariable.
-	VisitDeclareVariable(ctx *DeclareVariableContext) any
+	VisitDeclareVariable(ctx *DeclareVariableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#declareCondition.
-	VisitDeclareCondition(ctx *DeclareConditionContext) any
+	VisitDeclareCondition(ctx *DeclareConditionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#declareCursor.
-	VisitDeclareCursor(ctx *DeclareCursorContext) any
+	VisitDeclareCursor(ctx *DeclareCursorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#declareHandler.
-	VisitDeclareHandler(ctx *DeclareHandlerContext) any
+	VisitDeclareHandler(ctx *DeclareHandlerContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerConditionCode.
-	VisitHandlerConditionCode(ctx *HandlerConditionCodeContext) any
+	VisitHandlerConditionCode(ctx *HandlerConditionCodeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerConditionState.
-	VisitHandlerConditionState(ctx *HandlerConditionStateContext) any
+	VisitHandlerConditionState(ctx *HandlerConditionStateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerConditionName.
-	VisitHandlerConditionName(ctx *HandlerConditionNameContext) any
+	VisitHandlerConditionName(ctx *HandlerConditionNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerConditionWarning.
-	VisitHandlerConditionWarning(ctx *HandlerConditionWarningContext) any
+	VisitHandlerConditionWarning(ctx *HandlerConditionWarningContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerConditionNotfound.
-	VisitHandlerConditionNotfound(ctx *HandlerConditionNotfoundContext) any
+	VisitHandlerConditionNotfound(ctx *HandlerConditionNotfoundContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#handlerConditionException.
-	VisitHandlerConditionException(ctx *HandlerConditionExceptionContext) any
+	VisitHandlerConditionException(ctx *HandlerConditionExceptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#procedureSqlStatement.
-	VisitProcedureSqlStatement(ctx *ProcedureSqlStatementContext) any
+	VisitProcedureSqlStatement(ctx *ProcedureSqlStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#caseAlternative.
-	VisitCaseAlternative(ctx *CaseAlternativeContext) any
+	VisitCaseAlternative(ctx *CaseAlternativeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#elifAlternative.
-	VisitElifAlternative(ctx *ElifAlternativeContext) any
+	VisitElifAlternative(ctx *ElifAlternativeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterUserMysqlV56.
-	VisitAlterUserMysqlV56(ctx *AlterUserMysqlV56Context) any
+	VisitAlterUserMysqlV56(ctx *AlterUserMysqlV56Context) interface{}
 
 	// Visit a parse tree produced by MySqlParser#alterUserMysqlV57.
-	VisitAlterUserMysqlV57(ctx *AlterUserMysqlV57Context) any
+	VisitAlterUserMysqlV57(ctx *AlterUserMysqlV57Context) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createUserMysqlV56.
-	VisitCreateUserMysqlV56(ctx *CreateUserMysqlV56Context) any
+	VisitCreateUserMysqlV56(ctx *CreateUserMysqlV56Context) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createUserMysqlV57.
-	VisitCreateUserMysqlV57(ctx *CreateUserMysqlV57Context) any
+	VisitCreateUserMysqlV57(ctx *CreateUserMysqlV57Context) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dropUser.
-	VisitDropUser(ctx *DropUserContext) any
+	VisitDropUser(ctx *DropUserContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#grantStatement.
-	VisitGrantStatement(ctx *GrantStatementContext) any
+	VisitGrantStatement(ctx *GrantStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#grantProxy.
-	VisitGrantProxy(ctx *GrantProxyContext) any
+	VisitGrantProxy(ctx *GrantProxyContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#renameUser.
-	VisitRenameUser(ctx *RenameUserContext) any
+	VisitRenameUser(ctx *RenameUserContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#detailRevoke.
-	VisitDetailRevoke(ctx *DetailRevokeContext) any
+	VisitDetailRevoke(ctx *DetailRevokeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#shortRevoke.
-	VisitShortRevoke(ctx *ShortRevokeContext) any
+	VisitShortRevoke(ctx *ShortRevokeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#revokeProxy.
-	VisitRevokeProxy(ctx *RevokeProxyContext) any
+	VisitRevokeProxy(ctx *RevokeProxyContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#setPasswordStatement.
-	VisitSetPasswordStatement(ctx *SetPasswordStatementContext) any
+	VisitSetPasswordStatement(ctx *SetPasswordStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#userSpecification.
-	VisitUserSpecification(ctx *UserSpecificationContext) any
+	VisitUserSpecification(ctx *UserSpecificationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#passwordAuthOption.
-	VisitPasswordAuthOption(ctx *PasswordAuthOptionContext) any
+	VisitPasswordAuthOption(ctx *PasswordAuthOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#stringAuthOption.
-	VisitStringAuthOption(ctx *StringAuthOptionContext) any
+	VisitStringAuthOption(ctx *StringAuthOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#hashAuthOption.
-	VisitHashAuthOption(ctx *HashAuthOptionContext) any
+	VisitHashAuthOption(ctx *HashAuthOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#simpleAuthOption.
-	VisitSimpleAuthOption(ctx *SimpleAuthOptionContext) any
+	VisitSimpleAuthOption(ctx *SimpleAuthOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tlsOption.
-	VisitTlsOption(ctx *TlsOptionContext) any
+	VisitTlsOption(ctx *TlsOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#userResourceOption.
-	VisitUserResourceOption(ctx *UserResourceOptionContext) any
+	VisitUserResourceOption(ctx *UserResourceOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#userPasswordOption.
-	VisitUserPasswordOption(ctx *UserPasswordOptionContext) any
+	VisitUserPasswordOption(ctx *UserPasswordOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#userLockOption.
-	VisitUserLockOption(ctx *UserLockOptionContext) any
+	VisitUserLockOption(ctx *UserLockOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#privelegeClause.
-	VisitPrivelegeClause(ctx *PrivelegeClauseContext) any
+	VisitPrivelegeClause(ctx *PrivelegeClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#privilege.
-	VisitPrivilege(ctx *PrivilegeContext) any
+	VisitPrivilege(ctx *PrivilegeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#currentSchemaPriviLevel.
-	VisitCurrentSchemaPriviLevel(ctx *CurrentSchemaPriviLevelContext) any
+	VisitCurrentSchemaPriviLevel(ctx *CurrentSchemaPriviLevelContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#globalPrivLevel.
-	VisitGlobalPrivLevel(ctx *GlobalPrivLevelContext) any
+	VisitGlobalPrivLevel(ctx *GlobalPrivLevelContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#definiteSchemaPrivLevel.
-	VisitDefiniteSchemaPrivLevel(ctx *DefiniteSchemaPrivLevelContext) any
+	VisitDefiniteSchemaPrivLevel(ctx *DefiniteSchemaPrivLevelContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#definiteFullTablePrivLevel.
-	VisitDefiniteFullTablePrivLevel(ctx *DefiniteFullTablePrivLevelContext) any
+	VisitDefiniteFullTablePrivLevel(ctx *DefiniteFullTablePrivLevelContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#definiteFullTablePrivLevel2.
-	VisitDefiniteFullTablePrivLevel2(ctx *DefiniteFullTablePrivLevel2Context) any
+	VisitDefiniteFullTablePrivLevel2(ctx *DefiniteFullTablePrivLevel2Context) interface{}
 
 	// Visit a parse tree produced by MySqlParser#definiteTablePrivLevel.
-	VisitDefiniteTablePrivLevel(ctx *DefiniteTablePrivLevelContext) any
+	VisitDefiniteTablePrivLevel(ctx *DefiniteTablePrivLevelContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#renameUserClause.
-	VisitRenameUserClause(ctx *RenameUserClauseContext) any
+	VisitRenameUserClause(ctx *RenameUserClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#analyzeTable.
-	VisitAnalyzeTable(ctx *AnalyzeTableContext) any
+	VisitAnalyzeTable(ctx *AnalyzeTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#checkTable.
-	VisitCheckTable(ctx *CheckTableContext) any
+	VisitCheckTable(ctx *CheckTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#checksumTable.
-	VisitChecksumTable(ctx *ChecksumTableContext) any
+	VisitChecksumTable(ctx *ChecksumTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#optimizeTable.
-	VisitOptimizeTable(ctx *OptimizeTableContext) any
+	VisitOptimizeTable(ctx *OptimizeTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#repairTable.
-	VisitRepairTable(ctx *RepairTableContext) any
+	VisitRepairTable(ctx *RepairTableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#checkTableOption.
-	VisitCheckTableOption(ctx *CheckTableOptionContext) any
+	VisitCheckTableOption(ctx *CheckTableOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#createUdfunction.
-	VisitCreateUdfunction(ctx *CreateUdfunctionContext) any
+	VisitCreateUdfunction(ctx *CreateUdfunctionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#installPlugin.
-	VisitInstallPlugin(ctx *InstallPluginContext) any
+	VisitInstallPlugin(ctx *InstallPluginContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#uninstallPlugin.
-	VisitUninstallPlugin(ctx *UninstallPluginContext) any
+	VisitUninstallPlugin(ctx *UninstallPluginContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#setVariable.
-	VisitSetVariable(ctx *SetVariableContext) any
+	VisitSetVariable(ctx *SetVariableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#setCharset.
-	VisitSetCharset(ctx *SetCharsetContext) any
+	VisitSetCharset(ctx *SetCharsetContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#setNames.
-	VisitSetNames(ctx *SetNamesContext) any
+	VisitSetNames(ctx *SetNamesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#setPassword.
-	VisitSetPassword(ctx *SetPasswordContext) any
+	VisitSetPassword(ctx *SetPasswordContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#setTransaction.
-	VisitSetTransaction(ctx *SetTransactionContext) any
+	VisitSetTransaction(ctx *SetTransactionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#setAutocommit.
-	VisitSetAutocommit(ctx *SetAutocommitContext) any
+	VisitSetAutocommit(ctx *SetAutocommitContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#setNewValueInsideTrigger.
-	VisitSetNewValueInsideTrigger(ctx *SetNewValueInsideTriggerContext) any
+	VisitSetNewValueInsideTrigger(ctx *SetNewValueInsideTriggerContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showMasterLogs.
-	VisitShowMasterLogs(ctx *ShowMasterLogsContext) any
+	VisitShowMasterLogs(ctx *ShowMasterLogsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showLogEvents.
-	VisitShowLogEvents(ctx *ShowLogEventsContext) any
+	VisitShowLogEvents(ctx *ShowLogEventsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showObjectFilter.
-	VisitShowObjectFilter(ctx *ShowObjectFilterContext) any
+	VisitShowObjectFilter(ctx *ShowObjectFilterContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showColumns.
-	VisitShowColumns(ctx *ShowColumnsContext) any
+	VisitShowColumns(ctx *ShowColumnsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showCreateDb.
-	VisitShowCreateDb(ctx *ShowCreateDbContext) any
+	VisitShowCreateDb(ctx *ShowCreateDbContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showCreateFullIdObject.
-	VisitShowCreateFullIdObject(ctx *ShowCreateFullIdObjectContext) any
+	VisitShowCreateFullIdObject(ctx *ShowCreateFullIdObjectContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showCreateUser.
-	VisitShowCreateUser(ctx *ShowCreateUserContext) any
+	VisitShowCreateUser(ctx *ShowCreateUserContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showEngine.
-	VisitShowEngine(ctx *ShowEngineContext) any
+	VisitShowEngine(ctx *ShowEngineContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showGlobalInfo.
-	VisitShowGlobalInfo(ctx *ShowGlobalInfoContext) any
+	VisitShowGlobalInfo(ctx *ShowGlobalInfoContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showErrors.
-	VisitShowErrors(ctx *ShowErrorsContext) any
+	VisitShowErrors(ctx *ShowErrorsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showCountErrors.
-	VisitShowCountErrors(ctx *ShowCountErrorsContext) any
+	VisitShowCountErrors(ctx *ShowCountErrorsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showSchemaFilter.
-	VisitShowSchemaFilter(ctx *ShowSchemaFilterContext) any
+	VisitShowSchemaFilter(ctx *ShowSchemaFilterContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showRoutine.
-	VisitShowRoutine(ctx *ShowRoutineContext) any
+	VisitShowRoutine(ctx *ShowRoutineContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showGrants.
-	VisitShowGrants(ctx *ShowGrantsContext) any
+	VisitShowGrants(ctx *ShowGrantsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showIndexes.
-	VisitShowIndexes(ctx *ShowIndexesContext) any
+	VisitShowIndexes(ctx *ShowIndexesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showOpenTables.
-	VisitShowOpenTables(ctx *ShowOpenTablesContext) any
+	VisitShowOpenTables(ctx *ShowOpenTablesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showProfile.
-	VisitShowProfile(ctx *ShowProfileContext) any
+	VisitShowProfile(ctx *ShowProfileContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showSlaveStatus.
-	VisitShowSlaveStatus(ctx *ShowSlaveStatusContext) any
+	VisitShowSlaveStatus(ctx *ShowSlaveStatusContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#variableClause.
-	VisitVariableClause(ctx *VariableClauseContext) any
+	VisitVariableClause(ctx *VariableClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showCommonEntity.
-	VisitShowCommonEntity(ctx *ShowCommonEntityContext) any
+	VisitShowCommonEntity(ctx *ShowCommonEntityContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showFilter.
-	VisitShowFilter(ctx *ShowFilterContext) any
+	VisitShowFilter(ctx *ShowFilterContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showGlobalInfoClause.
-	VisitShowGlobalInfoClause(ctx *ShowGlobalInfoClauseContext) any
+	VisitShowGlobalInfoClause(ctx *ShowGlobalInfoClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showSchemaEntity.
-	VisitShowSchemaEntity(ctx *ShowSchemaEntityContext) any
+	VisitShowSchemaEntity(ctx *ShowSchemaEntityContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#showProfileType.
-	VisitShowProfileType(ctx *ShowProfileTypeContext) any
+	VisitShowProfileType(ctx *ShowProfileTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#binlogStatement.
-	VisitBinlogStatement(ctx *BinlogStatementContext) any
+	VisitBinlogStatement(ctx *BinlogStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#cacheIndexStatement.
-	VisitCacheIndexStatement(ctx *CacheIndexStatementContext) any
+	VisitCacheIndexStatement(ctx *CacheIndexStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#flushStatement.
-	VisitFlushStatement(ctx *FlushStatementContext) any
+	VisitFlushStatement(ctx *FlushStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#killStatement.
-	VisitKillStatement(ctx *KillStatementContext) any
+	VisitKillStatement(ctx *KillStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#loadIndexIntoCache.
-	VisitLoadIndexIntoCache(ctx *LoadIndexIntoCacheContext) any
+	VisitLoadIndexIntoCache(ctx *LoadIndexIntoCacheContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#resetStatement.
-	VisitResetStatement(ctx *ResetStatementContext) any
+	VisitResetStatement(ctx *ResetStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#shutdownStatement.
-	VisitShutdownStatement(ctx *ShutdownStatementContext) any
+	VisitShutdownStatement(ctx *ShutdownStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableIndexes.
-	VisitTableIndexes(ctx *TableIndexesContext) any
+	VisitTableIndexes(ctx *TableIndexesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#simpleFlushOption.
-	VisitSimpleFlushOption(ctx *SimpleFlushOptionContext) any
+	VisitSimpleFlushOption(ctx *SimpleFlushOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#channelFlushOption.
-	VisitChannelFlushOption(ctx *ChannelFlushOptionContext) any
+	VisitChannelFlushOption(ctx *ChannelFlushOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableFlushOption.
-	VisitTableFlushOption(ctx *TableFlushOptionContext) any
+	VisitTableFlushOption(ctx *TableFlushOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#flushTableOption.
-	VisitFlushTableOption(ctx *FlushTableOptionContext) any
+	VisitFlushTableOption(ctx *FlushTableOptionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#loadedTableIndexes.
-	VisitLoadedTableIndexes(ctx *LoadedTableIndexesContext) any
+	VisitLoadedTableIndexes(ctx *LoadedTableIndexesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#simpleDescribeStatement.
-	VisitSimpleDescribeStatement(ctx *SimpleDescribeStatementContext) any
+	VisitSimpleDescribeStatement(ctx *SimpleDescribeStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#fullDescribeStatement.
-	VisitFullDescribeStatement(ctx *FullDescribeStatementContext) any
+	VisitFullDescribeStatement(ctx *FullDescribeStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#helpStatement.
-	VisitHelpStatement(ctx *HelpStatementContext) any
+	VisitHelpStatement(ctx *HelpStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#useStatement.
-	VisitUseStatement(ctx *UseStatementContext) any
+	VisitUseStatement(ctx *UseStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#signalStatement.
-	VisitSignalStatement(ctx *SignalStatementContext) any
+	VisitSignalStatement(ctx *SignalStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#resignalStatement.
-	VisitResignalStatement(ctx *ResignalStatementContext) any
+	VisitResignalStatement(ctx *ResignalStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#signalConditionInformation.
-	VisitSignalConditionInformation(ctx *SignalConditionInformationContext) any
+	VisitSignalConditionInformation(ctx *SignalConditionInformationContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#diagnosticsStatement.
-	VisitDiagnosticsStatement(ctx *DiagnosticsStatementContext) any
+	VisitDiagnosticsStatement(ctx *DiagnosticsStatementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#diagnosticsConditionInformationName.
-	VisitDiagnosticsConditionInformationName(ctx *DiagnosticsConditionInformationNameContext) any
+	VisitDiagnosticsConditionInformationName(ctx *DiagnosticsConditionInformationNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#describeStatements.
-	VisitDescribeStatements(ctx *DescribeStatementsContext) any
+	VisitDescribeStatements(ctx *DescribeStatementsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#describeConnection.
-	VisitDescribeConnection(ctx *DescribeConnectionContext) any
+	VisitDescribeConnection(ctx *DescribeConnectionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#fullId.
-	VisitFullId(ctx *FullIdContext) any
+	VisitFullId(ctx *FullIdContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tableName.
-	VisitTableName(ctx *TableNameContext) any
+	VisitTableName(ctx *TableNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#fullColumnName.
-	VisitFullColumnName(ctx *FullColumnNameContext) any
+	VisitFullColumnName(ctx *FullColumnNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#indexColumnName.
-	VisitIndexColumnName(ctx *IndexColumnNameContext) any
+	VisitIndexColumnName(ctx *IndexColumnNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#userName.
-	VisitUserName(ctx *UserNameContext) any
+	VisitUserName(ctx *UserNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#mysqlVariable.
-	VisitMysqlVariable(ctx *MysqlVariableContext) any
+	VisitMysqlVariable(ctx *MysqlVariableContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#charsetName.
-	VisitCharsetName(ctx *CharsetNameContext) any
+	VisitCharsetName(ctx *CharsetNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#collationName.
-	VisitCollationName(ctx *CollationNameContext) any
+	VisitCollationName(ctx *CollationNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#engineName.
-	VisitEngineName(ctx *EngineNameContext) any
+	VisitEngineName(ctx *EngineNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#uuidSet.
-	VisitUuidSet(ctx *UuidSetContext) any
+	VisitUuidSet(ctx *UuidSetContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#xid.
-	VisitXid(ctx *XidContext) any
+	VisitXid(ctx *XidContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#xuidStringId.
-	VisitXuidStringId(ctx *XuidStringIdContext) any
+	VisitXuidStringId(ctx *XuidStringIdContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#authPlugin.
-	VisitAuthPlugin(ctx *AuthPluginContext) any
+	VisitAuthPlugin(ctx *AuthPluginContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#uid.
-	VisitUid(ctx *UidContext) any
+	VisitUid(ctx *UidContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#simpleId.
-	VisitSimpleId(ctx *SimpleIdContext) any
+	VisitSimpleId(ctx *SimpleIdContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dottedId.
-	VisitDottedId(ctx *DottedIdContext) any
+	VisitDottedId(ctx *DottedIdContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#decimalLiteral.
-	VisitDecimalLiteral(ctx *DecimalLiteralContext) any
+	VisitDecimalLiteral(ctx *DecimalLiteralContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#fileSizeLiteral.
-	VisitFileSizeLiteral(ctx *FileSizeLiteralContext) any
+	VisitFileSizeLiteral(ctx *FileSizeLiteralContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#stringLiteral.
-	VisitStringLiteral(ctx *StringLiteralContext) any
+	VisitStringLiteral(ctx *StringLiteralContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#booleanLiteral.
-	VisitBooleanLiteral(ctx *BooleanLiteralContext) any
+	VisitBooleanLiteral(ctx *BooleanLiteralContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#hexadecimalLiteral.
-	VisitHexadecimalLiteral(ctx *HexadecimalLiteralContext) any
+	VisitHexadecimalLiteral(ctx *HexadecimalLiteralContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#nullNotnull.
-	VisitNullNotnull(ctx *NullNotnullContext) any
+	VisitNullNotnull(ctx *NullNotnullContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#constant.
-	VisitConstant(ctx *ConstantContext) any
+	VisitConstant(ctx *ConstantContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#stringDataType.
-	VisitStringDataType(ctx *StringDataTypeContext) any
+	VisitStringDataType(ctx *StringDataTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#nationalStringDataType.
-	VisitNationalStringDataType(ctx *NationalStringDataTypeContext) any
+	VisitNationalStringDataType(ctx *NationalStringDataTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#nationalVaryingStringDataType.
-	VisitNationalVaryingStringDataType(ctx *NationalVaryingStringDataTypeContext) any
+	VisitNationalVaryingStringDataType(ctx *NationalVaryingStringDataTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dimensionDataType.
-	VisitDimensionDataType(ctx *DimensionDataTypeContext) any
+	VisitDimensionDataType(ctx *DimensionDataTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#simpleDataType.
-	VisitSimpleDataType(ctx *SimpleDataTypeContext) any
+	VisitSimpleDataType(ctx *SimpleDataTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#collectionDataType.
-	VisitCollectionDataType(ctx *CollectionDataTypeContext) any
+	VisitCollectionDataType(ctx *CollectionDataTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#spatialDataType.
-	VisitSpatialDataType(ctx *SpatialDataTypeContext) any
+	VisitSpatialDataType(ctx *SpatialDataTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#longVarcharDataType.
-	VisitLongVarcharDataType(ctx *LongVarcharDataTypeContext) any
+	VisitLongVarcharDataType(ctx *LongVarcharDataTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#longVarbinaryDataType.
-	VisitLongVarbinaryDataType(ctx *LongVarbinaryDataTypeContext) any
+	VisitLongVarbinaryDataType(ctx *LongVarbinaryDataTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#collectionOptions.
-	VisitCollectionOptions(ctx *CollectionOptionsContext) any
+	VisitCollectionOptions(ctx *CollectionOptionsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#convertedDataType.
-	VisitConvertedDataType(ctx *ConvertedDataTypeContext) any
+	VisitConvertedDataType(ctx *ConvertedDataTypeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#lengthOneDimension.
-	VisitLengthOneDimension(ctx *LengthOneDimensionContext) any
+	VisitLengthOneDimension(ctx *LengthOneDimensionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#lengthTwoDimension.
-	VisitLengthTwoDimension(ctx *LengthTwoDimensionContext) any
+	VisitLengthTwoDimension(ctx *LengthTwoDimensionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#lengthTwoOptionalDimension.
-	VisitLengthTwoOptionalDimension(ctx *LengthTwoOptionalDimensionContext) any
+	VisitLengthTwoOptionalDimension(ctx *LengthTwoOptionalDimensionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#uidList.
-	VisitUidList(ctx *UidListContext) any
+	VisitUidList(ctx *UidListContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#tables.
-	VisitTables(ctx *TablesContext) any
+	VisitTables(ctx *TablesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#indexColumnNames.
-	VisitIndexColumnNames(ctx *IndexColumnNamesContext) any
+	VisitIndexColumnNames(ctx *IndexColumnNamesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#expressions.
-	VisitExpressions(ctx *ExpressionsContext) any
+	VisitExpressions(ctx *ExpressionsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#expressionsWithDefaults.
-	VisitExpressionsWithDefaults(ctx *ExpressionsWithDefaultsContext) any
+	VisitExpressionsWithDefaults(ctx *ExpressionsWithDefaultsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#constants.
-	VisitConstants(ctx *ConstantsContext) any
+	VisitConstants(ctx *ConstantsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#simpleStrings.
-	VisitSimpleStrings(ctx *SimpleStringsContext) any
+	VisitSimpleStrings(ctx *SimpleStringsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#userVariables.
-	VisitUserVariables(ctx *UserVariablesContext) any
+	VisitUserVariables(ctx *UserVariablesContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#defaultValue.
-	VisitDefaultValue(ctx *DefaultValueContext) any
+	VisitDefaultValue(ctx *DefaultValueContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#currentTimestamp.
-	VisitCurrentTimestamp(ctx *CurrentTimestampContext) any
+	VisitCurrentTimestamp(ctx *CurrentTimestampContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#expressionOrDefault.
-	VisitExpressionOrDefault(ctx *ExpressionOrDefaultContext) any
+	VisitExpressionOrDefault(ctx *ExpressionOrDefaultContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#ifExists.
-	VisitIfExists(ctx *IfExistsContext) any
+	VisitIfExists(ctx *IfExistsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#ifNotExists.
-	VisitIfNotExists(ctx *IfNotExistsContext) any
+	VisitIfNotExists(ctx *IfNotExistsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#specificFunctionCall.
-	VisitSpecificFunctionCall(ctx *SpecificFunctionCallContext) any
+	VisitSpecificFunctionCall(ctx *SpecificFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#aggregateFunctionCall.
-	VisitAggregateFunctionCall(ctx *AggregateFunctionCallContext) any
+	VisitAggregateFunctionCall(ctx *AggregateFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#scalarFunctionCall.
-	VisitScalarFunctionCall(ctx *ScalarFunctionCallContext) any
+	VisitScalarFunctionCall(ctx *ScalarFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#udfFunctionCall.
-	VisitUdfFunctionCall(ctx *UdfFunctionCallContext) any
+	VisitUdfFunctionCall(ctx *UdfFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#passwordFunctionCall.
-	VisitPasswordFunctionCall(ctx *PasswordFunctionCallContext) any
+	VisitPasswordFunctionCall(ctx *PasswordFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#simpleFunctionCall.
-	VisitSimpleFunctionCall(ctx *SimpleFunctionCallContext) any
+	VisitSimpleFunctionCall(ctx *SimpleFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dataTypeFunctionCall.
-	VisitDataTypeFunctionCall(ctx *DataTypeFunctionCallContext) any
+	VisitDataTypeFunctionCall(ctx *DataTypeFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#valuesFunctionCall.
-	VisitValuesFunctionCall(ctx *ValuesFunctionCallContext) any
+	VisitValuesFunctionCall(ctx *ValuesFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#caseExpressionFunctionCall.
-	VisitCaseExpressionFunctionCall(ctx *CaseExpressionFunctionCallContext) any
+	VisitCaseExpressionFunctionCall(ctx *CaseExpressionFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#caseFunctionCall.
-	VisitCaseFunctionCall(ctx *CaseFunctionCallContext) any
+	VisitCaseFunctionCall(ctx *CaseFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#charFunctionCall.
-	VisitCharFunctionCall(ctx *CharFunctionCallContext) any
+	VisitCharFunctionCall(ctx *CharFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#positionFunctionCall.
-	VisitPositionFunctionCall(ctx *PositionFunctionCallContext) any
+	VisitPositionFunctionCall(ctx *PositionFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#substrFunctionCall.
-	VisitSubstrFunctionCall(ctx *SubstrFunctionCallContext) any
+	VisitSubstrFunctionCall(ctx *SubstrFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#trimFunctionCall.
-	VisitTrimFunctionCall(ctx *TrimFunctionCallContext) any
+	VisitTrimFunctionCall(ctx *TrimFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#weightFunctionCall.
-	VisitWeightFunctionCall(ctx *WeightFunctionCallContext) any
+	VisitWeightFunctionCall(ctx *WeightFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#extractFunctionCall.
-	VisitExtractFunctionCall(ctx *ExtractFunctionCallContext) any
+	VisitExtractFunctionCall(ctx *ExtractFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#getFormatFunctionCall.
-	VisitGetFormatFunctionCall(ctx *GetFormatFunctionCallContext) any
+	VisitGetFormatFunctionCall(ctx *GetFormatFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#jsonValueFunctionCall.
-	VisitJsonValueFunctionCall(ctx *JsonValueFunctionCallContext) any
+	VisitJsonValueFunctionCall(ctx *JsonValueFunctionCallContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#caseFuncAlternative.
-	VisitCaseFuncAlternative(ctx *CaseFuncAlternativeContext) any
+	VisitCaseFuncAlternative(ctx *CaseFuncAlternativeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#levelWeightList.
-	VisitLevelWeightList(ctx *LevelWeightListContext) any
+	VisitLevelWeightList(ctx *LevelWeightListContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#levelWeightRange.
-	VisitLevelWeightRange(ctx *LevelWeightRangeContext) any
+	VisitLevelWeightRange(ctx *LevelWeightRangeContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#levelInWeightListElement.
-	VisitLevelInWeightListElement(ctx *LevelInWeightListElementContext) any
+	VisitLevelInWeightListElement(ctx *LevelInWeightListElementContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#aggregateWindowedFunction.
-	VisitAggregateWindowedFunction(ctx *AggregateWindowedFunctionContext) any
+	VisitAggregateWindowedFunction(ctx *AggregateWindowedFunctionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#scalarFunctionName.
-	VisitScalarFunctionName(ctx *ScalarFunctionNameContext) any
+	VisitScalarFunctionName(ctx *ScalarFunctionNameContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#passwordFunctionClause.
-	VisitPasswordFunctionClause(ctx *PasswordFunctionClauseContext) any
+	VisitPasswordFunctionClause(ctx *PasswordFunctionClauseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#functionArgs.
-	VisitFunctionArgs(ctx *FunctionArgsContext) any
+	VisitFunctionArgs(ctx *FunctionArgsContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#functionArg.
-	VisitFunctionArg(ctx *FunctionArgContext) any
+	VisitFunctionArg(ctx *FunctionArgContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#isExpression.
-	VisitIsExpression(ctx *IsExpressionContext) any
+	VisitIsExpression(ctx *IsExpressionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#notExpression.
-	VisitNotExpression(ctx *NotExpressionContext) any
+	VisitNotExpression(ctx *NotExpressionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#logicalExpression.
-	VisitLogicalExpression(ctx *LogicalExpressionContext) any
+	VisitLogicalExpression(ctx *LogicalExpressionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#predicateExpression.
-	VisitPredicateExpression(ctx *PredicateExpressionContext) any
+	VisitPredicateExpression(ctx *PredicateExpressionContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#soundsLikePredicate.
-	VisitSoundsLikePredicate(ctx *SoundsLikePredicateContext) any
+	VisitSoundsLikePredicate(ctx *SoundsLikePredicateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#expressionAtomPredicate.
-	VisitExpressionAtomPredicate(ctx *ExpressionAtomPredicateContext) any
+	VisitExpressionAtomPredicate(ctx *ExpressionAtomPredicateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#subqueryComparisonPredicate.
-	VisitSubqueryComparisonPredicate(ctx *SubqueryComparisonPredicateContext) any
+	VisitSubqueryComparisonPredicate(ctx *SubqueryComparisonPredicateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#jsonMemberOfPredicate.
-	VisitJsonMemberOfPredicate(ctx *JsonMemberOfPredicateContext) any
+	VisitJsonMemberOfPredicate(ctx *JsonMemberOfPredicateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#binaryComparisonPredicate.
-	VisitBinaryComparisonPredicate(ctx *BinaryComparisonPredicateContext) any
+	VisitBinaryComparisonPredicate(ctx *BinaryComparisonPredicateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#inPredicate.
-	VisitInPredicate(ctx *InPredicateContext) any
+	VisitInPredicate(ctx *InPredicateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#betweenPredicate.
-	VisitBetweenPredicate(ctx *BetweenPredicateContext) any
+	VisitBetweenPredicate(ctx *BetweenPredicateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#isNullPredicate.
-	VisitIsNullPredicate(ctx *IsNullPredicateContext) any
+	VisitIsNullPredicate(ctx *IsNullPredicateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#likePredicate.
-	VisitLikePredicate(ctx *LikePredicateContext) any
+	VisitLikePredicate(ctx *LikePredicateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#regexpPredicate.
-	VisitRegexpPredicate(ctx *RegexpPredicateContext) any
+	VisitRegexpPredicate(ctx *RegexpPredicateContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#unaryExpressionAtom.
-	VisitUnaryExpressionAtom(ctx *UnaryExpressionAtomContext) any
+	VisitUnaryExpressionAtom(ctx *UnaryExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#collateExpressionAtom.
-	VisitCollateExpressionAtom(ctx *CollateExpressionAtomContext) any
+	VisitCollateExpressionAtom(ctx *CollateExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#mysqlVariableExpressionAtom.
-	VisitMysqlVariableExpressionAtom(ctx *MysqlVariableExpressionAtomContext) any
+	VisitMysqlVariableExpressionAtom(ctx *MysqlVariableExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#nestedExpressionAtom.
-	VisitNestedExpressionAtom(ctx *NestedExpressionAtomContext) any
+	VisitNestedExpressionAtom(ctx *NestedExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#nestedRowExpressionAtom.
-	VisitNestedRowExpressionAtom(ctx *NestedRowExpressionAtomContext) any
+	VisitNestedRowExpressionAtom(ctx *NestedRowExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#mathExpressionAtom.
-	VisitMathExpressionAtom(ctx *MathExpressionAtomContext) any
+	VisitMathExpressionAtom(ctx *MathExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#existsExpressionAtom.
-	VisitExistsExpressionAtom(ctx *ExistsExpressionAtomContext) any
+	VisitExistsExpressionAtom(ctx *ExistsExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#intervalExpressionAtom.
-	VisitIntervalExpressionAtom(ctx *IntervalExpressionAtomContext) any
+	VisitIntervalExpressionAtom(ctx *IntervalExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#jsonExpressionAtom.
-	VisitJsonExpressionAtom(ctx *JsonExpressionAtomContext) any
+	VisitJsonExpressionAtom(ctx *JsonExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#subqueryExpressionAtom.
-	VisitSubqueryExpressionAtom(ctx *SubqueryExpressionAtomContext) any
+	VisitSubqueryExpressionAtom(ctx *SubqueryExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#constantExpressionAtom.
-	VisitConstantExpressionAtom(ctx *ConstantExpressionAtomContext) any
+	VisitConstantExpressionAtom(ctx *ConstantExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#functionCallExpressionAtom.
-	VisitFunctionCallExpressionAtom(ctx *FunctionCallExpressionAtomContext) any
+	VisitFunctionCallExpressionAtom(ctx *FunctionCallExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#binaryExpressionAtom.
-	VisitBinaryExpressionAtom(ctx *BinaryExpressionAtomContext) any
+	VisitBinaryExpressionAtom(ctx *BinaryExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#fullColumnNameExpressionAtom.
-	VisitFullColumnNameExpressionAtom(ctx *FullColumnNameExpressionAtomContext) any
+	VisitFullColumnNameExpressionAtom(ctx *FullColumnNameExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#bitExpressionAtom.
-	VisitBitExpressionAtom(ctx *BitExpressionAtomContext) any
+	VisitBitExpressionAtom(ctx *BitExpressionAtomContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#unaryOperator.
-	VisitUnaryOperator(ctx *UnaryOperatorContext) any
+	VisitUnaryOperator(ctx *UnaryOperatorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#comparisonOperator.
-	VisitComparisonOperator(ctx *ComparisonOperatorContext) any
+	VisitComparisonOperator(ctx *ComparisonOperatorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#logicalOperator.
-	VisitLogicalOperator(ctx *LogicalOperatorContext) any
+	VisitLogicalOperator(ctx *LogicalOperatorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#bitOperator.
-	VisitBitOperator(ctx *BitOperatorContext) any
+	VisitBitOperator(ctx *BitOperatorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#mathOperator.
-	VisitMathOperator(ctx *MathOperatorContext) any
+	VisitMathOperator(ctx *MathOperatorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#jsonOperator.
-	VisitJsonOperator(ctx *JsonOperatorContext) any
+	VisitJsonOperator(ctx *JsonOperatorContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#charsetNameBase.
-	VisitCharsetNameBase(ctx *CharsetNameBaseContext) any
+	VisitCharsetNameBase(ctx *CharsetNameBaseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#transactionLevelBase.
-	VisitTransactionLevelBase(ctx *TransactionLevelBaseContext) any
+	VisitTransactionLevelBase(ctx *TransactionLevelBaseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#privilegesBase.
-	VisitPrivilegesBase(ctx *PrivilegesBaseContext) any
+	VisitPrivilegesBase(ctx *PrivilegesBaseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#intervalTypeBase.
-	VisitIntervalTypeBase(ctx *IntervalTypeBaseContext) any
+	VisitIntervalTypeBase(ctx *IntervalTypeBaseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#dataTypeBase.
-	VisitDataTypeBase(ctx *DataTypeBaseContext) any
+	VisitDataTypeBase(ctx *DataTypeBaseContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#keywordsCanBeId.
-	VisitKeywordsCanBeId(ctx *KeywordsCanBeIdContext) any
+	VisitKeywordsCanBeId(ctx *KeywordsCanBeIdContext) interface{}
 
 	// Visit a parse tree produced by MySqlParser#functionNameBase.
-	VisitFunctionNameBase(ctx *FunctionNameBaseContext) any
+	VisitFunctionNameBase(ctx *FunctionNameBaseContext) interface{}
 }
