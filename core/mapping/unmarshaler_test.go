@@ -4437,3 +4437,31 @@ func TestFillDefaultUnmarshal(t *testing.T) {
 		assert.Error(t, err)
 	})
 }
+
+type ID int64
+
+func (f *ID) UnmarshalJSON(b []byte) error {
+	i, err := strconv.ParseInt(string(b[1:len(b)-1]), 10, 64)
+	if err != nil {
+		return err
+	}
+
+	*f = ID(i)
+
+	return nil
+}
+
+func TestUnmarshalJsonInterface(t *testing.T) {
+
+	t.Run("nil", func(t *testing.T) {
+		type tmp struct {
+			ID ID `json:"id"`
+		}
+
+		var t1 tmp
+		r := strings.NewReader(`{"id": "10086"}`)
+		err := UnmarshalJsonReader(r, &t1)
+		assert.NoError(t, err)
+		assert.Equal(t, ID(10086), t1.ID)
+	})
+}

@@ -51,6 +51,10 @@ type (
 		fromString   bool
 		canonicalKey func(key string) string
 	}
+
+	IUnmarshaler interface {
+		UnmarshalJSON([]byte) error
+	}
 )
 
 // NewUnmarshaler returns an Unmarshaler.
@@ -512,6 +516,19 @@ func (u *Unmarshaler) processFieldNotFromString(fieldType reflect.Type, value re
 	valueKind := reflect.TypeOf(vp.value).Kind()
 	mapValue := vp.value
 
+	v := value.Addr()
+
+	if v.NumMethod() > 0 && v.CanInterface() {
+		v, ok := v.Interface().(IUnmarshaler)
+		if ok {
+			vv, err := json.Marshal(mapValue)
+			if err != nil {
+				return err
+			}
+			return v.UnmarshalJSON(vv)
+		}
+	}
+
 	switch {
 	case valueKind == reflect.Map && typeKind == reflect.Struct:
 		mv, ok := mapValue.(map[string]any)
@@ -869,7 +886,6 @@ func (u *Unmarshaler) unmarshalWithFullName(m valuerWithParent, v any, fullName 
 		if !field.IsExported() {
 			continue
 		}
-
 		if err := u.processField(field, valElem.Field(i), m, fullName); err != nil {
 			return err
 		}
