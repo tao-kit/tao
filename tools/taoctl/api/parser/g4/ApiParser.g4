@@ -49,6 +49,7 @@ dataType:       {isInterface(p)}ID
                 |arrayType
                 |inter='interface{}'
                 |time='time.Time'
+                |sid='snowflake.ID'
                 |pointerType
                 |typeStruct
                 ;

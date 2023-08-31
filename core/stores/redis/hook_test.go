@@ -20,7 +20,7 @@ import (
 
 func TestHookProcessCase1(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -44,7 +44,7 @@ func TestHookProcessCase1(t *testing.T) {
 
 func TestHookProcessCase2(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -111,7 +111,7 @@ func TestHookProcessPipelineCase1(t *testing.T) {
 
 func TestHookProcessPipelineCase2(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,

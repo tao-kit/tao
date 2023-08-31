@@ -593,11 +593,17 @@ type IDataTypeContext interface {
 	// GetTime returns the time token.
 	GetTime() antlr.Token
 
+	// GetSid returns the sid token.
+	GetSid() antlr.Token
+
 	// SetInter sets the inter token.
 	SetInter(antlr.Token)
 
 	// SetTime sets the time token.
 	SetTime(antlr.Token)
+
+	// SetSid sets the sid token.
+	SetSid(antlr.Token)
 
 	// Getter signatures
 	ID() antlr.TerminalNode
@@ -616,6 +622,7 @@ type DataTypeContext struct {
 	parser antlr.Parser
 	inter  antlr.Token
 	time   antlr.Token
+	sid    antlr.Token
 }
 
 func NewEmptyDataTypeContext() *DataTypeContext {
@@ -644,26 +651,14 @@ func (s *DataTypeContext) GetInter() antlr.Token { return s.inter }
 
 func (s *DataTypeContext) GetTime() antlr.Token { return s.time }
 
+func (s *DataTypeContext) GetSid() antlr.Token { return s.sid }
+
 func (s *DataTypeContext) SetInter(v antlr.Token) { s.inter = v }
 
 func (s *DataTypeContext) SetTime(v antlr.Token) { s.time = v }
 
+func (s *DataTypeContext) SetSid(v antlr.Token) { s.sid = v }
+
 func (s *DataTypeContext) ID() antlr.TerminalNode {
 	return s.GetToken(ApiParserParserID, 0)
-}
-
-func (s *DataTypeContext) MapType() IMapTypeContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IMapTypeContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IMapTypeContext)
 }

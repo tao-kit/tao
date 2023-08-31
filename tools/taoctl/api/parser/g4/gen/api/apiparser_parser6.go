@@ -6,6 +6,22 @@ import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 // The apiparser_parser.go file was split into multiple files because it
 // was too large and caused a possible memory overflow during Taoctl installation.
 
+func (s *DataTypeContext) MapType() IMapTypeContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IMapTypeContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IMapTypeContext)
+}
+
 func (s *DataTypeContext) ArrayType() IArrayTypeContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
@@ -111,7 +127,7 @@ func (p *ApiParserParser) DataType() (localctx IDataTypeContext) {
 		}
 	}()
 
-	p.SetState(221)
+	p.SetState(222)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 18, p.GetParserRuleContext()) {
 	case 1:
@@ -160,13 +176,23 @@ func (p *ApiParserParser) DataType() (localctx IDataTypeContext) {
 		p.EnterOuterAlt(localctx, 6)
 		{
 			p.SetState(219)
-			p.PointerType()
+
+			var _m = p.Match(ApiParserParserT__7)
+
+			localctx.(*DataTypeContext).sid = _m
 		}
 
 	case 7:
 		p.EnterOuterAlt(localctx, 7)
 		{
 			p.SetState(220)
+			p.PointerType()
+		}
+
+	case 8:
+		p.EnterOuterAlt(localctx, 8)
+		{
+			p.SetState(221)
 			p.TypeStruct()
 		}
 
@@ -286,7 +312,7 @@ func (p *ApiParserParser) PointerType() (localctx IPointerTypeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(223)
+		p.SetState(224)
 
 		var _m = p.Match(ApiParserParserT__5)
 
@@ -294,7 +320,7 @@ func (p *ApiParserParser) PointerType() (localctx IPointerTypeContext) {
 	}
 	checkKeyword(p)
 	{
-		p.SetState(225)
+		p.SetState(226)
 		p.Match(ApiParserParserID)
 	}
 
@@ -479,36 +505,36 @@ func (p *ApiParserParser) MapType() (localctx IMapTypeContext) {
 	p.EnterOuterAlt(localctx, 1)
 	match(p, "map")
 	{
-		p.SetState(228)
+		p.SetState(229)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*MapTypeContext).mapToken = _m
 	}
 	{
-		p.SetState(229)
+		p.SetState(230)
 
-		var _m = p.Match(ApiParserParserT__7)
+		var _m = p.Match(ApiParserParserT__8)
 
 		localctx.(*MapTypeContext).lbrack = _m
 	}
 	checkKey(p)
 	{
-		p.SetState(231)
+		p.SetState(232)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*MapTypeContext).key = _m
 	}
 	{
-		p.SetState(232)
+		p.SetState(233)
 
-		var _m = p.Match(ApiParserParserT__8)
+		var _m = p.Match(ApiParserParserT__9)
 
 		localctx.(*MapTypeContext).rbrack = _m
 	}
 	{
-		p.SetState(233)
+		p.SetState(234)
 
 		var _x = p.DataType()
 
@@ -652,21 +678,21 @@ func (p *ApiParserParser) ArrayType() (localctx IArrayTypeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(235)
-
-		var _m = p.Match(ApiParserParserT__7)
-
-		localctx.(*ArrayTypeContext).lbrack = _m
-	}
-	{
 		p.SetState(236)
 
 		var _m = p.Match(ApiParserParserT__8)
 
-		localctx.(*ArrayTypeContext).rbrack = _m
+		localctx.(*ArrayTypeContext).lbrack = _m
 	}
 	{
 		p.SetState(237)
+
+		var _m = p.Match(ApiParserParserT__9)
+
+		localctx.(*ArrayTypeContext).rbrack = _m
+	}
+	{
+		p.SetState(238)
 		p.DataType()
 	}
 

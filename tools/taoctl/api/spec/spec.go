@@ -21,11 +21,12 @@ type (
 
 	// ApiSpec describes an api file
 	ApiSpec struct {
-		Info    Info      // Deprecated: useless expression
-		Syntax  ApiSyntax // Deprecated: useless expression
-		Imports []Import  // Deprecated: useless expression
-		Types   []Type
-		Service Service
+		Info           Info      // Deprecated: useless expression
+		Syntax         ApiSyntax // Deprecated: useless expression
+		Imports        []Import  // Deprecated: useless expression
+		Types          []Type
+		Service        Service
+		HasSnowflakeID bool
 	}
 
 	// Import describes api import
@@ -145,5 +146,10 @@ type (
 	AtDoc struct {
 		Properties map[string]string
 		Text       string
+	}
+
+	// SnowflakeIDType describes a snowflake id for api
+	SnowflakeIDType struct {
+		RawName string
 	}
 )

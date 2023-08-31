@@ -48,16 +48,17 @@ func genBase(dir, pkg string, api *spec.ApiSpec) error {
 
 func genApi(dir, pkg string, api *spec.ApiSpec) error {
 	properties := api.Info.Properties
+	fmt.Println(properties)
 	if properties == nil {
 		return fmt.Errorf("none properties")
 	}
 
-	title := properties["Title"]
+	title := properties["title"]
 	if len(title) == 0 {
 		return fmt.Errorf("none title")
 	}
 
-	desc := properties["Desc"]
+	desc := properties["desc"]
 	if len(desc) == 0 {
 		return fmt.Errorf("none desc")
 	}

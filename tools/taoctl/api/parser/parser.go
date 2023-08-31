@@ -221,6 +221,9 @@ func (p parser) astTypeToSpec(in ast.DataType) spec.Type {
 		}
 
 		return spec.PointerType{RawName: v.PointerExpr.Text(), Type: spec.DefineStruct{RawName: raw}}
+	case *ast.SnowflakeID:
+		p.spec.HasSnowflakeID = true
+		return spec.SnowflakeIDType{RawName: v.Expr().Text()}
 	}
 
 	panic(fmt.Sprintf("unspported type %+v", in))

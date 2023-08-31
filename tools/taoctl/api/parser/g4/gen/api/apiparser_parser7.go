@@ -135,19 +135,19 @@ func (p *ApiParserParser) ServiceSpec() (localctx IServiceSpecContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(240)
+	p.SetState(241)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == ApiParserParserATSERVER {
 		{
-			p.SetState(239)
+			p.SetState(240)
 			p.AtServer()
 		}
 
 	}
 	{
-		p.SetState(242)
+		p.SetState(243)
 		p.ServiceApi()
 	}
 
@@ -320,32 +320,32 @@ func (p *ApiParserParser) AtServer() (localctx IAtServerContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(244)
+		p.SetState(245)
 		p.Match(ApiParserParserATSERVER)
 	}
 	{
-		p.SetState(245)
+		p.SetState(246)
 
 		var _m = p.Match(ApiParserParserT__1)
 
 		localctx.(*AtServerContext).lp = _m
 	}
-	p.SetState(247)
+	p.SetState(248)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ok := true; ok; ok = _la == ApiParserParserID {
 		{
-			p.SetState(246)
+			p.SetState(247)
 			p.KvLit()
 		}
 
-		p.SetState(249)
+		p.SetState(250)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(251)
+		p.SetState(252)
 
 		var _m = p.Match(ApiParserParserT__2)
 
@@ -550,39 +550,39 @@ func (p *ApiParserParser) ServiceApi() (localctx IServiceApiContext) {
 	p.EnterOuterAlt(localctx, 1)
 	match(p, "service")
 	{
-		p.SetState(254)
+		p.SetState(255)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*ServiceApiContext).serviceToken = _m
 	}
 	{
-		p.SetState(255)
+		p.SetState(256)
 		p.ServiceName()
 	}
 	{
-		p.SetState(256)
+		p.SetState(257)
 
 		var _m = p.Match(ApiParserParserT__3)
 
 		localctx.(*ServiceApiContext).lbrace = _m
 	}
-	p.SetState(260)
+	p.SetState(261)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&180224) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&360448) != 0 {
 		{
-			p.SetState(257)
+			p.SetState(258)
 			p.ServiceRoute()
 		}
 
-		p.SetState(262)
+		p.SetState(263)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(263)
+		p.SetState(264)
 
 		var _m = p.Match(ApiParserParserT__4)
 

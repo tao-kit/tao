@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	flagGo   = "GO"
-	flagZero = "ZERO"
+	flagGo  = "GO"
+	flagTao = "TAO"
 
 	unknown style = iota
 	title
@@ -42,28 +42,28 @@ type (
 func FileNamingFormat(format, content string) (string, error) {
 	upperFormat := strings.ToUpper(format)
 	indexGo := strings.Index(upperFormat, flagGo)
-	indexZero := strings.Index(upperFormat, flagZero)
-	if indexGo < 0 || indexZero < 0 || indexGo > indexZero {
+	indexTao := strings.Index(upperFormat, flagTao)
+	if indexGo < 0 || indexTao < 0 || indexGo > indexTao {
 		return "", ErrNamingFormat
 	}
 	var (
 		before, through, after string
-		flagGo, flagZero       string
+		flagGo, flagTao        string
 		goStyle, zeroStyle     style
 		err                    error
 	)
 	before = format[:indexGo]
 	flagGo = format[indexGo : indexGo+2]
-	through = format[indexGo+2 : indexZero]
-	flagZero = format[indexZero : indexZero+4]
-	after = format[indexZero+4:]
+	through = format[indexGo+2 : indexTao]
+	flagTao = format[indexTao : indexTao+3]
+	after = format[indexTao+3:]
 
 	goStyle, err = getStyle(flagGo)
 	if err != nil {
 		return "", err
 	}
 
-	zeroStyle, err = getStyle(flagZero)
+	zeroStyle, err = getStyle(flagTao)
 	if err != nil {
 		return "", err
 	}

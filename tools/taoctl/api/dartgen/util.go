@@ -156,6 +156,8 @@ func buildSpecType(tp spec.Type, name string) spec.Type {
 		return spec.InterfaceType{RawName: name}
 	case spec.PointerType:
 		return spec.PointerType{RawName: name, Type: v.Type}
+	case spec.SnowflakeIDType:
+		return spec.SnowflakeIDType{RawName: name}
 	}
 	return tp
 }
@@ -200,6 +202,8 @@ func specTypeToDart(tp spec.Type) (string, error) {
 			return "", err
 		}
 		return fmt.Sprintf("%s?", valueType), nil
+	case spec.SnowflakeIDType:
+		return "String", nil
 	}
 
 	return "", errors.New("unsupported primitive type " + tp.Name())

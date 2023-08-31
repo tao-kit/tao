@@ -11,8 +11,8 @@ import (
 	"unicode"
 
 	"github.com/google/uuid"
-	"github.com/stretchr/testify/assert"
 	"github.com/sllt/tao/core/stringx"
+	"github.com/stretchr/testify/assert"
 )
 
 // because json.Number doesn't support strconv.ParseUint(...),
@@ -5330,4 +5330,32 @@ func (m mockValuerWithParent) Value(key string) (any, bool) {
 
 func (m mockValuerWithParent) Parent() valuerWithParent {
 	return m.parent
+}
+
+type ID int64
+
+func (f *ID) UnmarshalJSON(b []byte) error {
+	i, err := strconv.ParseInt(string(b[1:len(b)-1]), 10, 64)
+	if err != nil {
+		return err
+	}
+
+	*f = ID(i)
+
+	return nil
+}
+
+func TestUnmarshalJsonInterface(t *testing.T) {
+
+	t.Run("nil", func(t *testing.T) {
+		type tmp struct {
+			ID ID `json:"id"`
+		}
+
+		var t1 tmp
+		r := strings.NewReader(`{"id": "10086"}`)
+		err := UnmarshalJsonReader(r, &t1)
+		assert.NoError(t, err)
+		assert.Equal(t, ID(10086), t1.ID)
+	})
 }

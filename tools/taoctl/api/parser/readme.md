@@ -362,7 +362,7 @@ type Foo{
 ```
 
 **① tag说明**
-> tag定义和golang中json tag语法一样，除了json tag外，go-zero还提供了另外一些tag来实现对字段的描述，
+> tag定义和golang中json tag语法一样，除了json tag外，go-tao还提供了另外一些tag来实现对字段的描述，
 > 详情见下表。
 
 * tag表
@@ -370,18 +370,18 @@ type Foo{
   |tag key |描述 |提供方 |有效范围 |示例 |
     |:--- |:--- |:--- |:--- |:--- |
   |json|json序列化tag|golang|request、response|`json:"fooo"`|
-  |path|路由path，如`/foo/:id`|go-zero|request|`path:"id"`|
-  |form|标志请求体是一个form（POST方法时）或者一个query(GET方法时`/search?name=keyword`)|go-zero|request|`form:"name"`|
+  |path|路由path，如`/foo/:id`|go-tao|request|`path:"id"`|
+  |form|标志请求体是一个form（POST方法时）或者一个query(GET方法时`/search?name=keyword`)|go-tao|request|`form:"name"`|
 
 * tag修饰符
   > 常见参数校验描述
 
   |tag key |描述 |提供方 |有效范围 |示例 |
     |:--- |:--- |:--- |:--- |:--- |
-  |optional|定义当前字段为可选参数|go-zero|request|`json:"name,optional"`|
-  |options|定义当前字段的枚举值,多个以竖线②隔开|go-zero|request|`json:"gender,options=male"`|
-  |default|定义当前字段默认值|go-zero|request|`json:"gender,default=male"`|
-  |range|定义当前字段数值范围|go-zero|request|`json:"age,range=[0:120]"`|
+  |optional|定义当前字段为可选参数|go-tao|request|`json:"name,optional"`|
+  |options|定义当前字段的枚举值,多个以竖线②隔开|go-tao|request|`json:"gender,options=male"`|
+  |default|定义当前字段默认值|go-tao|request|`json:"gender,default=male"`|
+  |range|定义当前字段数值范围|go-tao|request|`json:"age,range=[0:120]"`|
 
   ② 竖线：|
   > ### 温馨提示

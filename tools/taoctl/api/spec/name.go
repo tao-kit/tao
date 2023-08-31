@@ -89,3 +89,18 @@ func (t InterfaceType) Comments() []string {
 func (t InterfaceType) Documents() []string {
 	return nil
 }
+
+// Name returns a basic string, such as int32,int64
+func (t SnowflakeIDType) Name() string {
+	return t.RawName
+}
+
+// Comments returns the comments of struct
+func (t SnowflakeIDType) Comments() []string {
+	return nil
+}
+
+// Documents returns the documents of struct
+func (t SnowflakeIDType) Documents() []string {
+	return nil
+}
