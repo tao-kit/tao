@@ -8,7 +8,6 @@ import (
 	"github.com/sllt/tao/core/stat"
 	"github.com/sllt/tao/core/trace"
 	"github.com/sllt/tao/internal/devserver"
-	"log"
 )
 
 const (
@@ -38,9 +37,7 @@ type ServiceConf struct {
 
 // MustSetUp sets up the service, exits on error.
 func (sc ServiceConf) MustSetUp() {
-	if err := sc.SetUp(); err != nil {
-		log.Fatal(err)
-	}
+	logx.Must(sc.SetUp())
 }
 
 // SetUp sets up the service.

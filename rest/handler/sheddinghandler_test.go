@@ -1,8 +1,6 @@
 package handler
 
 import (
-	"io"
-	"log"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -11,10 +9,6 @@ import (
 	"github.com/sllt/tao/core/stat"
 	"github.com/stretchr/testify/assert"
 )
-
-func init() {
-	log.SetOutput(io.Discard)
-}
 
 func TestSheddingHandlerAccept(t *testing.T) {
 	metrics := stat.NewMetrics("unit-test")

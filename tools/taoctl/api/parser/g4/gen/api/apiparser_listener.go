@@ -118,6 +118,9 @@ type ApiParserListener interface {
 	// EnterPath is called when entering the path production.
 	EnterPath(c *PathContext)
 
+	// EnterPathItem is called when entering the pathItem production.
+	EnterPathItem(c *PathItemContext)
+
 	// ExitApi is called when exiting the api production.
 	ExitApi(c *ApiContext)
 
@@ -228,4 +231,7 @@ type ApiParserListener interface {
 
 	// ExitPath is called when exiting the path production.
 	ExitPath(c *PathContext)
+
+	// ExitPathItem is called when exiting the pathItem production.
+	ExitPathItem(c *PathItemContext)
 }

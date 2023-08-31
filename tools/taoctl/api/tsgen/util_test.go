@@ -1,9 +1,10 @@
 package tsgen
 
 import (
+	"testing"
+
 	"github.com/sllt/tao/tools/taoctl/api/spec"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestGenTsType(t *testing.T) {

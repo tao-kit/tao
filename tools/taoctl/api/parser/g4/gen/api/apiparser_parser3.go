@@ -4,7 +4,7 @@ import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 
 // Part 3
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during goctl installation.
+// was too large and caused a possible memory overflow during Taoctl installation.
 
 func (s *TypeLitContext) GetRuleContext() antlr.RuleContext {
 	return s
@@ -62,14 +62,14 @@ func (p *ApiParserParser) TypeLit() (localctx ITypeLitContext) {
 	p.EnterOuterAlt(localctx, 1)
 	match(p, "type")
 	{
-		p.SetState(131)
+		p.SetState(133)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*TypeLitContext).typeToken = _m
 	}
 	{
-		p.SetState(132)
+		p.SetState(134)
 		p.TypeLitBody()
 	}
 
@@ -254,35 +254,35 @@ func (p *ApiParserParser) TypeBlock() (localctx ITypeBlockContext) {
 	p.EnterOuterAlt(localctx, 1)
 	match(p, "type")
 	{
-		p.SetState(135)
+		p.SetState(137)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*TypeBlockContext).typeToken = _m
 	}
 	{
-		p.SetState(136)
+		p.SetState(138)
 
 		var _m = p.Match(ApiParserParserT__1)
 
 		localctx.(*TypeBlockContext).lp = _m
 	}
-	p.SetState(140)
+	p.SetState(142)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == ApiParserParserID {
 		{
-			p.SetState(137)
+			p.SetState(139)
 			p.TypeBlockBody()
 		}
 
-		p.SetState(142)
+		p.SetState(144)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(143)
+		p.SetState(145)
 
 		var _m = p.Match(ApiParserParserT__2)
 
@@ -419,20 +419,20 @@ func (p *ApiParserParser) TypeLitBody() (localctx ITypeLitBodyContext) {
 		}
 	}()
 
-	p.SetState(147)
+	p.SetState(149)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 7, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(145)
+			p.SetState(147)
 			p.TypeStruct()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(146)
+			p.SetState(148)
 			p.TypeAlias()
 		}
 
@@ -568,20 +568,20 @@ func (p *ApiParserParser) TypeBlockBody() (localctx ITypeBlockBodyContext) {
 		}
 	}()
 
-	p.SetState(151)
+	p.SetState(153)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 8, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(149)
+			p.SetState(151)
 			p.TypeBlockStruct()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(150)
+			p.SetState(152)
 			p.TypeBlockAlias()
 		}
 

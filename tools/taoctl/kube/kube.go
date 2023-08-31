@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"text/template"
 
-	"github.com/logrusorgru/aurora"
+	"github.com/gookit/color"
 	"github.com/sllt/tao/tools/taoctl/util"
 	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
@@ -111,7 +111,7 @@ func deploymentCommand(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	fmt.Println(aurora.Green("Done."))
+	fmt.Println(color.Green.Render("Done."))
 	return nil
 }
 

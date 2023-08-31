@@ -280,7 +280,7 @@ func TestApi(t *testing.T) {
 					},
 					{
 						Name:     ast.NewTextExpr("VInterface"),
-						DataType: &ast.Interface{Literal: ast.NewTextExpr("any")},
+						DataType: &ast.Interface{Literal: ast.NewTextExpr("interface{}")},
 						Tag:      ast.NewTextExpr("`json:\"vInterface\"`"),
 						DocExpr: []ast.Expr{
 							ast.NewTextExpr("// vInterface"),

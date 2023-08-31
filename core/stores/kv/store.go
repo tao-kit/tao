@@ -3,11 +3,12 @@ package kv
 import (
 	"context"
 	"errors"
+	"log"
+
 	"github.com/sllt/tao/core/errorx"
 	"github.com/sllt/tao/core/hash"
 	"github.com/sllt/tao/core/stores/cache"
 	"github.com/sllt/tao/core/stores/redis"
-	"log"
 )
 
 // ErrNoRedisNode is an error that indicates no redis node.

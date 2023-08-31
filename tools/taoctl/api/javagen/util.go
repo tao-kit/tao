@@ -106,8 +106,6 @@ func specTypeToJava(tp spec.Type) (string, error) {
 		return "Object", nil
 	case spec.PointerType:
 		return specTypeToJava(v.Type)
-	case spec.SnowflakeIDType:
-		return "String", nil
 	}
 
 	return "", errors.New("unsupported primitive type " + tp.Name())

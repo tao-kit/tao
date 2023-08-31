@@ -4,7 +4,7 @@ import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 
 // Part 1
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during goctl installation.
+// was too large and caused a possible memory overflow during Taoctl installation.
 
 // ISyntaxLitContext is an interface to support dynamic dispatch.
 type ISyntaxLitContext interface {
@@ -145,14 +145,14 @@ func (p *ApiParserParser) SyntaxLit() (localctx ISyntaxLitContext) {
 	p.EnterOuterAlt(localctx, 1)
 	match(p, "syntax")
 	{
-		p.SetState(88)
+		p.SetState(90)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*SyntaxLitContext).syntaxToken = _m
 	}
 	{
-		p.SetState(89)
+		p.SetState(91)
 
 		var _m = p.Match(ApiParserParserT__0)
 
@@ -160,7 +160,7 @@ func (p *ApiParserParser) SyntaxLit() (localctx ISyntaxLitContext) {
 	}
 	checkVersion(p)
 	{
-		p.SetState(91)
+		p.SetState(93)
 
 		var _m = p.Match(ApiParserParserSTRING)
 
@@ -297,20 +297,20 @@ func (p *ApiParserParser) ImportSpec() (localctx IImportSpecContext) {
 		}
 	}()
 
-	p.SetState(95)
+	p.SetState(97)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 2, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(93)
+			p.SetState(95)
 			p.ImportLit()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(94)
+			p.SetState(96)
 			p.ImportBlock()
 		}
 
@@ -448,14 +448,14 @@ func (p *ApiParserParser) ImportLit() (localctx IImportLitContext) {
 	p.EnterOuterAlt(localctx, 1)
 	match(p, "import")
 	{
-		p.SetState(98)
+		p.SetState(100)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*ImportLitContext).importToken = _m
 	}
 	{
-		p.SetState(99)
+		p.SetState(101)
 		p.ImportValue()
 	}
 
@@ -618,32 +618,32 @@ func (p *ApiParserParser) ImportBlock() (localctx IImportBlockContext) {
 	p.EnterOuterAlt(localctx, 1)
 	match(p, "import")
 	{
-		p.SetState(102)
+		p.SetState(104)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*ImportBlockContext).importToken = _m
 	}
 	{
-		p.SetState(103)
+		p.SetState(105)
 		p.Match(ApiParserParserT__1)
 	}
-	p.SetState(105)
+	p.SetState(107)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ok := true; ok; ok = _la == ApiParserParserSTRING {
 		{
-			p.SetState(104)
+			p.SetState(106)
 			p.ImportBlockValue()
 		}
 
-		p.SetState(107)
+		p.SetState(109)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(109)
+		p.SetState(111)
 		p.Match(ApiParserParserT__2)
 	}
 

@@ -1,15 +1,13 @@
-//go:build linux || darwin
-
 package internal
 
 import (
 	"context"
 	"fmt"
-	"github.com/sllt/tao/internal/health"
 	"net/http"
 
 	"github.com/sllt/tao/core/logx"
 	"github.com/sllt/tao/core/proc"
+	"github.com/sllt/tao/internal/health"
 )
 
 const probeNamePrefix = "rest"

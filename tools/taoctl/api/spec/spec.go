@@ -21,12 +21,11 @@ type (
 
 	// ApiSpec describes an api file
 	ApiSpec struct {
-		Info           Info
-		Syntax         ApiSyntax
-		Imports        []Import
-		Types          []Type
-		Service        Service
-		HasSnowflakeID bool
+		Info    Info      // Deprecated: useless expression
+		Syntax  ApiSyntax // Deprecated: useless expression
+		Imports []Import  // Deprecated: useless expression
+		Types   []Type
+		Service Service
 	}
 
 	// Import describes api import
@@ -71,6 +70,7 @@ type (
 
 	// Route describes api route
 	Route struct {
+		// Deprecated: Use Service AtServer instead.
 		AtServerAnnotation Annotation
 		Method             string
 		Path               string
@@ -119,7 +119,7 @@ type (
 		// PointerType: *string、*User、
 		// MapType: map[${PrimitiveType}]interface、
 		// ArrayType:[]int、[]User、[]*User
-		// InterfaceType: any
+		// InterfaceType: interface{}
 		// Type
 		Value Type
 	}
@@ -145,10 +145,5 @@ type (
 	AtDoc struct {
 		Properties map[string]string
 		Text       string
-	}
-
-	// SnowflakeIDType describes a snowflake id for api
-	SnowflakeIDType struct {
-		RawName string
 	}
 )

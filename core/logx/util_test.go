@@ -49,7 +49,7 @@ func TestPrettyCaller(t *testing.T) {
 		},
 		{
 			name: "local path",
-			file: "/Users/kevin/go-tao/core/logx/util_test.go",
+			file: "/Users/kevin/go-zero/core/logx/util_test.go",
 			line: 1234,
 			want: "logx/util_test.go:1234",
 		},

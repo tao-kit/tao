@@ -6,13 +6,11 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/sllt/tao/core/logx"
 	"github.com/sllt/tao/core/stat"
 	"github.com/stretchr/testify/assert"
 )
 
 func init() {
-	logx.Disable()
 	stat.SetReporter(nil)
 }
 

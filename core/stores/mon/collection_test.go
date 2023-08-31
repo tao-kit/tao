@@ -3,11 +3,10 @@ package mon
 import (
 	"context"
 	"errors"
-	"strings"
 	"testing"
 
 	"github.com/sllt/tao/core/breaker"
-	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/logx/logtest"
 	"github.com/sllt/tao/core/stringx"
 	"github.com/sllt/tao/core/timex"
 	"github.com/stretchr/testify/assert"
@@ -573,15 +572,7 @@ func TestDecoratedCollection_LogDuration(t *testing.T) {
 		brk:        breaker.NewBreaker(),
 	}
 
-	var buf strings.Builder
-	w := logx.NewWriter(&buf)
-	o := logx.Reset()
-	logx.SetWriter(w)
-
-	defer func() {
-		logx.Reset()
-		logx.SetWriter(o)
-	}()
+	buf := logtest.NewCollector(t)
 
 	buf.Reset()
 	c.logDuration(context.Background(), "foo", timex.Now(), nil, "bar")

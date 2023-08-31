@@ -1,10 +1,10 @@
 package mon
 
 import (
-	mopt "go.mongodb.org/mongo-driver/mongo/options"
 	"time"
 
 	"github.com/sllt/tao/core/syncx"
+	mopt "go.mongodb.org/mongo-driver/mongo/options"
 )
 
 const defaultTimeout = time.Second * 3

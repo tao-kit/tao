@@ -4,7 +4,7 @@ import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 
 // Part 5
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during goctl installation.
+// was too large and caused a possible memory overflow during Taoctl installation.
 
 func (s *TypeBlockAliasContext) GetParser() antlr.Parser { return s.parser }
 
@@ -93,19 +93,19 @@ func (p *ApiParserParser) TypeBlockAlias() (localctx ITypeBlockAliasContext) {
 	p.EnterOuterAlt(localctx, 1)
 	checkKeyword(p)
 	{
-		p.SetState(189)
+		p.SetState(191)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*TypeBlockAliasContext).alias = _m
 	}
-	p.SetState(191)
+	p.SetState(193)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == ApiParserParserT__0 {
 		{
-			p.SetState(190)
+			p.SetState(192)
 
 			var _m = p.Match(ApiParserParserT__0)
 
@@ -114,7 +114,7 @@ func (p *ApiParserParser) TypeBlockAlias() (localctx ITypeBlockAliasContext) {
 
 	}
 	{
-		p.SetState(193)
+		p.SetState(195)
 		p.DataType()
 	}
 
@@ -248,25 +248,25 @@ func (p *ApiParserParser) Field() (localctx IFieldContext) {
 		}
 	}()
 
-	p.SetState(198)
+	p.SetState(200)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 15, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
-		p.SetState(195)
+		p.SetState(197)
 
 		if !(isNormal(p)) {
 			panic(antlr.NewFailedPredicateException(p, "isNormal(p)", ""))
 		}
 		{
-			p.SetState(196)
+			p.SetState(198)
 			p.NormalField()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(197)
+			p.SetState(199)
 			p.AnonymousFiled()
 		}
 
@@ -420,22 +420,22 @@ func (p *ApiParserParser) NormalField() (localctx INormalFieldContext) {
 	p.EnterOuterAlt(localctx, 1)
 	checkKeyword(p)
 	{
-		p.SetState(201)
+		p.SetState(203)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*NormalFieldContext).fieldName = _m
 	}
 	{
-		p.SetState(202)
+		p.SetState(204)
 		p.DataType()
 	}
-	p.SetState(204)
+	p.SetState(206)
 	p.GetErrorHandler().Sync(p)
 
 	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 16, p.GetParserRuleContext()) == 1 {
 		{
-			p.SetState(203)
+			p.SetState(205)
 
 			var _m = p.Match(ApiParserParserRAW_STRING)
 
@@ -558,13 +558,13 @@ func (p *ApiParserParser) AnonymousFiled() (localctx IAnonymousFiledContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(207)
+	p.SetState(209)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == ApiParserParserT__5 {
 		{
-			p.SetState(206)
+			p.SetState(208)
 
 			var _m = p.Match(ApiParserParserT__5)
 
@@ -573,7 +573,7 @@ func (p *ApiParserParser) AnonymousFiled() (localctx IAnonymousFiledContext) {
 
 	}
 	{
-		p.SetState(209)
+		p.SetState(211)
 		p.Match(ApiParserParserID)
 	}
 
@@ -593,17 +593,11 @@ type IDataTypeContext interface {
 	// GetTime returns the time token.
 	GetTime() antlr.Token
 
-	// GetSid returns the sid token.
-	GetSid() antlr.Token
-
 	// SetInter sets the inter token.
 	SetInter(antlr.Token)
 
 	// SetTime sets the time token.
 	SetTime(antlr.Token)
-
-	// SetSid sets the sid token.
-	SetSid(antlr.Token)
 
 	// Getter signatures
 	ID() antlr.TerminalNode
@@ -622,7 +616,6 @@ type DataTypeContext struct {
 	parser antlr.Parser
 	inter  antlr.Token
 	time   antlr.Token
-	sid    antlr.Token
 }
 
 func NewEmptyDataTypeContext() *DataTypeContext {
@@ -651,14 +644,26 @@ func (s *DataTypeContext) GetInter() antlr.Token { return s.inter }
 
 func (s *DataTypeContext) GetTime() antlr.Token { return s.time }
 
-func (s *DataTypeContext) GetSid() antlr.Token { return s.sid }
-
 func (s *DataTypeContext) SetInter(v antlr.Token) { s.inter = v }
 
 func (s *DataTypeContext) SetTime(v antlr.Token) { s.time = v }
 
-func (s *DataTypeContext) SetSid(v antlr.Token) { s.sid = v }
-
 func (s *DataTypeContext) ID() antlr.TerminalNode {
 	return s.GetToken(ApiParserParserID, 0)
+}
+
+func (s *DataTypeContext) MapType() IMapTypeContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IMapTypeContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IMapTypeContext)
 }

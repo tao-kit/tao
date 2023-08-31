@@ -4,7 +4,7 @@ import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 
 // Part 2
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during goctl installation.
+// was too large and caused a possible memory overflow during Taoctl installation.
 
 type ImportBlockValueContext struct {
 	*antlr.BaseParserRuleContext
@@ -104,7 +104,7 @@ func (p *ApiParserParser) ImportBlockValue() (localctx IImportBlockValueContext)
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(111)
+		p.SetState(113)
 		p.ImportValue()
 	}
 
@@ -212,7 +212,7 @@ func (p *ApiParserParser) ImportValue() (localctx IImportValueContext) {
 	p.EnterOuterAlt(localctx, 1)
 	checkImportValue(p)
 	{
-		p.SetState(114)
+		p.SetState(116)
 		p.Match(ApiParserParserSTRING)
 	}
 
@@ -397,35 +397,35 @@ func (p *ApiParserParser) InfoSpec() (localctx IInfoSpecContext) {
 	p.EnterOuterAlt(localctx, 1)
 	match(p, "info")
 	{
-		p.SetState(117)
+		p.SetState(119)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*InfoSpecContext).infoToken = _m
 	}
 	{
-		p.SetState(118)
+		p.SetState(120)
 
 		var _m = p.Match(ApiParserParserT__1)
 
 		localctx.(*InfoSpecContext).lp = _m
 	}
-	p.SetState(120)
+	p.SetState(122)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ok := true; ok; ok = _la == ApiParserParserID {
 		{
-			p.SetState(119)
+			p.SetState(121)
 			p.KvLit()
 		}
 
-		p.SetState(122)
+		p.SetState(124)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(124)
+		p.SetState(126)
 
 		var _m = p.Match(ApiParserParserT__2)
 
@@ -562,20 +562,20 @@ func (p *ApiParserParser) TypeSpec() (localctx ITypeSpecContext) {
 		}
 	}()
 
-	p.SetState(128)
+	p.SetState(130)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 5, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(126)
+			p.SetState(128)
 			p.TypeLit()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(127)
+			p.SetState(129)
 			p.TypeBlock()
 		}
 

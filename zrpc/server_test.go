@@ -1,10 +1,10 @@
 package zrpc
 
 import (
-	"github.com/alicebob/miniredis/v2"
 	"testing"
 	"time"
 
+	"github.com/alicebob/miniredis/v2"
 	"github.com/sllt/tao/core/discov"
 	"github.com/sllt/tao/core/logx"
 	"github.com/sllt/tao/core/service"

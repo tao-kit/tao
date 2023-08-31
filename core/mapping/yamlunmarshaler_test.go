@@ -1,11 +1,12 @@
 package mapping
 
 import (
-	"github.com/stretchr/testify/assert"
-	"k8s.io/utils/io"
 	"reflect"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"k8s.io/utils/io"
 )
 
 func TestUnmarshalYamlBytes(t *testing.T) {

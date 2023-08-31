@@ -1,10 +1,10 @@
 package service
 
 import (
-	"github.com/sllt/tao/core/proc"
 	"sync"
 	"testing"
 
+	"github.com/sllt/tao/core/proc"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -13,30 +13,6 @@ var (
 	mutex  sync.Mutex
 	done   = make(chan struct{})
 )
-
-type mockedService struct {
-	quit       chan struct{}
-	multiplier int
-}
-
-func newMockedService(multiplier int) *mockedService {
-	return &mockedService{
-		quit:       make(chan struct{}),
-		multiplier: multiplier,
-	}
-}
-
-func (s *mockedService) Start() {
-	mutex.Lock()
-	number *= s.multiplier
-	mutex.Unlock()
-	done <- struct{}{}
-	<-s.quit
-}
-
-func (s *mockedService) Stop() {
-	close(s.quit)
-}
 
 func TestServiceGroup(t *testing.T) {
 	multipliers := []int{2, 3, 5, 7}
@@ -125,4 +101,28 @@ type mockedStarter struct {
 
 func (s mockedStarter) Start() {
 	s.fn()
+}
+
+type mockedService struct {
+	quit       chan struct{}
+	multiplier int
+}
+
+func newMockedService(multiplier int) *mockedService {
+	return &mockedService{
+		quit:       make(chan struct{}),
+		multiplier: multiplier,
+	}
+}
+
+func (s *mockedService) Start() {
+	mutex.Lock()
+	number *= s.multiplier
+	mutex.Unlock()
+	done <- struct{}{}
+	<-s.quit
+}
+
+func (s *mockedService) Stop() {
+	close(s.quit)
 }

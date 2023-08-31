@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/logrusorgru/aurora"
+	"github.com/gookit/color"
 	"github.com/sllt/tao/tools/taoctl/util"
 	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
@@ -20,7 +20,7 @@ var apiTemplate string
 var (
 	// VarStringOutput describes the output.
 	VarStringOutput string
-	// VarStringHome describes the taoctl home.
+	// VarStringHome describes the Taoctl home.
 	VarStringHome string
 	// VarStringRemote describes the remote git repository.
 	VarStringRemote string
@@ -73,6 +73,6 @@ func CreateApiTemplate(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	fmt.Println(aurora.Green("Done."))
+	fmt.Println(color.Green.Render("Done."))
 	return nil
 }

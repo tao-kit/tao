@@ -1,10 +1,10 @@
 package service
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
 
 	"github.com/sllt/tao/core/logx"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestServiceConf(t *testing.T) {

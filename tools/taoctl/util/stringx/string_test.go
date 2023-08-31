@@ -51,32 +51,32 @@ func TestString_Snake2Camel(t *testing.T) {
 			want:  "",
 		},
 		{
-			input: "go_tao",
-			want:  "GoTao",
+			input: "go_zero",
+			want:  "GoZero",
 		},
 		{
-			input: "の_go_tao",
-			want:  "のGoTao",
+			input: "の_go_zero",
+			want:  "のGoZero",
 		},
 		{
-			input: "goTao",
-			want:  "GoTao",
+			input: "goZero",
+			want:  "GoZero",
 		},
 		{
-			input: "goTao",
-			want:  "GoTao",
+			input: "goZero",
+			want:  "GoZero",
 		},
 		{
-			input: "goTao_",
-			want:  "GoTao",
+			input: "goZero_",
+			want:  "GoZero",
 		},
 		{
-			input: "go_Tao_",
-			want:  "GoTao",
+			input: "go_Zero_",
+			want:  "GoZero",
 		},
 		{
-			input: "_go_Tao_",
-			want:  "GoTao",
+			input: "_go_Zero_",
+			want:  "GoZero",
 		},
 	}
 	for _, c := range cases {
@@ -91,20 +91,20 @@ func TestString_Camel2Snake(t *testing.T) {
 		want  string
 	}{
 		{
-			input: "goTao",
-			want:  "go_tao",
+			input: "goZero",
+			want:  "go_zero",
 		},
 		{
-			input: "Gotao",
-			want:  "gotao",
+			input: "Gozero",
+			want:  "gozero",
 		},
 		{
-			input: "GoTao",
-			want:  "go_tao",
+			input: "GoZero",
+			want:  "go_zero",
 		},
 		{
-			input: "Go_Tao",
-			want:  "go__tao",
+			input: "Go_Zero",
+			want:  "go__zero",
 		},
 	}
 	for _, c := range cases {
@@ -119,36 +119,36 @@ func TestTitle(t *testing.T) {
 		want  string
 	}{
 		{
-			input: "go tao",
-			want:  "Go Tao",
+			input: "go zero",
+			want:  "Go Zero",
 		},
 		{
-			input: "goTao",
-			want:  "GoTao",
+			input: "goZero",
+			want:  "GoZero",
 		},
 		{
-			input: "GoTao",
-			want:  "GoTao",
+			input: "GoZero",
+			want:  "GoZero",
 		},
 		{
-			input: "の go tao",
-			want:  "の Go Tao",
+			input: "の go zero",
+			want:  "の Go Zero",
 		},
 		{
-			input: "Gotao",
-			want:  "Gotao",
+			input: "Gozero",
+			want:  "Gozero",
 		},
 		{
-			input: "Go_tao",
-			want:  "Go_tao",
+			input: "Go_zero",
+			want:  "Go_zero",
 		},
 		{
-			input: "go_tao",
-			want:  "Go_tao",
+			input: "go_zero",
+			want:  "Go_zero",
 		},
 		{
-			input: "Go_Tao",
-			want:  "Go_Tao",
+			input: "Go_Zero",
+			want:  "Go_Zero",
 		},
 	}
 	for _, c := range cases {
@@ -163,28 +163,28 @@ func TestUntitle(t *testing.T) {
 		want  string
 	}{
 		{
-			input: "go tao",
-			want:  "go tao",
+			input: "go zero",
+			want:  "go zero",
 		},
 		{
-			input: "GoTao",
-			want:  "goTao",
+			input: "GoZero",
+			want:  "goZero",
 		},
 		{
-			input: "Gotao",
-			want:  "gotao",
+			input: "Gozero",
+			want:  "gozero",
 		},
 		{
-			input: "Go_tao",
-			want:  "go_tao",
+			input: "Go_zero",
+			want:  "go_zero",
 		},
 		{
-			input: "go_tao",
-			want:  "go_tao",
+			input: "go_zero",
+			want:  "go_zero",
 		},
 		{
-			input: "Go_Tao",
-			want:  "go_Tao",
+			input: "Go_Zero",
+			want:  "go_Zero",
 		},
 	}
 	for _, c := range cases {

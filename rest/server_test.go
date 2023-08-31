@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/sllt/tao/core/conf"
-	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/logx/logtest"
 	"github.com/sllt/tao/rest/chain"
 	"github.com/sllt/tao/rest/httpx"
 	"github.com/sllt/tao/rest/internal/cors"
@@ -22,13 +22,12 @@ import (
 )
 
 func TestNewServer(t *testing.T) {
-	writer := logx.Reset()
-	defer logx.SetWriter(writer)
-	logx.SetWriter(logx.NewWriter(io.Discard))
+	logtest.Discard(t)
 
 	const configYaml = `
 Name: foo
-Port: 54321
+Host: localhost
+Port: 0
 `
 	var cnf RestConf
 	assert.Nil(t, conf.LoadFromYamlBytes([]byte(configYaml), &cnf))
@@ -99,6 +98,23 @@ Port: 54321
 			}()
 
 			svr.Start()
+			svr.Stop()
+		}()
+
+		func() {
+			defer func() {
+				p := recover()
+				switch v := p.(type) {
+				case error:
+					assert.Equal(t, "foo", v.Error())
+				default:
+					t.Fail()
+				}
+			}()
+
+			svr.StartWithOpts(func(svr *http.Server) {
+				svr.RegisterOnShutdown(func() {})
+			})
 			svr.Stop()
 		}()
 	}
@@ -569,7 +585,6 @@ Port: 54321
 			Method: http.MethodGet,
 			Path:   "/user/:name",
 			Handler: func(writer http.ResponseWriter, request *http.Request) {
-
 				var userInfo struct {
 					Name string `path:"name"`
 				}

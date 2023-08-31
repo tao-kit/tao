@@ -2,7 +2,7 @@
 
 ## 背景
 
-在业务务开发中，model(dao)数据访问层是一个服务必不可缺的一层，因此数据库访问的CURD也是必须要对外提供的访问方法， 而CURD在go-tao中就仅存在两种情况
+在业务务开发中，model(dao)数据访问层是一个服务必不可缺的一层，因此数据库访问的CURD也是必须要对外提供的访问方法， 而CURD在go-zero中就仅存在两种情况
 
 * 带缓存model
 * 不带缓存model
@@ -67,6 +67,7 @@ import (
 	"github.com/sllt/tao/core/stores/monc"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 var prefixUserCacheKey = "cache:user:"
@@ -74,8 +75,8 @@ var prefixUserCacheKey = "cache:user:"
 type userModel interface {
 	Insert(ctx context.Context, data *User) error
 	FindOne(ctx context.Context, id string) (*User, error)
-	Update(ctx context.Context, data *User) error
-	Delete(ctx context.Context, id string) error
+	Update(ctx context.Context, data *User) (*mongo.UpdateResult, error)
+	Delete(ctx context.Context, id string) (int64, error)
 }
 
 type defaultUserModel struct {
@@ -117,21 +118,21 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id string) (*User, error
 	}
 }
 
-func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
+func (m *defaultUserModel) Update(ctx context.Context, data *User) (*mongo.UpdateResult, error) {
 	data.UpdateAt = time.Now()
 	key := prefixUserCacheKey + data.ID.Hex()
-	_, err := m.conn.ReplaceOne(ctx, key, bson.M{"_id": data.ID}, data)
-	return err
+	res, err := m.conn.ReplaceOne(ctx, key, bson.M{"_id": data.ID}, bson.M{"$set": data})
+	return res, err
 }
 
-func (m *defaultUserModel) Delete(ctx context.Context, id string) error {
+func (m *defaultUserModel) Delete(ctx context.Context, id string) (int64, error) {
 	oid, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		return ErrInvalidObjectId
+		return 0, ErrInvalidObjectId
 	}
 	key := prefixUserCacheKey + id
-	_, err = m.conn.DeleteOne(ctx, key, bson.M{"_id": oid})
-	return err
+	res, err := m.conn.DeleteOne(ctx, key, bson.M{"_id": oid})
+	return res, err
 }
 
 ```

@@ -2,10 +2,10 @@ package ast
 
 import (
 	"fmt"
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 	"sort"
 	"strings"
 
+	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 	"github.com/sllt/tao/tools/taoctl/api/parser/g4/gen/api"
 	"github.com/sllt/tao/tools/taoctl/util/console"
 )

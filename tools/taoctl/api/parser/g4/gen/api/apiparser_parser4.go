@@ -4,7 +4,7 @@ import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 
 // Part 4
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during goctl installation.
+// was too large and caused a possible memory overflow during Taoctl installation.
 
 func (s *TypeStructContext) GetParser() antlr.Parser { return s.parser }
 
@@ -132,19 +132,19 @@ func (p *ApiParserParser) TypeStruct() (localctx ITypeStructContext) {
 	p.EnterOuterAlt(localctx, 1)
 	checkKeyword(p)
 	{
-		p.SetState(154)
+		p.SetState(156)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*TypeStructContext).structName = _m
 	}
-	p.SetState(156)
+	p.SetState(158)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == ApiParserParserID {
 		{
-			p.SetState(155)
+			p.SetState(157)
 
 			var _m = p.Match(ApiParserParserID)
 
@@ -153,30 +153,30 @@ func (p *ApiParserParser) TypeStruct() (localctx ITypeStructContext) {
 
 	}
 	{
-		p.SetState(158)
+		p.SetState(160)
 
 		var _m = p.Match(ApiParserParserT__3)
 
 		localctx.(*TypeStructContext).lbrace = _m
 	}
-	p.SetState(162)
+	p.SetState(164)
 	p.GetErrorHandler().Sync(p)
 	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 10, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(159)
+				p.SetState(161)
 				p.Field()
 			}
 
 		}
-		p.SetState(164)
+		p.SetState(166)
 		p.GetErrorHandler().Sync(p)
 		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 10, p.GetParserRuleContext())
 	}
 	{
-		p.SetState(165)
+		p.SetState(167)
 
 		var _m = p.Match(ApiParserParserT__4)
 
@@ -327,19 +327,19 @@ func (p *ApiParserParser) TypeAlias() (localctx ITypeAliasContext) {
 	p.EnterOuterAlt(localctx, 1)
 	checkKeyword(p)
 	{
-		p.SetState(168)
+		p.SetState(170)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*TypeAliasContext).alias = _m
 	}
-	p.SetState(170)
+	p.SetState(172)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == ApiParserParserT__0 {
 		{
-			p.SetState(169)
+			p.SetState(171)
 
 			var _m = p.Match(ApiParserParserT__0)
 
@@ -348,7 +348,7 @@ func (p *ApiParserParser) TypeAlias() (localctx ITypeAliasContext) {
 
 	}
 	{
-		p.SetState(172)
+		p.SetState(174)
 		p.DataType()
 	}
 
@@ -551,19 +551,19 @@ func (p *ApiParserParser) TypeBlockStruct() (localctx ITypeBlockStructContext) {
 	p.EnterOuterAlt(localctx, 1)
 	checkKeyword(p)
 	{
-		p.SetState(175)
+		p.SetState(177)
 
 		var _m = p.Match(ApiParserParserID)
 
 		localctx.(*TypeBlockStructContext).structName = _m
 	}
-	p.SetState(177)
+	p.SetState(179)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == ApiParserParserID {
 		{
-			p.SetState(176)
+			p.SetState(178)
 
 			var _m = p.Match(ApiParserParserID)
 
@@ -572,30 +572,30 @@ func (p *ApiParserParser) TypeBlockStruct() (localctx ITypeBlockStructContext) {
 
 	}
 	{
-		p.SetState(179)
+		p.SetState(181)
 
 		var _m = p.Match(ApiParserParserT__3)
 
 		localctx.(*TypeBlockStructContext).lbrace = _m
 	}
-	p.SetState(183)
+	p.SetState(185)
 	p.GetErrorHandler().Sync(p)
 	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 13, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(180)
+				p.SetState(182)
 				p.Field()
 			}
 
 		}
-		p.SetState(185)
+		p.SetState(187)
 		p.GetErrorHandler().Sync(p)
 		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 13, p.GetParserRuleContext())
 	}
 	{
-		p.SetState(186)
+		p.SetState(188)
 
 		var _m = p.Match(ApiParserParserT__4)
 

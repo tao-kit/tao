@@ -1,5 +1,4 @@
 //go:build linux || darwin
-// +build linux darwin
 
 package proc
 
@@ -97,4 +96,6 @@ func (lm *listenerManager) notifyListeners() {
 		group.RunSafe(listener)
 	}
 	group.Wait()
+
+	lm.listeners = nil
 }

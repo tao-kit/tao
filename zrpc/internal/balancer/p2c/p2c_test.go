@@ -3,6 +3,11 @@ package p2c
 import (
 	"context"
 	"fmt"
+	"runtime"
+	"strconv"
+	"sync"
+	"testing"
+
 	"github.com/sllt/tao/core/logx"
 	"github.com/sllt/tao/core/mathx"
 	"github.com/sllt/tao/core/stringx"
@@ -12,10 +17,6 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/resolver"
 	"google.golang.org/grpc/status"
-	"runtime"
-	"strconv"
-	"sync"
-	"testing"
 )
 
 func init() {
@@ -120,6 +121,15 @@ func TestP2cPicker_Pick(t *testing.T) {
 				entropy, test.threshold))
 		})
 	}
+}
+
+func TestPickerWithEmptyConns(t *testing.T) {
+	var picker p2cPicker
+	_, err := picker.Pick(balancer.PickInfo{
+		FullMethodName: "/",
+		Ctx:            context.Background(),
+	})
+	assert.ErrorIs(t, err, balancer.ErrNoSubConnAvailable)
 }
 
 type mockClientConn struct {

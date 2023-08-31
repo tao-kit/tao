@@ -62,9 +62,8 @@ func genTypes(dir string, cfg *config.Config, api *spec.ApiSpec) error {
 		templateFile:    typesTemplateFile,
 		builtinTemplate: typesTemplate,
 		data: map[string]any{
-			"types":               val,
-			"containsTime":        false,
-			"containsSnowflakeID": api.HasSnowflakeID,
+			"types":        val,
+			"containsTime": false,
 		},
 	})
 }

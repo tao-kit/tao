@@ -2,12 +2,13 @@ package internal
 
 import (
 	"context"
-	"github.com/sllt/tao/core/proc"
 	"sync"
 	"testing"
+	"time"
 
+	"github.com/sllt/tao/core/proc"
 	"github.com/sllt/tao/core/stat"
-	"github.com/sllt/tao/zrpc/internal/mock"
+	"github.com/sllt/tao/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 )
@@ -40,6 +41,8 @@ func TestRpcServer(t *testing.T) {
 	}()
 
 	wg.Wait()
+	time.Sleep(100 * time.Millisecond)
+
 	lock.Lock()
 	grpcServer.GracefulStop()
 	lock.Unlock()

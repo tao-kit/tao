@@ -9,16 +9,19 @@ import (
 	"testing"
 
 	ztrace "github.com/sllt/tao/core/trace"
+	"github.com/sllt/tao/core/trace/tracetest"
 	"github.com/sllt/tao/rest/httpx"
 	"github.com/sllt/tao/rest/internal/header"
 	"github.com/sllt/tao/rest/router"
 	"github.com/stretchr/testify/assert"
+	tcodes "go.opentelemetry.io/otel/codes"
+	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	"go.opentelemetry.io/otel/trace"
 )
 
 func TestDoRequest(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-tao-test",
+		Name:     "go-zero-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -59,6 +62,7 @@ func TestDoRequest_Moved(t *testing.T) {
 }
 
 func TestDo(t *testing.T) {
+	me := tracetest.NewInMemoryExporter(t)
 	type Data struct {
 		Key    string `path:"key"`
 		Value  int    `form:"value"`
@@ -86,6 +90,13 @@ func TestDo(t *testing.T) {
 	resp, err := Do(context.Background(), http.MethodPost, svr.URL+"/nodes/:key", data)
 	assert.Nil(t, err)
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
+	assert.Equal(t, 1, len(me.GetSpans()))
+	span := me.GetSpans()[0].Snapshot()
+	assert.Equal(t, sdktrace.Status{
+		Code: tcodes.Unset,
+	}, span.Status())
+	assert.Equal(t, 0, len(span.Events()))
+	assert.Equal(t, 7, len(span.Attributes()))
 }
 
 func TestDo_Ptr(t *testing.T) {

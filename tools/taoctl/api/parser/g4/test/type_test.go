@@ -178,15 +178,15 @@ func TestDataType_Array(t *testing.T) {
 		}))
 	})
 
-	t.Run("any", func(t *testing.T) {
-		v, err := parser.Accept(dt, `[]any`)
+	t.Run("interface{}", func(t *testing.T) {
+		v, err := parser.Accept(dt, `[]interface{}`)
 		assert.Nil(t, err)
 		array := v.(ast.DataType)
 		assert.True(t, array.Equal(&ast.Array{
-			ArrayExpr: ast.NewTextExpr("[]any"),
+			ArrayExpr: ast.NewTextExpr("[]interface{}"),
 			LBrack:    ast.NewTextExpr("["),
 			RBrack:    ast.NewTextExpr("]"),
-			Literal:   &ast.Interface{Literal: ast.NewTextExpr("any")},
+			Literal:   &ast.Interface{Literal: ast.NewTextExpr("interface{}")},
 		}))
 	})
 
@@ -204,10 +204,10 @@ func TestDataType_Interface(t *testing.T) {
 		return p.DataType().Accept(visitor)
 	}
 	t.Run("normal", func(t *testing.T) {
-		v, err := parser.Accept(dt, `any`)
+		v, err := parser.Accept(dt, `interface{}`)
 		assert.Nil(t, err)
 		inter := v.(ast.DataType)
-		assert.True(t, inter.Equal(&ast.Interface{Literal: ast.NewTextExpr("any")}))
+		assert.True(t, inter.Equal(&ast.Interface{Literal: ast.NewTextExpr("interface{}")}))
 	})
 
 	t.Run("wrong", func(t *testing.T) {
@@ -228,20 +228,6 @@ func TestDataType_Time(t *testing.T) {
 	t.Run("normal", func(t *testing.T) {
 		_, err := parser.Accept(dt, `time.Time`)
 		assert.Error(t, err)
-	})
-}
-
-func TestDataType_SnowflakeID(t *testing.T) {
-	dt := func(p *api.ApiParserParser, visitor *ast.ApiVisitor) any {
-		return p.DataType().Accept(visitor)
-	}
-	t.Run("normal", func(t *testing.T) {
-		v, err := parser.Accept(dt, `snowflake.ID`)
-		assert.Nil(t, err)
-		id := v.(*ast.SnowflakeID)
-		assert.True(t, id.Equal(&ast.SnowflakeID{
-			Literal: ast.NewTextExpr("snowflake.ID"),
-		}))
 	})
 }
 

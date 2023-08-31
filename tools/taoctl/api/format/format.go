@@ -14,6 +14,8 @@ import (
 	"github.com/sllt/tao/core/errorx"
 	"github.com/sllt/tao/tools/taoctl/api/parser"
 	"github.com/sllt/tao/tools/taoctl/api/util"
+	"github.com/sllt/tao/tools/taoctl/pkg/env"
+	apiF "github.com/sllt/tao/tools/taoctl/pkg/parser/api/format"
 	"github.com/sllt/tao/tools/taoctl/util/pathx"
 	"github.com/spf13/cobra"
 )
@@ -90,6 +92,10 @@ func apiFormatReader(reader io.Reader, filename string, skipCheckDeclare bool) e
 
 // ApiFormatByPath format api from file path
 func ApiFormatByPath(apiFilePath string, skipCheckDeclare bool) error {
+	if env.UseExperimental() {
+		return apiF.File(apiFilePath)
+	}
+
 	data, err := os.ReadFile(apiFilePath)
 	if err != nil {
 		return err
@@ -165,7 +171,9 @@ func apiFormat(data string, skipCheckDeclare bool, filename ...string) (string, 
 				tapCount++
 			}
 		}
-		util.WriteIndent(&builder, tapCount)
+		if line != "" {
+			util.WriteIndent(&builder, tapCount)
+		}
 		builder.WriteString(line + pathx.NL)
 		if strings.HasSuffix(noCommentLine, leftParenthesis) || strings.HasSuffix(noCommentLine, leftBrace) {
 			tapCount++

@@ -2,13 +2,14 @@ package health
 
 import (
 	"fmt"
-	"github.com/sllt/tao/core/syncx"
 	"net/http"
 	"strings"
 	"sync"
+
+	"github.com/sllt/tao/core/syncx"
 )
 
-// defaultHealthManager is global comboHealthManager for byone self.
+// defaultHealthManager is global comboHealthManager.
 var defaultHealthManager = newComboHealthManager()
 
 type (

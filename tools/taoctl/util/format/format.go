@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	flagGo  = "GO"
-	flagTao = "TAO"
+	flagGo   = "GO"
+	flagZero = "ZERO"
 
 	unknown style = iota
 	title
@@ -35,35 +35,35 @@ type (
 
 // FileNamingFormat is used to format the file name. You can define the format style
 // through the go and zero formatting characters. For example, you can define the snake
-// format as go_zero, and the camel case format as goTao. You can even specify the split
-// character, such as go#Tao, theoretically any combination can be used, but the prerequisite
+// format as go_zero, and the camel case format as goZero. You can even specify the split
+// character, such as go#Zero, theoretically any combination can be used, but the prerequisite
 // must meet the naming conventions of each operating system file name.
 // Note: Formatting is based on snake or camel string
 func FileNamingFormat(format, content string) (string, error) {
 	upperFormat := strings.ToUpper(format)
 	indexGo := strings.Index(upperFormat, flagGo)
-	indexTao := strings.Index(upperFormat, flagTao)
-	if indexGo < 0 || indexTao < 0 || indexGo > indexTao {
+	indexZero := strings.Index(upperFormat, flagZero)
+	if indexGo < 0 || indexZero < 0 || indexGo > indexZero {
 		return "", ErrNamingFormat
 	}
 	var (
 		before, through, after string
-		flagGo, flagTao        string
+		flagGo, flagZero       string
 		goStyle, zeroStyle     style
 		err                    error
 	)
 	before = format[:indexGo]
 	flagGo = format[indexGo : indexGo+2]
-	through = format[indexGo+2 : indexTao]
-	flagTao = format[indexTao : indexTao+3]
-	after = format[indexTao+3:]
+	through = format[indexGo+2 : indexZero]
+	flagZero = format[indexZero : indexZero+4]
+	after = format[indexZero+4:]
 
 	goStyle, err = getStyle(flagGo)
 	if err != nil {
 		return "", err
 	}
 
-	zeroStyle, err = getStyle(flagTao)
+	zeroStyle, err = getStyle(flagZero)
 	if err != nil {
 		return "", err
 	}

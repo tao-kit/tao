@@ -3,7 +3,6 @@ package gen
 import (
 	"database/sql"
 	_ "embed"
-	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
@@ -30,29 +29,29 @@ func TestCacheModel(t *testing.T) {
 	_ = Clean()
 
 	sqlFile := filepath.Join(pathx.MustTempDir(), "tmp.sql")
-	err := ioutil.WriteFile(sqlFile, []byte(source), 0o777)
+	err := os.WriteFile(sqlFile, []byte(source), 0o777)
 	assert.Nil(t, err)
 
 	dir := filepath.Join(pathx.MustTempDir(), "./testmodel")
 	cacheDir := filepath.Join(dir, "cache")
 	noCacheDir := filepath.Join(dir, "nocache")
 	g, err := NewDefaultGenerator(cacheDir, &config.Config{
-		NamingFormat: "GoTao",
+		NamingFormat: "GoZero",
 	})
 	assert.Nil(t, err)
 
-	err = g.StartFromDDL(sqlFile, true, false, "go_tao")
+	err = g.StartFromDDL(sqlFile, true, false, "go_zero")
 	assert.Nil(t, err)
 	assert.True(t, func() bool {
 		_, err := os.Stat(filepath.Join(cacheDir, "TestUserModel.go"))
 		return err == nil
 	}())
 	g, err = NewDefaultGenerator(noCacheDir, &config.Config{
-		NamingFormat: "gotao",
+		NamingFormat: "gozero",
 	})
 	assert.Nil(t, err)
 
-	err = g.StartFromDDL(sqlFile, false, false, "go_tao")
+	err = g.StartFromDDL(sqlFile, false, false, "go_zero")
 	assert.Nil(t, err)
 	assert.True(t, func() bool {
 		_, err := os.Stat(filepath.Join(noCacheDir, "testusermodel.go"))
@@ -65,7 +64,7 @@ func TestNamingModel(t *testing.T) {
 	_ = Clean()
 
 	sqlFile := filepath.Join(pathx.MustTempDir(), "tmp.sql")
-	err := ioutil.WriteFile(sqlFile, []byte(source), 0o777)
+	err := os.WriteFile(sqlFile, []byte(source), 0o777)
 	assert.Nil(t, err)
 
 	dir, _ := filepath.Abs("./testmodel")
@@ -75,22 +74,22 @@ func TestNamingModel(t *testing.T) {
 		_ = os.RemoveAll(dir)
 	}()
 	g, err := NewDefaultGenerator(camelDir, &config.Config{
-		NamingFormat: "GoTao",
+		NamingFormat: "GoZero",
 	})
 	assert.Nil(t, err)
 
-	err = g.StartFromDDL(sqlFile, true, false, "go_tao")
+	err = g.StartFromDDL(sqlFile, true, false, "go_zero")
 	assert.Nil(t, err)
 	assert.True(t, func() bool {
 		_, err := os.Stat(filepath.Join(camelDir, "TestUserModel.go"))
 		return err == nil
 	}())
 	g, err = NewDefaultGenerator(snakeDir, &config.Config{
-		NamingFormat: "go_tao",
+		NamingFormat: "go_zero",
 	})
 	assert.Nil(t, err)
 
-	err = g.StartFromDDL(sqlFile, true, false, "go_tao")
+	err = g.StartFromDDL(sqlFile, true, false, "go_zero")
 	assert.Nil(t, err)
 	assert.True(t, func() bool {
 		_, err := os.Stat(filepath.Join(snakeDir, "test_user_model.go"))
@@ -103,7 +102,7 @@ func TestFolderName(t *testing.T) {
 	_ = Clean()
 
 	sqlFile := filepath.Join(pathx.MustTempDir(), "tmp.sql")
-	err := ioutil.WriteFile(sqlFile, []byte(source), 0o777)
+	err := os.WriteFile(sqlFile, []byte(source), 0o777)
 	assert.Nil(t, err)
 
 	dir, _ := filepath.Abs("./testmodel")
@@ -113,13 +112,13 @@ func TestFolderName(t *testing.T) {
 		_ = os.RemoveAll(dir)
 	}()
 	g, err := NewDefaultGenerator(camelDir, &config.Config{
-		NamingFormat: "GoTao",
+		NamingFormat: "GoZero",
 	})
 	assert.Nil(t, err)
 
 	pkg := g.pkg
 
-	err = g.StartFromDDL(sqlFile, true, true, "go_tao")
+	err = g.StartFromDDL(sqlFile, true, true, "go_zero")
 	assert.Nil(t, err)
 	assert.True(t, func() bool {
 		_, err := os.Stat(filepath.Join(camelDir, "TestUserModel.go"))
@@ -128,11 +127,11 @@ func TestFolderName(t *testing.T) {
 	assert.Equal(t, pkg, g.pkg)
 
 	g, err = NewDefaultGenerator(snakeDir, &config.Config{
-		NamingFormat: "go_tao",
+		NamingFormat: "go_zero",
 	})
 	assert.Nil(t, err)
 
-	err = g.StartFromDDL(sqlFile, true, true, "go_tao")
+	err = g.StartFromDDL(sqlFile, true, true, "go_zero")
 	assert.Nil(t, err)
 	assert.True(t, func() bool {
 		_, err := os.Stat(filepath.Join(snakeDir, "test_user_model.go"))
@@ -179,7 +178,7 @@ func Test_genPublicModel(t *testing.T) {
 	defer os.RemoveAll(dir)
 
 	modelFilename := filepath.Join(modelDir, "foo.sql")
-	err = ioutil.WriteFile(modelFilename, []byte(source), 0o777)
+	err = os.WriteFile(modelFilename, []byte(source), 0o777)
 	require.NoError(t, err)
 
 	g, err := NewDefaultGenerator(modelDir, &config.Config{

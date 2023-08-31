@@ -2,10 +2,11 @@ package serverinterceptors
 
 import (
 	"context"
+	"sync"
+
 	"github.com/sllt/tao/core/load"
 	"github.com/sllt/tao/core/stat"
 	"google.golang.org/grpc"
-	"sync"
 )
 
 const serviceType = "rpc"

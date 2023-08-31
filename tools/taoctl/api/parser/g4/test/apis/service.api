@@ -2,8 +2,9 @@ type Foo {}
 
 @server(
     foo: foo
-    bar: bar
-    fooBar: "foo bar"
+    bar: "bar"
+    fooBar: "foo
+bar"
 )
 service foo-api {
     @doc("foo")

@@ -1,11 +1,11 @@
 package internal
 
 import (
-	"github.com/sllt/tao/zrpc/resolver/internal/targets"
 	"strings"
 
 	"github.com/sllt/tao/core/discov"
 	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/zrpc/resolver/internal/targets"
 	"google.golang.org/grpc/resolver"
 )
 

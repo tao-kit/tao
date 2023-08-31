@@ -117,4 +117,7 @@ type ApiParserVisitor interface {
 
 	// Visit a parse tree produced by ApiParserParser#path.
 	VisitPath(ctx *PathContext) interface{}
+
+	// Visit a parse tree produced by ApiParserParser#pathItem.
+	VisitPathItem(ctx *PathItemContext) interface{}
 }

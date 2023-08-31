@@ -2,10 +2,11 @@ package mon
 
 import (
 	"context"
+	"io"
+
 	"github.com/sllt/tao/core/syncx"
 	"go.mongodb.org/mongo-driver/mongo"
 	mopt "go.mongodb.org/mongo-driver/mongo/options"
-	"io"
 )
 
 var clientManager = syncx.NewResourceManager()

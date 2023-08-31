@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/logrusorgru/aurora"
+	"github.com/gookit/color"
 	"github.com/sllt/tao/core/logx"
 	apiformat "github.com/sllt/tao/tools/taoctl/api/format"
 	"github.com/sllt/tao/tools/taoctl/api/parser"
@@ -26,7 +26,7 @@ import (
 const tmpFile = "%s-%d"
 
 var (
-	tmpDir = path.Join(os.TempDir(), "taoctl")
+	tmpDir = path.Join(os.TempDir(), "Taoctl")
 	// VarStringDir describes the directory.
 	VarStringDir string
 	// VarStringAPI describes the API.
@@ -109,7 +109,7 @@ func DoGenProject(apiFile, dir, style string) error {
 		return err
 	}
 
-	fmt.Println(aurora.Green("Done."))
+	fmt.Println(color.Green.Render("Done."))
 	return nil
 }
 
@@ -152,14 +152,14 @@ func sweep() error {
 			seconds, err := strconv.ParseInt(timestamp, 10, 64)
 			if err != nil {
 				// print error and ignore
-				fmt.Println(aurora.Red(fmt.Sprintf("sweep ignored file: %s", fpath)))
+				fmt.Println(color.Red.Sprintf("sweep ignored file: %s", fpath))
 				return nil
 			}
 
 			tm := time.Unix(seconds, 0)
 			if tm.Before(keepTime) {
-				if err := os.Remove(fpath); err != nil {
-					fmt.Println(aurora.Red(fmt.Sprintf("failed to remove file: %s", fpath)))
+				if err := os.RemoveAll(fpath); err != nil {
+					fmt.Println(color.Red.Sprintf("failed to remove file: %s", fpath))
 					return err
 				}
 			}

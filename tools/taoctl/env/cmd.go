@@ -1,6 +1,6 @@
 package env
 
-import "github.com/spf13/cobra"
+import "github.com/sllt/tao/tools/taoctl/internal/cobrax"
 
 var (
 	sliceVarWriteValue []string
@@ -9,38 +9,20 @@ var (
 	boolVarInstall     bool
 
 	// Cmd describes an env command.
-	Cmd = &cobra.Command{
-		Use:   "env",
-		Short: "Check or edit taoctl environment",
-		RunE:  write,
-	}
-	installCmd = &cobra.Command{
-		Use:   "install",
-		Short: "Taoctl env installation",
-		RunE:  install,
-	}
-	checkCmd = &cobra.Command{
-		Use:   "check",
-		Short: "Detect taoctl env and dependency tools",
-		RunE:  check,
-	}
+	Cmd        = cobrax.NewCommand("env", cobrax.WithRunE(write))
+	installCmd = cobrax.NewCommand("install", cobrax.WithRunE(install))
+	checkCmd   = cobrax.NewCommand("check", cobrax.WithRunE(check))
 )
 
 func init() {
 	// The root command flags
-	Cmd.Flags().StringSliceVarP(&sliceVarWriteValue,
-		"write", "w", nil, "Edit taoctl environment")
-	Cmd.PersistentFlags().BoolVarP(&boolVarForce,
-		"force", "f", false,
-		"Silent installation of non-existent dependencies")
-	Cmd.PersistentFlags().BoolVarP(&boolVarVerbose,
-		"verbose", "v", false, "Enable log output")
+	Cmd.Flags().StringSliceVarP(&sliceVarWriteValue, "write", "w")
+	Cmd.PersistentFlags().BoolVarP(&boolVarForce, "force", "f")
+	Cmd.PersistentFlags().BoolVarP(&boolVarVerbose, "verbose", "v")
 
 	// The sub-command flags
-	checkCmd.Flags().BoolVarP(&boolVarInstall, "install", "i",
-		false, "Install dependencies if not found")
+	checkCmd.Flags().BoolVarP(&boolVarInstall, "install", "i")
 
 	// Add sub-command
-	Cmd.AddCommand(installCmd)
-	Cmd.AddCommand(checkCmd)
+	Cmd.AddCommand(checkCmd, installCmd)
 }

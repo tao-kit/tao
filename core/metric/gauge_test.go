@@ -1,10 +1,10 @@
 package metric
 
 import (
-	"github.com/sllt/tao/core/proc"
 	"testing"
 
 	"github.com/prometheus/client_golang/prometheus/testutil"
+	"github.com/sllt/tao/core/proc"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -2,14 +2,14 @@ package internal
 
 import (
 	"fmt"
-	"go.etcd.io/etcd/client/v3/mock/mockserver"
-	"google.golang.org/grpc/resolver"
-	"google.golang.org/grpc/serviceconfig"
 	"net/url"
 	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"go.etcd.io/etcd/client/v3/mock/mockserver"
+	"google.golang.org/grpc/resolver"
+	"google.golang.org/grpc/serviceconfig"
 )
 
 func TestDiscovBuilder_Scheme(t *testing.T) {

@@ -2,6 +2,7 @@ package spec_test
 
 import (
 	"fmt"
+
 	"github.com/sllt/tao/tools/taoctl/api/spec"
 )
 

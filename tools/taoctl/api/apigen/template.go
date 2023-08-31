@@ -39,7 +39,7 @@ func RevertTemplate(name string) error {
 	return pathx.CreateTemplate(category, name, content)
 }
 
-// Update updates the template files to the templates built in current taoctl.
+// Update updates the template files to the templates built in current Taoctl.
 func Update() error {
 	err := Clean()
 	if err != nil {

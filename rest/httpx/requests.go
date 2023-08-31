@@ -7,6 +7,7 @@ import (
 	"sync/atomic"
 
 	"github.com/sllt/tao/core/mapping"
+	"github.com/sllt/tao/core/validation"
 	"github.com/sllt/tao/rest/internal/encoding"
 	"github.com/sllt/tao/rest/internal/header"
 	"github.com/sllt/tao/rest/pathvar"
@@ -22,8 +23,8 @@ const (
 )
 
 var (
-	formUnmarshaler = mapping.NewUnmarshaler(formKey, mapping.WithStringValues())
-	pathUnmarshaler = mapping.NewUnmarshaler(pathKey, mapping.WithStringValues())
+	formUnmarshaler = mapping.NewUnmarshaler(formKey, mapping.WithStringValues(), mapping.WithOpaqueKeys())
+	pathUnmarshaler = mapping.NewUnmarshaler(pathKey, mapping.WithStringValues(), mapping.WithOpaqueKeys())
 	validator       atomic.Value
 )
 
@@ -51,7 +52,9 @@ func Parse(r *http.Request, v any) error {
 		return err
 	}
 
-	if val := validator.Load(); val != nil {
+	if valid, ok := v.(validation.Validator); ok {
+		return valid.Validate()
+	} else if val := validator.Load(); val != nil {
 		return val.(Validator).Validate(r, v)
 	}
 

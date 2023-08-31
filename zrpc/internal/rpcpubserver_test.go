@@ -1,9 +1,9 @@
 package internal
 
 import (
-	"github.com/sllt/tao/core/discov"
 	"testing"
 
+	"github.com/sllt/tao/core/discov"
 	"github.com/sllt/tao/core/netx"
 	"github.com/stretchr/testify/assert"
 )
@@ -12,6 +12,7 @@ func TestNewRpcPubServer(t *testing.T) {
 	s, err := NewRpcPubServer(discov.EtcdConf{
 		User: "user",
 		Pass: "pass",
+		ID:   10,
 	}, "", ServerMiddlewaresConf{})
 	assert.NoError(t, err)
 	assert.NotPanics(t, func() {

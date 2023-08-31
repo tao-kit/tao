@@ -15,10 +15,26 @@ type (
 		Rollback() error
 	}
 
+	txConn struct {
+		Session
+	}
+
 	txSession struct {
 		*sql.Tx
 	}
 )
+
+func (s txConn) RawDB() (*sql.DB, error) {
+	return nil, errNoRawDBFromTx
+}
+
+func (s txConn) Transact(_ func(Session) error) error {
+	return errCantNestTx
+}
+
+func (s txConn) TransactCtx(_ context.Context, _ func(context.Context, Session) error) error {
+	return errCantNestTx
+}
 
 // NewSessionFromTx returns a Session with the given sql.Tx.
 // Use it with caution, it's provided for other ORM to interact with.
@@ -159,7 +175,7 @@ func transactOnConn(ctx context.Context, conn *sql.DB, b beginnable,
 			if e := tx.Rollback(); e != nil {
 				err = fmt.Errorf("recover from %#v, rollback failed: %w", p, e)
 			} else {
-				err = fmt.Errorf("recoveer from %#v", p)
+				err = fmt.Errorf("recover from %#v", p)
 			}
 		} else if err != nil {
 			if e := tx.Rollback(); e != nil {

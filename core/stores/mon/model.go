@@ -2,10 +2,10 @@ package mon
 
 import (
 	"context"
-	"log"
 	"strings"
 
 	"github.com/sllt/tao/core/breaker"
+	"github.com/sllt/tao/core/logx"
 	"github.com/sllt/tao/core/timex"
 	"go.mongodb.org/mongo-driver/mongo"
 	mopt "go.mongodb.org/mongo-driver/mongo/options"
@@ -39,10 +39,7 @@ type (
 // MustNewModel returns a Model, exits on errors.
 func MustNewModel(uri, db, collection string, opts ...Option) *Model {
 	model, err := NewModel(uri, db, collection, opts...)
-	if err != nil {
-		log.Fatal(err)
-	}
-
+	logx.Must(err)
 	return model
 }
 

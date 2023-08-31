@@ -23,7 +23,7 @@ type LogConf struct {
 	MaxContentLength uint32 `json:",optional"`
 	// Compress represents whether to compress the log file, default is `false`.
 	Compress bool `json:",optional"`
-	// Stdout represents whether to log statistics, default is `true`.
+	// Stat represents whether to log statistics, default is `true`.
 	Stat bool `json:",default=true"`
 	// KeepDays represents how many days the log files will be kept. Default to keep all files.
 	// Only take effect when Mode is `file` or `volume`, both work when Rotation is `daily` or `size`.
@@ -32,13 +32,13 @@ type LogConf struct {
 	StackCooldownMillis int `json:",default=100"`
 	// MaxBackups represents how many backup log files will be kept. 0 means all files will be kept forever.
 	// Only take effect when RotationRuleType is `size`.
-	// Even thougth `MaxBackups` sets 0, log files will still be removed
+	// Even though `MaxBackups` sets 0, log files will still be removed
 	// if the `KeepDays` limitation is reached.
 	MaxBackups int `json:",default=0"`
 	// MaxSize represents how much space the writing log file takes up. 0 means no limit. The unit is `MB`.
 	// Only take effect when RotationRuleType is `size`
 	MaxSize int `json:",default=0"`
-	// RotationRuleType represents the type of log rotation rule. Default is `daily`.
+	// Rotation represents the type of log rotation rule. Default is `daily`.
 	// daily: daily rotation.
 	// size: size limited rotation.
 	Rotation string `json:",default=daily,options=[daily,size]"`

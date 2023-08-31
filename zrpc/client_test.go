@@ -10,7 +10,7 @@ import (
 
 	"github.com/sllt/tao/core/discov"
 	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/zrpc/internal/mock"
+	"github.com/sllt/tao/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -213,5 +213,17 @@ func TestNewClientWithError(t *testing.T) {
 			return invoker(ctx, method, req, reply, cc, opts...)
 		}),
 	)
+	assert.NotNil(t, err)
+}
+
+func TestNewClientWithTarget(t *testing.T) {
+	_, err := NewClientWithTarget("",
+		WithDialOption(grpc.WithTransportCredentials(insecure.NewCredentials())),
+		WithDialOption(grpc.WithContextDialer(dialer())),
+		WithUnaryClientInterceptor(func(ctx context.Context, method string, req, reply any,
+			cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
+			return invoker(ctx, method, req, reply, cc, opts...)
+		}))
+
 	assert.NotNil(t, err)
 }

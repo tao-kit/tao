@@ -1,7 +1,7 @@
 // DO NOT EDIT.
 // Tool: split apiparser_parser.go
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during goctl installation.
+// was too large and caused a possible memory overflow during Taoctl installation.
 package api
 
 import (
@@ -41,7 +41,7 @@ import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 
 // Part %s
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during goctl installation.
+// was too large and caused a possible memory overflow during Taoctl installation.
 `, part))
 		}
 

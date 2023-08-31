@@ -3,13 +3,13 @@ package zrpc
 import (
 	"context"
 	"fmt"
-	"google.golang.org/grpc/credentials/insecure"
 	"testing"
 
-	"github.com/sllt/tao/zrpc/internal/mock"
+	"github.com/sllt/tao/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/status"
 )
 
@@ -67,7 +67,8 @@ func TestProxy(t *testing.T) {
 }
 
 func TestRpcProxy_TakeConnNewClientFailed(t *testing.T) {
-	proxy := NewProxy("foo", WithDialOption(grpc.WithTransportCredentials(insecure.NewCredentials())), WithDialOption(grpc.WithBlock()))
+	proxy := NewProxy("foo", WithDialOption(grpc.WithTransportCredentials(insecure.NewCredentials())),
+		WithDialOption(grpc.WithBlock()))
 	_, err := proxy.TakeConn(context.Background())
 	assert.NotNil(t, err)
 }

@@ -25,11 +25,14 @@ const (
 	TaoctlDebug            = "TAOCTL_DEBUG"
 	TaoctlCache            = "TAOCTL_CACHE"
 	TaoctlVersion          = "TAOCTL_VERSION"
+	TaoctlExperimental     = "TAOCTL_EXPERIMENTAL"
 	ProtocVersion          = "PROTOC_VERSION"
 	ProtocGenGoVersion     = "PROTOC_GEN_GO_VERSION"
 	ProtocGenGoGRPCVersion = "PROTO_GEN_GO_GRPC_VERSION"
 
-	envFileDir = "env"
+	envFileDir      = "env"
+	ExperimentalOn  = "on"
+	ExperimentalOff = "off"
 )
 
 // init initializes the taoctl environment variables, the environment variables of the function are set in order,
@@ -56,7 +59,10 @@ func init() {
 		if value := existsEnv.GetStringOr(TaoctlCache, ""); value != "" {
 			taoctlEnv.SetKV(TaoctlCache, value)
 		}
+		experimental := existsEnv.GetOr(TaoctlExperimental, ExperimentalOff)
+		taoctlEnv.SetKV(TaoctlExperimental, experimental)
 	}
+
 	if !taoctlEnv.HasKey(TaoctlHome) {
 		taoctlEnv.SetKV(TaoctlHome, defaultTaoctlHome)
 	}
@@ -69,7 +75,12 @@ func init() {
 		taoctlEnv.SetKV(TaoctlCache, cacheDir)
 	}
 
+	if !taoctlEnv.HasKey(TaoctlExperimental) {
+		taoctlEnv.SetKV(TaoctlExperimental, ExperimentalOff)
+	}
+
 	taoctlEnv.SetKV(TaoctlVersion, version.BuildVersion)
+
 	protocVer, _ := protoc.Version()
 	taoctlEnv.SetKV(ProtocVersion, protocVer)
 
@@ -80,8 +91,20 @@ func init() {
 	taoctlEnv.SetKV(ProtocGenGoGRPCVersion, protocGenGoGrpcVer)
 }
 
-func Print() string {
-	return strings.Join(taoctlEnv.Format(), "\n")
+func Print(args ...string) string {
+	if len(args) == 0 {
+		return strings.Join(taoctlEnv.Format(), "\n")
+	}
+
+	var values []string
+	for _, key := range args {
+		value, ok := taoctlEnv.GetString(key)
+		if !ok {
+			value = fmt.Sprintf("%s=%%not found%%", key)
+		}
+		values = append(values, fmt.Sprintf("%s=%s", key, value))
+	}
+	return strings.Join(values, "\n")
 }
 
 func Get(key string) string {
@@ -90,6 +113,10 @@ func Get(key string) string {
 
 func GetOr(key, def string) string {
 	return taoctlEnv.GetStringOr(key, def)
+}
+
+func UseExperimental() bool {
+	return GetOr(TaoctlExperimental, ExperimentalOff) == ExperimentalOn
 }
 
 func readEnv(taoctlHome string) *sortedmap.SortedMap {

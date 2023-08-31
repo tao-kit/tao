@@ -8,17 +8,14 @@ import (
 	"go/parser"
 	"go/token"
 	"io/fs"
-	"io/ioutil"
 	"os"
 	"path/filepath"
-	"runtime"
 	"strings"
 	"time"
 
-	"github.com/logrusorgru/aurora"
+	"github.com/gookit/color"
 	"github.com/sllt/tao/tools/taoctl/util/console"
 	"github.com/sllt/tao/tools/taoctl/util/ctx"
-	"github.com/sllt/tao/tools/taoctl/vars"
 	"github.com/spf13/cobra"
 )
 
@@ -119,7 +116,7 @@ func rewriteFile(pkgs map[string]*ast.Package, verbose bool) error {
 		for filename, file := range pkg.Files {
 			var containsDeprecatedBuilderxPkg bool
 			for _, imp := range file.Imports {
-				if !strings.Contains(imp.Path.Value, deprecatedGoTaoMod) {
+				if !strings.Contains(imp.Path.Value, deprecatedGoZeroMod) {
 					continue
 				}
 
@@ -143,7 +140,7 @@ func rewriteFile(pkgs map[string]*ast.Package, verbose bool) error {
 					}
 				}
 
-				newPath := strings.ReplaceAll(imp.Path.Value, deprecatedGoTaoMod, goTaoMod)
+				newPath := strings.ReplaceAll(imp.Path.Value, deprecatedGoZeroMod, goZeroMod)
 				imp.EndPos = imp.End()
 				imp.Path.Value = newPath
 			}
@@ -165,7 +162,7 @@ func writeFile(pkgs []*ast.Package, verbose bool) error {
 				return fmt.Errorf("[rewriteImport] format file %s error: %w", filename, err)
 			}
 
-			err = ioutil.WriteFile(filename, w.Bytes(), os.ModePerm)
+			err = os.WriteFile(filename, w.Bytes(), os.ModePerm)
 			if err != nil {
 				return fmt.Errorf("[rewriteImport] write file %s error: %w", filename, err)
 			}
@@ -246,10 +243,7 @@ It's recommended to use the replacement package, do you want to replace?
 ['Y' for yes, 'N' for no, 'A' for all, 'I' for ignore]: `,
 		deprecated, replacement)
 
-	if runtime.GOOS != vars.OsWindows {
-		msg = aurora.Yellow(msg).String()
-	}
-	fmt.Print(msg)
+	fmt.Print(color.Yellow.Render(msg))
 
 	for {
 		var in string

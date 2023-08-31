@@ -241,3 +241,9 @@ func (s *BaseApiParserListener) EnterPath(ctx *PathContext) {}
 
 // ExitPath is called when production path is exited.
 func (s *BaseApiParserListener) ExitPath(ctx *PathContext) {}
+
+// EnterPathItem is called when production pathItem is entered.
+func (s *BaseApiParserListener) EnterPathItem(ctx *PathItemContext) {}
+
+// ExitPathItem is called when production pathItem is exited.
+func (s *BaseApiParserListener) ExitPathItem(ctx *PathItemContext) {}

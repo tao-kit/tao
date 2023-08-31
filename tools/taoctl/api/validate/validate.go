@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/logrusorgru/aurora"
+	"github.com/gookit/color"
 	"github.com/sllt/tao/tools/taoctl/api/parser"
 	"github.com/spf13/cobra"
 )
@@ -27,7 +27,7 @@ func GoValidateApi(_ *cobra.Command, _ []string) error {
 
 	err = spec.Validate()
 	if err == nil {
-		fmt.Println(aurora.Green("api format ok"))
+		fmt.Println(color.Green.Render("api format ok"))
 	}
 	return err
 }

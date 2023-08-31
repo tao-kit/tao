@@ -1,23 +1,16 @@
 package migrate
 
-import "github.com/spf13/cobra"
+import "github.com/sllt/tao/tools/taoctl/internal/cobrax"
 
 var (
 	boolVarVerbose   bool
 	stringVarVersion string
 	// Cmd describes a migrate command.
-	Cmd = &cobra.Command{
-		Use:   "migrate",
-		Short: "Migrate from tal-tech to zeromicro",
-		Long: "Migrate is a transition command to help users migrate their " +
-			"projects from tal-tech to zeromicro version",
-		RunE: migrate,
-	}
+	Cmd = cobrax.NewCommand("migrate", cobrax.WithRunE(migrate))
 )
 
 func init() {
-	Cmd.Flags().BoolVarP(&boolVarVerbose, "verbose", "v",
-		false, "Verbose enables extra logging")
-	Cmd.Flags().StringVar(&stringVarVersion, "version", defaultMigrateVersion,
-		"The target release version of github.com/sllt/tao to migrate")
+	migrateCmdFlags := Cmd.Flags()
+	migrateCmdFlags.BoolVarP(&boolVarVerbose, "verbose", "v")
+	migrateCmdFlags.StringVarWithDefaultValue(&stringVarVersion, "version", defaultMigrateVersion)
 }

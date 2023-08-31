@@ -12,13 +12,14 @@ import (
 	conf "github.com/sllt/tao/tools/taoctl/config"
 	"github.com/sllt/tao/tools/taoctl/util"
 	"github.com/sllt/tao/tools/taoctl/util/pathx"
+	"github.com/spf13/cobra"
 )
 
 //go:embed api.tpl
 var apiTemplate string
 
 var (
-	// VarStringHome describes the taoctl home.
+	// VarStringHome describes the Taoctl home.
 	VarStringHome string
 	// VarStringRemote describes the remote git repository.
 	VarStringRemote string
@@ -29,7 +30,7 @@ var (
 )
 
 // CreateServiceCommand fast create service
-func CreateServiceCommand(args []string) error {
+func CreateServiceCommand(_ *cobra.Command, args []string) error {
 	dirName := args[0]
 	if len(VarStringStyle) == 0 {
 		VarStringStyle = conf.DefaultFormat

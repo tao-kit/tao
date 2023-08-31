@@ -1,6 +1,8 @@
 package discov
 
 import (
+	"time"
+
 	"github.com/sllt/tao/core/discov/internal"
 	"github.com/sllt/tao/core/lang"
 	"github.com/sllt/tao/core/logx"
@@ -8,7 +10,6 @@ import (
 	"github.com/sllt/tao/core/syncx"
 	"github.com/sllt/tao/core/threading"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"time"
 )
 
 type (

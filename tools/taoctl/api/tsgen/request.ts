@@ -44,9 +44,7 @@ export function genUrl(url: string, params: unknown) {
     });
 
     const path: Array<string> = [];
-    // @ts-ignore
     for (const key of Object.keys(params)) {
-        // @ts-ignore
         if (!ps.find((k) => k === key)) {
             path.push(`${key}=${params[key]}`);
         }
@@ -56,11 +54,11 @@ export function genUrl(url: string, params: unknown) {
 }
 
 export async function request({
-                                  method,
-                                  url,
-                                  data,
-                                  config = {}
-                              }: {
+    method,
+    url,
+    data,
+    config = {}
+}: {
     method: Method;
     url: string;
     data?: unknown;

@@ -2,6 +2,13 @@ package p2c
 
 import (
 	"fmt"
+	"math"
+	"math/rand"
+	"strings"
+	"sync"
+	"sync/atomic"
+	"time"
+
 	"github.com/sllt/tao/core/logx"
 	"github.com/sllt/tao/core/syncx"
 	"github.com/sllt/tao/core/timex"
@@ -9,12 +16,6 @@ import (
 	"google.golang.org/grpc/balancer"
 	"google.golang.org/grpc/balancer/base"
 	"google.golang.org/grpc/resolver"
-	"math"
-	"math/rand"
-	"strings"
-	"sync"
-	"sync/atomic"
-	"time"
 )
 
 const (
@@ -71,7 +72,7 @@ type p2cPicker struct {
 	lock  sync.Mutex
 }
 
-func (p *p2cPicker) Pick(info balancer.PickInfo) (balancer.PickResult, error) {
+func (p *p2cPicker) Pick(_ balancer.PickInfo) (balancer.PickResult, error) {
 	p.lock.Lock()
 	defer p.lock.Unlock()
 

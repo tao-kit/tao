@@ -3,14 +3,15 @@ package devserver
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/felixge/fgprof"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/threading"
-	"github.com/sllt/tao/internal/health"
 	"net/http"
 	"net/http/pprof"
 	"sync"
+
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/prometheus"
+	"github.com/sllt/tao/core/threading"
+	"github.com/sllt/tao/internal/health"
 )
 
 var once sync.Once
@@ -41,11 +42,12 @@ func (s *Server) addRoutes() {
 
 	// metrics
 	if s.config.EnableMetrics {
+		// enable prometheus global switch
+		prometheus.Enable()
 		s.handleFunc(s.config.MetricsPath, promhttp.Handler().ServeHTTP)
 	}
 	// pprof
 	if s.config.EnablePprof {
-		s.handleFunc("/debug/fgprof", fgprof.Handler().(http.HandlerFunc))
 		s.handleFunc("/debug/pprof/", pprof.Index)
 		s.handleFunc("/debug/pprof/cmdline", pprof.Cmdline)
 		s.handleFunc("/debug/pprof/profile", pprof.Profile)

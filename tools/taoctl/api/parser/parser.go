@@ -8,6 +8,8 @@ import (
 	"github.com/sllt/tao/tools/taoctl/api/parser/g4/ast"
 	"github.com/sllt/tao/tools/taoctl/api/parser/g4/gen/api"
 	"github.com/sllt/tao/tools/taoctl/api/spec"
+	"github.com/sllt/tao/tools/taoctl/pkg/env"
+	apiParser "github.com/sllt/tao/tools/taoctl/pkg/parser/api/parser"
 )
 
 type parser struct {
@@ -17,6 +19,10 @@ type parser struct {
 
 // Parse parses the api file
 func Parse(filename string) (*spec.ApiSpec, error) {
+	if env.UseExperimental() {
+		return apiParser.Parse(filename, "")
+	}
+
 	astParser := ast.NewParser(ast.WithParserPrefix(filepath.Base(filename)), ast.WithParserDebug())
 	parsedApi, err := astParser.Parse(filename)
 	if err != nil {
@@ -173,8 +179,8 @@ func (p parser) fieldToMember(field *ast.TypeField) spec.Member {
 	if !field.IsAnonymous {
 		name = field.Name.Text()
 		if field.Tag == nil {
-			panic(fmt.Sprintf("error: line %d:%d field %s has no tag", field.Name.Line(), field.Name.Column(),
-				field.Name.Text()))
+			panic(fmt.Sprintf("error: line %d:%d field %s has no tag",
+				field.Name.Line(), field.Name.Column(), field.Name.Text()))
 		}
 
 		tag = field.Tag.Text()
@@ -215,10 +221,6 @@ func (p parser) astTypeToSpec(in ast.DataType) spec.Type {
 		}
 
 		return spec.PointerType{RawName: v.PointerExpr.Text(), Type: spec.DefineStruct{RawName: raw}}
-
-	case *ast.SnowflakeID:
-		p.spec.HasSnowflakeID = true
-		return spec.SnowflakeIDType{RawName: v.Expr().Text()}
 	}
 
 	panic(fmt.Sprintf("unspported type %+v", in))
@@ -230,6 +232,7 @@ func (p parser) stringExprs(docs []ast.Expr) []string {
 		if item == nil {
 			continue
 		}
+
 		result = append(result, item.Text())
 	}
 	return result
@@ -291,11 +294,12 @@ func (p parser) fillService() error {
 			}
 
 			group.Routes = append(group.Routes, route)
-
 			name := item.ServiceApi.Name.Text()
 			if len(p.spec.Service.Name) > 0 && p.spec.Service.Name != name {
-				return fmt.Errorf("multiple service names defined %s and %s", name, p.spec.Service.Name)
+				return fmt.Errorf("multiple service names defined %s and %s",
+					name, p.spec.Service.Name)
 			}
+
 			p.spec.Service.Name = name
 		}
 		groups = append(groups, group)

@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"net/http"
+
 	"github.com/sllt/tao/core/collection"
 	"github.com/sllt/tao/core/trace"
 	"github.com/sllt/tao/rest/internal/response"
@@ -8,7 +10,6 @@ import (
 	"go.opentelemetry.io/otel/propagation"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
 	oteltrace "go.opentelemetry.io/otel/trace"
-	"net/http"
 )
 
 type (
@@ -59,7 +60,7 @@ func TraceHandler(serviceName, path string, opts ...TraceOption) func(http.Handl
 			// convenient for tracking error messages
 			propagator.Inject(spanCtx, propagation.HeaderCarrier(w.Header()))
 
-			trw := &response.WithCodeResponseWriter{Writer: w, Code: http.StatusOK}
+			trw := response.NewWithCodeResponseWriter(w)
 			next.ServeHTTP(trw, r.WithContext(spanCtx))
 
 			span.SetAttributes(semconv.HTTPAttributesFromHTTPStatusCode(trw.Code)...)

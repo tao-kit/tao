@@ -1,15 +1,13 @@
-//go:build windows
-
 package internal
 
 import (
-	"github.com/sllt/tao/core/proc"
 	"net/http"
 	"net/http/httptest"
 	"strconv"
 	"strings"
 	"testing"
 
+	"github.com/sllt/tao/core/proc"
 	"github.com/stretchr/testify/assert"
 )
 

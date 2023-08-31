@@ -4,7 +4,7 @@ import "github.com/antlr/antlr4/runtime/Go/antlr/v4"
 
 // Part 9
 // The apiparser_parser.go file was split into multiple files because it
-// was too large and caused a possible memory overflow during goctl installation.
+// was too large and caused a possible memory overflow during Taoctl installation.
 
 // IBodyContext is an interface to support dynamic dispatch.
 type IBodyContext interface {
@@ -129,25 +129,25 @@ func (p *ApiParserParser) Body() (localctx IBodyContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(300)
+		p.SetState(301)
 
 		var _m = p.Match(ApiParserParserT__1)
 
 		localctx.(*BodyContext).lp = _m
 	}
-	p.SetState(302)
+	p.SetState(303)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == ApiParserParserID {
 		{
-			p.SetState(301)
+			p.SetState(302)
 			p.Match(ApiParserParserID)
 		}
 
 	}
 	{
-		p.SetState(304)
+		p.SetState(305)
 
 		var _m = p.Match(ApiParserParserT__2)
 
@@ -303,32 +303,32 @@ func (p *ApiParserParser) Replybody() (localctx IReplybodyContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(306)
+		p.SetState(307)
 
-		var _m = p.Match(ApiParserParserT__10)
+		var _m = p.Match(ApiParserParserT__9)
 
 		localctx.(*ReplybodyContext).returnToken = _m
 	}
 	{
-		p.SetState(307)
+		p.SetState(308)
 
 		var _m = p.Match(ApiParserParserT__1)
 
 		localctx.(*ReplybodyContext).lp = _m
 	}
-	p.SetState(309)
+	p.SetState(310)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&33686464) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&16843200) != 0 {
 		{
-			p.SetState(308)
+			p.SetState(309)
 			p.DataType()
 		}
 
 	}
 	{
-		p.SetState(311)
+		p.SetState(312)
 
 		var _m = p.Match(ApiParserParserT__2)
 
@@ -465,7 +465,7 @@ func (p *ApiParserParser) KvLit() (localctx IKvLitContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(313)
+		p.SetState(314)
 
 		var _m = p.Match(ApiParserParserID)
 
@@ -473,7 +473,7 @@ func (p *ApiParserParser) KvLit() (localctx IKvLitContext) {
 	}
 	checkKeyValue(p)
 	{
-		p.SetState(315)
+		p.SetState(316)
 
 		var _m = p.Match(ApiParserParserLINE_VALUE)
 
@@ -588,28 +588,28 @@ func (p *ApiParserParser) ServiceName() (localctx IServiceNameContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(321)
+	p.SetState(322)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ok := true; ok; ok = _la == ApiParserParserID {
 		{
-			p.SetState(317)
+			p.SetState(318)
 			p.Match(ApiParserParserID)
 		}
-		p.SetState(319)
+		p.SetState(320)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		if _la == ApiParserParserT__11 {
+		if _la == ApiParserParserT__10 {
 			{
-				p.SetState(318)
-				p.Match(ApiParserParserT__11)
+				p.SetState(319)
+				p.Match(ApiParserParserT__10)
 			}
 
 		}
 
-		p.SetState(323)
+		p.SetState(324)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
@@ -625,8 +625,8 @@ type IPathContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	AllID() []antlr.TerminalNode
-	ID(i int) antlr.TerminalNode
+	AllPathItem() []IPathItemContext
+	PathItem(i int) IPathItemContext
 
 	// IsPathContext differentiates from other interfaces.
 	IsPathContext()

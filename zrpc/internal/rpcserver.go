@@ -2,11 +2,11 @@ package internal
 
 import (
 	"fmt"
-	"github.com/sllt/tao/internal/health"
 	"net"
 
 	"github.com/sllt/tao/core/proc"
 	"github.com/sllt/tao/core/stat"
+	"github.com/sllt/tao/internal/health"
 	"github.com/sllt/tao/zrpc/internal/serverinterceptors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health/grpc_health_v1"
@@ -113,7 +113,8 @@ func (s *rpcServer) buildUnaryInterceptors() []grpc.UnaryServerInterceptor {
 		interceptors = append(interceptors, serverinterceptors.UnaryRecoverInterceptor)
 	}
 	if s.middlewares.Stat {
-		interceptors = append(interceptors, serverinterceptors.UnaryStatInterceptor(s.metrics))
+		interceptors = append(interceptors,
+			serverinterceptors.UnaryStatInterceptor(s.metrics, s.middlewares.StatConf))
 	}
 	if s.middlewares.Prometheus {
 		interceptors = append(interceptors, serverinterceptors.UnaryPrometheusInterceptor)

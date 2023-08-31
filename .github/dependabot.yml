@@ -10,6 +10,10 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "gomod" # See documentation for possible values
+<<<<<<< HEAD
     directory: "/tools/taoctl" # Location of package manifests
+=======
+    directory: "/tools/goctl" # Location of package manifests
+>>>>>>> d3cd7b17c09e3f967d703661f56b4557ceae82a1
     schedule:
       interval: "daily"

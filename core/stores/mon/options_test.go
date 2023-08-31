@@ -1,11 +1,11 @@
 package mon
 
 import (
-	mopt "go.mongodb.org/mongo-driver/mongo/options"
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/assert"
+	mopt "go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func TestSetSlowThreshold(t *testing.T) {

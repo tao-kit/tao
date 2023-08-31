@@ -4,26 +4,17 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sllt/tao/core/logx"
+	"github.com/sllt/tao/core/logx/logtest"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestProfile(t *testing.T) {
-	var buf strings.Builder
-	w := logx.NewWriter(&buf)
-	o := logx.Reset()
-	logx.SetWriter(w)
-
-	defer func() {
-		logx.Reset()
-		logx.SetWriter(o)
-	}()
-
+	c := logtest.NewCollector(t)
 	profiler := StartProfile()
 	// start again should not work
 	assert.NotNil(t, StartProfile())
 	profiler.Stop()
 	// stop twice
 	profiler.Stop()
-	assert.True(t, strings.Contains(buf.String(), ".pprof"))
+	assert.True(t, strings.Contains(c.String(), ".pprof"))
 }

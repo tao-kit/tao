@@ -1,83 +1,89 @@
+<img align="right" width="150px" src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/go-zero.png">
+
 # mapreduce
 
-[English](readme.md) | 简体中文
+English | [简体中文](readme-cn.md)
 
-## 为什么需要 MapReduce
+## Why MapReduce is needed
 
-在实际的业务场景中我们常常需要从不同的 rpc 服务中获取相应属性来组装成复杂对象。
+In practical business scenarios we often need to get the corresponding properties from different rpc services to assemble complex objects.
 
-比如要查询商品详情：
+For example, to query product details.
 
-1. 商品服务-查询商品属性
-2. 库存服务-查询库存属性
-3. 价格服务-查询价格属性
-4. 营销服务-查询营销属性
+1. product service - query product attributes
+2. inventory service - query inventory properties
+3. price service - query price attributes
+4. marketing service - query marketing properties
 
-如果是串行调用的话响应时间会随着 rpc 调用次数呈线性增长，所以我们要优化性能一般会将串行改并行。
+If it is a serial call, the response time will increase linearly with the number of rpc calls, so we will generally change serial to parallel to optimize response time.
 
-简单的场景下使用 `WaitGroup` 也能够满足需求，但是如果我们需要对 rpc 调用返回的数据进行校验、数据加工转换、数据汇总呢？继续使用 `WaitGroup` 就有点力不从心了，go 的官方库中并没有这种工具（java 中提供了 CompleteFuture），我们依据 MapReduce 架构思想实现了进程内的数据批处理 MapReduce 并发工具类。
+Simple scenarios using `WaitGroup` can also meet the needs, but what if we need to check the data returned by the rpc call, data processing, data aggregation? The official go library does not have such a tool (CompleteFuture is provided in java), so we implemented an in-process data batching MapReduce concurrent tool based on the MapReduce architecture.
 
-## 设计思路
+## Design ideas
 
-我们尝试把自己代入到作者的角色梳理一下并发工具可能的业务场景：
+Let's try to put ourselves in the author's shoes and sort out the possible business scenarios for the concurrency tool:
 
-1. 查询商品详情：支持并发调用多个服务来组合产品属性，支持调用错误可以立即结束。
-2. 商品详情页自动推荐用户卡券：支持并发校验卡券，校验失败自动剔除，返回全部卡券。
+1. querying product details: supporting concurrent calls to multiple services to combine product attributes, and supporting call errors that can be ended immediately.
+2. automatic recommendation of user card coupons on product details page: support concurrently verifying card coupons, automatically rejecting them if they fail, and returning all of them.
 
-以上实际都是在进行对输入数据进行处理最后输出清洗后的数据，针对数据处理有个非常经典的异步模式：生产者消费者模式。于是我们可以抽象一下数据批处理的生命周期，大致可以分为三个阶段：
+The above is actually processing the input data and finally outputting the cleaned data. There is a very classic asynchronous pattern for data processing: the producer-consumer pattern. So we can abstract the life cycle of data batch processing, which can be roughly divided into three phases.
 
-<img src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/mapreduce-serial-cn.png" width="500">
+<img src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/mapreduce-serial-en.png" width="500">
 
-1. 数据生产 generate
-2. 数据加工 mapper
-3. 数据聚合 reducer
+1. data production generate
+2. data processing mapper
+3. data aggregation reducer
 
-其中数据生产是不可或缺的阶段，数据加工、数据聚合是可选阶段，数据生产与加工支持并发调用，数据聚合基本属于纯内存操作单协程即可。
+Data producing is an indispensable stage, data processing and data aggregation are optional stages, data producing and processing support concurrent calls, data aggregation is basically a pure memory operation, so a single concurrent process can do it.
 
-再来思考一下不同阶段之间数据应该如何流转，既然不同阶段的数据处理都是由不同 goroutine 执行的，那么很自然的可以考虑采用 channel 来实现 goroutine 之间的通信。
+Since different stages of data processing are performed by different goroutines, it is natural to consider the use of channel to achieve communication between goroutines.
 
-<img src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/mapreduce-cn.png" width="500">
+<img src="https://raw.githubusercontent.com/zeromicro/zero-doc/main/doc/images/mapreduce-en.png" width="500">
 
+How can I terminate the process at any time?
 
-如何实现随时终止流程呢？
+It's simple, just receive from a  channel or the given context in the goroutine.
 
-`goroutine` 中监听一个全局的结束 `channel` 和调用方提供的 `ctx` 就行。
+## A simple example
 
-## 简单示例
-
-并行求平方和（不要嫌弃示例简单，只是模拟并发）
+Calculate the sum of squares, simulating the concurrency.
 
 ```go
 package main
 
 import (
-	"fmt"
-	"log"
+    "fmt"
+    "log"
 
-	"github.com/sllt/tao/core/mr"
+    "github.com/sllt/tao/core/mr"
 )
 
 func main() {
-	val, err := mr.MapReduce(func(source chan<- int) {
-		// generator
-		for i := 0; i < 10; i++ {
-			source <- i
-		}
-	}, func(i int, writer mr.Writer[int], cancel func(error)) {
-		// mapper
-		writer.Write(i * i)
-	}, func(pipe <-chan int, writer mr.Writer[int], cancel func(error)) {
-		// reducer
-		var sum int
-		for i := range pipe {
-			sum += i
-		}
-		writer.Write(sum)
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println("result:", val)
+    val, err := mr.MapReduce(func(source chan<- int) {
+        // generator
+        for i := 0; i < 10; i++ {
+            source <- i
+        }
+    }, func(i int, writer mr.Writer[int], cancel func(error)) {
+        // mapper
+        writer.Write(i * i)
+    }, func(pipe <-chan int, writer mr.Writer[int], cancel func(error)) {
+        // reducer
+        var sum int
+        for i := range pipe {
+            sum += i
+        }
+        writer.Write(sum)
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println("result:", val)
 }
 ```
 
+More examples: [https://github.com/zeromicro/zero-examples/tree/main/mapreduce](https://github.com/zeromicro/zero-examples/tree/main/mapreduce)
+
+## Give a Star! ⭐
+
+If you like or are using this project to learn or start your solution, please give it a star. Thanks!

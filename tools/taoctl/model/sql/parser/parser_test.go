@@ -2,7 +2,7 @@ package parser
 
 import (
 	_ "embed"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"testing"
 
@@ -15,19 +15,19 @@ import (
 
 func TestParsePlainText(t *testing.T) {
 	sqlFile := filepath.Join(pathx.MustTempDir(), "tmp.sql")
-	err := ioutil.WriteFile(sqlFile, []byte("plain text"), 0o777)
+	err := os.WriteFile(sqlFile, []byte("plain text"), 0o777)
 	assert.Nil(t, err)
 
-	_, err = Parse(sqlFile, "go_tao", false)
+	_, err = Parse(sqlFile, "go_zero", false)
 	assert.NotNil(t, err)
 }
 
 func TestParseSelect(t *testing.T) {
 	sqlFile := filepath.Join(pathx.MustTempDir(), "tmp.sql")
-	err := ioutil.WriteFile(sqlFile, []byte("select * from user"), 0o777)
+	err := os.WriteFile(sqlFile, []byte("select * from user"), 0o777)
 	assert.Nil(t, err)
 
-	tables, err := Parse(sqlFile, "go_tao", false)
+	tables, err := Parse(sqlFile, "go_zero", false)
 	assert.Nil(t, err)
 	assert.Equal(t, 0, len(tables))
 }
@@ -37,10 +37,10 @@ var user string
 
 func TestParseCreateTable(t *testing.T) {
 	sqlFile := filepath.Join(pathx.MustTempDir(), "tmp.sql")
-	err := ioutil.WriteFile(sqlFile, []byte(user), 0o777)
+	err := os.WriteFile(sqlFile, []byte(user), 0o777)
 	assert.Nil(t, err)
 
-	tables, err := Parse(sqlFile, "go_tao", false)
+	tables, err := Parse(sqlFile, "go_zero", false)
 	assert.Equal(t, 1, len(tables))
 	table := tables[0]
 	assert.Nil(t, err)

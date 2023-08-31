@@ -1,8 +1,9 @@
 package mapping
 
 import (
-	"github.com/sllt/tao/internal/encoding"
 	"io"
+
+	"github.com/sllt/tao/internal/encoding"
 )
 
 // UnmarshalYamlBytes unmarshals content into v.
