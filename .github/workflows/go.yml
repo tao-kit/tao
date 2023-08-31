@@ -17,11 +17,7 @@ jobs:
       - name: Set up Go 1.x
         uses: actions/setup-go@v3
         with:
-<<<<<<< HEAD
-          go-version: ^1.18
-=======
           go-version: 1.18
->>>>>>> d3cd7b17c09e3f967d703661f56b4557ceae82a1
           check-latest: true
           cache: true
         id: go
@@ -32,10 +28,6 @@ jobs:
       - name: Lint
         run: |
           go vet -stdmethods=false $(go list ./...)
-<<<<<<< HEAD
-          go install mvdan.cc/gofumpt@latest
-          test -z "$(gofumpt -l -extra .)" || echo "Please run 'gofumpt -l -w -extra .'"
-=======
 
           go mod tidy
           if ! test -z "$(git status --porcelain)"; then
@@ -43,7 +35,6 @@ jobs:
             exit 1
           fi
 
->>>>>>> d3cd7b17c09e3f967d703661f56b4557ceae82a1
       - name: Test
         run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
 
@@ -69,10 +60,5 @@ jobs:
         run: |
           go mod verify
           go mod download
-<<<<<<< HEAD
-          go test -v -race ./...
-          cd tools/taoctl && go build -v taoctl.go
-=======
           go test ./...
-          cd tools/goctl && go build -v goctl.go
->>>>>>> d3cd7b17c09e3f967d703661f56b4557ceae82a1
+          cd tools/taoctl && go build -v taoctl.go
