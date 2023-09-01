@@ -15,7 +15,7 @@ require (
 	github.com/jackc/pgx/v5 v5.3.1
 	github.com/jhump/protoreflect v1.15.2
 	github.com/olekukonko/tablewriter v0.0.5
-	github.com/pelletier/go-toml/v2 v2.0.7
+	github.com/pelletier/go-toml/v2 v2.1.0
 	github.com/prometheus/client_golang v1.11.1
 	github.com/spaolacci/murmur3 v1.1.0
 	github.com/stretchr/testify v1.8.4
