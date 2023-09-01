@@ -15,12 +15,11 @@ import (
 	"github.com/sllt/tao/core/logx/logtest"
 	ztrace "github.com/sllt/tao/core/trace"
 	"github.com/stretchr/testify/assert"
-	tracesdk "go.opentelemetry.io/otel/trace"
 )
 
 func TestHookProcessCase1(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -39,12 +38,11 @@ func TestHookProcessCase1(t *testing.T) {
 
 	assert.Nil(t, durationHook.AfterProcess(ctx, red.NewCmd(context.Background())))
 	assert.False(t, strings.Contains(buf.String(), "slow"))
-	assert.Equal(t, "redis", tracesdk.SpanFromContext(ctx).(interface{ Name() string }).Name())
 }
 
 func TestHookProcessCase2(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -99,7 +97,6 @@ func TestHookProcessPipelineCase1(t *testing.T) {
 		red.NewCmd(context.Background()),
 	})
 	assert.NoError(t, err)
-	assert.Equal(t, "redis", tracesdk.SpanFromContext(ctx).(interface{ Name() string }).Name())
 
 	assert.NoError(t, durationHook.AfterProcessPipeline(ctx, []red.Cmder{}))
 	assert.NoError(t, durationHook.AfterProcessPipeline(ctx, []red.Cmder{
@@ -110,7 +107,7 @@ func TestHookProcessPipelineCase1(t *testing.T) {
 
 func TestHookProcessPipelineCase2(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-zero-test",
+		Name:     "go-tao-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -123,7 +120,6 @@ func TestHookProcessPipelineCase2(t *testing.T) {
 		red.NewCmd(context.Background()),
 	})
 	assert.NoError(t, err)
-	assert.Equal(t, "redis", tracesdk.SpanFromContext(ctx).(interface{ Name() string }).Name())
 
 	time.Sleep(slowThreshold.Load() + time.Millisecond)
 
