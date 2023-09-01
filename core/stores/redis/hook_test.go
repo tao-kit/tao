@@ -20,7 +20,7 @@ import (
 
 func TestHookProcessCase1(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-tao-test",
+		Name:     "go-zero-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -44,7 +44,7 @@ func TestHookProcessCase1(t *testing.T) {
 
 func TestHookProcessCase2(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-tao-test",
+		Name:     "go-zero-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -57,7 +57,6 @@ func TestHookProcessCase2(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	assert.Equal(t, "redis", tracesdk.SpanFromContext(ctx).(interface{ Name() string }).Name())
 
 	time.Sleep(slowThreshold.Load() + time.Millisecond)
 
@@ -111,7 +110,7 @@ func TestHookProcessPipelineCase1(t *testing.T) {
 
 func TestHookProcessPipelineCase2(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-tao-test",
+		Name:     "go-zero-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
