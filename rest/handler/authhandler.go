@@ -39,10 +39,21 @@ type (
 	UnauthorizedCallback func(w http.ResponseWriter, r *http.Request, err error)
 	// AuthorizeOption defines the method to customize an AuthorizeOptions.
 	AuthorizeOption func(opts *AuthorizeOptions)
+
+	AuthorizeHandler func(secret string, opts ...AuthorizeOption) func(http.Handler) http.Handler
+)
+
+var (
+	CustomAuthorizeHandler AuthorizeHandler = nil
 )
 
 // Authorize returns an authorization middleware.
 func Authorize(secret string, opts ...AuthorizeOption) func(http.Handler) http.Handler {
+
+	if CustomAuthorizeHandler != nil {
+		return CustomAuthorizeHandler(secret, opts...)
+	}
+
 	var authOpts AuthorizeOptions
 	for _, opt := range opts {
 		opt(&authOpts)
