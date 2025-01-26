@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/sllt/tao/core/prometheus"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/prometheus"
 	"google.golang.org/grpc"
 )
 

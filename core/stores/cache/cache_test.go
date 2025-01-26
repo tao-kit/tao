@@ -11,12 +11,12 @@ import (
 	"time"
 
 	"github.com/alicebob/miniredis/v2"
-	"github.com/sllt/tao/core/errorx"
-	"github.com/sllt/tao/core/hash"
-	"github.com/sllt/tao/core/stores/redis"
-	"github.com/sllt/tao/core/stores/redis/redistest"
-	"github.com/sllt/tao/core/syncx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/errorx"
+	"github.com/tao-kit/tao/core/hash"
+	"github.com/tao-kit/tao/core/stores/redis"
+	"github.com/tao-kit/tao/core/stores/redis/redistest"
+	"github.com/tao-kit/tao/core/syncx"
 )
 
 var _ Cache = (*mockedNode)(nil)

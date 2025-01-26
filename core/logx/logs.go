@@ -6,25 +6,25 @@ import (
 	"log"
 	"os"
 	"path"
+	"reflect"
 	"runtime/debug"
 	"sync"
 	"sync/atomic"
 	"time"
 
-	"github.com/sllt/tao/core/sysx"
+	"github.com/tao-kit/tao/core/sysx"
 )
 
 const callerDepth = 4
 
 var (
-	timeFormat = "2006-01-02T15:04:05.000Z07:00"
-	logLevel   uint32
+	timeFormat        = "2006-01-02T15:04:05.000Z07:00"
 	encoding   uint32 = jsonEncodingType
 	// maxContentLength is used to truncate the log content, 0 for not truncating.
 	maxContentLength uint32
 	// use uint32 for atomic operations
-	disableLog  uint32
 	disableStat uint32
+	logLevel    uint32
 	options     logOptions
 	writer      = new(atomicWriter)
 	setupOnce   sync.Once
@@ -51,6 +51,26 @@ type (
 		rotationRule          string
 	}
 )
+
+// AddWriter adds a new writer.
+// If there is already a writer, the new writer will be added to the writer chain.
+// For example, to write logs to both file and console, if there is already a file writer,
+// ```go
+// logx.AddWriter(logx.NewWriter(os.Stdout))
+// ```
+func AddWriter(w Writer) {
+	ow := Reset()
+	if ow == nil {
+		SetWriter(w)
+	} else {
+		// no need to check if the existing writer is a comboWriter,
+		// because it is not common to add more than one writer.
+		// even more than one writer, the behavior is the same.
+		SetWriter(comboWriter{
+			writers: []Writer{ow, w},
+		})
+	}
+}
 
 // Alert alerts v in alert level, and the message is written to error log.
 func Alert(v string) {
@@ -80,6 +100,14 @@ func Debugf(format string, v ...any) {
 	}
 }
 
+// Debugfn writes function result into access log if debug level enabled.
+// This is useful when the function is expensive to call and debug level disabled.
+func Debugfn(fn func() any) {
+	if shallLog(DebugLevel) {
+		writeDebug(fn())
+	}
+}
+
 // Debugv writes v into access log with json content.
 func Debugv(v any) {
 	if shallLog(DebugLevel) {
@@ -87,7 +115,7 @@ func Debugv(v any) {
 	}
 }
 
-// Debugw writes msg along with fields into access log.
+// Debugw writes msg along with fields into the access log.
 func Debugw(msg string, fields ...LogField) {
 	if shallLog(DebugLevel) {
 		writeDebug(msg, fields...)
@@ -96,7 +124,7 @@ func Debugw(msg string, fields ...LogField) {
 
 // Disable disables the logging.
 func Disable() {
-	atomic.StoreUint32(&disableLog, 1)
+	atomic.StoreUint32(&logLevel, disableLevel)
 	writer.Store(nopWriter{})
 }
 
@@ -116,6 +144,13 @@ func Error(v ...any) {
 func Errorf(format string, v ...any) {
 	if shallLog(ErrorLevel) {
 		writeError(fmt.Errorf(format, v...).Error())
+	}
+}
+
+// Errorfn writes function result into error log.
+func Errorfn(fn func() any) {
+	if shallLog(ErrorLevel) {
+		writeError(fn())
 	}
 }
 
@@ -143,7 +178,7 @@ func Errorv(v any) {
 	}
 }
 
-// Errorw writes msg along with fields into error log.
+// Errorw writes msg along with fields into the error log.
 func Errorw(msg string, fields ...LogField) {
 	if shallLog(ErrorLevel) {
 		writeError(msg, fields...)
@@ -154,11 +189,11 @@ func Errorw(msg string, fields ...LogField) {
 func Field(key string, value any) LogField {
 	switch val := value.(type) {
 	case error:
-		return LogField{Key: key, Value: val.Error()}
+		return LogField{Key: key, Value: encodeError(val)}
 	case []error:
 		var errs []string
 		for _, err := range val {
-			errs = append(errs, err.Error())
+			errs = append(errs, encodeError(err))
 		}
 		return LogField{Key: key, Value: errs}
 	case time.Duration:
@@ -176,11 +211,11 @@ func Field(key string, value any) LogField {
 		}
 		return LogField{Key: key, Value: times}
 	case fmt.Stringer:
-		return LogField{Key: key, Value: val.String()}
+		return LogField{Key: key, Value: encodeStringer(val)}
 	case []fmt.Stringer:
 		var strs []string
 		for _, str := range val {
-			strs = append(strs, str.String())
+			strs = append(strs, encodeStringer(str))
 		}
 		return LogField{Key: key, Value: strs}
 	default:
@@ -202,6 +237,14 @@ func Infof(format string, v ...any) {
 	}
 }
 
+// Infofn writes function result into access log.
+// This is useful when the function is expensive to call and info level disabled.
+func Infofn(fn func() any) {
+	if shallLog(InfoLevel) {
+		writeInfo(fn())
+	}
+}
+
 // Infov writes v into access log with json content.
 func Infov(v any) {
 	if shallLog(InfoLevel) {
@@ -209,7 +252,7 @@ func Infov(v any) {
 	}
 }
 
-// Infow writes msg along with fields into access log.
+// Infow writes msg along with fields into the access log.
 func Infow(msg string, fields ...LogField) {
 	if shallLog(InfoLevel) {
 		writeInfo(msg, fields...)
@@ -250,16 +293,17 @@ func SetLevel(level uint32) {
 
 // SetWriter sets the logging writer. It can be used to customize the logging.
 func SetWriter(w Writer) {
-	if atomic.LoadUint32(&disableLog) == 0 {
+	if atomic.LoadUint32(&logLevel) != disableLevel {
 		writer.Store(w)
 	}
 }
 
-// SetUp sets up the logx. If already set up, just return nil.
-// we allow SetUp to be called multiple times, because for example
+// SetUp sets up the logx.
+// If already set up, return nil.
+// We allow SetUp to be called multiple times, because, for example,
 // we need to allow different service frameworks to initialize logx respectively.
 func SetUp(c LogConf) (err error) {
-	// Just ignore the subsequent SetUp calls.
+	// Ignore the later SetUp calls.
 	// Because multiple services in one process might call SetUp respectively.
 	// Need to wait for the first caller to complete the execution.
 	setupOnce.Do(func() {
@@ -271,6 +315,10 @@ func SetUp(c LogConf) (err error) {
 
 		if len(c.TimeFormat) > 0 {
 			timeFormat = c.TimeFormat
+		}
+
+		if len(c.FileTimeFormat) > 0 {
+			fileTimeFormat = c.FileTimeFormat
 		}
 
 		atomic.StoreUint32(&maxContentLength, c.MaxContentLength)
@@ -320,6 +368,14 @@ func Slow(v ...any) {
 func Slowf(format string, v ...any) {
 	if shallLog(ErrorLevel) {
 		writeSlow(fmt.Sprintf(format, v...))
+	}
+}
+
+// Slowfn writes function result into slow log.
+// This is useful when the function is expensive to call and slow level disabled.
+func Slowfn(fn func() any) {
+	if shallLog(ErrorLevel) {
+		writeSlow(fn())
 	}
 }
 
@@ -414,6 +470,32 @@ func createOutput(path string) (io.WriteCloser, error) {
 	return NewLogger(path, rule, options.gzipEnabled)
 }
 
+func encodeError(err error) (ret string) {
+	return encodeWithRecover(err, func() string {
+		return err.Error()
+	})
+}
+
+func encodeStringer(v fmt.Stringer) (ret string) {
+	return encodeWithRecover(v, func() string {
+		return v.String()
+	})
+}
+
+func encodeWithRecover(arg any, fn func() string) (ret string) {
+	defer func() {
+		if err := recover(); err != nil {
+			if v := reflect.ValueOf(arg); v.Kind() == reflect.Ptr && v.IsNil() {
+				ret = nilAngleString
+			} else {
+				ret = fmt.Sprintf("panic: %v", err)
+			}
+		}
+	}()
+
+	return fn()
+}
+
 func getWriter() Writer {
 	w := writer.Load()
 	if w == nil {
@@ -481,7 +563,7 @@ func writeDebug(val any, fields ...LogField) {
 	getWriter().Debug(val, addCaller(fields...)...)
 }
 
-// writeError writes v into error log.
+// writeError writes v into the error log.
 // Not checking shallLog here is for performance consideration.
 // If we check shallLog here, the fmt.Sprint might be called even if the log level is not enabled.
 // The caller should check shallLog before calling this function.
@@ -521,7 +603,7 @@ func writeStack(msg string) {
 	getWriter().Stack(fmt.Sprintf("%s\n%s", msg, string(debug.Stack())))
 }
 
-// writeStat writes v into stat log.
+// writeStat writes v into the stat log.
 // Not checking shallLog here is for performance consideration.
 // If we check shallLog here, the fmt.Sprint might be called even if the log level is not enabled.
 // The caller should check shallLog before calling this function.

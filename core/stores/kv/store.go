@@ -5,10 +5,10 @@ import (
 	"errors"
 	"log"
 
-	"github.com/sllt/tao/core/errorx"
-	"github.com/sllt/tao/core/hash"
-	"github.com/sllt/tao/core/stores/cache"
-	"github.com/sllt/tao/core/stores/redis"
+	"github.com/tao-kit/tao/core/errorx"
+	"github.com/tao-kit/tao/core/hash"
+	"github.com/tao-kit/tao/core/stores/cache"
+	"github.com/tao-kit/tao/core/stores/redis"
 )
 
 // ErrNoRedisNode is an error that indicates no redis node.

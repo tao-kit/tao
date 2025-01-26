@@ -8,10 +8,10 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/mathx"
-	"github.com/sllt/tao/core/stringx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/mathx"
+	"github.com/tao-kit/tao/core/stringx"
 	"google.golang.org/grpc/balancer"
 	"google.golang.org/grpc/balancer/base"
 	"google.golang.org/grpc/codes"
@@ -142,8 +142,11 @@ func (m mockClientConn) GetOrBuildProducer(builder balancer.ProducerBuilder) (
 	return builder.Build(m)
 }
 
-func (m mockClientConn) UpdateAddresses(addresses []resolver.Address) {
+func (m mockClientConn) UpdateAddresses(_ []resolver.Address) {
 }
 
 func (m mockClientConn) Connect() {
+}
+
+func (m mockClientConn) Shutdown() {
 }

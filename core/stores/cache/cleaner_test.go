@@ -4,10 +4,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/collection"
-	"github.com/sllt/tao/core/proc"
-	"github.com/sllt/tao/core/timex"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/collection"
+	"github.com/tao-kit/tao/core/proc"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 func TestNextDelay(t *testing.T) {

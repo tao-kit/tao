@@ -3,9 +3,9 @@ package internal
 import (
 	"testing"
 
-	"github.com/sllt/tao/core/discov"
-	"github.com/sllt/tao/core/netx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/discov"
+	"github.com/tao-kit/tao/core/netx"
 )
 
 func TestNewRpcPubServer(t *testing.T) {
@@ -13,7 +13,7 @@ func TestNewRpcPubServer(t *testing.T) {
 		User: "user",
 		Pass: "pass",
 		ID:   10,
-	}, "", ServerMiddlewaresConf{})
+	}, "")
 	assert.NoError(t, err)
 	assert.NotPanics(t, func() {
 		s.Start(nil)

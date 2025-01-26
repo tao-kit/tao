@@ -6,10 +6,10 @@ import (
 	"time"
 
 	"github.com/alicebob/miniredis/v2"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/stores/redis"
-	"github.com/sllt/tao/core/stores/redis/redistest"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/stores/redis"
+	"github.com/tao-kit/tao/core/stores/redis/redistest"
 )
 
 func init() {

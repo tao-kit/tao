@@ -4,7 +4,7 @@ import (
 	"errors"
 	"unicode"
 
-	"github.com/sllt/tao/core/lang"
+	"github.com/tao-kit/tao/core/lang"
 )
 
 var (

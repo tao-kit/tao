@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/alicebob/miniredis/v2"
-	"github.com/sllt/tao/core/stores/redis"
+	"github.com/tao-kit/tao/core/stores/redis"
 )
 
 // CreateRedis returns an in process redis.Redis.

@@ -6,9 +6,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/mathx"
-	"github.com/sllt/tao/core/syncx"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/mathx"
+	"github.com/tao-kit/tao/core/syncx"
 )
 
 const (
@@ -128,8 +128,8 @@ func (c *Cache) Take(key string, fetch func() (any, error)) (any, error) {
 
 	var fresh bool
 	val, err := c.barrier.Do(key, func() (any, error) {
-		// because O(1) on map search in memory, and fetch is an IO query
-		// so we do double check, cache might be taken by another call
+		// because O(1) on map search in memory, and fetch is an IO query,
+		// so we do double-check, cache might be taken by another call
 		if val, ok := c.doGet(key); ok {
 			return val, nil
 		}

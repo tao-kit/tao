@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/sllt/tao/core/stringx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/stringx"
 )
 
 const (

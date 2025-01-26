@@ -4,8 +4,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/sllt/tao/core/discov"
-	"github.com/sllt/tao/core/netx"
+	"github.com/tao-kit/tao/core/discov"
+	"github.com/tao-kit/tao/core/netx"
 )
 
 const (
@@ -14,7 +14,7 @@ const (
 )
 
 // NewRpcPubServer returns a Server.
-func NewRpcPubServer(etcd discov.EtcdConf, listenOn string, middlewares ServerMiddlewaresConf,
+func NewRpcPubServer(etcd discov.EtcdConf, listenOn string,
 	opts ...ServerOption) (Server, error) {
 	registerEtcd := func() error {
 		pubListenOn := figureOutListenOn(listenOn)
@@ -34,7 +34,7 @@ func NewRpcPubServer(etcd discov.EtcdConf, listenOn string, middlewares ServerMi
 	}
 	server := keepAliveServer{
 		registerEtcd: registerEtcd,
-		Server:       NewRpcServer(listenOn, middlewares, opts...),
+		Server:       NewRpcServer(listenOn, opts...),
 	}
 
 	return server, nil

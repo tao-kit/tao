@@ -8,14 +8,14 @@ import (
 	"sort"
 	"time"
 
-	"github.com/sllt/tao/core/codec"
-	"github.com/sllt/tao/core/load"
-	"github.com/sllt/tao/core/stat"
-	"github.com/sllt/tao/rest/chain"
-	"github.com/sllt/tao/rest/handler"
-	"github.com/sllt/tao/rest/httpx"
-	"github.com/sllt/tao/rest/internal"
-	"github.com/sllt/tao/rest/internal/response"
+	"github.com/tao-kit/tao/core/codec"
+	"github.com/tao-kit/tao/core/load"
+	"github.com/tao-kit/tao/core/stat"
+	"github.com/tao-kit/tao/rest/chain"
+	"github.com/tao-kit/tao/rest/handler"
+	"github.com/tao-kit/tao/rest/httpx"
+	"github.com/tao-kit/tao/rest/internal"
+	"github.com/tao-kit/tao/rest/internal/response"
 )
 
 // use 1000m to represent 100%
@@ -217,8 +217,11 @@ func (ng *engine) notFoundHandler(next http.Handler) http.Handler {
 			handler.TraceHandler(ng.conf.Name,
 				"",
 				handler.WithTraceIgnorePaths(ng.conf.TraceIgnorePaths)),
-			ng.getLogHandler(),
 		)
+
+		if ng.conf.Middlewares.Log {
+			chn = chn.Append(ng.getLogHandler())
+		}
 
 		var h http.Handler
 		if next != nil {

@@ -3,9 +3,9 @@ package internal
 import (
 	"strings"
 
-	"github.com/sllt/tao/core/discov"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/zrpc/resolver/internal/targets"
+	"github.com/tao-kit/tao/core/discov"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/zrpc/resolver/internal/targets"
 	"google.golang.org/grpc/resolver"
 )
 
@@ -22,8 +22,9 @@ func (b *discovBuilder) Build(target resolver.Target, cc resolver.ClientConn, _ 
 	}
 
 	update := func() {
-		var addrs []resolver.Address
-		for _, val := range subset(sub.Values(), subsetSize) {
+		vals := subset(sub.Values(), subsetSize)
+		addrs := make([]resolver.Address, 0, len(vals))
+		for _, val := range vals {
 			addrs = append(addrs, resolver.Address{
 				Addr: val,
 			})
@@ -37,9 +38,24 @@ func (b *discovBuilder) Build(target resolver.Target, cc resolver.ClientConn, _ 
 	sub.AddListener(update)
 	update()
 
-	return &nopResolver{cc: cc}, nil
+	return &discovResolver{
+		cc:  cc,
+		sub: sub,
+	}, nil
 }
 
 func (b *discovBuilder) Scheme() string {
 	return DiscovScheme
+}
+
+type discovResolver struct {
+	cc  resolver.ClientConn
+	sub *discov.Subscriber
+}
+
+func (r *discovResolver) Close() {
+	r.sub.Close()
+}
+
+func (r *discovResolver) ResolveNow(_ resolver.ResolveNowOptions) {
 }

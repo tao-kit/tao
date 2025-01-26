@@ -7,9 +7,9 @@ import (
 	"log"
 	"testing"
 
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/logx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/logx"
 )
 
 func TestRoutineId(t *testing.T) {

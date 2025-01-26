@@ -1,6 +1,6 @@
 package stringx
 
-import "github.com/sllt/tao/core/lang"
+import "github.com/tao-kit/tao/core/lang"
 
 const defaultMask = '*'
 

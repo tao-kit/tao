@@ -3,7 +3,7 @@ package syncx
 import (
 	"errors"
 
-	"github.com/sllt/tao/core/lang"
+	"github.com/tao-kit/tao/core/lang"
 )
 
 // ErrLimitReturn indicates that the more than borrowed elements were returned.

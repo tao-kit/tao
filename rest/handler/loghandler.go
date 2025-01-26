@@ -10,18 +10,17 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"strconv"
-	"strings"
 	"time"
 
-	"github.com/sllt/tao/core/color"
-	"github.com/sllt/tao/core/iox"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/syncx"
-	"github.com/sllt/tao/core/timex"
-	"github.com/sllt/tao/core/utils"
-	"github.com/sllt/tao/rest/httpx"
-	"github.com/sllt/tao/rest/internal"
-	"github.com/sllt/tao/rest/internal/response"
+	"github.com/tao-kit/tao/core/color"
+	"github.com/tao-kit/tao/core/iox"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/syncx"
+	"github.com/tao-kit/tao/core/timex"
+	"github.com/tao-kit/tao/core/utils"
+	"github.com/tao-kit/tao/rest/httpx"
+	"github.com/tao-kit/tao/rest/internal"
+	"github.com/tao-kit/tao/rest/internal/response"
 )
 
 const (
@@ -39,7 +38,7 @@ func LogHandler(next http.Handler) http.Handler {
 		lrw := response.NewWithCodeResponseWriter(w)
 
 		var dup io.ReadCloser
-		r.Body, dup = iox.DupReadCloser(r.Body)
+		r.Body, dup = iox.LimitDupReadCloser(r.Body, limitBodyBytes)
 		next.ServeHTTP(lrw, r.WithContext(internal.WithLogCollector(r.Context(), logs)))
 		r.Body = dup
 		logBrief(r, lrw.Code, timer, logs)
@@ -136,14 +135,7 @@ func logBrief(r *http.Request, code int, timer *utils.ElapsedTimer, logs *intern
 
 	ok := isOkResponse(code)
 	if !ok {
-		fullReq := dumpRequest(r)
-		limitReader := io.LimitReader(strings.NewReader(fullReq), limitBodyBytes)
-		body, err := io.ReadAll(limitReader)
-		if err != nil {
-			buf.WriteString(fmt.Sprintf("\n%s", fullReq))
-		} else {
-			buf.WriteString(fmt.Sprintf("\n%s", string(body)))
-		}
+		buf.WriteString(fmt.Sprintf("\n%s", dumpRequest(r)))
 	}
 
 	body := logs.Flush()
@@ -166,9 +158,9 @@ func logDetails(r *http.Request, response *detailLoggedResponseWriter, timer *ut
 	logger := logx.WithContext(r.Context())
 	buf.WriteString(fmt.Sprintf("[HTTP] %s - %d - %s - %s\n=> %s\n",
 		r.Method, code, r.RemoteAddr, timex.ReprOfDuration(duration), dumpRequest(r)))
-	if duration > defaultSlowThreshold {
+	if duration > slowThreshold.Load() {
 		logger.Slowf("[HTTP] %s - %d - %s - slowcall(%s)\n=> %s\n", r.Method, code, r.RemoteAddr,
-			fmt.Sprintf("slowcall(%s)", timex.ReprOfDuration(duration)), dumpRequest(r))
+			timex.ReprOfDuration(duration), dumpRequest(r))
 	}
 
 	body := logs.Flush()

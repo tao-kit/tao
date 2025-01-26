@@ -8,9 +8,9 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/sllt/tao/core/jsonx"
-	"github.com/sllt/tao/core/mapping"
-	"github.com/sllt/tao/internal/encoding"
+	"github.com/tao-kit/tao/core/jsonx"
+	"github.com/tao-kit/tao/core/mapping"
+	"github.com/tao-kit/tao/internal/encoding"
 )
 
 const (
@@ -133,7 +133,7 @@ func addOrMergeFields(info *fieldInfo, key string, child *fieldInfo, fullName st
 			return newConflictKeyError(fullName)
 		}
 
-		if err := mergeFields(prev, key, child.children, fullName); err != nil {
+		if err := mergeFields(prev, child.children, fullName); err != nil {
 			return err
 		}
 	} else {
@@ -189,10 +189,10 @@ func buildFieldsInfo(tp reflect.Type, fullName string) (*fieldInfo, error) {
 	switch tp.Kind() {
 	case reflect.Struct:
 		return buildStructFieldsInfo(tp, fullName)
-	case reflect.Array, reflect.Slice:
+	case reflect.Array, reflect.Slice, reflect.Map:
 		return buildFieldsInfo(mapping.Deref(tp.Elem()), fullName)
 	case reflect.Chan, reflect.Func:
-		return nil, fmt.Errorf("unsupported type: %s", tp.Kind())
+		return nil, fmt.Errorf("unsupported type: %s, fullName: %s", tp.Kind(), fullName)
 	default:
 		return &fieldInfo{
 			children: make(map[string]*fieldInfo),
@@ -281,7 +281,7 @@ func getTagName(field reflect.StructField) string {
 	return field.Name
 }
 
-func mergeFields(prev *fieldInfo, key string, children map[string]*fieldInfo, fullName string) error {
+func mergeFields(prev *fieldInfo, children map[string]*fieldInfo, fullName string) error {
 	if len(prev.children) == 0 || len(children) == 0 {
 		return newConflictKeyError(fullName)
 	}
@@ -332,6 +332,8 @@ func toLowerCaseKeyMap(m map[string]any, info *fieldInfo) map[string]any {
 			res[lk] = toLowerCaseInterface(v, ti)
 		} else if info.mapField != nil {
 			res[k] = toLowerCaseInterface(v, info.mapField)
+		} else if vv, ok := v.(map[string]any); ok {
+			res[k] = toLowerCaseKeyMap(vv, info)
 		} else {
 			res[k] = v
 		}

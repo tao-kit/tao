@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/sllt/tao/core/fs"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/fs"
 )
 
 func TestSplitLineChunks(t *testing.T) {

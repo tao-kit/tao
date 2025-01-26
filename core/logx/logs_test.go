@@ -248,6 +248,32 @@ func TestStructedLogDebugf(t *testing.T) {
 	})
 }
 
+func TestStructedLogDebugfn(t *testing.T) {
+	t.Run("debugfn with output", func(t *testing.T) {
+		w := new(mockWriter)
+		old := writer.Swap(w)
+		defer writer.Store(old)
+
+		doTestStructedLog(t, levelDebug, w, func(v ...any) {
+			Debugfn(func() any {
+				return fmt.Sprint(v...)
+			})
+		})
+	})
+
+	t.Run("debugfn without output", func(t *testing.T) {
+		w := new(mockWriter)
+		old := writer.Swap(w)
+		defer writer.Store(old)
+
+		doTestStructedLogEmpty(t, w, InfoLevel, func(v ...any) {
+			Debugfn(func() any {
+				return fmt.Sprint(v...)
+			})
+		})
+	})
+}
+
 func TestStructedLogDebugv(t *testing.T) {
 	w := new(mockWriter)
 	old := writer.Swap(w)
@@ -285,6 +311,32 @@ func TestStructedLogErrorf(t *testing.T) {
 
 	doTestStructedLog(t, levelError, w, func(v ...any) {
 		Errorf("%s", fmt.Sprint(v...))
+	})
+}
+
+func TestStructedLogErrorfn(t *testing.T) {
+	t.Run("errorfn with output", func(t *testing.T) {
+		w := new(mockWriter)
+		old := writer.Swap(w)
+		defer writer.Store(old)
+
+		doTestStructedLog(t, levelError, w, func(v ...any) {
+			Errorfn(func() any {
+				return fmt.Sprint(v...)
+			})
+		})
+	})
+
+	t.Run("errorfn without output", func(t *testing.T) {
+		w := new(mockWriter)
+		old := writer.Swap(w)
+		defer writer.Store(old)
+
+		doTestStructedLogEmpty(t, w, SevereLevel, func(v ...any) {
+			Errorfn(func() any {
+				return fmt.Sprint(v...)
+			})
+		})
 	})
 }
 
@@ -328,6 +380,32 @@ func TestStructedLogInfof(t *testing.T) {
 	})
 }
 
+func TestStructedInfofn(t *testing.T) {
+	t.Run("infofn with output", func(t *testing.T) {
+		w := new(mockWriter)
+		old := writer.Swap(w)
+		defer writer.Store(old)
+
+		doTestStructedLog(t, levelInfo, w, func(v ...any) {
+			Infofn(func() any {
+				return fmt.Sprint(v...)
+			})
+		})
+	})
+
+	t.Run("infofn without output", func(t *testing.T) {
+		w := new(mockWriter)
+		old := writer.Swap(w)
+		defer writer.Store(old)
+
+		doTestStructedLogEmpty(t, w, ErrorLevel, func(v ...any) {
+			Infofn(func() any {
+				return fmt.Sprint(v...)
+			})
+		})
+	})
+}
+
 func TestStructedLogInfov(t *testing.T) {
 	w := new(mockWriter)
 	old := writer.Swap(w)
@@ -345,6 +423,27 @@ func TestStructedLogInfow(t *testing.T) {
 
 	doTestStructedLog(t, levelInfo, w, func(v ...any) {
 		Infow(fmt.Sprint(v...), Field("foo", "bar"))
+	})
+}
+
+func TestStructedLogFieldNil(t *testing.T) {
+	w := new(mockWriter)
+	old := writer.Swap(w)
+	defer writer.Store(old)
+
+	assert.NotPanics(t, func() {
+		var s *string
+		Infow("test", Field("bb", s))
+		var d *nilStringer
+		Infow("test", Field("bb", d))
+		var e *nilError
+		Errorw("test", Field("bb", e))
+	})
+	assert.NotPanics(t, func() {
+		var p panicStringer
+		Infow("test", Field("bb", p))
+		var ps innerPanicStringer
+		Infow("test", Field("bb", ps))
 	})
 }
 
@@ -430,6 +529,17 @@ func TestStructedLogInfoConsoleText(t *testing.T) {
 	})
 }
 
+func TestInfofnWithErrorLevel(t *testing.T) {
+	called := false
+	SetLevel(ErrorLevel)
+	defer SetLevel(DebugLevel)
+	Infofn(func() any {
+		called = true
+		return "info log"
+	})
+	assert.False(t, called)
+}
+
 func TestStructedLogSlow(t *testing.T) {
 	w := new(mockWriter)
 	old := writer.Swap(w)
@@ -447,6 +557,32 @@ func TestStructedLogSlowf(t *testing.T) {
 
 	doTestStructedLog(t, levelSlow, w, func(v ...any) {
 		Slowf(fmt.Sprint(v...))
+	})
+}
+
+func TestStructedLogSlowfn(t *testing.T) {
+	t.Run("slowfn with output", func(t *testing.T) {
+		w := new(mockWriter)
+		old := writer.Swap(w)
+		defer writer.Store(old)
+
+		doTestStructedLog(t, levelSlow, w, func(v ...any) {
+			Slowfn(func() any {
+				return fmt.Sprint(v...)
+			})
+		})
+	})
+
+	t.Run("slowfn without output", func(t *testing.T) {
+		w := new(mockWriter)
+		old := writer.Swap(w)
+		defer writer.Store(old)
+
+		doTestStructedLogEmpty(t, w, SevereLevel, func(v ...any) {
+			Slowfn(func() any {
+				return fmt.Sprint(v...)
+			})
+		})
 	})
 }
 
@@ -570,7 +706,7 @@ func TestErrorfWithWrappedError(t *testing.T) {
 	old := writer.Swap(w)
 	defer writer.Store(old)
 
-	Errorf("hello %w", errors.New(message))
+	Errorf("hello %s", errors.New(message))
 	assert.True(t, strings.Contains(w.String(), "hello there"))
 }
 
@@ -658,6 +794,10 @@ func TestSetup(t *testing.T) {
 
 func TestDisable(t *testing.T) {
 	Disable()
+	defer func() {
+		SetLevel(InfoLevel)
+		atomic.StoreUint32(&encoding, jsonEncodingType)
+	}()
 
 	var opt logOptions
 	WithKeepDays(1)(&opt)
@@ -666,6 +806,7 @@ func TestDisable(t *testing.T) {
 	WithMaxSize(1024)(&opt)
 	assert.Nil(t, Close())
 	assert.Nil(t, Close())
+	assert.Equal(t, uint32(disableLevel), atomic.LoadUint32(&logLevel))
 }
 
 func TestDisableStat(t *testing.T) {
@@ -679,8 +820,19 @@ func TestDisableStat(t *testing.T) {
 	assert.Equal(t, 0, w.builder.Len())
 }
 
+func TestAddWriter(t *testing.T) {
+	const message = "hello there"
+	w := new(mockWriter)
+	AddWriter(w)
+	w1 := new(mockWriter)
+	AddWriter(w1)
+	Error(message)
+	assert.Contains(t, w.String(), message)
+	assert.Contains(t, w1.String(), message)
+}
+
 func TestSetWriter(t *testing.T) {
-	atomic.StoreUint32(&disableLog, 0)
+	atomic.StoreUint32(&logLevel, 0)
 	Reset()
 	SetWriter(nopWriter{})
 	assert.NotNil(t, writer.Load())
@@ -810,15 +962,26 @@ func doTestStructedLogConsole(t *testing.T, w *mockWriter, write func(...any)) {
 	assert.True(t, strings.Contains(w.String(), message))
 }
 
+func doTestStructedLogEmpty(t *testing.T, w *mockWriter, level uint32, write func(...any)) {
+	olevel := atomic.LoadUint32(&logLevel)
+	SetLevel(level)
+	defer SetLevel(olevel)
+
+	const message = "hello there"
+	write(message)
+	assert.Empty(t, w.String())
+}
+
 func testSetLevelTwiceWithMode(t *testing.T, mode string, w *mockWriter) {
 	writer.Store(nil)
 	SetUp(LogConf{
-		Mode:       mode,
-		Level:      "debug",
-		Path:       "/dev/null",
-		Encoding:   plainEncoding,
-		Stat:       false,
-		TimeFormat: time.RFC3339,
+		Mode:           mode,
+		Level:          "debug",
+		Path:           "/dev/null",
+		Encoding:       plainEncoding,
+		Stat:           false,
+		TimeFormat:     time.RFC3339,
+		FileTimeFormat: time.DateTime,
 	})
 	SetUp(LogConf{
 		Mode:  mode,
@@ -857,4 +1020,37 @@ func validateFields(t *testing.T, content string, fields map[string]any) {
 			assert.Equal(t, v, m[k], content)
 		}
 	}
+}
+
+type nilError struct {
+	Name string
+}
+
+func (e *nilError) Error() string {
+	return e.Name
+}
+
+type nilStringer struct {
+	Name string
+}
+
+func (s *nilStringer) String() string {
+	return s.Name
+}
+
+type innerPanicStringer struct {
+	Inner *struct {
+		Name string
+	}
+}
+
+func (s innerPanicStringer) String() string {
+	return s.Inner.Name
+}
+
+type panicStringer struct {
+}
+
+func (s panicStringer) String() string {
+	panic("panic")
 }

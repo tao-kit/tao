@@ -6,8 +6,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/sllt/tao/rest/internal/header"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/rest/internal/header"
 )
 
 func TestParse(t *testing.T) {
@@ -175,6 +175,6 @@ func (m mockedReader) Close() error {
 	return nil
 }
 
-func (m mockedReader) Read(p []byte) (n int, err error) {
+func (m mockedReader) Read(_ []byte) (n int, err error) {
 	return 0, errors.New("dummy")
 }

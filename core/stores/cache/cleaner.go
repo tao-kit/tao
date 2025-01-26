@@ -5,12 +5,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/sllt/tao/core/collection"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/proc"
-	"github.com/sllt/tao/core/stat"
-	"github.com/sllt/tao/core/stringx"
-	"github.com/sllt/tao/core/threading"
+	"github.com/tao-kit/tao/core/collection"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/proc"
+	"github.com/tao-kit/tao/core/stat"
+	"github.com/tao-kit/tao/core/stringx"
+	"github.com/tao-kit/tao/core/threading"
 )
 
 const (

@@ -2,17 +2,19 @@ package rest
 
 import (
 	"crypto/tls"
+	"errors"
 	"net/http"
 	"path"
 	"time"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/rest/chain"
-	"github.com/sllt/tao/rest/handler"
-	"github.com/sllt/tao/rest/httpx"
-	"github.com/sllt/tao/rest/internal"
-	"github.com/sllt/tao/rest/internal/cors"
-	"github.com/sllt/tao/rest/router"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/rest/chain"
+	"github.com/tao-kit/tao/rest/handler"
+	"github.com/tao-kit/tao/rest/httpx"
+	"github.com/tao-kit/tao/rest/internal"
+	"github.com/tao-kit/tao/rest/internal/cors"
+	"github.com/tao-kit/tao/rest/internal/fileserver"
+	"github.com/tao-kit/tao/rest/router"
 )
 
 type (
@@ -84,7 +86,7 @@ func (s *Server) PrintRoutes() {
 
 // Routes returns the HTTP routers that registered in the server.
 func (s *Server) Routes() []Route {
-	var routes []Route
+	routes := make([]Route, 0, len(s.ngin.routes))
 
 	for _, r := range s.ngin.routes {
 		routes = append(routes, r.routes...)
@@ -159,6 +161,18 @@ func WithCors(origin ...string) RunOption {
 	}
 }
 
+// WithCorsHeaders returns a RunOption to enable CORS with given headers.
+func WithCorsHeaders(headers ...string) RunOption {
+	const allDomains = "*"
+
+	return func(server *Server) {
+		server.router.SetNotAllowedHandler(cors.NotAllowedHandler(nil, allDomains))
+		server.router = newCorsRouter(server.router, func(header http.Header) {
+			cors.AddAllowHeaders(header, headers...)
+		}, allDomains)
+	}
+}
+
 // WithCustomCors returns a func to enable CORS for given origin, or default to all origins (*),
 // fn lets caller customizing the response.
 func WithCustomCors(middlewareFn func(header http.Header), notAllowedFn func(http.ResponseWriter),
@@ -166,6 +180,13 @@ func WithCustomCors(middlewareFn func(header http.Header), notAllowedFn func(htt
 	return func(server *Server) {
 		server.router.SetNotAllowedHandler(cors.NotAllowedHandler(notAllowedFn, origin...))
 		server.router = newCorsRouter(server.router, middlewareFn, origin...)
+	}
+}
+
+// WithFileServer returns a RunOption to serve files from given dir with given path.
+func WithFileServer(path string, fs http.FileSystem) RunOption {
+	return func(server *Server) {
+		server.router = newFileServingRouter(server.router, path, fs)
 	}
 }
 
@@ -240,7 +261,7 @@ func WithNotAllowedHandler(handler http.Handler) RunOption {
 // WithPrefix adds group as a prefix to the route paths.
 func WithPrefix(group string) RouteOption {
 	return func(r *featuredRoutes) {
-		var routes []Route
+		routes := make([]Route, 0, len(r.routes))
 		for _, rt := range r.routes {
 			p := path.Join(group, rt.Path)
 			routes = append(routes, Route{
@@ -307,7 +328,7 @@ func WithUnsignedCallback(callback handler.UnsignedCallback) RunOption {
 
 func handleError(err error) {
 	// ErrServerClosed means the server is closed manually
-	if err == nil || err == http.ErrServerClosed {
+	if err == nil || errors.Is(err, http.ErrServerClosed) {
 		return
 	}
 
@@ -335,4 +356,20 @@ func newCorsRouter(router httpx.Router, headerFn func(http.Header), origins ...s
 
 func (c *corsRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	c.middleware(c.Router.ServeHTTP)(w, r)
+}
+
+type fileServingRouter struct {
+	httpx.Router
+	middleware Middleware
+}
+
+func newFileServingRouter(router httpx.Router, path string, fs http.FileSystem) httpx.Router {
+	return &fileServingRouter{
+		Router:     router,
+		middleware: fileserver.Middleware(path, fs),
+	}
+}
+
+func (f *fileServingRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	f.middleware(f.Router.ServeHTTP)(w, r)
 }

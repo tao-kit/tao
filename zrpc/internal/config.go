@@ -1,6 +1,6 @@
 package internal
 
-import "github.com/sllt/tao/zrpc/internal/serverinterceptors"
+import "github.com/tao-kit/tao/zrpc/internal/serverinterceptors"
 
 type (
 	// StatConf defines the stat config.
@@ -24,4 +24,7 @@ type (
 		Prometheus bool     `json:",default=true"`
 		Breaker    bool     `json:",default=true"`
 	}
+
+	// MethodTimeoutConf defines specified timeout for gRPC methods.
+	MethodTimeoutConf = serverinterceptors.MethodTimeoutConf
 )

@@ -3,7 +3,8 @@ package mon
 import (
 	"context"
 
-	"github.com/sllt/tao/core/trace"
+	"github.com/tao-kit/tao/core/errorx"
+	"github.com/tao-kit/tao/core/trace"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
@@ -23,8 +24,7 @@ func startSpan(ctx context.Context, cmd string) (context.Context, oteltrace.Span
 func endSpan(span oteltrace.Span, err error) {
 	defer span.End()
 
-	if err == nil || err == mongo.ErrNoDocuments ||
-		err == mongo.ErrNilValue || err == mongo.ErrNilDocument {
+	if err == nil || errorx.In(err, mongo.ErrNoDocuments, mongo.ErrNilValue, mongo.ErrNilDocument) {
 		span.SetStatus(codes.Ok, "")
 		return
 	}

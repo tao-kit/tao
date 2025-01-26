@@ -3,8 +3,8 @@ package internal
 import (
 	"net/http"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/timex"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/timex"
 	"go.opentelemetry.io/otel/propagation"
 )
 

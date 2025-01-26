@@ -5,9 +5,9 @@ import (
 	"math"
 	"testing"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/mathx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/mathx"
 )
 
 var (
@@ -67,7 +67,7 @@ func (p *mockedPusher) Name() string {
 	return p.name
 }
 
-func (p *mockedPusher) Push(s string) error {
+func (p *mockedPusher) Push(_ string) error {
 	if proba.TrueOnProba(failProba) {
 		return errors.New("dummy")
 	}

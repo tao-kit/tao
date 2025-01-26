@@ -3,10 +3,10 @@ package zrpc
 import (
 	"testing"
 
-	"github.com/sllt/tao/core/discov"
-	"github.com/sllt/tao/core/service"
-	"github.com/sllt/tao/core/stores/redis"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/discov"
+	"github.com/tao-kit/tao/core/service"
+	"github.com/tao-kit/tao/core/stores/redis"
 )
 
 func TestRpcClientConf(t *testing.T) {

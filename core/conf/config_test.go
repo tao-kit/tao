@@ -5,9 +5,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/sllt/tao/core/fs"
-	"github.com/sllt/tao/core/hash"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/fs"
+	"github.com/tao-kit/tao/core/hash"
 )
 
 var dupErr conflictKeyError
@@ -1187,6 +1187,29 @@ Email = "bar"`)
 			Value map[string]Value `json:"  "`
 		}
 
+		var c Config
+		if assert.NoError(t, LoadFromTomlBytes(input, &c)) {
+			assert.Len(t, c.Value, 2)
+		}
+	})
+
+	t.Run("multi layer map", func(t *testing.T) {
+		type Value struct {
+			User struct {
+				Name string
+			}
+		}
+
+		type Config struct {
+			Value map[string]map[string]Value
+		}
+
+		var input = []byte(`
+[Value.first.User1.User]
+Name = "foo"
+[Value.second.User2.User]
+Name = "bar"
+`)
 		var c Config
 		if assert.NoError(t, LoadFromTomlBytes(input, &c)) {
 			assert.Len(t, c.Value, 2)

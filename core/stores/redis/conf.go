@@ -19,6 +19,7 @@ type (
 	RedisConf struct {
 		Host     string
 		Type     string `json:",default=node,options=node|cluster"`
+		User     string `json:",optional"`
 		Pass     string `json:",optional"`
 		Tls      bool   `json:",optional"`
 		NonBlock bool   `json:",default=true"`
@@ -40,6 +41,9 @@ func (rc RedisConf) NewRedis() *Redis {
 	if rc.Type == ClusterType {
 		opts = append(opts, Cluster())
 	}
+	if len(rc.User) > 0 {
+		opts = append(opts, WithUser(rc.User))
+	}
 	if len(rc.Pass) > 0 {
 		opts = append(opts, WithPass(rc.Pass))
 	}
@@ -47,7 +51,7 @@ func (rc RedisConf) NewRedis() *Redis {
 		opts = append(opts, WithTLS())
 	}
 
-	return New(rc.Host, opts...)
+	return newRedis(rc.Host, opts...)
 }
 
 // Validate validates the RedisConf.

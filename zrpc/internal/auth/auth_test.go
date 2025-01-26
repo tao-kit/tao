@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/sllt/tao/core/stores/redis/redistest"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/stores/redis/redistest"
 	"google.golang.org/grpc/metadata"
 )
 

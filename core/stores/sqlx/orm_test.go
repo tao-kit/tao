@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/sllt/tao/internal/dbtest"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/stores/dbtest"
 )
 
 func TestUnmarshalRowBool(t *testing.T) {

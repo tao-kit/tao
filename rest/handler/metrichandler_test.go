@@ -5,8 +5,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/sllt/tao/core/stat"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/stat"
 )
 
 func TestMetricHandler(t *testing.T) {

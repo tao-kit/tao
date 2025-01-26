@@ -6,11 +6,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/rescue"
-	"github.com/sllt/tao/core/stat"
-	"github.com/sllt/tao/core/threading"
-	"github.com/sllt/tao/core/timex"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/rescue"
+	"github.com/tao-kit/tao/core/stat"
+	"github.com/tao-kit/tao/core/threading"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 const queueName = "queue"
@@ -76,7 +76,7 @@ func (q *Queue) AddListener(listener Listener) {
 	q.listeners = append(q.listeners, listener)
 }
 
-// Broadcast broadcasts message to all event channels.
+// Broadcast broadcasts the message to all event channels.
 func (q *Queue) Broadcast(message any) {
 	go func() {
 		q.eventLock.Lock()
@@ -202,7 +202,7 @@ func (q *Queue) produce() {
 }
 
 func (q *Queue) produceOne(producer Producer) (string, bool) {
-	// avoid panic quit the producer, just log it and continue
+	// avoid panic quit the producer, log it and continue
 	defer rescue.Recover()
 
 	return producer.Produce()

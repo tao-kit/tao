@@ -97,20 +97,70 @@ func TestRetryWithInterval(t *testing.T) {
 
 }
 
-func TestRetryCtx(t *testing.T) {
-	assert.NotNil(t, DoWithRetryCtx(context.Background(), func(ctx context.Context, retryCount int) error {
-		if retryCount == 0 {
-			return errors.New("any")
-		}
-		time.Sleep(time.Millisecond * 150)
-		return nil
-	}, WithTimeout(time.Millisecond*250), WithInterval(time.Millisecond*150)))
+func TestRetryWithWithIgnoreErrors(t *testing.T) {
+	ignoreErr1 := errors.New("ignore error1")
+	ignoreErr2 := errors.New("ignore error2")
+	ignoreErrs := []error{ignoreErr1, ignoreErr2}
 
-	assert.NotNil(t, DoWithRetryCtx(context.Background(), func(ctx context.Context, retryCount int) error {
-		if retryCount == 1 {
+	assert.Nil(t, DoWithRetry(func() error {
+		return ignoreErr1
+	}, WithIgnoreErrors(ignoreErrs)))
+
+	assert.Nil(t, DoWithRetry(func() error {
+		return ignoreErr2
+	}, WithIgnoreErrors(ignoreErrs)))
+
+	assert.NotNil(t, DoWithRetry(func() error {
+		return errors.New("any")
+	}))
+}
+
+func TestRetryCtx(t *testing.T) {
+	t.Run("with timeout", func(t *testing.T) {
+		assert.NotNil(t, DoWithRetryCtx(context.Background(), func(ctx context.Context, retryCount int) error {
+			if retryCount == 0 {
+				return errors.New("any")
+			}
+			time.Sleep(time.Millisecond * 150)
 			return nil
-		}
-		time.Sleep(time.Millisecond * 150)
-		return errors.New("any ")
-	}, WithTimeout(time.Millisecond*250), WithInterval(time.Millisecond*150)))
+		}, WithTimeout(time.Millisecond*250), WithInterval(time.Millisecond*150)))
+
+		assert.NotNil(t, DoWithRetryCtx(context.Background(), func(ctx context.Context, retryCount int) error {
+			if retryCount == 1 {
+				return nil
+			}
+			time.Sleep(time.Millisecond * 150)
+			return errors.New("any ")
+		}, WithTimeout(time.Millisecond*250), WithInterval(time.Millisecond*150)))
+	})
+
+	t.Run("with deadline exceeded", func(t *testing.T) {
+		ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(time.Millisecond*250))
+		defer cancel()
+
+		var times int
+		assert.Error(t, DoWithRetryCtx(ctx, func(ctx context.Context, retryCount int) error {
+			times++
+			time.Sleep(time.Millisecond * 150)
+			return errors.New("any")
+		}, WithInterval(time.Millisecond*150)))
+		assert.Equal(t, 1, times)
+	})
+
+	t.Run("with deadline not exceeded", func(t *testing.T) {
+		ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(time.Millisecond*250))
+		defer cancel()
+
+		var times int
+		assert.NoError(t, DoWithRetryCtx(ctx, func(ctx context.Context, retryCount int) error {
+			times++
+			if times == defaultRetryTimes {
+				return nil
+			}
+
+			time.Sleep(time.Millisecond * 50)
+			return errors.New("any")
+		}))
+		assert.Equal(t, defaultRetryTimes, times)
+	})
 }

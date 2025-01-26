@@ -10,7 +10,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/sllt/tao/core/logx"
+	"github.com/tao-kit/tao/core/logx"
 )
 
 const (

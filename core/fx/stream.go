@@ -4,9 +4,9 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/sllt/tao/core/collection"
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/threading"
+	"github.com/tao-kit/tao/core/collection"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/threading"
 )
 
 const (
@@ -84,10 +84,10 @@ func Range(source <-chan any) Stream {
 	}
 }
 
-// AllMach returns whether all elements of this stream match the provided predicate.
+// AllMatch returns whether all elements of this stream match the provided predicate.
 // May not evaluate the predicate on all elements if not necessary for determining the result.
 // If the stream is empty then true is returned and the predicate is not evaluated.
-func (s Stream) AllMach(predicate func(item any) bool) bool {
+func (s Stream) AllMatch(predicate func(item any) bool) bool {
 	for item := range s.source {
 		if !predicate(item) {
 			// make sure the former goroutine not block, and current func returns fast.
@@ -99,10 +99,10 @@ func (s Stream) AllMach(predicate func(item any) bool) bool {
 	return true
 }
 
-// AnyMach returns whether any elements of this stream match the provided predicate.
+// AnyMatch returns whether any elements of this stream match the provided predicate.
 // May not evaluate the predicate on all elements if not necessary for determining the result.
 // If the stream is empty then false is returned and the predicate is not evaluated.
-func (s Stream) AnyMach(predicate func(item any) bool) bool {
+func (s Stream) AnyMatch(predicate func(item any) bool) bool {
 	for item := range s.source {
 		if predicate(item) {
 			// make sure the former goroutine not block, and current func returns fast.
@@ -352,7 +352,7 @@ func (s Stream) Parallel(fn ParallelFunc, opts ...Option) {
 	}, opts...).Done()
 }
 
-// Reduce is an utility method to let the caller deal with the underlying channel.
+// Reduce is a utility method to let the caller deal with the underlying channel.
 func (s Stream) Reduce(fn ReduceFunc) (any, error) {
 	return fn(s.source)
 }

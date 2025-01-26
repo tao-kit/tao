@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sllt/tao/core/timex"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 // An ElapsedTimer is a timer to track the elapsed time.

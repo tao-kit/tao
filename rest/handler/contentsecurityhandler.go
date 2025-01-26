@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/sllt/tao/core/codec"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/rest/httpx"
-	"github.com/sllt/tao/rest/internal/security"
+	"github.com/tao-kit/tao/core/codec"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/rest/httpx"
+	"github.com/tao-kit/tao/rest/internal/security"
 )
 
 const contentSecurity = "X-Content-Security"
@@ -60,7 +60,8 @@ func executeCallbacks(w http.ResponseWriter, r *http.Request, next http.Handler,
 	}
 }
 
-func handleVerificationFailure(w http.ResponseWriter, r *http.Request, next http.Handler, strict bool, code int) {
+func handleVerificationFailure(w http.ResponseWriter, r *http.Request, next http.Handler,
+	strict bool, _ int) {
 	if strict {
 		w.WriteHeader(http.StatusForbidden)
 	} else {

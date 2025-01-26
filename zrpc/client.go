@@ -3,11 +3,11 @@ package zrpc
 import (
 	"time"
 
-	"github.com/sllt/tao/core/conf"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/zrpc/internal"
-	"github.com/sllt/tao/zrpc/internal/auth"
-	"github.com/sllt/tao/zrpc/internal/clientinterceptors"
+	"github.com/tao-kit/tao/core/conf"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/zrpc/internal"
+	"github.com/tao-kit/tao/zrpc/internal/auth"
+	"github.com/tao-kit/tao/zrpc/internal/clientinterceptors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 )
@@ -109,4 +109,9 @@ func DontLogClientContentForMethod(method string) {
 // SetClientSlowThreshold sets the slow threshold on client side.
 func SetClientSlowThreshold(threshold time.Duration) {
 	clientinterceptors.SetSlowThreshold(threshold)
+}
+
+// WithCallTimeout return a call option with given timeout to make a method call.
+func WithCallTimeout(timeout time.Duration) grpc.CallOption {
+	return clientinterceptors.WithCallTimeout(timeout)
 }

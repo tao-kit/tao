@@ -10,8 +10,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/stringx"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/stringx"
 )
 
 const (
@@ -30,11 +30,13 @@ const (
 	leftSquareBracket  = '['
 	rightSquareBracket = ']'
 	segmentSeparator   = ','
+	intSize            = 32 << (^uint(0) >> 63) // 32 or 64
 )
 
 var (
 	errUnsupportedType  = errors.New("unsupported type on setting field value")
 	errNumberRange      = errors.New("wrong number range setting")
+	errNilSliceElement  = errors.New("null element for slice")
 	optionsCache        = make(map[string]optionsCacheValue)
 	cacheLock           sync.RWMutex
 	structRequiredCache = make(map[reflect.Type]requiredCacheValue)
@@ -100,27 +102,30 @@ func convertTypeFromString(kind reflect.Kind, str string) (any, error) {
 		default:
 			return false, errTypeMismatch
 		}
-	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-		intValue, err := strconv.ParseInt(str, 10, 64)
-		if err != nil {
-			return 0, fmt.Errorf("the value %q cannot be parsed as int", str)
-		}
-
-		return intValue, nil
-	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
-		uintValue, err := strconv.ParseUint(str, 10, 64)
-		if err != nil {
-			return 0, fmt.Errorf("the value %q cannot be parsed as uint", str)
-		}
-
-		return uintValue, nil
-	case reflect.Float32, reflect.Float64:
-		floatValue, err := strconv.ParseFloat(str, 64)
-		if err != nil {
-			return 0, fmt.Errorf("the value %q cannot be parsed as float", str)
-		}
-
-		return floatValue, nil
+	case reflect.Int:
+		return strconv.ParseInt(str, 10, intSize)
+	case reflect.Int8:
+		return strconv.ParseInt(str, 10, 8)
+	case reflect.Int16:
+		return strconv.ParseInt(str, 10, 16)
+	case reflect.Int32:
+		return strconv.ParseInt(str, 10, 32)
+	case reflect.Int64:
+		return strconv.ParseInt(str, 10, 64)
+	case reflect.Uint:
+		return strconv.ParseUint(str, 10, intSize)
+	case reflect.Uint8:
+		return strconv.ParseUint(str, 10, 8)
+	case reflect.Uint16:
+		return strconv.ParseUint(str, 10, 16)
+	case reflect.Uint32:
+		return strconv.ParseUint(str, 10, 32)
+	case reflect.Uint64:
+		return strconv.ParseUint(str, 10, 64)
+	case reflect.Float32:
+		return strconv.ParseFloat(str, 32)
+	case reflect.Float64:
+		return strconv.ParseFloat(str, 64)
 	case reflect.String:
 		return str, nil
 	default:
@@ -411,7 +416,7 @@ func parseOption(fieldOpts *fieldOptions, fieldName, option string) error {
 }
 
 // parseOptions parses the given options in tag.
-// for example: `json:"name,options=foo|bar"` or `json:"name,options=[foo,bar]"`
+// for example, `json:"name,options=foo|bar"` or `json:"name,options=[foo,bar]"`
 func parseOptions(val string) []string {
 	if len(val) == 0 {
 		return nil
@@ -486,19 +491,22 @@ func setMatchedPrimitiveValue(kind reflect.Kind, value reflect.Value, v any) err
 	switch kind {
 	case reflect.Bool:
 		value.SetBool(v.(bool))
+		return nil
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 		value.SetInt(v.(int64))
+		return nil
 	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
 		value.SetUint(v.(uint64))
+		return nil
 	case reflect.Float32, reflect.Float64:
 		value.SetFloat(v.(float64))
+		return nil
 	case reflect.String:
 		value.SetString(v.(string))
+		return nil
 	default:
 		return errUnsupportedType
 	}
-
-	return nil
 }
 
 func setValueFromString(kind reflect.Kind, value reflect.Value, str string) error {
@@ -575,7 +583,8 @@ func usingDifferentKeys(key string, field reflect.StructField) bool {
 	return false
 }
 
-func validateAndSetValue(kind reflect.Kind, value reflect.Value, str string, opts *fieldOptionsWithContext) error {
+func validateAndSetValue(kind reflect.Kind, value reflect.Value, str string,
+	opts *fieldOptionsWithContext) error {
 	if !value.CanSet() {
 		return errValueNotSettable
 	}

@@ -6,7 +6,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/sllt/tao/core/errorx"
+	"github.com/tao-kit/tao/core/errorx"
 )
 
 const (
@@ -363,9 +363,7 @@ func newGuardedWriter[T any](ctx context.Context, channel chan<- T, done <-chan 
 func (gw guardedWriter[T]) Write(v T) {
 	select {
 	case <-gw.ctx.Done():
-		return
 	case <-gw.done:
-		return
 	default:
 		gw.channel <- v
 	}

@@ -3,8 +3,8 @@ package syncx
 import (
 	"time"
 
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/timex"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 // A Cond is used to wait for conditions.

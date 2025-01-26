@@ -4,10 +4,12 @@ import (
 	"context"
 	"testing"
 
-	"github.com/sllt/tao/core/load"
-	"github.com/sllt/tao/core/stat"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/load"
+	"github.com/tao-kit/tao/core/stat"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func TestUnarySheddingInterceptor(t *testing.T) {
@@ -33,7 +35,7 @@ func TestUnarySheddingInterceptor(t *testing.T) {
 			name:      "reject",
 			allow:     false,
 			handleErr: nil,
-			expect:    load.ErrServiceOverloaded,
+			expect:    status.Error(codes.ResourceExhausted, load.ErrServiceOverloaded.Error()),
 		},
 	}
 

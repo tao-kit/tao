@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/threading"
-	"github.com/sllt/tao/core/timex"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/threading"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 const drainWorkers = 8

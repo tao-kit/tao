@@ -3,7 +3,7 @@ package handler
 import (
 	"net/http"
 
-	"github.com/sllt/tao/rest/internal"
+	"github.com/tao-kit/tao/rest/internal"
 )
 
 // MaxBytesHandler returns a middleware that limit reading of http request body.

@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/lang"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/lang"
 )
 
 func TestTryLock(t *testing.T) {

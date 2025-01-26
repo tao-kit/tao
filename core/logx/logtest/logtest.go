@@ -6,7 +6,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/sllt/tao/core/logx"
+	"github.com/tao-kit/tao/core/logx"
 )
 
 type Buffer struct {

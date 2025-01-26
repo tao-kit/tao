@@ -4,9 +4,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/sllt/tao/core/syncx"
-	"github.com/sllt/tao/zrpc/internal"
-	"github.com/sllt/tao/zrpc/internal/auth"
+	"github.com/tao-kit/tao/core/syncx"
+	"github.com/tao-kit/tao/zrpc/internal"
+	"github.com/tao-kit/tao/zrpc/internal/auth"
 	"google.golang.org/grpc"
 )
 

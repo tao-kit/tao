@@ -6,14 +6,14 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/sllt/tao/core/syncx"
+	"github.com/tao-kit/tao/core/syncx"
 )
 
 // defaultHealthManager is global comboHealthManager.
 var defaultHealthManager = newComboHealthManager()
 
 type (
-	// Probe represents readiness status of given component.
+	// Probe represents readiness status of a given component.
 	Probe interface {
 		// MarkReady sets a ready state for the endpoint handlers.
 		MarkReady()
@@ -44,10 +44,10 @@ func AddProbe(probe Probe) {
 }
 
 // CreateHttpHandler create health http handler base on given probe.
-func CreateHttpHandler() http.HandlerFunc {
+func CreateHttpHandler(healthResponse string) http.HandlerFunc {
 	return func(w http.ResponseWriter, _ *http.Request) {
 		if defaultHealthManager.IsReady() {
-			_, _ = w.Write([]byte("OK"))
+			_, _ = w.Write([]byte(healthResponse))
 		} else {
 			http.Error(w, "Service Unavailable\n"+defaultHealthManager.verboseInfo(),
 				http.StatusServiceUnavailable)
@@ -110,6 +110,10 @@ func (p *comboHealthManager) MarkNotReady() {
 func (p *comboHealthManager) IsReady() bool {
 	p.mu.Lock()
 	defer p.mu.Unlock()
+
+	if len(p.probes) == 0 {
+		return false
+	}
 
 	for _, probe := range p.probes {
 		if !probe.IsReady() {

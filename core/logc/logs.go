@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/sllt/tao/core/logx"
+	"github.com/tao-kit/tao/core/logx"
 )
 
 type (
@@ -37,12 +37,19 @@ func Debugf(ctx context.Context, format string, v ...interface{}) {
 	getLogger(ctx).Debugf(format, v...)
 }
 
+// Debugfn writes fn result into access log.
+// This is useful when the function is expensive to compute,
+// and we want to log it only when necessary.
+func Debugfn(ctx context.Context, fn func() any) {
+	getLogger(ctx).Debugfn(fn)
+}
+
 // Debugv writes v into access log with json content.
 func Debugv(ctx context.Context, v interface{}) {
 	getLogger(ctx).Debugv(v)
 }
 
-// Debugw writes msg along with fields into access log.
+// Debugw writes msg along with fields into the access log.
 func Debugw(ctx context.Context, msg string, fields ...LogField) {
 	getLogger(ctx).Debugw(msg, fields...)
 }
@@ -57,13 +64,20 @@ func Errorf(ctx context.Context, format string, v ...any) {
 	getLogger(ctx).Errorf(fmt.Errorf(format, v...).Error())
 }
 
+// Errorfn writes fn result into error log.
+// This is useful when the function is expensive to compute,
+// and we want to log it only when necessary.
+func Errorfn(ctx context.Context, fn func() any) {
+	getLogger(ctx).Errorfn(fn)
+}
+
 // Errorv writes v into error log with json content.
 // No call stack attached, because not elegant to pack the messages.
 func Errorv(ctx context.Context, v any) {
 	getLogger(ctx).Errorv(v)
 }
 
-// Errorw writes msg along with fields into error log.
+// Errorw writes msg along with fields into the error log.
 func Errorw(ctx context.Context, msg string, fields ...LogField) {
 	getLogger(ctx).Errorw(msg, fields...)
 }
@@ -83,12 +97,19 @@ func Infof(ctx context.Context, format string, v ...any) {
 	getLogger(ctx).Infof(format, v...)
 }
 
+// Infofn writes fn result into access log.
+// This is useful when the function is expensive to compute,
+// and we want to log it only when necessary.
+func Infofn(ctx context.Context, fn func() any) {
+	getLogger(ctx).Infofn(fn)
+}
+
 // Infov writes v into access log with json content.
 func Infov(ctx context.Context, v any) {
 	getLogger(ctx).Infov(v)
 }
 
-// Infow writes msg along with fields into access log.
+// Infow writes msg along with fields into the access log.
 func Infow(ctx context.Context, msg string, fields ...LogField) {
 	getLogger(ctx).Infow(msg, fields...)
 }
@@ -108,10 +129,11 @@ func SetLevel(level uint32) {
 	logx.SetLevel(level)
 }
 
-// SetUp sets up the logx. If already set up, just return nil.
-// we allow SetUp to be called multiple times, because for example
+// SetUp sets up the logx.
+// If already set up, return nil.
+// We allow SetUp to be called multiple times, because, for example,
 // we need to allow different service frameworks to initialize logx respectively.
-// the same logic for SetUp
+// The same logic for SetUp
 func SetUp(c LogConf) error {
 	return logx.SetUp(c)
 }
@@ -124,6 +146,13 @@ func Slow(ctx context.Context, v ...any) {
 // Slowf writes v with format into slow log.
 func Slowf(ctx context.Context, format string, v ...any) {
 	getLogger(ctx).Slowf(format, v...)
+}
+
+// Slowfn writes fn result into slow log.
+// This is useful when the function is expensive to compute,
+// and we want to log it only when necessary.
+func Slowfn(ctx context.Context, fn func() any) {
+	getLogger(ctx).Slowfn(fn)
 }
 
 // Slowv writes v into slow log with json content.

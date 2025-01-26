@@ -4,8 +4,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/sllt/tao/core/discov/internal"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/discov/internal"
 )
 
 var mockLock sync.Mutex

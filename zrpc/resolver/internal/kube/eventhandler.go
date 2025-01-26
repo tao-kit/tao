@@ -3,10 +3,13 @@ package kube
 import (
 	"sync"
 
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/logx"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/logx"
 	v1 "k8s.io/api/core/v1"
+	"k8s.io/client-go/tools/cache"
 )
+
+var _ cache.ResourceEventHandler = (*EventHandler)(nil)
 
 // EventHandler is ResourceEventHandler implementation.
 type EventHandler struct {
@@ -24,7 +27,7 @@ func NewEventHandler(update func([]string)) *EventHandler {
 }
 
 // OnAdd handles the endpoints add events.
-func (h *EventHandler) OnAdd(obj any) {
+func (h *EventHandler) OnAdd(obj any, _ bool) {
 	endpoints, ok := obj.(*v1.Endpoints)
 	if !ok {
 		logx.Errorf("%v is not an object with type *v1.Endpoints", obj)

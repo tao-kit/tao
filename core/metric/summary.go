@@ -2,8 +2,7 @@ package metric
 
 import (
 	prom "github.com/prometheus/client_golang/prometheus"
-	"github.com/sllt/tao/core/proc"
-	"github.com/sllt/tao/core/prometheus"
+	"github.com/tao-kit/tao/core/proc"
 )
 
 type (
@@ -53,11 +52,9 @@ func NewSummaryVec(cfg *SummaryVecOpts) SummaryVec {
 }
 
 func (sv *promSummaryVec) Observe(v float64, labels ...string) {
-	if !prometheus.Enabled() {
-		return
-	}
-
-	sv.summary.WithLabelValues(labels...).Observe(v)
+	update(func() {
+		sv.summary.WithLabelValues(labels...).Observe(v)
+	})
 }
 
 func (sv *promSummaryVec) close() bool {

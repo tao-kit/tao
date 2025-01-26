@@ -6,9 +6,9 @@ import (
 	"sync"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/syncx"
-	"github.com/sllt/tao/core/threading"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/syncx"
+	"github.com/tao-kit/tao/core/threading"
 )
 
 var (

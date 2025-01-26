@@ -4,8 +4,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/timex"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 const statInterval = time.Minute

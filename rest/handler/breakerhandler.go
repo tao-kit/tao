@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/sllt/tao/core/breaker"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/stat"
-	"github.com/sllt/tao/rest/httpx"
-	"github.com/sllt/tao/rest/internal/response"
+	"github.com/tao-kit/tao/core/breaker"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/stat"
+	"github.com/tao-kit/tao/rest/httpx"
+	"github.com/tao-kit/tao/rest/internal/response"
 )
 
 const breakerSeparator = "://"

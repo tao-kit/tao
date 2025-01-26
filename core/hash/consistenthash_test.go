@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/sllt/tao/core/mathx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/mathx"
 )
 
 const (

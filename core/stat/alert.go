@@ -10,10 +10,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/sllt/tao/core/executors"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/proc"
-	"github.com/sllt/tao/core/sysx"
+	"github.com/tao-kit/tao/core/executors"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/proc"
+	"github.com/tao-kit/tao/core/sysx"
 )
 
 const (

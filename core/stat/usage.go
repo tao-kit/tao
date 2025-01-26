@@ -5,9 +5,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/stat/internal"
-	"github.com/sllt/tao/core/threading"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/stat/internal"
+	"github.com/tao-kit/tao/core/threading"
 )
 
 const (

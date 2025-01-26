@@ -5,7 +5,7 @@ import (
 	"net"
 	"strings"
 
-	ztrace "github.com/sllt/tao/internal/trace"
+	ztrace "github.com/tao-kit/tao/internal/trace"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"

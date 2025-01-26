@@ -3,8 +3,8 @@ package executors
 import (
 	"time"
 
-	"github.com/sllt/tao/core/syncx"
-	"github.com/sllt/tao/core/timex"
+	"github.com/tao-kit/tao/core/syncx"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 // A LessExecutor is an executor to limit execution once within given time interval.

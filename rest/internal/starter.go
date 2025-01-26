@@ -2,12 +2,13 @@ package internal
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/proc"
-	"github.com/sllt/tao/internal/health"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/proc"
+	"github.com/tao-kit/tao/internal/health"
 )
 
 const probeNamePrefix = "rest"
@@ -42,14 +43,14 @@ func start(host string, port int, handler http.Handler, run func(svr *http.Serve
 	}
 	healthManager := health.NewHealthManager(fmt.Sprintf("%s-%s:%d", probeNamePrefix, host, port))
 
-	waitForCalled := proc.AddWrapUpListener(func() {
+	waitForCalled := proc.AddShutdownListener(func() {
 		healthManager.MarkNotReady()
 		if e := server.Shutdown(context.Background()); e != nil {
 			logx.Error(e)
 		}
 	})
 	defer func() {
-		if err == http.ErrServerClosed {
+		if errors.Is(err, http.ErrServerClosed) {
 			waitForCalled()
 		}
 	}()

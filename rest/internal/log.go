@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/rest/httpx"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/rest/httpx"
 )
 
 // logContextKey is a context key.

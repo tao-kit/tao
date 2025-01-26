@@ -6,8 +6,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/sllt/tao/rest/internal/header"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/rest/internal/header"
 )
 
 func TestNamedService_DoRequest(t *testing.T) {

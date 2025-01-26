@@ -5,10 +5,10 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/sllt/tao/core/breaker"
-	"github.com/sllt/tao/core/stat"
-	rcodes "github.com/sllt/tao/zrpc/internal/codes"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/breaker"
+	"github.com/tao-kit/tao/core/stat"
+	rcodes "github.com/tao-kit/tao/zrpc/internal/codes"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

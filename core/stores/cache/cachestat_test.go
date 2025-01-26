@@ -3,7 +3,7 @@ package cache
 import (
 	"testing"
 
-	"github.com/sllt/tao/core/timex"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 func TestCacheStat_statLoop(t *testing.T) {

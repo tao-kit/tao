@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/timex"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 func TestLessExecutor_DoOrDiscard(t *testing.T) {

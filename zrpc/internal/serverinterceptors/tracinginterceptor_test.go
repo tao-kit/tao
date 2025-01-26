@@ -8,9 +8,9 @@ import (
 	"sync/atomic"
 	"testing"
 
-	ztrace "github.com/sllt/tao/core/trace"
-	"github.com/sllt/tao/core/trace/tracetest"
 	"github.com/stretchr/testify/assert"
+	ztrace "github.com/tao-kit/tao/core/trace"
+	"github.com/tao-kit/tao/core/trace/tracetest"
 	"go.opentelemetry.io/otel/attribute"
 	tcodes "go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/sdk/trace"
@@ -32,7 +32,7 @@ func TestUnaryOpenTracingInterceptor_Disable(t *testing.T) {
 
 func TestUnaryOpenTracingInterceptor_Enabled(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-tao-test",
+		Name:     "go-zero-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -309,15 +309,15 @@ type mockedServerStream struct {
 	err error
 }
 
-func (m *mockedServerStream) SetHeader(md metadata.MD) error {
+func (m *mockedServerStream) SetHeader(_ metadata.MD) error {
 	panic("implement me")
 }
 
-func (m *mockedServerStream) SendHeader(md metadata.MD) error {
+func (m *mockedServerStream) SendHeader(_ metadata.MD) error {
 	panic("implement me")
 }
 
-func (m *mockedServerStream) SetTrailer(md metadata.MD) {
+func (m *mockedServerStream) SetTrailer(_ metadata.MD) {
 	panic("implement me")
 }
 
@@ -329,10 +329,10 @@ func (m *mockedServerStream) Context() context.Context {
 	return m.ctx
 }
 
-func (m *mockedServerStream) SendMsg(v any) error {
+func (m *mockedServerStream) SendMsg(_ any) error {
 	return m.err
 }
 
-func (m *mockedServerStream) RecvMsg(v any) error {
+func (m *mockedServerStream) RecvMsg(_ any) error {
 	return m.err
 }

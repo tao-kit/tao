@@ -7,7 +7,7 @@ import (
 	"encoding/base64"
 	"errors"
 
-	"github.com/sllt/tao/core/logx"
+	"github.com/tao-kit/tao/core/logx"
 )
 
 // ErrPaddingSize indicates bad padding size.

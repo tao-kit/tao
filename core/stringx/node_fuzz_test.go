@@ -11,7 +11,7 @@ import (
 )
 
 func FuzzNodeFind(f *testing.F) {
-	rand.Seed(time.Now().UnixNano())
+	rand.NewSource(time.Now().UnixNano())
 
 	f.Add(10)
 	f.Fuzz(func(t *testing.T, keys int) {
@@ -76,7 +76,7 @@ func FuzzNodeFind(f *testing.F) {
 		fmt.Fprintf(&buf, "text:\n\t%s\n", str)
 		defer func() {
 			if r := recover(); r != nil {
-				t.Errorf(buf.String())
+				t.Error(buf.String())
 			}
 		}()
 		assert.ElementsMatchf(t, scopes, n.find([]rune(str)), buf.String())

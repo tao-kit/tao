@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/iox"
-	"github.com/sllt/tao/core/lang"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/iox"
+	"github.com/tao-kit/tao/core/lang"
 )
 
 func TestEnterToContinue(t *testing.T) {

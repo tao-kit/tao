@@ -7,9 +7,9 @@ import (
 	"net/http/httputil"
 
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/rest/internal/response"
-	"github.com/sllt/tao/rest/token"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/rest/internal/response"
+	"github.com/tao-kit/tao/rest/token"
 )
 
 const (
@@ -39,21 +39,10 @@ type (
 	UnauthorizedCallback func(w http.ResponseWriter, r *http.Request, err error)
 	// AuthorizeOption defines the method to customize an AuthorizeOptions.
 	AuthorizeOption func(opts *AuthorizeOptions)
-
-	AuthorizeHandler func(secret string, opts ...AuthorizeOption) func(http.Handler) http.Handler
-)
-
-var (
-	CustomAuthorizeHandler AuthorizeHandler = nil
 )
 
 // Authorize returns an authorization middleware.
 func Authorize(secret string, opts ...AuthorizeOption) func(http.Handler) http.Handler {
-
-	if CustomAuthorizeHandler != nil {
-		return CustomAuthorizeHandler(secret, opts...)
-	}
-
 	var authOpts AuthorizeOptions
 	for _, opt := range opts {
 		opt(&authOpts)

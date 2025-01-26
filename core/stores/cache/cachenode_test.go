@@ -11,15 +11,15 @@ import (
 	"time"
 
 	"github.com/alicebob/miniredis/v2"
-	"github.com/sllt/tao/core/collection"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/mathx"
-	"github.com/sllt/tao/core/stat"
-	"github.com/sllt/tao/core/stores/redis"
-	"github.com/sllt/tao/core/stores/redis/redistest"
-	"github.com/sllt/tao/core/syncx"
-	"github.com/sllt/tao/core/timex"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/collection"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/mathx"
+	"github.com/tao-kit/tao/core/stat"
+	"github.com/tao-kit/tao/core/stores/redis"
+	"github.com/tao-kit/tao/core/stores/redis/redistest"
+	"github.com/tao-kit/tao/core/syncx"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 var errTestNotFound = errors.New("not found")

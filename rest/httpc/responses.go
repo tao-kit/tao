@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/sllt/tao/core/mapping"
-	"github.com/sllt/tao/rest/internal/encoding"
-	"github.com/sllt/tao/rest/internal/header"
+	"github.com/tao-kit/tao/core/mapping"
+	"github.com/tao-kit/tao/rest/internal/encoding"
+	"github.com/tao-kit/tao/rest/internal/header"
 )
 
 // Parse parses the response.

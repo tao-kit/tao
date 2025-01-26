@@ -3,9 +3,11 @@ package sqlx
 import (
 	"context"
 	"database/sql"
+	"errors"
 
-	"github.com/sllt/tao/core/breaker"
-	"github.com/sllt/tao/core/logx"
+	"github.com/tao-kit/tao/core/breaker"
+	"github.com/tao-kit/tao/core/errorx"
+	"github.com/tao-kit/tao/core/logx"
 )
 
 // spanName is used to identify the span name for the SQL execution.
@@ -41,21 +43,6 @@ type (
 	// SqlOption defines the method to customize a sql connection.
 	SqlOption func(*commonSqlConn)
 
-	// StmtSession interface represents a session that can be used to execute statements.
-	StmtSession interface {
-		Close() error
-		Exec(args ...any) (sql.Result, error)
-		ExecCtx(ctx context.Context, args ...any) (sql.Result, error)
-		QueryRow(v any, args ...any) error
-		QueryRowCtx(ctx context.Context, v any, args ...any) error
-		QueryRowPartial(v any, args ...any) error
-		QueryRowPartialCtx(ctx context.Context, v any, args ...any) error
-		QueryRows(v any, args ...any) error
-		QueryRowsCtx(ctx context.Context, v any, args ...any) error
-		QueryRowsPartial(v any, args ...any) error
-		QueryRowsPartialCtx(ctx context.Context, v any, args ...any) error
-	}
-
 	// thread-safe
 	// Because CORBA doesn't support PREPARE, so we need to combine the
 	// query arguments into one string and do underlying query without arguments
@@ -64,7 +51,7 @@ type (
 		onError  func(context.Context, error)
 		beginTx  beginnable
 		brk      breaker.Breaker
-		accept   func(error) bool
+		accept   breaker.Acceptable
 	}
 
 	connProvider func() (*sql.DB, error)
@@ -74,18 +61,6 @@ type (
 		ExecContext(ctx context.Context, query string, args ...any) (sql.Result, error)
 		Query(query string, args ...any) (*sql.Rows, error)
 		QueryContext(ctx context.Context, query string, args ...any) (*sql.Rows, error)
-	}
-
-	statement struct {
-		query string
-		stmt  *sql.Stmt
-	}
-
-	stmtConn interface {
-		Exec(args ...any) (sql.Result, error)
-		ExecContext(ctx context.Context, args ...any) (sql.Result, error)
-		Query(args ...any) (*sql.Rows, error)
-		QueryContext(ctx context.Context, args ...any) (*sql.Rows, error)
 	}
 )
 
@@ -109,7 +84,7 @@ func NewSqlConn(driverName, datasource string, opts ...SqlOption) SqlConn {
 }
 
 // NewSqlConnFromDB returns a SqlConn with the given sql.DB.
-// Use it with caution, it's provided for other ORM to interact with.
+// Use it with caution; it's provided for other ORM to interact with.
 func NewSqlConnFromDB(db *sql.DB, opts ...SqlOption) SqlConn {
 	conn := &commonSqlConn{
 		connProv: func() (*sql.DB, error) {
@@ -146,7 +121,7 @@ func (db *commonSqlConn) ExecCtx(ctx context.Context, q string, args ...any) (
 		endSpan(span, err)
 	}()
 
-	err = db.brk.DoWithAcceptable(func() error {
+	err = db.brk.DoWithAcceptableCtx(ctx, func() error {
 		var conn *sql.DB
 		conn, err = db.connProv()
 		if err != nil {
@@ -157,7 +132,7 @@ func (db *commonSqlConn) ExecCtx(ctx context.Context, q string, args ...any) (
 		result, err = exec(ctx, conn, q, args...)
 		return err
 	}, db.acceptable)
-	if err == breaker.ErrServiceUnavailable {
+	if errors.Is(err, breaker.ErrServiceUnavailable) {
 		metricReqErr.Inc("Exec", "breaker")
 	}
 
@@ -174,7 +149,7 @@ func (db *commonSqlConn) PrepareCtx(ctx context.Context, query string) (stmt Stm
 		endSpan(span, err)
 	}()
 
-	err = db.brk.DoWithAcceptable(func() error {
+	err = db.brk.DoWithAcceptableCtx(ctx, func() error {
 		var conn *sql.DB
 		conn, err = db.connProv()
 		if err != nil {
@@ -188,12 +163,14 @@ func (db *commonSqlConn) PrepareCtx(ctx context.Context, query string) (stmt Stm
 		}
 
 		stmt = statement{
-			query: query,
-			stmt:  st,
+			query:  query,
+			stmt:   st,
+			brk:    db.brk,
+			accept: db.acceptable,
 		}
 		return nil
 	}, db.acceptable)
-	if err == breaker.ErrServiceUnavailable {
+	if errors.Is(err, breaker.ErrServiceUnavailable) {
 		metricReqErr.Inc("Prepare", "breaker")
 	}
 
@@ -280,10 +257,10 @@ func (db *commonSqlConn) TransactCtx(ctx context.Context, fn func(context.Contex
 		endSpan(span, err)
 	}()
 
-	err = db.brk.DoWithAcceptable(func() error {
+	err = db.brk.DoWithAcceptableCtx(ctx, func() error {
 		return transact(ctx, db, db.beginTx, fn)
 	}, db.acceptable)
-	if err == breaker.ErrServiceUnavailable {
+	if errors.Is(err, breaker.ErrServiceUnavailable) {
 		metricReqErr.Inc("Transact", "breaker")
 	}
 
@@ -291,11 +268,12 @@ func (db *commonSqlConn) TransactCtx(ctx context.Context, fn func(context.Contex
 }
 
 func (db *commonSqlConn) acceptable(err error) bool {
-	if err == nil || err == sql.ErrNoRows || err == sql.ErrTxDone || err == context.Canceled {
+	if err == nil || errorx.In(err, sql.ErrNoRows, sql.ErrTxDone, context.Canceled) {
 		return true
 	}
 
-	if _, ok := err.(acceptableError); ok {
+	var e acceptableError
+	if errors.As(err, &e) {
 		return true
 	}
 
@@ -308,8 +286,8 @@ func (db *commonSqlConn) acceptable(err error) bool {
 
 func (db *commonSqlConn) queryRows(ctx context.Context, scanner func(*sql.Rows) error,
 	q string, args ...any) (err error) {
-	var qerr error
-	err = db.brk.DoWithAcceptable(func() error {
+	var scanFailed bool
+	err = db.brk.DoWithAcceptableCtx(ctx, func() error {
 		conn, err := db.connProv()
 		if err != nil {
 			db.onError(ctx, err)
@@ -317,100 +295,33 @@ func (db *commonSqlConn) queryRows(ctx context.Context, scanner func(*sql.Rows) 
 		}
 
 		return query(ctx, conn, func(rows *sql.Rows) error {
-			qerr = scanner(rows)
-			return qerr
+			e := scanner(rows)
+			if isScanFailed(e) {
+				scanFailed = true
+			}
+			return e
 		}, q, args...)
 	}, func(err error) bool {
-		return qerr == err || db.acceptable(err)
+		return scanFailed || db.acceptable(err)
 	})
-	if err == breaker.ErrServiceUnavailable {
+	if errors.Is(err, breaker.ErrServiceUnavailable) {
 		metricReqErr.Inc("queryRows", "breaker")
 	}
 
 	return
 }
 
-func (s statement) Close() error {
-	return s.stmt.Close()
-}
-
-func (s statement) Exec(args ...any) (sql.Result, error) {
-	return s.ExecCtx(context.Background(), args...)
-}
-
-func (s statement) ExecCtx(ctx context.Context, args ...any) (result sql.Result, err error) {
-	ctx, span := startSpan(ctx, "Exec")
-	defer func() {
-		endSpan(span, err)
-	}()
-
-	return execStmt(ctx, s.stmt, s.query, args...)
-}
-
-func (s statement) QueryRow(v any, args ...any) error {
-	return s.QueryRowCtx(context.Background(), v, args...)
-}
-
-func (s statement) QueryRowCtx(ctx context.Context, v any, args ...any) (err error) {
-	ctx, span := startSpan(ctx, "QueryRow")
-	defer func() {
-		endSpan(span, err)
-	}()
-
-	return queryStmt(ctx, s.stmt, func(rows *sql.Rows) error {
-		return unmarshalRow(v, rows, true)
-	}, s.query, args...)
-}
-
-func (s statement) QueryRowPartial(v any, args ...any) error {
-	return s.QueryRowPartialCtx(context.Background(), v, args...)
-}
-
-func (s statement) QueryRowPartialCtx(ctx context.Context, v any, args ...any) (err error) {
-	ctx, span := startSpan(ctx, "QueryRowPartial")
-	defer func() {
-		endSpan(span, err)
-	}()
-
-	return queryStmt(ctx, s.stmt, func(rows *sql.Rows) error {
-		return unmarshalRow(v, rows, false)
-	}, s.query, args...)
-}
-
-func (s statement) QueryRows(v any, args ...any) error {
-	return s.QueryRowsCtx(context.Background(), v, args...)
-}
-
-func (s statement) QueryRowsCtx(ctx context.Context, v any, args ...any) (err error) {
-	ctx, span := startSpan(ctx, "QueryRows")
-	defer func() {
-		endSpan(span, err)
-	}()
-
-	return queryStmt(ctx, s.stmt, func(rows *sql.Rows) error {
-		return unmarshalRows(v, rows, true)
-	}, s.query, args...)
-}
-
-func (s statement) QueryRowsPartial(v any, args ...any) error {
-	return s.QueryRowsPartialCtx(context.Background(), v, args...)
-}
-
-func (s statement) QueryRowsPartialCtx(ctx context.Context, v any, args ...any) (err error) {
-	ctx, span := startSpan(ctx, "QueryRowsPartial")
-	defer func() {
-		endSpan(span, err)
-	}()
-
-	return queryStmt(ctx, s.stmt, func(rows *sql.Rows) error {
-		return unmarshalRows(v, rows, false)
-	}, s.query, args...)
-}
-
 // WithAcceptable returns a SqlOption that setting the acceptable function.
 // acceptable is the func to check if the error can be accepted.
 func WithAcceptable(acceptable func(err error) bool) SqlOption {
 	return func(conn *commonSqlConn) {
-		conn.accept = acceptable
+		if conn.accept == nil {
+			conn.accept = acceptable
+		} else {
+			pre := conn.accept
+			conn.accept = func(err error) bool {
+				return pre(err) || acceptable(err)
+			}
+		}
 	}
 }

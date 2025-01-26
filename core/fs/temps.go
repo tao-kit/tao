@@ -3,7 +3,7 @@ package fs
 import (
 	"os"
 
-	"github.com/sllt/tao/core/hash"
+	"github.com/tao-kit/tao/core/hash"
 )
 
 // TempFileWithText creates the temporary file with the given content,

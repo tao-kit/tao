@@ -16,9 +16,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/codec"
-	"github.com/sllt/tao/rest/httpx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/codec"
+	"github.com/tao-kit/tao/rest/httpx"
 )
 
 const timeDiff = time.Hour * 2 * 24
@@ -327,7 +327,7 @@ func buildRequest(rs requestSettings) (*http.Request, error) {
 			query,
 			bodySign,
 		}, "\n")
-		rs.signature = codec.HmacBase64([]byte(key), contentOfSign)
+		rs.signature = codec.HmacBase64(key, contentOfSign)
 	}
 
 	var mode string

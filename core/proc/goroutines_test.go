@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sllt/tao/core/logx/logtest"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/logx/logtest"
 )
 
 func TestDumpGoroutines(t *testing.T) {
@@ -36,6 +36,6 @@ type fakeCreator struct {
 	err  error
 }
 
-func (fc fakeCreator) Create(name string) (file *os.File, err error) {
+func (fc fakeCreator) Create(_ string) (file *os.File, err error) {
 	return fc.file, fc.err
 }

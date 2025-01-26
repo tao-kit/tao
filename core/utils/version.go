@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sllt/tao/core/mathx"
-	"github.com/sllt/tao/core/stringx"
+	"github.com/tao-kit/tao/core/mathx"
+	"github.com/tao-kit/tao/core/stringx"
 )
 
 var replacer = stringx.NewReplacer(map[string]string{

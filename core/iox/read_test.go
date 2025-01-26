@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/fs"
-	"github.com/sllt/tao/core/stringx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/fs"
+	"github.com/tao-kit/tao/core/stringx"
 )
 
 func TestReadText(t *testing.T) {
@@ -49,6 +49,11 @@ b`,
 			assert.Equal(t, test.expect, content)
 		})
 	}
+}
+
+func TestReadTextError(t *testing.T) {
+	_, err := ReadText("not-exist")
+	assert.NotNil(t, err)
 }
 
 func TestReadTextLines(t *testing.T) {
@@ -94,6 +99,11 @@ func TestReadTextLines(t *testing.T) {
 	}
 }
 
+func TestReadTextLinesError(t *testing.T) {
+	_, err := ReadTextLines("not-exist")
+	assert.NotNil(t, err)
+}
+
 func TestDupReadCloser(t *testing.T) {
 	input := "hello"
 	reader := io.NopCloser(bytes.NewBufferString(input))
@@ -106,6 +116,29 @@ func TestDupReadCloser(t *testing.T) {
 
 	verify(r1)
 	verify(r2)
+}
+
+func TestLimitDupReadCloser(t *testing.T) {
+	input := "hello world"
+	limitBytes := int64(4)
+	reader := io.NopCloser(bytes.NewBufferString(input))
+	r1, r2 := LimitDupReadCloser(reader, limitBytes)
+	verify := func(r io.Reader) {
+		output, err := io.ReadAll(r)
+		assert.Nil(t, err)
+		assert.Equal(t, input, string(output))
+	}
+	verifyLimit := func(r io.Reader, limit int64) {
+		output, err := io.ReadAll(r)
+		if limit < int64(len(input)) {
+			input = input[:limit]
+		}
+		assert.Nil(t, err)
+		assert.Equal(t, input, string(output))
+	}
+
+	verify(r1)
+	verifyLimit(r2, limitBytes)
 }
 
 func TestReadBytes(t *testing.T) {

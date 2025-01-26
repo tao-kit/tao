@@ -3,7 +3,7 @@ package serverinterceptors
 import (
 	"context"
 
-	"github.com/sllt/tao/zrpc/internal/auth"
+	"github.com/tao-kit/tao/zrpc/internal/auth"
 	"google.golang.org/grpc"
 )
 

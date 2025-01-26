@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/sllt/tao/core/executors"
-	"github.com/sllt/tao/core/logx"
+	"github.com/tao-kit/tao/core/executors"
+	"github.com/tao-kit/tao/core/logx"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 

@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sllt/tao/core/timex"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 type (

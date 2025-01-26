@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/collection"
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/stat"
-	"github.com/sllt/tao/core/syncx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/collection"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/stat"
+	"github.com/tao-kit/tao/core/syncx"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
 )

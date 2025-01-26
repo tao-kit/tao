@@ -5,9 +5,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/sllt/tao/core/load"
-	"github.com/sllt/tao/core/stat"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/load"
+	"github.com/tao-kit/tao/core/stat"
 )
 
 func TestSheddingHandlerAccept(t *testing.T) {

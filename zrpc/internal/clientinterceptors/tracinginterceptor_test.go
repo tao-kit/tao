@@ -8,9 +8,9 @@ import (
 	"sync/atomic"
 	"testing"
 
-	ztrace "github.com/sllt/tao/core/trace"
-	"github.com/sllt/tao/core/trace/tracetest"
 	"github.com/stretchr/testify/assert"
+	ztrace "github.com/tao-kit/tao/core/trace"
+	"github.com/tao-kit/tao/core/trace/tracetest"
 	"go.opentelemetry.io/otel/attribute"
 	tcodes "go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/sdk/trace"
@@ -23,7 +23,7 @@ import (
 
 func TestOpenTracingInterceptor(t *testing.T) {
 	ztrace.StartAgent(ztrace.Config{
-		Name:     "go-tao-test",
+		Name:     "go-zero-test",
 		Endpoint: "http://localhost:14268/api/traces",
 		Batcher:  "jaeger",
 		Sampler:  1.0,
@@ -420,10 +420,10 @@ func (m *mockedClientStream) Context() context.Context {
 	return context.Background()
 }
 
-func (m *mockedClientStream) SendMsg(v any) error {
+func (m *mockedClientStream) SendMsg(_ any) error {
 	return m.err
 }
 
-func (m *mockedClientStream) RecvMsg(v any) error {
+func (m *mockedClientStream) RecvMsg(_ any) error {
 	return m.err
 }

@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sllt/tao/core/logx/logtest"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/logx/logtest"
 )
 
 func TestBToMb(t *testing.T) {

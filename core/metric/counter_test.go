@@ -4,9 +4,9 @@ import (
 	"testing"
 
 	"github.com/prometheus/client_golang/prometheus/testutil"
-	"github.com/sllt/tao/core/proc"
-	"github.com/sllt/tao/core/prometheus"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/proc"
+	"github.com/tao-kit/tao/core/prometheus"
 )
 
 func TestNewCounterVec(t *testing.T) {

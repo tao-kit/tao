@@ -4,7 +4,7 @@ import (
 	"context"
 	"runtime/debug"
 
-	"github.com/sllt/tao/core/logx"
+	"github.com/tao-kit/tao/core/logx"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

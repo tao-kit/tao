@@ -1,13 +1,13 @@
 package service
 
 import (
-	"github.com/sllt/tao/core/load"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/proc"
-	"github.com/sllt/tao/core/prometheus"
-	"github.com/sllt/tao/core/stat"
-	"github.com/sllt/tao/core/trace"
-	"github.com/sllt/tao/internal/devserver"
+	"github.com/tao-kit/tao/core/load"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/proc"
+	"github.com/tao-kit/tao/core/prometheus"
+	"github.com/tao-kit/tao/core/stat"
+	"github.com/tao-kit/tao/core/trace"
+	"github.com/tao-kit/tao/internal/devserver"
 )
 
 const (
@@ -23,17 +23,23 @@ const (
 	ProMode = "pro"
 )
 
-// A ServiceConf is a service config.
-type ServiceConf struct {
-	Name       string
-	Log        logx.LogConf
-	Mode       string `json:",default=pro,options=dev|test|rt|pre|pro"`
-	MetricsUrl string `json:",optional"`
-	// Deprecated: please use DevServer
-	Prometheus prometheus.Config `json:",optional"`
-	Telemetry  trace.Config      `json:",optional"`
-	DevServer  devserver.Config  `json:",optional"`
-}
+type (
+	// DevServerConfig is type alias for devserver.Config
+	DevServerConfig = devserver.Config
+
+	// A ServiceConf is a service config.
+	ServiceConf struct {
+		Name       string
+		Log        logx.LogConf
+		Mode       string `json:",default=pro,options=dev|test|rt|pre|pro"`
+		MetricsUrl string `json:",optional"`
+		// Deprecated: please use DevServer
+		Prometheus prometheus.Config `json:",optional"`
+		Telemetry  trace.Config      `json:",optional"`
+		DevServer  DevServerConfig   `json:",optional"`
+		Shutdown   proc.ShutdownConf `json:",optional"`
+	}
+)
 
 // MustSetUp sets up the service, exits on error.
 func (sc ServiceConf) MustSetUp() {
@@ -56,6 +62,7 @@ func (sc ServiceConf) SetUp() error {
 		sc.Telemetry.Name = sc.Name
 	}
 	trace.StartAgent(sc.Telemetry)
+	proc.Setup(sc.Shutdown)
 	proc.AddShutdownListener(func() {
 		trace.StopAgent()
 	})

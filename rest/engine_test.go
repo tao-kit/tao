@@ -12,11 +12,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/conf"
-	"github.com/sllt/tao/core/fs"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/rest/router"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/conf"
+	"github.com/tao-kit/tao/core/fs"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/rest/router"
 )
 
 const (
@@ -435,7 +435,7 @@ type mockedRouter struct {
 func (m mockedRouter) ServeHTTP(_ http.ResponseWriter, _ *http.Request) {
 }
 
-func (m mockedRouter) Handle(_, _ string, handler http.Handler) error {
+func (m mockedRouter) Handle(_, _ string, _ http.Handler) error {
 	return errors.New("foo")
 }
 

@@ -4,7 +4,7 @@ import (
 	// imports the driver, don't remove this comment, golint requires.
 	_ "github.com/jackc/pgx/v5/stdlib"
 
-	"github.com/sllt/tao/core/stores/sqlx"
+	"github.com/tao-kit/tao/core/stores/sqlx"
 )
 
 const postgresDriverName = "pgx"

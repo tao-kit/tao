@@ -1,6 +1,6 @@
 package cache
 
-import "github.com/sllt/tao/core/stores/redis"
+import "github.com/tao-kit/tao/core/stores/redis"
 
 type (
 	// A ClusterConf is the config of a redis cluster that used as cache.

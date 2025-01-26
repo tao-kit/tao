@@ -7,7 +7,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/sllt/tao/core/iox"
+	"github.com/tao-kit/tao/core/iox"
 )
 
 // PropertyError represents a configuration error message.

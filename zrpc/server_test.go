@@ -1,55 +1,21 @@
 package zrpc
 
 import (
+	"context"
 	"testing"
 	"time"
 
 	"github.com/alicebob/miniredis/v2"
-	"github.com/sllt/tao/core/discov"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/service"
-	"github.com/sllt/tao/core/stat"
-	"github.com/sllt/tao/core/stores/redis"
-	"github.com/sllt/tao/zrpc/internal"
-	"github.com/sllt/tao/zrpc/internal/serverinterceptors"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/discov"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/service"
+	"github.com/tao-kit/tao/core/stat"
+	"github.com/tao-kit/tao/core/stores/redis"
+	"github.com/tao-kit/tao/zrpc/internal"
+	"github.com/tao-kit/tao/zrpc/internal/serverinterceptors"
 	"google.golang.org/grpc"
 )
-
-func TestServer_setupInterceptors(t *testing.T) {
-	rds, err := miniredis.Run()
-	assert.NoError(t, err)
-	defer rds.Close()
-
-	server := new(mockedServer)
-	conf := RpcServerConf{
-		Auth: true,
-		Redis: redis.RedisKeyConf{
-			RedisConf: redis.RedisConf{
-				Host: rds.Addr(),
-				Type: redis.NodeType,
-			},
-			Key: "foo",
-		},
-		CpuThreshold: 10,
-		Timeout:      100,
-		Middlewares: ServerMiddlewaresConf{
-			Trace:      true,
-			Recover:    true,
-			Stat:       true,
-			Prometheus: true,
-			Breaker:    true,
-		},
-	}
-	err = setupInterceptors(server, conf, new(stat.Metrics))
-	assert.Nil(t, err)
-	assert.Equal(t, 3, len(server.unaryInterceptors))
-	assert.Equal(t, 1, len(server.streamInterceptors))
-
-	rds.SetError("mock error")
-	err = setupInterceptors(server, conf, new(stat.Metrics))
-	assert.Error(t, err)
-}
 
 func TestServer(t *testing.T) {
 	DontLogContentForMethod("foo")
@@ -61,7 +27,7 @@ func TestServer(t *testing.T) {
 				Mode:        "console",
 			},
 		},
-		ListenOn:      "localhost:8080",
+		ListenOn:      "localhost:0",
 		Etcd:          discov.EtcdConf{},
 		Auth:          false,
 		Redis:         redis.RedisKeyConf{},
@@ -74,6 +40,12 @@ func TestServer(t *testing.T) {
 			Stat:       true,
 			Prometheus: true,
 			Breaker:    true,
+		},
+		MethodTimeouts: []MethodTimeoutConf{
+			{
+				FullMethod: "/foo",
+				Timeout:    time.Second,
+			},
 		},
 	}, func(server *grpc.Server) {
 	})
@@ -92,7 +64,7 @@ func TestServerError(t *testing.T) {
 				Mode:        "console",
 			},
 		},
-		ListenOn: "localhost:8080",
+		ListenOn: "localhost:0",
 		Etcd: discov.EtcdConf{
 			Hosts: []string{"localhost"},
 		},
@@ -105,6 +77,7 @@ func TestServerError(t *testing.T) {
 			Prometheus: true,
 			Breaker:    true,
 		},
+		MethodTimeouts: []MethodTimeoutConf{},
 	}, func(server *grpc.Server) {
 	})
 	assert.NotNil(t, err)
@@ -118,7 +91,7 @@ func TestServer_HasEtcd(t *testing.T) {
 				Mode:        "console",
 			},
 		},
-		ListenOn: "localhost:8080",
+		ListenOn: "localhost:0",
 		Etcd: discov.EtcdConf{
 			Hosts: []string{"notexist"},
 			Key:   "any",
@@ -131,6 +104,7 @@ func TestServer_HasEtcd(t *testing.T) {
 			Prometheus: true,
 			Breaker:    true,
 		},
+		MethodTimeouts: []MethodTimeoutConf{},
 	}, func(server *grpc.Server) {
 	})
 	svr.AddOptions(grpc.ConnectionTimeout(time.Hour))
@@ -183,4 +157,154 @@ func (m *mockedServer) SetName(_ string) {
 
 func (m *mockedServer) Start(_ internal.RegisterFn) error {
 	return nil
+}
+
+func Test_setupUnaryInterceptors(t *testing.T) {
+	tests := []struct {
+		name string
+		r    *mockedServer
+		conf RpcServerConf
+		len  int
+	}{
+		{
+			name: "empty",
+			r:    &mockedServer{},
+			len:  0,
+		},
+		{
+			name: "custom",
+			r: &mockedServer{
+				unaryInterceptors: []grpc.UnaryServerInterceptor{
+					func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo,
+						handler grpc.UnaryHandler) (interface{}, error) {
+						return nil, nil
+					},
+				},
+			},
+			len: 1,
+		},
+		{
+			name: "middleware",
+			r:    &mockedServer{},
+			conf: RpcServerConf{
+				Middlewares: ServerMiddlewaresConf{
+					Trace:      true,
+					Recover:    true,
+					Stat:       true,
+					Prometheus: true,
+					Breaker:    true,
+				},
+			},
+			len: 5,
+		},
+		{
+			name: "internal middleware",
+			r:    &mockedServer{},
+			conf: RpcServerConf{
+				CpuThreshold: 900,
+				Timeout:      100,
+				Middlewares: ServerMiddlewaresConf{
+					Trace:      true,
+					Recover:    true,
+					Stat:       true,
+					Prometheus: true,
+					Breaker:    true,
+				},
+			},
+			len: 7,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			metrics := stat.NewMetrics("abc")
+			setupUnaryInterceptors(test.r, test.conf, metrics)
+			assert.Equal(t, test.len, len(test.r.unaryInterceptors))
+		})
+	}
+}
+
+func Test_setupStreamInterceptors(t *testing.T) {
+	tests := []struct {
+		name string
+		r    *mockedServer
+		conf RpcServerConf
+		len  int
+	}{
+		{
+			name: "empty",
+			r:    &mockedServer{},
+			len:  0,
+		},
+		{
+			name: "custom",
+			r: &mockedServer{
+				streamInterceptors: []grpc.StreamServerInterceptor{
+					func(srv any, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
+						return handler(srv, ss)
+					},
+				},
+			},
+			len: 1,
+		},
+		{
+			name: "middleware",
+			r:    &mockedServer{},
+			conf: RpcServerConf{
+				Middlewares: ServerMiddlewaresConf{
+					Trace:      true,
+					Recover:    true,
+					Stat:       true,
+					Prometheus: true,
+					Breaker:    true,
+				},
+			},
+			len: 3,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			setupStreamInterceptors(test.r, test.conf)
+			assert.Equal(t, test.len, len(test.r.streamInterceptors))
+		})
+	}
+}
+
+func Test_setupAuthInterceptors(t *testing.T) {
+	t.Run("no need set auth", func(t *testing.T) {
+		s := &mockedServer{}
+		err := setupAuthInterceptors(s, RpcServerConf{
+			Auth:  false,
+			Redis: redis.RedisKeyConf{},
+		})
+		assert.NoError(t, err)
+	})
+
+	t.Run("redis error", func(t *testing.T) {
+		s := &mockedServer{}
+		err := setupAuthInterceptors(s, RpcServerConf{
+			Auth:  true,
+			Redis: redis.RedisKeyConf{},
+		})
+		assert.Error(t, err)
+	})
+
+	t.Run("works", func(t *testing.T) {
+		rds := miniredis.RunT(t)
+		s := &mockedServer{}
+		err := setupAuthInterceptors(s, RpcServerConf{
+			Auth: true,
+			Redis: redis.RedisKeyConf{
+				RedisConf: redis.RedisConf{
+					Host: rds.Addr(),
+					Type: redis.NodeType,
+				},
+				Key: "foo",
+			},
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 1, len(s.unaryInterceptors))
+		assert.Equal(t, 1, len(s.streamInterceptors))
+	})
 }

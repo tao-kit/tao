@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/timex"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 func TestLimitedExecutor_logOrDiscard(t *testing.T) {

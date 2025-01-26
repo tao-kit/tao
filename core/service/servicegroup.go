@@ -1,11 +1,10 @@
 package service
 
 import (
-	"log"
-
-	"github.com/sllt/tao/core/proc"
-	"github.com/sllt/tao/core/syncx"
-	"github.com/sllt/tao/core/threading"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/proc"
+	"github.com/tao-kit/tao/core/syncx"
+	"github.com/tao-kit/tao/core/threading"
 )
 
 type (
@@ -51,7 +50,7 @@ func (sg *ServiceGroup) Add(service Service) {
 // Also, quitting this method will close the logx output.
 func (sg *ServiceGroup) Start() {
 	proc.AddShutdownListener(func() {
-		log.Println("Shutting down...")
+		logx.Info("Shutting down services in group")
 		sg.stopOnce()
 	})
 
@@ -77,9 +76,14 @@ func (sg *ServiceGroup) doStart() {
 }
 
 func (sg *ServiceGroup) doStop() {
+	group := threading.NewRoutineGroup()
 	for _, service := range sg.services {
-		service.Stop()
+		// new variable to avoid closure problems, can be removed after go 1.22
+		// see https://golang.org/doc/faq#closures_and_goroutines
+		service := service
+		group.Run(service.Stop)
 	}
+	group.Wait()
 }
 
 // WithStart wraps a start func as a Service.

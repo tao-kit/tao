@@ -3,7 +3,7 @@ package logx
 import (
 	"errors"
 
-	"github.com/sllt/tao/core/syncx"
+	"github.com/tao-kit/tao/core/syncx"
 )
 
 const (
@@ -15,6 +15,8 @@ const (
 	ErrorLevel
 	// SevereLevel only log severe messages
 	SevereLevel
+	// disableLevel doesn't log any messages
+	disableLevel = 0xff
 )
 
 const (
@@ -46,6 +48,7 @@ const (
 	levelDebug  = "debug"
 
 	backupFileDelimiter = "-"
+	nilAngleString      = "<nil>"
 	flags               = 0x0
 )
 

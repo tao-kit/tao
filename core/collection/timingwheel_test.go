@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/stringx"
-	"github.com/sllt/tao/core/syncx"
-	"github.com/sllt/tao/core/timex"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/stringx"
+	"github.com/tao-kit/tao/core/syncx"
+	"github.com/tao-kit/tao/core/timex"
 )
 
 const (

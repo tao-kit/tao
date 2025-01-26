@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"github.com/sllt/tao/core/collection"
-	"github.com/sllt/tao/core/trace"
-	"github.com/sllt/tao/rest/internal/response"
+	"github.com/tao-kit/tao/core/collection"
+	"github.com/tao-kit/tao/core/trace"
+	"github.com/tao-kit/tao/rest/internal/response"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"

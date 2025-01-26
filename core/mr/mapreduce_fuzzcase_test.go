@@ -12,15 +12,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/core/threading"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/threading"
 	"gopkg.in/cheggaaa/pb.v1"
 )
 
 // If Fuzz stuck, we don't know why, because it only returns hung or unexpected,
 // so we need to simulate the fuzz test in test mode.
 func TestMapReduceRandom(t *testing.T) {
-	rand.Seed(time.Now().UnixNano())
+	rand.NewSource(time.Now().UnixNano())
 
 	const (
 		times  = 10000

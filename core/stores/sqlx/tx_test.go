@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/sllt/tao/core/breaker"
-	"github.com/sllt/tao/internal/dbtest"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/breaker"
+	"github.com/tao-kit/tao/core/stores/dbtest"
 )
 
 const (

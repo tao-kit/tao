@@ -5,9 +5,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sllt/tao/core/executors"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/syncx"
+	"github.com/tao-kit/tao/core/executors"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/syncx"
 )
 
 var (

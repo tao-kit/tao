@@ -1,8 +1,8 @@
 package collection
 
 import (
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/logx"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/logx"
 )
 
 const (

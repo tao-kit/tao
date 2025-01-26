@@ -6,12 +6,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sllt/tao/core/collection"
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/stat"
-	"github.com/sllt/tao/core/syncx"
-	"github.com/sllt/tao/core/timex"
+	"github.com/tao-kit/tao/core/collection"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/stat"
+	"github.com/tao-kit/tao/core/syncx"
+	"github.com/tao-kit/tao/core/timex"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
 )

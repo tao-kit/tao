@@ -1,5 +1,7 @@
 package metric
 
+import "github.com/tao-kit/tao/core/prometheus"
+
 // A VectorOpts is a general configuration.
 type VectorOpts struct {
 	Namespace string
@@ -7,4 +9,12 @@ type VectorOpts struct {
 	Name      string
 	Help      string
 	Labels    []string
+}
+
+func update(fn func()) {
+	if !prometheus.Enabled() {
+		return
+	}
+
+	fn()
 }

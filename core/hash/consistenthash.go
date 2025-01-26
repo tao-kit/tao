@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/sllt/tao/core/lang"
+	"github.com/tao-kit/tao/core/lang"
 )
 
 const (

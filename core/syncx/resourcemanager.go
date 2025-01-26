@@ -4,7 +4,7 @@ import (
 	"io"
 	"sync"
 
-	"github.com/sllt/tao/core/errorx"
+	"github.com/tao-kit/tao/core/errorx"
 )
 
 // A ResourceManager is a manager that used to manage resources.

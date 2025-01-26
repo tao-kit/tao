@@ -13,13 +13,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sllt/tao/core/fs"
-	"github.com/sllt/tao/core/lang"
+	"github.com/tao-kit/tao/core/fs"
+	"github.com/tao-kit/tao/core/lang"
 )
 
 const (
 	dateFormat      = "2006-01-02"
-	fileTimeFormat  = time.RFC3339
 	hoursPerDay     = 24
 	bufferSize      = 100
 	defaultDirMode  = 0o755
@@ -28,8 +27,12 @@ const (
 	megaBytes       = 1 << 20
 )
 
-// ErrLogFileClosed is an error that indicates the log file is already closed.
-var ErrLogFileClosed = errors.New("error: log file closed")
+var (
+	// ErrLogFileClosed is an error that indicates the log file is already closed.
+	ErrLogFileClosed = errors.New("error: log file closed")
+
+	fileTimeFormat = time.RFC3339
+)
 
 type (
 	// A RotateRule interface is used to define the log rotating rules.
@@ -298,6 +301,7 @@ func (l *RotateLogger) initialize() error {
 		if l.fp, err = os.OpenFile(l.filename, os.O_APPEND|os.O_WRONLY, defaultFileMode); err != nil {
 			return err
 		}
+
 		l.currentSize = fileInfo.Size()
 	}
 
@@ -318,7 +322,7 @@ func (l *RotateLogger) maybeCompressFile(file string) {
 	}()
 
 	if _, err := os.Stat(file); err != nil {
-		// file not exists or other error, ignore compression
+		// file doesn't exist or another error, ignore compression
 		return
 	}
 
@@ -381,7 +385,15 @@ func (l *RotateLogger) startWorker() {
 			case event := <-l.channel:
 				l.write(event)
 			case <-l.done:
-				return
+				// avoid losing logs before closing.
+				for {
+					select {
+					case event := <-l.channel:
+						l.write(event)
+					default:
+						return
+					}
+				}
 			}
 		}
 	}()

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/sllt/tao/internal/mock"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/internal/mock"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/credentials/insecure"

@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/sllt/tao/rest/internal/response"
+	"github.com/tao-kit/tao/rest/internal/response"
 )
 
 const (
@@ -25,6 +25,11 @@ const (
 	varyHeader       = "Vary"
 	originHeader     = "Origin"
 )
+
+// AddAllowHeaders sets the allowed headers.
+func AddAllowHeaders(header http.Header, headers ...string) {
+	header.Add(allowHeaders, strings.Join(headers, ", "))
+}
 
 // NotAllowedHandler handles cross domain not allowed requests.
 // At most one origin can be specified, other origins are ignored if given, default to be *.

@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sllt/tao/rest/internal"
-	"github.com/sllt/tao/rest/internal/response"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/rest/internal"
+	"github.com/tao-kit/tao/rest/internal/response"
 )
 
 func TestLogHandler(t *testing.T) {
@@ -164,7 +164,7 @@ type mockedReadCloser struct {
 	errMsg string
 }
 
-func (m mockedReadCloser) Read(p []byte) (n int, err error) {
+func (m mockedReadCloser) Read(_ []byte) (n int, err error) {
 	return 0, errors.New(m.errMsg)
 }
 

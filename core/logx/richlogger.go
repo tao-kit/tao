@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sllt/tao/core/timex"
-	"github.com/sllt/tao/internal/trace"
+	"github.com/tao-kit/tao/core/timex"
+	"github.com/tao-kit/tao/internal/trace"
 )
 
 // WithCallerSkip returns a Logger with given caller skip.
@@ -41,67 +41,123 @@ type richLogger struct {
 }
 
 func (l *richLogger) Debug(v ...any) {
-	l.debug(fmt.Sprint(v...))
+	if shallLog(DebugLevel) {
+		l.debug(fmt.Sprint(v...))
+	}
 }
 
 func (l *richLogger) Debugf(format string, v ...any) {
-	l.debug(fmt.Sprintf(format, v...))
+	if shallLog(DebugLevel) {
+		l.debug(fmt.Sprintf(format, v...))
+	}
+}
+
+func (l *richLogger) Debugfn(fn func() any) {
+	if shallLog(DebugLevel) {
+		l.debug(fn())
+	}
 }
 
 func (l *richLogger) Debugv(v any) {
-	l.debug(v)
+	if shallLog(DebugLevel) {
+		l.debug(v)
+	}
 }
 
 func (l *richLogger) Debugw(msg string, fields ...LogField) {
-	l.debug(msg, fields...)
+	if shallLog(DebugLevel) {
+		l.debug(msg, fields...)
+	}
 }
 
 func (l *richLogger) Error(v ...any) {
-	l.err(fmt.Sprint(v...))
+	if shallLog(ErrorLevel) {
+		l.err(fmt.Sprint(v...))
+	}
 }
 
 func (l *richLogger) Errorf(format string, v ...any) {
-	l.err(fmt.Sprintf(format, v...))
+	if shallLog(ErrorLevel) {
+		l.err(fmt.Sprintf(format, v...))
+	}
+}
+
+func (l *richLogger) Errorfn(fn func() any) {
+	if shallLog(ErrorLevel) {
+		l.err(fn())
+	}
 }
 
 func (l *richLogger) Errorv(v any) {
-	l.err(v)
+	if shallLog(ErrorLevel) {
+		l.err(v)
+	}
 }
 
 func (l *richLogger) Errorw(msg string, fields ...LogField) {
-	l.err(msg, fields...)
+	if shallLog(ErrorLevel) {
+		l.err(msg, fields...)
+	}
 }
 
 func (l *richLogger) Info(v ...any) {
-	l.info(fmt.Sprint(v...))
+	if shallLog(InfoLevel) {
+		l.info(fmt.Sprint(v...))
+	}
 }
 
 func (l *richLogger) Infof(format string, v ...any) {
-	l.info(fmt.Sprintf(format, v...))
+	if shallLog(InfoLevel) {
+		l.info(fmt.Sprintf(format, v...))
+	}
+}
+
+func (l *richLogger) Infofn(fn func() any) {
+	if shallLog(InfoLevel) {
+		l.info(fn())
+	}
 }
 
 func (l *richLogger) Infov(v any) {
-	l.info(v)
+	if shallLog(InfoLevel) {
+		l.info(v)
+	}
 }
 
 func (l *richLogger) Infow(msg string, fields ...LogField) {
-	l.info(msg, fields...)
+	if shallLog(InfoLevel) {
+		l.info(msg, fields...)
+	}
 }
 
 func (l *richLogger) Slow(v ...any) {
-	l.slow(fmt.Sprint(v...))
+	if shallLog(ErrorLevel) {
+		l.slow(fmt.Sprint(v...))
+	}
 }
 
 func (l *richLogger) Slowf(format string, v ...any) {
-	l.slow(fmt.Sprintf(format, v...))
+	if shallLog(ErrorLevel) {
+		l.slow(fmt.Sprintf(format, v...))
+	}
+}
+
+func (l *richLogger) Slowfn(fn func() any) {
+	if shallLog(ErrorLevel) {
+		l.slow(fn())
+	}
 }
 
 func (l *richLogger) Slowv(v any) {
-	l.slow(v)
+	if shallLog(ErrorLevel) {
+		l.slow(v)
+	}
 }
 
 func (l *richLogger) Sloww(msg string, fields ...LogField) {
-	l.slow(msg, fields...)
+	if shallLog(ErrorLevel) {
+		l.slow(msg, fields...)
+	}
 }
 
 func (l *richLogger) WithCallerSkip(skip int) Logger {
@@ -109,23 +165,43 @@ func (l *richLogger) WithCallerSkip(skip int) Logger {
 		return l
 	}
 
-	l.callerSkip = skip
-	return l
+	return &richLogger{
+		ctx:        l.ctx,
+		callerSkip: skip,
+		fields:     l.fields,
+	}
 }
 
 func (l *richLogger) WithContext(ctx context.Context) Logger {
-	l.ctx = ctx
-	return l
+	return &richLogger{
+		ctx:        ctx,
+		callerSkip: l.callerSkip,
+		fields:     l.fields,
+	}
 }
 
 func (l *richLogger) WithDuration(duration time.Duration) Logger {
-	l.fields = append(l.fields, Field(durationKey, timex.ReprOfDuration(duration)))
-	return l
+	fields := append(l.fields, Field(durationKey, timex.ReprOfDuration(duration)))
+
+	return &richLogger{
+		ctx:        l.ctx,
+		callerSkip: l.callerSkip,
+		fields:     fields,
+	}
 }
 
 func (l *richLogger) WithFields(fields ...LogField) Logger {
-	l.fields = append(l.fields, fields...)
-	return l
+	if len(fields) == 0 {
+		return l
+	}
+
+	f := append(l.fields, fields...)
+
+	return &richLogger{
+		ctx:        l.ctx,
+		callerSkip: l.callerSkip,
+		fields:     f,
+	}
 }
 
 func (l *richLogger) buildFields(fields ...LogField) []LogField {

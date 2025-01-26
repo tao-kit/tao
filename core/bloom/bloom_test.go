@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/stores/redis/redistest"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/stores/redis/redistest"
 )
 
 func TestRedisBitSet_New_Set_Test(t *testing.T) {

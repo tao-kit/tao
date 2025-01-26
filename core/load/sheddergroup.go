@@ -3,10 +3,10 @@ package load
 import (
 	"io"
 
-	"github.com/sllt/tao/core/syncx"
+	"github.com/tao-kit/tao/core/syncx"
 )
 
-// A ShedderGroup is a manager to manage key based shedders.
+// A ShedderGroup is a manager to manage key-based shedders.
 type ShedderGroup struct {
 	options []ShedderOption
 	manager *syncx.ResourceManager

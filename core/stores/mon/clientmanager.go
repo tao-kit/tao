@@ -4,7 +4,7 @@ import (
 	"context"
 	"io"
 
-	"github.com/sllt/tao/core/syncx"
+	"github.com/tao-kit/tao/core/syncx"
 	"go.mongodb.org/mongo-driver/mongo"
 	mopt "go.mongodb.org/mongo-driver/mongo/options"
 )

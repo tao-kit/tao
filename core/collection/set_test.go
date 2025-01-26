@@ -4,8 +4,8 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/sllt/tao/core/logx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/logx"
 )
 
 func init() {

@@ -6,9 +6,9 @@ import (
 	"path"
 	"strings"
 
-	"github.com/sllt/tao/core/search"
-	"github.com/sllt/tao/rest/httpx"
-	"github.com/sllt/tao/rest/pathvar"
+	"github.com/tao-kit/tao/core/search"
+	"github.com/tao-kit/tao/rest/httpx"
+	"github.com/tao-kit/tao/rest/pathvar"
 )
 
 const (

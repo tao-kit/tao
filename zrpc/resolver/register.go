@@ -1,8 +1,6 @@
 package resolver
 
-import (
-	"github.com/sllt/tao/zrpc/resolver/internal"
-)
+import "github.com/tao-kit/tao/zrpc/resolver/internal"
 
 // Register registers schemes defined zrpc.
 // Keep it in a separated package to let third party register manually.

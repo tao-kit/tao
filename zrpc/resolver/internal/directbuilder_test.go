@@ -8,9 +8,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/mathx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/mathx"
 	"google.golang.org/grpc/resolver"
 )
 

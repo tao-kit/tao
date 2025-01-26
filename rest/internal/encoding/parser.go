@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"net/textproto"
 
-	"github.com/sllt/tao/core/mapping"
+	"github.com/tao-kit/tao/core/mapping"
 )
 
 const headerKey = "header"

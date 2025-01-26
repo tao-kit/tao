@@ -10,11 +10,11 @@ import (
 	nurl "net/url"
 	"strings"
 
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/mapping"
-	"github.com/sllt/tao/core/trace"
-	"github.com/sllt/tao/rest/httpc/internal"
-	"github.com/sllt/tao/rest/internal/header"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/mapping"
+	"github.com/tao-kit/tao/core/trace"
+	"github.com/tao-kit/tao/rest/httpc/internal"
+	"github.com/tao-kit/tao/rest/internal/header"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/propagation"
@@ -143,7 +143,7 @@ func fillPath(u *nurl.URL, val map[string]any) error {
 			delete(val, key)
 		}
 
-		var unused []string
+		unused := make([]string, 0, len(val))
 		for key := range val {
 			unused = append(unused, key)
 		}

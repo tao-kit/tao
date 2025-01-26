@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/sllt/tao/core/discov/internal"
+	"github.com/tao-kit/tao/core/discov/internal"
 )
 
 const (

@@ -3,7 +3,7 @@ package internal
 import (
 	"strings"
 
-	"github.com/sllt/tao/zrpc/resolver/internal/targets"
+	"github.com/tao-kit/tao/zrpc/resolver/internal/targets"
 	"google.golang.org/grpc/resolver"
 )
 

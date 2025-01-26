@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/core/syncx"
-	"github.com/sllt/tao/rest/internal"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/syncx"
+	"github.com/tao-kit/tao/rest/internal"
 )
 
 // MaxConnsHandler returns a middleware that limit the concurrent connections.
@@ -23,7 +23,7 @@ func MaxConnsHandler(n int) func(http.Handler) http.Handler {
 			if latch.TryBorrow() {
 				defer func() {
 					if err := latch.Return(); err != nil {
-						logx.Error(err)
+						logx.WithContext(r.Context()).Error(err)
 					}
 				}()
 

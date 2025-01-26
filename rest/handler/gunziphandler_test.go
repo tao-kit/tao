@@ -9,9 +9,9 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/sllt/tao/core/codec"
-	"github.com/sllt/tao/rest/httpx"
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/codec"
+	"github.com/tao-kit/tao/rest/httpx"
 )
 
 func TestGunzipHandler(t *testing.T) {

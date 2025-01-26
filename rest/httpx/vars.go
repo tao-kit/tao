@@ -1,6 +1,6 @@
 package httpx
 
-import "github.com/sllt/tao/rest/internal/header"
+import "github.com/tao-kit/tao/rest/internal/header"
 
 const (
 	// ContentEncoding means Content-Encoding.

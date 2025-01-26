@@ -7,8 +7,8 @@ import (
 	"os"
 	"sync"
 
-	"github.com/sllt/tao/core/lang"
-	"github.com/sllt/tao/core/logx"
+	"github.com/tao-kit/tao/core/lang"
+	"github.com/tao-kit/tao/core/logx"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/jaeger"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
@@ -59,7 +59,13 @@ func StartAgent(c Config) {
 
 // StopAgent shuts down the span processors in the order they were registered.
 func StopAgent() {
-	_ = tp.Shutdown(context.Background())
+	lock.Lock()
+	defer lock.Unlock()
+
+	if tp != nil {
+		_ = tp.Shutdown(context.Background())
+		tp = nil
+	}
 }
 
 func createExporter(c Config) (sdktrace.SpanExporter, error) {
@@ -91,8 +97,11 @@ func createExporter(c Config) (sdktrace.SpanExporter, error) {
 	case kindOtlpHttp:
 		// Not support flexible configuration now.
 		opts := []otlptracehttp.Option{
-			otlptracehttp.WithInsecure(),
 			otlptracehttp.WithEndpoint(c.Endpoint),
+		}
+
+		if !c.OtlpHttpSecure {
+			opts = append(opts, otlptracehttp.WithInsecure())
 		}
 		if len(c.OtlpHeaders) > 0 {
 			opts = append(opts, otlptracehttp.WithHeaders(c.OtlpHeaders))
@@ -113,11 +122,13 @@ func createExporter(c Config) (sdktrace.SpanExporter, error) {
 }
 
 func startAgent(c Config) error {
+	AddResources(semconv.ServiceNameKey.String(c.Name))
+
 	opts := []sdktrace.TracerProviderOption{
 		// Set the sampling rate based on the parent span to 100%
 		sdktrace.WithSampler(sdktrace.ParentBased(sdktrace.TraceIDRatioBased(c.Sampler))),
 		// Record information about this application in a Resource.
-		sdktrace.WithResource(resource.NewSchemaless(semconv.ServiceNameKey.String(c.Name))),
+		sdktrace.WithResource(resource.NewSchemaless(attrResources...)),
 	}
 
 	if len(c.Endpoint) > 0 {

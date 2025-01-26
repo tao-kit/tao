@@ -2,9 +2,10 @@ package clientinterceptors
 
 import (
 	"context"
+	"errors"
 	"io"
 
-	ztrace "github.com/sllt/tao/core/trace"
+	ztrace "github.com/tao-kit/tao/core/trace"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"
@@ -122,7 +123,7 @@ func (w *clientStream) RecvMsg(m any) error {
 	err := w.ClientStream.RecvMsg(m)
 	if err == nil && !w.desc.ServerStreams {
 		w.sendStreamEvent(receiveEndEvent, nil)
-	} else if err == io.EOF {
+	} else if errors.Is(err, io.EOF) {
 		w.sendStreamEvent(receiveEndEvent, nil)
 	} else if err != nil {
 		w.sendStreamEvent(errorEvent, err)

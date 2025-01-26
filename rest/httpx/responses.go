@@ -3,13 +3,15 @@ package httpx
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"sync"
 
-	"github.com/sllt/tao/core/logx"
-	"github.com/sllt/tao/rest/internal/errcode"
-	"github.com/sllt/tao/rest/internal/header"
+	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/rest/internal/errcode"
+	"github.com/tao-kit/tao/rest/internal/header"
 )
 
 var (
@@ -87,6 +89,26 @@ func SetOkHandler(handler func(context.Context, any) any) {
 	okHandler = handler
 }
 
+// Stream writes data into w with streaming mode.
+// The ctx is used to control the streaming loop, typically use r.Context().
+// The fn is called repeatedly until it returns false.
+func Stream(ctx context.Context, w http.ResponseWriter, fn func(w io.Writer) bool) {
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		default:
+			hasMore := fn(w)
+			if flusher, ok := w.(http.Flusher); ok {
+				flusher.Flush()
+			}
+			if !hasMore {
+				return
+			}
+		}
+	}
+}
+
 // WriteJson writes v as json string into w with code.
 func WriteJson(w http.ResponseWriter, code int, v any) {
 	if err := doWriteJson(w, code, v); err != nil {
@@ -141,10 +163,10 @@ func doHandleError(w http.ResponseWriter, err error, handler func(error) (int, a
 		return
 	}
 
-	e, ok := body.(error)
-	if ok {
-		http.Error(w, e.Error(), code)
-	} else {
+	switch v := body.(type) {
+	case error:
+		http.Error(w, v.Error(), code)
+	default:
 		writeJson(w, code, body)
 	}
 }
@@ -162,7 +184,7 @@ func doWriteJson(w http.ResponseWriter, code int, v any) error {
 	if n, err := w.Write(bs); err != nil {
 		// http.ErrHandlerTimeout has been handled by http.TimeoutHandler,
 		// so it's ignored here.
-		if err != http.ErrHandlerTimeout {
+		if !errors.Is(err, http.ErrHandlerTimeout) {
 			return fmt.Errorf("write response failed, error: %w", err)
 		}
 	} else if n < len(bs) {
