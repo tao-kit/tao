@@ -6146,3 +6146,107 @@ type mockUnmarshalerWithError struct {
 func (m *mockUnmarshalerWithError) UnmarshalJSON(b []byte) error {
 	return errors.New("foo")
 }
+
+type CustomTime struct {
+	time.Time
+}
+
+func (t *CustomTime) UnmarshalJSON(data []byte) error {
+	var timeStr string
+	if err := json.Unmarshal(data, &timeStr); err != nil {
+		return err
+	}
+
+	parsed, err := time.Parse("2006-01-02", timeStr)
+	if err != nil {
+		return err
+	}
+
+	*t = CustomTime{Time: parsed}
+	return nil
+}
+
+func TestUnmarshalWithUnmarshalJSONInterface(t *testing.T) {
+	t.Run("struct with UnmarshalJSON", func(t *testing.T) {
+		type inner struct {
+			Birthday CustomTime `key:"birthday"`
+		}
+
+		m := map[string]any{
+			"birthday": "2024-03-19",
+		}
+
+		var in inner
+		if assert.NoError(t, UnmarshalKey(m, &in)) {
+			expected, _ := time.Parse("2006-01-02", "2024-03-19")
+			assert.Equal(t, expected.Year(), in.Birthday.Year())
+			assert.Equal(t, expected.Month(), in.Birthday.Month())
+			assert.Equal(t, expected.Day(), in.Birthday.Day())
+		}
+	})
+
+	t.Run("pointer field with UnmarshalJSON", func(t *testing.T) {
+		type inner struct {
+			Birthday *CustomTime `key:"birthday"`
+		}
+
+		m := map[string]any{
+			"birthday": "2024-03-19",
+		}
+
+		var in inner
+		if assert.NoError(t, UnmarshalKey(m, &in)) {
+			expected, _ := time.Parse("2006-01-02", "2024-03-19")
+			assert.Equal(t, expected.Year(), in.Birthday.Year())
+			assert.Equal(t, expected.Month(), in.Birthday.Month())
+			assert.Equal(t, expected.Day(), in.Birthday.Day())
+		}
+	})
+
+	t.Run("invalid date format", func(t *testing.T) {
+		type inner struct {
+			Birthday CustomTime `key:"birthday"`
+		}
+
+		m := map[string]any{
+			"birthday": "invalid-date",
+		}
+
+		var in inner
+		assert.Error(t, UnmarshalKey(m, &in))
+	})
+
+	t.Run("nil value", func(t *testing.T) {
+		type inner struct {
+			Birthday *CustomTime `key:"birthday,optional"`
+		}
+
+		m := map[string]any{
+			"birthday": nil,
+		}
+
+		var in inner
+		if assert.NoError(t, UnmarshalKey(m, &in)) {
+			assert.Nil(t, in.Birthday)
+		}
+	})
+
+	t.Run("slice of UnmarshalJSON implementer", func(t *testing.T) {
+		type inner struct {
+			Dates []CustomTime `key:"dates"`
+		}
+
+		m := map[string]any{
+			"dates": []any{"2024-03-19", "2024-03-20"},
+		}
+
+		var in inner
+		if assert.NoError(t, UnmarshalKey(m, &in)) {
+			assert.Equal(t, 2, len(in.Dates))
+			expected1, _ := time.Parse("2006-01-02", "2024-03-19")
+			expected2, _ := time.Parse("2006-01-02", "2024-03-20")
+			assert.Equal(t, expected1.Format("2006-01-02"), in.Dates[0].Format("2006-01-02"))
+			assert.Equal(t, expected2.Format("2006-01-02"), in.Dates[1].Format("2006-01-02"))
+		}
+	})
+}

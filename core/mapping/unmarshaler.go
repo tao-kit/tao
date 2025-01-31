@@ -58,6 +58,11 @@ type (
 		opaqueKeys   bool
 		canonicalKey func(key string) string
 	}
+
+	// IUnmarshaler is the interface that wraps the UnmarshalJSON method.
+	IUnmarshaler interface {
+		UnmarshalJSON([]byte) error
+	}
 )
 
 // NewUnmarshaler returns an Unmarshaler.
@@ -159,6 +164,19 @@ func (u *Unmarshaler) fillSlice(fieldType reflect.Type, value reflect.Value,
 	var valid bool
 	conv := reflect.MakeSlice(reflect.SliceOf(baseType), refValue.Len(), refValue.Cap())
 
+	elemType := conv.Type().Elem()
+	elemIsUnmarshaler := false
+	var dummy reflect.Value
+	if elemType.Kind() != reflect.Ptr {
+		dummy = reflect.New(elemType).Elem()
+	} else {
+		dummy = reflect.New(elemType.Elem())
+	}
+	_, elemIsUnmarshaler = dummy.Interface().(IUnmarshaler)
+	if !elemIsUnmarshaler {
+		_, elemIsUnmarshaler = dummy.Addr().Interface().(IUnmarshaler)
+	}
+
 	for i := 0; i < refValue.Len(); i++ {
 		ithValue := refValue.Index(i).Interface()
 		if ithValue == nil {
@@ -167,6 +185,27 @@ func (u *Unmarshaler) fillSlice(fieldType reflect.Type, value reflect.Value,
 
 		valid = true
 		sliceFullName := fmt.Sprintf("%s[%d]", fullName, i)
+
+		if elemIsUnmarshaler {
+			jsonBytes, err := json.Marshal(ithValue)
+			if err != nil {
+				return err
+			}
+			elem := conv.Index(i)
+			if elem.Kind() == reflect.Ptr && elem.IsNil() {
+				elem.Set(reflect.New(elem.Type().Elem()))
+			}
+			if unmarshaler, ok := elem.Interface().(IUnmarshaler); ok {
+				if err := unmarshaler.UnmarshalJSON(jsonBytes); err != nil {
+					return err
+				}
+			} else if unmarshaler, ok := elem.Addr().Interface().(IUnmarshaler); ok {
+				if err := unmarshaler.UnmarshalJSON(jsonBytes); err != nil {
+					return err
+				}
+			}
+			continue
+		}
 
 		switch dereffedBaseKind {
 		case reflect.Struct:
@@ -229,6 +268,20 @@ func (u *Unmarshaler) fillSliceValue(slice reflect.Value, index int,
 
 	ithVal := slice.Index(index)
 	ithValType := ithVal.Type()
+
+	if unmarshaler, ok := ithVal.Interface().(IUnmarshaler); ok {
+		jsonBytes, err := json.Marshal(value)
+		if err != nil {
+			return err
+		}
+		return unmarshaler.UnmarshalJSON(jsonBytes)
+	} else if unmarshaler, ok := ithVal.Addr().Interface().(IUnmarshaler); ok {
+		jsonBytes, err := json.Marshal(value)
+		if err != nil {
+			return err
+		}
+		return unmarshaler.UnmarshalJSON(jsonBytes)
+	}
 
 	switch v := value.(type) {
 	case fmt.Stringer:
@@ -852,7 +905,6 @@ func (u *Unmarshaler) processNamedFieldWithValue(fieldType reflect.Type, value r
 		if opts.optional() {
 			return nil
 		}
-
 		return fmt.Errorf("field %q mustn't be nil", key)
 	}
 
@@ -862,6 +914,22 @@ func (u *Unmarshaler) processNamedFieldWithValue(fieldType reflect.Type, value r
 
 	maybeNewValue(fieldType, value)
 
+	// 首先检查是否实现了UnmarshalJSON接口
+	if unmarshaler, ok := value.Interface().(IUnmarshaler); ok {
+		jsonBytes, err := json.Marshal(mapValue)
+		if err != nil {
+			return err
+		}
+		return unmarshaler.UnmarshalJSON(jsonBytes)
+	} else if unmarshaler, ok := value.Addr().Interface().(IUnmarshaler); ok {
+		jsonBytes, err := json.Marshal(mapValue)
+		if err != nil {
+			return err
+		}
+		return unmarshaler.UnmarshalJSON(jsonBytes)
+	}
+
+	// 然后检查是否实现了encoding.TextUnmarshaler
 	if yes, err := u.processFieldTextUnmarshaler(fieldType, value, mapValue); yes {
 		return err
 	}
