@@ -8,6 +8,7 @@ import (
 	"github.com/tao-kit/tao/core/stat"
 	"github.com/tao-kit/tao/core/trace"
 	"github.com/tao-kit/tao/internal/devserver"
+	"github.com/tao-kit/tao/internal/profiling"
 )
 
 const (
@@ -38,6 +39,8 @@ type (
 		Telemetry  trace.Config      `json:",optional"`
 		DevServer  DevServerConfig   `json:",optional"`
 		Shutdown   proc.ShutdownConf `json:",optional"`
+		// Profiling is the configuration for continuous profiling.
+		Profiling profiling.Config `json:",optional"`
 	}
 )
 
@@ -70,7 +73,9 @@ func (sc ServiceConf) SetUp() error {
 	if len(sc.MetricsUrl) > 0 {
 		stat.SetReportWriter(stat.NewRemoteWriter(sc.MetricsUrl))
 	}
+
 	devserver.StartAgent(sc.DevServer)
+	profiling.Start(sc.Profiling)
 
 	return nil
 }

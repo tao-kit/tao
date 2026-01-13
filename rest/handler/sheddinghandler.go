@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	"github.com/tao-kit/tao/core/load"
-	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/logc"
 	"github.com/tao-kit/tao/core/stat"
 	"github.com/tao-kit/tao/rest/httpx"
 	"github.com/tao-kit/tao/rest/internal/response"
@@ -35,7 +35,7 @@ func SheddingHandler(shedder load.Shedder, metrics *stat.Metrics) func(http.Hand
 			if err != nil {
 				metrics.AddDrop()
 				sheddingStat.IncrementDrop()
-				logx.Errorf("[http] dropped, %s - %s - %s",
+				logc.Errorf(r.Context(), "[http] dropped, %s - %s - %s",
 					r.RequestURI, httpx.GetRemoteAddr(r), r.UserAgent())
 				w.WriteHeader(http.StatusServiceUnavailable)
 				return

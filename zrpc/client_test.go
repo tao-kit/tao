@@ -12,6 +12,8 @@ import (
 	"github.com/tao-kit/tao/core/discov"
 	"github.com/tao-kit/tao/core/logx"
 	"github.com/tao-kit/tao/internal/mock"
+	"github.com/tao-kit/tao/zrpc/internal/balancer/consistenthash"
+	"github.com/tao-kit/tao/zrpc/internal/balancer/p2c"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/credentials/insecure"
@@ -244,4 +246,43 @@ func TestNewClientWithTarget(t *testing.T) {
 		}))
 
 	assert.NotNil(t, err)
+}
+
+func TestMakeLBServiceConfig(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    string
+		expected string
+	}{
+		{
+			name:     "empty name uses default p2c",
+			input:    "",
+			expected: fmt.Sprintf(`{"loadBalancingPolicy":"%s"}`, p2c.Name),
+		},
+		{
+			name:     "custom balancer name",
+			input:    "consistent_hash",
+			expected: `{"loadBalancingPolicy":"consistent_hash"}`,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := makeLBServiceConfig(tt.input)
+			if got != tt.expected {
+				t.Errorf("expected %q, got %q", tt.expected, got)
+			}
+		})
+	}
+}
+
+func TestSetHashKey(t *testing.T) {
+	ctx := context.Background()
+	key := "abc123"
+
+	ctx = SetHashKey(ctx, key)
+	got := consistenthash.GetHashKey(ctx)
+	assert.Equal(t, key, got)
+
+	assert.Empty(t, consistenthash.GetHashKey(context.Background()))
 }

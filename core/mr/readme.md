@@ -55,7 +55,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/tao-kit/tao/core/mr"
+    "github.com/zeromicro/go-zero/core/mr"
 )
 
 func main() {

@@ -203,6 +203,20 @@ func TestUnmarshalDuration(t *testing.T) {
 	}
 }
 
+func TestUnmarshalDurationUnexpectedError(t *testing.T) {
+	type inner struct {
+		Duration time.Duration `key:"duration"`
+	}
+	content := "{\"duration\": 1}"
+	var m = map[string]any{}
+	err := jsonx.Unmarshal([]byte(content), &m)
+	assert.NoError(t, err)
+	var in inner
+	err = UnmarshalKey(m, &in)
+	assert.Error(t, err)
+	assert.Contains(t, err.Error(), "expect string")
+}
+
 func TestUnmarshalDurationDefault(t *testing.T) {
 	type inner struct {
 		Int      int           `key:"int"`
@@ -1462,9 +1476,7 @@ func TestUnmarshalIntSlice(t *testing.T) {
 
 		ast := assert.New(t)
 		unmarshaler := NewUnmarshaler(defaultKeyName, WithFromArray())
-		if ast.NoError(unmarshaler.Unmarshal(m, &v)) {
-			ast.ElementsMatch([]int{1, 2}, v.Ages)
-		}
+		ast.Error(unmarshaler.Unmarshal(m, &v))
 	})
 }
 
@@ -1546,7 +1558,22 @@ func TestUnmarshalStringSliceFromString(t *testing.T) {
 		ast := assert.New(t)
 		unmarshaler := NewUnmarshaler(defaultKeyName, WithFromArray())
 		if ast.NoError(unmarshaler.Unmarshal(m, &v)) {
-			ast.ElementsMatch([]string{"", ""}, v.Names)
+			ast.ElementsMatch([]string{","}, v.Names)
+		}
+	})
+
+	t.Run("slice from valid strings with comma", func(t *testing.T) {
+		var v struct {
+			Names []string `key:"names"`
+		}
+		m := map[string]any{
+			"names": []string{"aa,bb"},
+		}
+
+		ast := assert.New(t)
+		unmarshaler := NewUnmarshaler(defaultKeyName, WithFromArray())
+		if ast.NoError(unmarshaler.Unmarshal(m, &v)) {
+			ast.ElementsMatch([]string{"aa,bb"}, v.Names)
 		}
 	})
 
@@ -4652,6 +4679,23 @@ func TestUnmarshal_EnvInt(t *testing.T) {
 	}
 }
 
+func TestUnmarshal_EnvInt64(t *testing.T) {
+	type Value struct {
+		Age int64 `key:"age,env=TEST_NAME_INT64"`
+	}
+
+	const (
+		envName = "TEST_NAME_INT64"
+		envVal  = "88"
+	)
+	t.Setenv(envName, envVal)
+
+	var v Value
+	if assert.NoError(t, UnmarshalKey(emptyMap, &v)) {
+		assert.Equal(t, int64(88), v.Age)
+	}
+}
+
 func TestUnmarshal_EnvIntOverwrite(t *testing.T) {
 	type Value struct {
 		Age int `key:"age,env=TEST_NAME_INT"`
@@ -4757,20 +4801,33 @@ func TestUnmarshal_EnvBoolBad(t *testing.T) {
 }
 
 func TestUnmarshal_EnvDuration(t *testing.T) {
-	type Value struct {
-		Duration time.Duration `key:"duration,env=TEST_NAME_DURATION"`
-	}
-
 	const (
 		envName = "TEST_NAME_DURATION"
 		envVal  = "1s"
 	)
 	t.Setenv(envName, envVal)
 
-	var v Value
-	if assert.NoError(t, UnmarshalKey(emptyMap, &v)) {
-		assert.Equal(t, time.Second, v.Duration)
-	}
+	t.Run("valid duration", func(t *testing.T) {
+		type Value struct {
+			Duration time.Duration `key:"duration,env=TEST_NAME_DURATION"`
+		}
+
+		var v Value
+		if assert.NoError(t, UnmarshalKey(emptyMap, &v)) {
+			assert.Equal(t, time.Second, v.Duration)
+		}
+	})
+
+	t.Run("ptr of duration", func(t *testing.T) {
+		type Value struct {
+			Duration *time.Duration `key:"duration,env=TEST_NAME_DURATION"`
+		}
+
+		var v Value
+		if assert.NoError(t, UnmarshalKey(emptyMap, &v)) {
+			assert.Equal(t, time.Second, *v.Duration)
+		}
+	})
 }
 
 func TestUnmarshal_EnvDurationBadValue(t *testing.T) {
@@ -5982,6 +6039,16 @@ func TestUnmarshal_Unmarshaler(t *testing.T) {
 		}, &v))
 		assert.Nil(t, v.Foo)
 	})
+
+	t.Run("json.Number", func(t *testing.T) {
+		v := struct {
+			Foo *mockUnmarshaler `json:"name"`
+		}{}
+		m := map[string]any{
+			"name": json.Number("123"),
+		}
+		assert.Error(t, UnmarshalJsonMap(m, &v))
+	})
 }
 
 func TestParseJsonStringValue(t *testing.T) {
@@ -6013,6 +6080,105 @@ func TestParseJsonStringValue(t *testing.T) {
 		assert.NotPanics(t, func() {
 			assert.Error(t, UnmarshalJsonMap(input, &v))
 		})
+	})
+}
+
+// issue #5033, string type
+func TestUnmarshalFromEnvString(t *testing.T) {
+	t.Setenv("STRING_ENV", "dev")
+
+	t.Run("by value", func(t *testing.T) {
+		type (
+			Env    string
+			Config struct {
+				Env Env `json:",env=STRING_ENV,default=prod"`
+			}
+		)
+
+		var c Config
+		if assert.NoError(t, UnmarshalJsonMap(map[string]any{}, &c)) {
+			assert.Equal(t, Env("dev"), c.Env)
+		}
+	})
+
+	t.Run("by ptr", func(t *testing.T) {
+		type (
+			Env    string
+			Config struct {
+				Env *Env `json:",env=STRING_ENV,default=prod"`
+			}
+		)
+
+		var c Config
+		if assert.NoError(t, UnmarshalJsonMap(map[string]any{}, &c)) {
+			assert.Equal(t, Env("dev"), *c.Env)
+		}
+	})
+}
+
+// issue #5033, bool type
+func TestUnmarshalFromEnvBool(t *testing.T) {
+	t.Setenv("BOOL_ENV", "true")
+
+	t.Run("by value", func(t *testing.T) {
+		type (
+			Env    bool
+			Config struct {
+				Env Env `json:",env=BOOL_ENV,default=false"`
+			}
+		)
+
+		var c Config
+		if assert.NoError(t, UnmarshalJsonMap(map[string]any{}, &c)) {
+			assert.Equal(t, Env(true), c.Env)
+		}
+	})
+
+	t.Run("by ptr", func(t *testing.T) {
+		type (
+			Env    bool
+			Config struct {
+				Env *Env `json:",env=BOOL_ENV,default=false"`
+			}
+		)
+
+		var c Config
+		if assert.NoError(t, UnmarshalJsonMap(map[string]any{}, &c)) {
+			assert.Equal(t, Env(true), *c.Env)
+		}
+	})
+}
+
+// issue #5033, customized int type
+func TestUnmarshalFromEnvInt(t *testing.T) {
+	t.Setenv("INT_ENV", "2")
+
+	t.Run("by value", func(t *testing.T) {
+		type (
+			Env    int
+			Config struct {
+				Env Env `json:",env=INT_ENV,default=0"`
+			}
+		)
+
+		var c Config
+		if assert.NoError(t, UnmarshalJsonMap(map[string]any{}, &c)) {
+			assert.Equal(t, Env(2), c.Env)
+		}
+	})
+
+	t.Run("by ptr", func(t *testing.T) {
+		type (
+			Env    int
+			Config struct {
+				Env *Env `json:",env=INT_ENV,default=0"`
+			}
+		)
+
+		var c Config
+		if assert.NoError(t, UnmarshalJsonMap(map[string]any{}, &c)) {
+			assert.Equal(t, Env(2), *c.Env)
+		}
 	})
 }
 
@@ -6145,108 +6311,4 @@ type mockUnmarshalerWithError struct {
 
 func (m *mockUnmarshalerWithError) UnmarshalJSON(b []byte) error {
 	return errors.New("foo")
-}
-
-type CustomTime struct {
-	time.Time
-}
-
-func (t *CustomTime) UnmarshalJSON(data []byte) error {
-	var timeStr string
-	if err := json.Unmarshal(data, &timeStr); err != nil {
-		return err
-	}
-
-	parsed, err := time.Parse("2006-01-02", timeStr)
-	if err != nil {
-		return err
-	}
-
-	*t = CustomTime{Time: parsed}
-	return nil
-}
-
-func TestUnmarshalWithUnmarshalJSONInterface(t *testing.T) {
-	t.Run("struct with UnmarshalJSON", func(t *testing.T) {
-		type inner struct {
-			Birthday CustomTime `key:"birthday"`
-		}
-
-		m := map[string]any{
-			"birthday": "2024-03-19",
-		}
-
-		var in inner
-		if assert.NoError(t, UnmarshalKey(m, &in)) {
-			expected, _ := time.Parse("2006-01-02", "2024-03-19")
-			assert.Equal(t, expected.Year(), in.Birthday.Year())
-			assert.Equal(t, expected.Month(), in.Birthday.Month())
-			assert.Equal(t, expected.Day(), in.Birthday.Day())
-		}
-	})
-
-	t.Run("pointer field with UnmarshalJSON", func(t *testing.T) {
-		type inner struct {
-			Birthday *CustomTime `key:"birthday"`
-		}
-
-		m := map[string]any{
-			"birthday": "2024-03-19",
-		}
-
-		var in inner
-		if assert.NoError(t, UnmarshalKey(m, &in)) {
-			expected, _ := time.Parse("2006-01-02", "2024-03-19")
-			assert.Equal(t, expected.Year(), in.Birthday.Year())
-			assert.Equal(t, expected.Month(), in.Birthday.Month())
-			assert.Equal(t, expected.Day(), in.Birthday.Day())
-		}
-	})
-
-	t.Run("invalid date format", func(t *testing.T) {
-		type inner struct {
-			Birthday CustomTime `key:"birthday"`
-		}
-
-		m := map[string]any{
-			"birthday": "invalid-date",
-		}
-
-		var in inner
-		assert.Error(t, UnmarshalKey(m, &in))
-	})
-
-	t.Run("nil value", func(t *testing.T) {
-		type inner struct {
-			Birthday *CustomTime `key:"birthday,optional"`
-		}
-
-		m := map[string]any{
-			"birthday": nil,
-		}
-
-		var in inner
-		if assert.NoError(t, UnmarshalKey(m, &in)) {
-			assert.Nil(t, in.Birthday)
-		}
-	})
-
-	t.Run("slice of UnmarshalJSON implementer", func(t *testing.T) {
-		type inner struct {
-			Dates []CustomTime `key:"dates"`
-		}
-
-		m := map[string]any{
-			"dates": []any{"2024-03-19", "2024-03-20"},
-		}
-
-		var in inner
-		if assert.NoError(t, UnmarshalKey(m, &in)) {
-			assert.Equal(t, 2, len(in.Dates))
-			expected1, _ := time.Parse("2006-01-02", "2024-03-19")
-			expected2, _ := time.Parse("2006-01-02", "2024-03-20")
-			assert.Equal(t, expected1.Format("2006-01-02"), in.Dates[0].Format("2006-01-02"))
-			assert.Equal(t, expected2.Format("2006-01-02"), in.Dates[1].Format("2006-01-02"))
-		}
-	})
 }

@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/tao-kit/tao/core/breaker"
-	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/logc"
 	"github.com/tao-kit/tao/core/stat"
 	"github.com/tao-kit/tao/rest/httpx"
 	"github.com/tao-kit/tao/rest/internal/response"
@@ -22,7 +22,7 @@ func BreakerHandler(method, path string, metrics *stat.Metrics) func(http.Handle
 			promise, err := brk.Allow()
 			if err != nil {
 				metrics.AddDrop()
-				logx.Errorf("[http] dropped, %s - %s - %s",
+				logc.Errorf(r.Context(), "[http] dropped, %s - %s - %s",
 					r.RequestURI, httpx.GetRemoteAddr(r), r.UserAgent())
 				w.WriteHeader(http.StatusServiceUnavailable)
 				return

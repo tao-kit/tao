@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"reflect"
+	"slices"
 	"strconv"
 	"strings"
 	"sync"
@@ -15,11 +16,9 @@ import (
 	"github.com/tao-kit/tao/core/jsonx"
 	"github.com/tao-kit/tao/core/lang"
 	"github.com/tao-kit/tao/core/proc"
-	"github.com/tao-kit/tao/core/stringx"
 )
 
 const (
-	comma            = ","
 	defaultKeyName   = "key"
 	delimiter        = '.'
 	ignoreKey        = "-"
@@ -38,7 +37,6 @@ var (
 	defaultCacheLock    sync.Mutex
 	emptyMap            = map[string]any{}
 	emptyValue          = reflect.ValueOf(lang.Placeholder)
-	stringSliceType     = reflect.TypeOf([]string{})
 )
 
 type (
@@ -57,11 +55,6 @@ type (
 		fromString   bool
 		opaqueKeys   bool
 		canonicalKey func(key string) string
-	}
-
-	// IUnmarshaler is the interface that wraps the UnmarshalJSON method.
-	IUnmarshaler interface {
-		UnmarshalJSON([]byte) error
 	}
 )
 
@@ -157,25 +150,8 @@ func (u *Unmarshaler) fillSlice(fieldType reflect.Type, value reflect.Value,
 		return nil
 	}
 
-	if u.opts.fromArray {
-		refValue = makeStringSlice(refValue)
-	}
-
 	var valid bool
 	conv := reflect.MakeSlice(reflect.SliceOf(baseType), refValue.Len(), refValue.Cap())
-
-	elemType := conv.Type().Elem()
-	elemIsUnmarshaler := false
-	var dummy reflect.Value
-	if elemType.Kind() != reflect.Ptr {
-		dummy = reflect.New(elemType).Elem()
-	} else {
-		dummy = reflect.New(elemType.Elem())
-	}
-	_, elemIsUnmarshaler = dummy.Interface().(IUnmarshaler)
-	if !elemIsUnmarshaler {
-		_, elemIsUnmarshaler = dummy.Addr().Interface().(IUnmarshaler)
-	}
 
 	for i := 0; i < refValue.Len(); i++ {
 		ithValue := refValue.Index(i).Interface()
@@ -185,27 +161,6 @@ func (u *Unmarshaler) fillSlice(fieldType reflect.Type, value reflect.Value,
 
 		valid = true
 		sliceFullName := fmt.Sprintf("%s[%d]", fullName, i)
-
-		if elemIsUnmarshaler {
-			jsonBytes, err := json.Marshal(ithValue)
-			if err != nil {
-				return err
-			}
-			elem := conv.Index(i)
-			if elem.Kind() == reflect.Ptr && elem.IsNil() {
-				elem.Set(reflect.New(elem.Type().Elem()))
-			}
-			if unmarshaler, ok := elem.Interface().(IUnmarshaler); ok {
-				if err := unmarshaler.UnmarshalJSON(jsonBytes); err != nil {
-					return err
-				}
-			} else if unmarshaler, ok := elem.Addr().Interface().(IUnmarshaler); ok {
-				if err := unmarshaler.UnmarshalJSON(jsonBytes); err != nil {
-					return err
-				}
-			}
-			continue
-		}
 
 		switch dereffedBaseKind {
 		case reflect.Struct:
@@ -268,20 +223,6 @@ func (u *Unmarshaler) fillSliceValue(slice reflect.Value, index int,
 
 	ithVal := slice.Index(index)
 	ithValType := ithVal.Type()
-
-	if unmarshaler, ok := ithVal.Interface().(IUnmarshaler); ok {
-		jsonBytes, err := json.Marshal(value)
-		if err != nil {
-			return err
-		}
-		return unmarshaler.UnmarshalJSON(jsonBytes)
-	} else if unmarshaler, ok := ithVal.Addr().Interface().(IUnmarshaler); ok {
-		jsonBytes, err := json.Marshal(value)
-		if err != nil {
-			return err
-		}
-		return unmarshaler.UnmarshalJSON(jsonBytes)
-	}
 
 	switch v := value.(type) {
 	case fmt.Stringer:
@@ -681,9 +622,19 @@ func (u *Unmarshaler) processFieldNotFromString(fieldType reflect.Type, value re
 
 		return u.fillSliceFromString(fieldType, value, mapValue, fullName)
 	case valueKind == reflect.String && derefedFieldType == durationType:
-		return fillDurationValue(fieldType, value, mapValue.(string))
+		v, err := convertToString(mapValue, fullName)
+		if err != nil {
+			return err
+		}
+
+		return fillDurationValue(fieldType, value, v)
 	case valueKind == reflect.String && typeKind == reflect.Struct && u.implementsUnmarshaler(fieldType):
-		return u.fillUnmarshalerStruct(fieldType, value, mapValue.(string))
+		v, err := convertToString(mapValue, fullName)
+		if err != nil {
+			return err
+		}
+
+		return u.fillUnmarshalerStruct(fieldType, value, v)
 	default:
 		return u.processFieldPrimitive(fieldType, value, mapValue, opts, fullName)
 	}
@@ -814,24 +765,26 @@ func (u *Unmarshaler) processFieldWithEnvValue(fieldType reflect.Type, value ref
 		return err
 	}
 
-	fieldKind := fieldType.Kind()
-	switch fieldKind {
-	case reflect.Bool:
+	derefType := Deref(fieldType)
+	derefKind := derefType.Kind()
+	switch {
+	case derefKind == reflect.String:
+		SetValue(fieldType, value, toReflectValue(derefType, envVal))
+		return nil
+	case derefKind == reflect.Bool:
 		val, err := strconv.ParseBool(envVal)
 		if err != nil {
 			return fmt.Errorf("unmarshal field %q with environment variable, %w", fullName, err)
 		}
 
-		value.SetBool(val)
+		SetValue(fieldType, value, toReflectValue(derefType, val))
 		return nil
-	case durationType.Kind():
+	case derefType == durationType:
+		// time.Duration is a special case, its derefKind is reflect.Int64.
 		if err := fillDurationValue(fieldType, value, envVal); err != nil {
 			return fmt.Errorf("unmarshal field %q with environment variable, %w", fullName, err)
 		}
 
-		return nil
-	case reflect.String:
-		value.SetString(envVal)
 		return nil
 	default:
 		return u.processFieldPrimitiveWithJSONNumber(fieldType, value, json.Number(envVal), opts, fullName)
@@ -905,6 +858,7 @@ func (u *Unmarshaler) processNamedFieldWithValue(fieldType reflect.Type, value r
 		if opts.optional() {
 			return nil
 		}
+
 		return fmt.Errorf("field %q mustn't be nil", key)
 	}
 
@@ -914,22 +868,6 @@ func (u *Unmarshaler) processNamedFieldWithValue(fieldType reflect.Type, value r
 
 	maybeNewValue(fieldType, value)
 
-	// 首先检查是否实现了UnmarshalJSON接口
-	if unmarshaler, ok := value.Interface().(IUnmarshaler); ok {
-		jsonBytes, err := json.Marshal(mapValue)
-		if err != nil {
-			return err
-		}
-		return unmarshaler.UnmarshalJSON(jsonBytes)
-	} else if unmarshaler, ok := value.Addr().Interface().(IUnmarshaler); ok {
-		jsonBytes, err := json.Marshal(mapValue)
-		if err != nil {
-			return err
-		}
-		return unmarshaler.UnmarshalJSON(jsonBytes)
-	}
-
-	// 然后检查是否实现了encoding.TextUnmarshaler
 	if yes, err := u.processFieldTextUnmarshaler(fieldType, value, mapValue); yes {
 		return err
 	}
@@ -968,7 +906,7 @@ func (u *Unmarshaler) processNamedFieldWithValueFromString(fieldType reflect.Typ
 				valueKind.String())
 		}
 
-		if !stringx.Contains(options, checkValue) {
+		if !slices.Contains(options, checkValue) {
 			return fmt.Errorf(`value "%s" for field %q is not defined in options "%v"`,
 				mapValue, key, options)
 		}
@@ -1255,35 +1193,6 @@ func join(elem ...string) string {
 	}
 
 	return builder.String()
-}
-
-func makeStringSlice(refValue reflect.Value) reflect.Value {
-	if refValue.Len() != 1 {
-		return refValue
-	}
-
-	element := refValue.Index(0)
-	if element.Kind() != reflect.String {
-		return refValue
-	}
-
-	val, ok := element.Interface().(string)
-	if !ok {
-		return refValue
-	}
-
-	splits := strings.Split(val, comma)
-	if len(splits) <= 1 {
-		return refValue
-	}
-
-	slice := reflect.MakeSlice(stringSliceType, len(splits), len(splits))
-	for i, split := range splits {
-		// allow empty strings
-		slice.Index(i).Set(reflect.ValueOf(split))
-	}
-
-	return slice
 }
 
 func newInitError(name string) error {

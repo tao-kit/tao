@@ -7,7 +7,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/tao-kit/tao/core/contextx"
 	"github.com/tao-kit/tao/core/lang"
@@ -18,6 +17,7 @@ import (
 	"go.etcd.io/etcd/api/v3/mvccpb"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"go.etcd.io/etcd/client/v3/mock/mockserver"
+	"go.uber.org/mock/gomock"
 )
 
 var mockLock sync.Mutex
@@ -300,7 +300,7 @@ func TestCluster_handleWatchEvents(t *testing.T) {
 			},
 		}
 		assert.NotPanics(t, func() {
-			c.handleWatchEvents(watchKey{
+			c.handleWatchEvents(context.Background(), watchKey{
 				key: "another",
 			}, nil)
 		})
@@ -423,7 +423,7 @@ func TestRegistry_Monitor(t *testing.T) {
 	GetRegistry().clusters = map[string]*cluster{
 		getClusterKey(endpoints): {
 			watchers: map[watchKey]*watchValue{
-				watchKey{
+				{
 					key:        "foo",
 					exactMatch: true,
 				}: {
@@ -449,7 +449,7 @@ func TestRegistry_Unmonitor(t *testing.T) {
 	GetRegistry().clusters = map[string]*cluster{
 		getClusterKey(endpoints): {
 			watchers: map[watchKey]*watchValue{
-				watchKey{
+				{
 					key:        "foo",
 					exactMatch: true,
 				}: {

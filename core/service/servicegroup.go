@@ -1,9 +1,10 @@
 package service
 
 import (
+	"sync"
+
 	"github.com/tao-kit/tao/core/logx"
 	"github.com/tao-kit/tao/core/proc"
-	"github.com/tao-kit/tao/core/syncx"
 	"github.com/tao-kit/tao/core/threading"
 )
 
@@ -35,7 +36,7 @@ type (
 // NewServiceGroup returns a ServiceGroup.
 func NewServiceGroup() *ServiceGroup {
 	sg := new(ServiceGroup)
-	sg.stopOnce = syncx.Once(sg.doStop)
+	sg.stopOnce = sync.OnceFunc(sg.doStop)
 	return sg
 }
 

@@ -27,3 +27,8 @@
 !OWNERS
 .idea/
 local-commit
+
+.mcp.json
+.beads/
+AGENTS.md
+.claude/

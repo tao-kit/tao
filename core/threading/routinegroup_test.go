@@ -1,13 +1,12 @@
 package threading
 
 import (
-	"io"
-	"log"
 	"sync"
 	"sync/atomic"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/tao-kit/tao/core/logx/logtest"
 )
 
 func TestRoutineGroupRun(t *testing.T) {
@@ -25,7 +24,7 @@ func TestRoutineGroupRun(t *testing.T) {
 }
 
 func TestRoutingGroupRunSafe(t *testing.T) {
-	log.SetOutput(io.Discard)
+	logtest.Discard(t)
 
 	var count int32
 	group := NewRoutineGroup()

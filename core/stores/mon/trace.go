@@ -5,7 +5,7 @@ import (
 
 	"github.com/tao-kit/tao/core/errorx"
 	"github.com/tao-kit/tao/core/trace"
-	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	oteltrace "go.opentelemetry.io/otel/trace"

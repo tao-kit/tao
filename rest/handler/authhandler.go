@@ -7,7 +7,7 @@ import (
 	"net/http/httputil"
 
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/tao-kit/tao/core/logx"
+	"github.com/tao-kit/tao/core/logc"
 	"github.com/tao-kit/tao/rest/internal/response"
 	"github.com/tao-kit/tao/rest/token"
 )
@@ -100,7 +100,7 @@ func WithUnauthorizedCallback(callback UnauthorizedCallback) AuthorizeOption {
 func detailAuthLog(r *http.Request, reason string) {
 	// discard dump error, only for debug purpose
 	details, _ := httputil.DumpRequest(r, true)
-	logx.Errorf("authorize failed: %s\n=> %+v", reason, string(details))
+	logc.Errorf(r.Context(), "authorize failed: %s\n=> %+v", reason, string(details))
 }
 
 func unauthorized(w http.ResponseWriter, r *http.Request, err error, callback UnauthorizedCallback) {

@@ -62,7 +62,11 @@ func Load(file string, v any, opts ...Option) error {
 		return loader([]byte(os.ExpandEnv(string(content))), v)
 	}
 
-	return loader(content, v)
+	if err = loader(content, v); err != nil {
+		return err
+	}
+
+	return validate(v)
 }
 
 // LoadConfig loads config into v from file, .json, .yaml and .yml are acceptable.
@@ -85,7 +89,12 @@ func LoadFromJsonBytes(content []byte, v any) error {
 
 	lowerCaseKeyMap := toLowerCaseKeyMap(m, info)
 
-	return mapping.UnmarshalJsonMap(lowerCaseKeyMap, v, mapping.WithCanonicalKeyFunc(toLowerCase))
+	if err = mapping.UnmarshalJsonMap(lowerCaseKeyMap, v,
+		mapping.WithCanonicalKeyFunc(toLowerCase)); err != nil {
+		return err
+	}
+
+	return validate(v)
 }
 
 // LoadConfigFromJsonBytes loads config into v from content json bytes.
@@ -307,7 +316,7 @@ func toLowerCaseInterface(v any, info *fieldInfo) any {
 	case map[string]any:
 		return toLowerCaseKeyMap(vv, info)
 	case []any:
-		var arr []any
+		arr := make([]any, 0, len(vv))
 		for _, vvv := range vv {
 			arr = append(arr, toLowerCaseInterface(vvv, info))
 		}
@@ -359,5 +368,5 @@ func getFullName(parent, child string) string {
 		return child
 	}
 
-	return strings.Join([]string{parent, child}, ".")
+	return parent + "." + child
 }
